@@ -75,12 +75,26 @@ export async function registerUser(email, password, username) {
 
     if (error) throw error
 
-    showToast('¡Registro exitoso! Revisa tu correo o inicia sesión.')
-    sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
+    // Verificamos si Supabase requiere confirmación de correo o crea sesión directa
+    if (data.user && !data.session) {
+      showToast('¡Registro exitoso! Revisa tu correo electrónico para confirmar tu cuenta.', 'success')
+      sendDiscordWebhook(`🎉 **Nuevo Registro (Pendiente Confirmación):** \`${email}\` (${username})`)
+      
+      setTimeout(() => {
+        window.location.href = 'login.html'
+      }, 2500)
+    } else {
+      showToast('¡Cuenta creada e iniciada con éxito! Redirigiendo...', 'success')
+      sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
+      
+      if (data?.session?.user?.email) {
+        localStorage.setItem('user_email', data.session.user.email)
+      }
 
-    setTimeout(() => {
-      window.location.href = 'login.html'
-    }, 1500)
+      setTimeout(() => {
+        window.location.href = 'dashboard.html'
+      }, 1500)
+    }
 
   } catch (err) {
     console.error("Error en Registro:", err)
@@ -110,7 +124,13 @@ export async function loginUser(email, password) {
 
   } catch (err) {
     console.error("Error en Login:", err)
-    showToast(err.message || 'Correo o contraseña incorrectos.', 'error')
+    
+    // Control específico si el correo no ha sido confirmado
+    if (err.message && err.message.toLowerCase().includes("email not confirmed")) {
+      showToast("Debes confirmar tu correo electrónico antes de iniciar sesión.", 'error')
+    } else {
+      showToast(err.message || 'Correo o contraseña incorrectos.', 'error')
+    }
   }
 }
 

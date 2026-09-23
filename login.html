@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión | Synthetix Host</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <a href="index.html" class="brand">✦ synthetix<span>.host</span></a>
+
+    <div class="auth-card glass">
+      <span class="kicker">BIENVENIDO DE NUEVO</span>
+      <h1>Accede a tu <em>panel.</em></h1>
+      <p class="muted">Gestiona tus servicios desde un solo lugar.</p>
+
+      <form id="login-form">
+        <label>
+          Email
+          <input required type="email" id="email" autocomplete="email" placeholder="tu@email.com" />
+        </label>
+
+        <label>
+          Contraseña
+          <input required type="password" id="password" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+
+        <div class="form-row">
+          <label class="check"><input type="checkbox" /> Recordarme</label>
+          <a href="reset-password.html">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button class="btn btn-primary btn-wide" type="submit">Iniciar sesión →</button>
+      </form>
+
+      <div class="divider"><span>o continúa con</span></div>
+      <button id="discord-login" class="btn btn-discord btn-wide" type="button">◈ Discord</button>
+
+      <p class="auth-switch">¿Aún no tienes cuenta? <a href="register.html">Regístrate gratis</a></p>
+    </div>
+
+    <a class="back-home" href="index.html">← Volver al inicio</a>
+  </main>
+
+  <div id="toast-root" class="toast-root"></div>
+
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>

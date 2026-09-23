@@ -1,9 +1,12 @@
-// Inicialización del Cliente Supabase
-let supabaseClient = null;
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
 
-if (typeof supabase !== 'undefined' && CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY) {
-  supabaseClient = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+const SUPABASE_URL = 'https://pnnnhkbriqizjmkhodbu.supabase.co'
+const SUPABASE_ANON_KEY = 'Sb_publishable_6mgwm2JwyzzveWGAGCXyJQ_NjF1Mxrx'
+
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+if (supabaseClient) {
   console.log('✅ Supabase inicializado correctamente.');
 } else {
-  console.error('❌ Error: El SDK de Supabase o las credenciales no están cargadas.');
+  console.error('❌ Error al inicializar Supabase.');
 }

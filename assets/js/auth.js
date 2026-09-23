@@ -6,33 +6,65 @@ const CONFIG = {
   DISCORD_WEBHOOK_URL: '' // Coloca tu URL de Webhook de Discord aquí si deseas recibir alertas
 }
 
-// Sistema auxiliar para mostrar notificaciones (Toast)
+// Sistema auxiliar para mostrar notificaciones flotantes (Toast)
 function showToast(message, type = 'success') {
-  const root = document.getElementById('toast-root') || document.body
+  let root = document.getElementById('toast-root')
+  if (!root) {
+    root = document.createElement('div')
+    root.id = 'toast-root'
+    document.body.appendChild(root)
+  }
+
+  // Estilo del contenedor principal del toast (Fijo arriba a la derecha)
+  root.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+  `
+
   const toast = document.createElement('div')
-  toast.className = `toast toast-${type}`
   toast.style.cssText = `
-    background: ${type === 'error' ? '#ef4444' : '#a855f7'};
-    color: #fff;
+    background: ${type === 'error' ? '#ef4444' : '#10b981'};
+    color: #ffffff;
     padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: opacity 0.3s ease;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: auto;
+    font-family: system-ui, -apple-system, sans-serif;
   `
   toast.textContent = message
   root.appendChild(toast)
 
+  // Animación de entrada
+  requestAnimationFrame(() => {
+    toast.style.opacity = '1'
+    toast.style.transform = 'translateY(0)'
+  })
+
+  // Animación de salida y remoción
   setTimeout(() => {
     toast.style.opacity = '0'
+    toast.style.transform = 'translateY(-10px)'
     setTimeout(() => toast.remove(), 300)
-  }, 3000)
+  }, 3500)
 }
 
 // --- Funciones de Autenticación ---
 
 export async function registerUser(email, password, username) {
   try {
+    if (!supabaseClient) throw new Error("Cliente de Supabase no inicializado.")
+
     const { data, error } = await supabaseClient.auth.signUp({
       email,
       password,
@@ -46,14 +78,20 @@ export async function registerUser(email, password, username) {
     showToast('¡Registro exitoso! Revisa tu correo o inicia sesión.')
     sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
 
-    setTimeout(() => window.location.href = 'login.html', 1500)
+    setTimeout(() => {
+      window.location.href = 'login.html'
+    }, 1500)
+
   } catch (err) {
-    showToast(err.message, 'error')
+    console.error("Error en Registro:", err)
+    showToast(err.message || 'Error al registrar el usuario.', 'error')
   }
 }
 
 export async function loginUser(email, password) {
   try {
+    if (!supabaseClient) throw new Error("Cliente de Supabase no inicializado.")
+
     const { data, error } = await supabaseClient.auth.signInWithPassword({
       email,
       password
@@ -61,38 +99,57 @@ export async function loginUser(email, password) {
 
     if (error) throw error
 
-    localStorage.setItem('user_email', data.user.email)
+    if (data?.user?.email) {
+      localStorage.setItem('user_email', data.user.email)
+    }
+
     showToast('¡Bienvenido de nuevo!')
-    setTimeout(() => window.location.href = 'dashboard.html', 1000)
+    setTimeout(() => {
+      window.location.href = 'dashboard.html'
+    }, 1000)
+
   } catch (err) {
-    showToast(err.message, 'error')
+    console.error("Error en Login:", err)
+    showToast(err.message || 'Correo o contraseña incorrectos.', 'error')
   }
 }
 
 export async function loginWithDiscord() {
   try {
+    if (!supabaseClient) throw new Error("Cliente de Supabase no inicializado.")
+
     const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: 'discord',
       options: {
         redirectTo: `${window.location.origin}/dashboard.html`
       }
     })
+    
     if (error) throw error
+
   } catch (err) {
-    showToast(err.message, 'error')
+    console.error("Error en Discord OAuth:", err)
+    showToast(err.message || 'Error al iniciar sesión con Discord.', 'error')
   }
 }
 
 export async function logoutUser() {
-  if (supabaseClient) {
-    await supabaseClient.auth.signOut()
+  try {
+    if (supabaseClient) {
+      await supabaseClient.auth.signOut()
+    }
+  } catch (err) {
+    console.warn("Error durante signout:", err)
+  } finally {
+    localStorage.removeItem('user_email')
+    showToast('Has cerrado sesión.')
+    setTimeout(() => {
+      window.location.href = 'index.html'
+    }, 800)
   }
-  localStorage.removeItem('user_email')
-  showToast('Has cerrado sesión.')
-  setTimeout(() => window.location.href = 'index.html', 800)
 }
 
-// Middleware para páginas protegidas (panel/dashboard)
+// Middleware para páginas protegidas (dashboard, panel, etc.)
 export async function checkAuthMiddleware() {
   if (!supabaseClient) return
 
@@ -100,14 +157,14 @@ export async function checkAuthMiddleware() {
 
   if (!session) {
     window.location.href = 'login.html'
-  } else {
+  } else if (session.user?.email) {
     localStorage.setItem('user_email', session.user.email)
   }
 }
 
 // Notificaciones por Webhook a Discord
 async function sendDiscordWebhook(messageText) {
-  if (!CONFIG.DISCORD_WEBHOOK_URL || CONFIG.DISCORD_WEBHOOK_URL.includes('tu-webhook')) return
+  if (!CONFIG.DISCORD_WEBHOOK_URL || CONFIG.DISCORD_WEBHOOK_URL.trim() === '') return
 
   try {
     await fetch(CONFIG.DISCORD_WEBHOOK_URL, {
@@ -129,38 +186,46 @@ async function sendDiscordWebhook(messageText) {
 
 // --- Vinculación Automática con el DOM ---
 document.addEventListener('DOMContentLoaded', () => {
-  // Formulario de Login
+
+  // 1. Captura Formulario de Login
   const loginForm = document.getElementById('login-form')
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault()
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
-      loginUser(email, password)
+      const email = document.getElementById('email')?.value?.trim()
+      const password = document.getElementById('password')?.value
+      if (email && password) {
+        loginUser(email, password)
+      }
     })
   }
 
-  // Formulario de Registro
+  // 2. Captura Formulario de Registro
   const registerForm = document.getElementById('register-form')
   if (registerForm) {
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault()
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
-      const username = document.getElementById('username')?.value || email.split('@')[0]
-      registerUser(email, password, username)
+      const email = document.getElementById('email')?.value?.trim()
+      const password = document.getElementById('password')?.value
+      const usernameInput = document.getElementById('username')?.value?.trim()
+      const username = usernameInput || (email ? email.split('@')[0] : 'usuario')
+
+      if (email && password) {
+        registerUser(email, password, username)
+      }
     })
   }
 
-  // Botón de Discord
+  // 3. Captura Botón de Discord
   const discordBtn = document.getElementById('discord-login')
   if (discordBtn) {
-    discordBtn.addEventListener('click', () => {
+    discordBtn.addEventListener('click', (e) => {
+      e.preventDefault()
       loginWithDiscord()
     })
   }
 
-  // Botón de Cierre de Sesión
+  // 4. Captura Botón de Cierre de Sesión
   const logoutBtn = document.getElementById('logout-btn')
   if (logoutBtn) {
     logoutBtn.addEventListener('click', (e) => {
@@ -169,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // Si la página requiere protección (por ejemplo, dashboard.html)
+  // 5. Verificación de página protegida
   if (document.body.getAttribute('data-page') === 'dashboard') {
     checkAuthMiddleware()
   }

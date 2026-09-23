@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Cliente - NixerHost</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 border-r border-slate-800 p-6 hidden md:flex flex-col justify-between">
+    <div>
+      <div class="flex items-center gap-3 mb-10">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-600 flex items-center justify-center font-black text-white text-sm">N</div>
+        <span class="font-bold text-white text-sm tracking-wider">NIXERHOST</span>
+      </div>
+
+      <nav class="space-y-2 text-xs font-semibold">
+        <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-600/10 text-purple-300 border border-purple-500/30">
+          <span>📊</span> Resumen
+        </a>
+        <a href="index.html#catalogo" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
+          <span>🛒</span> Contratar Servicios
+        </a>
+      </nav>
+    </div>
+
+    <button onclick="logoutUser()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition-all">
+      Cerrar Sesión
+    </button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 md:p-10 max-w-6xl">
+    <header class="flex flex-wrap justify-between items-center gap-4 mb-10">
+      <div>
+        <h1 class="text-2xl font-bold text-white">Panel de Control</h1>
+        <p class="text-xs text-slate-400 mt-1">Gestiona tus servidores y accesos directos</p>
+      </div>
+      <div id="user-badge" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-purple-300 font-semibold"></div>
+    </header>
+
+    <!-- ACCESOS RÁPIDOS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+        <div class="text-2xl mb-2">🎮</div>
+        <h3 class="font-bold text-white text-base">Panel de Juego (Pterodactyl)</h3>
+        <p class="text-xs text-slate-400 mt-1 mb-4">Administra la consola, archivos y archivos de tus servidores de Minecraft o bots.</p>
+        <button id="btn-pterodactyl" class="px-4 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">
+          Abrir Pterodactyl →
+        </button>
+      </div>
+
+      <div class="bg-slate-900/80 p-6 rounded-2xl border border-blue-500/30">
+        <div class="text-2xl mb-2">💳</div>
+        <h3 class="font-bold text-white text-base">Área de Facturación (Paymenter)</h3>
+        <p class="text-xs text-slate-400 mt-1 mb-4">Gestiona tus facturas, renovaciones automáticas y tickets de soporte técnico.</p>
+        <button id="btn-paymenter" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all">
+          Abrir Paymenter →
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/menu.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuthMiddleware();
+      const userEmail = localStorage.getItem('user_email');
+      
+      if (userEmail) {
+        document.getElementById('user-badge').textContent = `Cliente: ${userEmail}`;
+      }
+
+      document.getElementById('btn-pterodactyl').onclick = () => window.open(CONFIG.PTERODACTYL_URL, '_blank');
+      document.getElementById('btn-paymenter').onclick = () => window.open(CONFIG.PAYMENTER_URL, '_blank');
+    });
+  </script>
+</body>
+</html>

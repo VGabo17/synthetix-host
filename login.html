@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - SynthetixHost</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Iniciar Sesión | Synthetix Host</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="bg-slate-950 min-h-screen flex items-center justify-center p-6 text-slate-100 font-sans selection:bg-blue-500/30">
 
   <main class="w-full max-w-md flex flex-col items-center">
-    
     <!-- Branding / Logo -->
     <a href="index.html" class="flex items-center gap-2 mb-8 group">
       <span class="text-blue-500 text-2xl group-hover:scale-110 transition-transform">✦</span>
       <span class="font-bold text-xl tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
     </a>
 
-    <!-- Tarjeta Principal Glassmorphism -->
+    <!-- Tarjeta Principal -->
     <div class="w-full bg-slate-900/90 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-2xl shadow-blue-500/10">
       
-      <!-- Encabezado -->
       <div class="text-center mb-6">
         <span class="inline-block text-[10px] font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 mb-3">
           Bienvenido de nuevo
@@ -32,11 +27,10 @@
         <p class="text-xs text-slate-400 mt-1">Gestiona tus servicios e infraestructura desde un solo lugar.</p>
       </div>
 
-      <!-- Contenedor para Alertas Dinámicas -->
-      <div id="alert" class="hidden p-3.5 rounded-xl text-xs font-semibold mb-4 text-center"></div>
+      <div id="toast-root"></div>
 
-      <!-- Formulario de Login -->
-      <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4">
+      <!-- Formulario (auth.js captura el evento submit automáticamente por id "login-form") -->
+      <form id="login-form" class="space-y-4">
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1" for="email">Correo Electrónico</label>
           <input id="email" type="email" required autocomplete="email" placeholder="tu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors placeholder:text-slate-600">
@@ -47,18 +41,16 @@
           <input id="password" type="password" required autocomplete="current-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors placeholder:text-slate-600">
         </div>
 
-        <!-- Fila de Opciones (Recordarme y Olvidé contraseña) -->
         <div class="flex items-center justify-between text-xs pt-1">
           <label class="flex items-center gap-2 text-slate-400 cursor-pointer select-none">
-            <input type="checkbox" class="w-4 h-4 rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900">
+            <input type="checkbox" class="w-4 h-4 rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-blue-500">
             Recordarme
           </label>
           <a href="reset-password.html" class="text-blue-400 hover:text-blue-300 font-medium transition-colors">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <!-- Botón Entrar -->
-        <button id="submit-btn" type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
-          Iniciar sesión &rarr;
+        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]">
+          Iniciar sesión →
         </button>
       </form>
 
@@ -68,98 +60,24 @@
         <span class="relative bg-slate-900/90 px-3 text-[11px] font-medium text-slate-500 uppercase tracking-wider">o continúa con</span>
       </div>
 
-      <!-- Botón Discord -->
-      <button id="discord-login" type="button" onclick="handleDiscordLogin()" class="w-full py-3 bg-[#5865F2]/10 hover:bg-[#5865F2]/20 border border-[#5865F2]/30 text-[#5865F2] font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2">
+      <!-- Botón Discord (auth.js captura la id "discord-login") -->
+      <button id="discord-login" type="button" class="w-full py-3 bg-[#5865F2]/10 hover:bg-[#5865F2]/20 border border-[#5865F2]/30 text-[#5865F2] font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2">
         <svg class="w-4 h-4 fill-current" viewBox="0 0 127.14 96.36">
-          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.13ZM42.45,65.69C36.18,65.69,31,60,31,53TaskC31,46,36,40.32,42.45,40.32C48.9,40.32,54,46,53.89,53,53.89,60,48.9,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.07-12.68,11.44-12.68C91.1,40.32,96.18,46,96.07,53,96.07,60,91.1,65.69,84.69,65.69Z"/>
+          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.13ZM42.45,65.69C36.18,65.69,31,60,31,53C31,46,36,40.32,42.45,40.32C48.9,40.32,54,46,53.89,53,53.89,60,48.9,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.07-12.68,11.44-12.68C91.1,40.32,96.18,46,96.07,53,96.07,60,91.1,65.69,84.69,65.69Z"/>
         </svg>
         Discord
       </button>
 
-      <!-- Cambio a Registro -->
       <p class="text-center text-xs text-slate-400 mt-6">
         ¿Aún no tienes cuenta? <a href="register.html" class="text-purple-400 font-semibold hover:underline">Regístrate gratis</a>
       </p>
     </div>
 
-    <!-- Volver al Inicio -->
     <a class="mt-6 text-xs text-slate-500 hover:text-slate-300 font-medium transition-colors flex items-center gap-1" href="index.html">
       &larr; Volver al inicio
     </a>
   </main>
 
-  <div id="toast-root" class="toast-root"></div>
-
-  <!-- Scripts -->
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/supabase.js"></script>
-  <script src="assets/js/auth.js"></script>
-
-  <script>
-    async function handleLogin() {
-      const email = document.getElementById('email').value.trim();
-      const pass = document.getElementById('password').value;
-      const btn = document.getElementById('submit-btn');
-
-      showAlert("", "hidden");
-      btn.disabled = true;
-      btn.textContent = "Verificando...";
-
-      try {
-        if (typeof loginUser === 'function') {
-          const res = await loginUser(email, pass);
-          if (res && res.error) throw res.error;
-        } else if (typeof supabase !== 'undefined') {
-          const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: pass
-          });
-          if (error) throw error;
-        } else {
-          throw new Error("Sistema de autenticación no inicializado.");
-        }
-
-        showAlert("¡Sesión iniciada correctamente! Entrando...", "success");
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1200);
-
-      } catch (err) {
-        console.error("Error en login:", err);
-        showAlert(err.message || "Correo o contraseña incorrectos.", "error");
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "Iniciar sesión →";
-      }
-    }
-
-    async function handleDiscordLogin() {
-      try {
-        if (typeof supabase !== 'undefined') {
-          const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'discord',
-          });
-          if (error) throw error;
-        }
-      } catch (err) {
-        showAlert(err.message || "Error al conectar con Discord", "error");
-      }
-    }
-
-    function showAlert(message, type) {
-      const alertBox = document.getElementById('alert');
-      if (type === "hidden") {
-        alertBox.className = "hidden";
-        return;
-      }
-      
-      alertBox.textContent = message;
-      if (type === 'error') {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold mb-4 text-center bg-red-500/10 border border-red-500/30 text-red-400 block";
-      } else if (type === 'success') {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold mb-4 text-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 block";
-      }
-    }
-  </script>
+  <script type="module" src="assets/js/auth.js"></script>
 </body>
 </html>

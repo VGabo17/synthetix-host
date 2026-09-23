@@ -1,146 +1,290 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synthetix Host</title>
+  <title>SynthetixHost - Infraestructura Sin Límites</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Estilos del proyecto (si tienes algún CSS adicional) -->
   <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <style>
+    /* Estilos para personalización del slider del configurador */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    }
+    /* Ocultar barra de scroll en contenedores deslizables */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-slate-950 min-h-screen text-slate-100 font-sans selection:bg-blue-500/30">
 
-  <header class="navbar">
-    <a href="#" class="brand">
-      <span class="brand-icon">✦</span> synthetix<span>.host</span>
-    </a>
-    
-    <nav class="nav-links">
-      <a href="#servicios">Productos</a>
-      <a href="#configurador">Configurador</a>
-      <a href="#faq">FAQ</a>
-    </nav>
+  <!-- Navegación -->
+  <nav class="sticky top-0 z-50 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2">
+        <span class="text-blue-500 text-xl">✦</span>
+        <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
+      </a>
+      
+      <!-- Enlaces (Ocultos en móvil) -->
+      <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
+        <a href="#productos" class="hover:text-white transition-colors">Productos</a>
+        <a href="#configurador" class="hover:text-white transition-colors">Configurador</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+      </div>
 
-    <div class="auth-btns">
-      <a href="login.html" class="btn btn-ghost btn-sm">Iniciar sesión</a>
-      <a href="register.html" class="btn btn-primary btn-sm">Registrarse</a>
+      <!-- Botones de Autenticación -->
+      <div class="flex items-center gap-3">
+        <a href="login.html" class="hidden sm:block text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
+        <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="container">
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24">
     
-    <!-- Hero -->
-    <section class="hero">
-      <div class="eyebrow">
-        <span class="pulse"></span> Todos los sistemas operativos • Uptime 99.9%
+    <!-- Hero Section -->
+    <section class="text-center flex flex-col items-center mb-24">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        Todos los sistemas operativos • Uptime 99.9%
       </div>
       
-      <h1>Tu infraestructura. <em>Sin límites.</em></h1>
-      <p>Hosting de alto rendimiento para tus mundos de Minecraft y bots. Configura, despliega y escala sin complicaciones.</p>
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white leading-tight">
+        Tu infraestructura. <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500">Sin límites.</span>
+      </h1>
+      
+      <p class="text-slate-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed">
+        Hosting de alto rendimiento para tus mundos de Minecraft y bots. Configura, despliega y escala sin complicaciones con hardware de última generación.
+      </p>
 
-      <div class="hero-actions">
-        <a href="#servicios" class="btn btn-primary btn-wide-mobile">Ver planes →</a>
-        <a href="#configurador" class="btn btn-ghost btn-wide-mobile">Crear mi plan</a>
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <a href="#productos" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">Ver planes &rarr;</a>
+        <a href="#configurador" class="px-8 py-3.5 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition-all text-center">Crear mi plan</a>
       </div>
 
-      <div class="server-card">
-        <div class="server-card-header">
-          <span>SYNT-AMS-01 ONLINE</span>
-          <span class="badge-online">100% OPERATIVO</span>
+      <!-- Tarjeta de Estado del Servidor -->
+      <div class="w-full max-w-3xl mx-auto mt-16 bg-slate-900/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl border border-blue-500/30 shadow-2xl shadow-blue-500/10 text-left">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-xs font-bold text-slate-400 tracking-wider">SYNT-AMS-01</span>
+          <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-full">ONLINE</span>
         </div>
-        <div class="server-stats-grid">
-          <div class="stat-item">
-            <b>24</b>
-            <small>CPU Cores</small>
+        <div class="grid grid-cols-3 gap-4 md:gap-8 divide-x divide-slate-800/50">
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">24</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">CPU Cores</div>
           </div>
-          <div class="stat-item">
-            <b>128GB</b>
-            <small>DDR5 RAM</small>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">128GB</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">DDR5 RAM</div>
           </div>
-          <div class="stat-item">
-            <b>99.99%</b>
-            <small>Uptime</small>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">99.9%</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">Uptime</div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Planes con Tabs Deslizables -->
-    <section id="servicios" style="padding: 40px 0;">
-      <div class="tabs-wrapper">
-        <div class="tabs-bar">
-          <button class="tab-btn active">Minecraft Budget</button>
-          <button class="tab-btn">Minecraft Premium</button>
-          <button class="tab-btn">Bots de Discord</button>
-          <button class="tab-btn">Bots de Telegram</button>
-        </div>
-      </div>
-
-      <div class="products-grid">
-        <div class="product-card">
-          <span class="card-badge">Popular</span>
-          <h3>Plan Inicial</h3>
-          <div class="card-price">€3.99 <span>/mes</span></div>
-          <ul class="card-features">
-            <li>4 GB RAM DDR5</li>
-            <li>100% vCPU Ryzen 9</li>
-            <li>20 GB NVMe Gen4</li>
-            <li>Anti-DDoS Avanzado</li>
-          </ul>
-          <a href="#" class="btn btn-primary btn-wide">Contratar Plan</a>
-        </div>
-
-        <div class="product-card">
-          <span class="card-badge highlight">Recomendado</span>
-          <h3>Plan Avanzado</h3>
-          <div class="card-price">€7.99 <span>/mes</span></div>
-          <ul class="card-features">
-            <li>8 GB RAM DDR5</li>
-            <li>200% vCPU Ryzen 9</li>
-            <li>40 GB NVMe Gen4</li>
-            <li>Anti-DDoS Avanzado</li>
-          </ul>
-          <a href="#" class="btn btn-primary btn-wide">Contratar Plan</a>
         </div>
       </div>
     </section>
 
-    <!-- Configurador -->
-    <section id="configurador" style="padding: 40px 0;">
-      <div class="builder-box">
-        <div>
-          <div class="slider-group">
-            <div class="slider-header">
-              <label>Memoria RAM</label>
-              <span>8 GB</span>
+    <!-- Sección de Productos -->
+    <section id="productos" class="mb-24">
+      <!-- Tabs de Categoría -->
+      <div class="flex overflow-x-auto gap-3 pb-4 mb-8 snap-x hide-scrollbar" id="tabs-container">
+        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Minecraft Budget</button>
+        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Premium</button>
+        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bots de Discord</button>
+      </div>
+
+      <!-- Grid de Planes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Plan 1 -->
+        <div class="bg-slate-900/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-slate-600 transition-all flex flex-col">
+          <h3 class="text-lg font-bold text-white mb-2">Plan Inicial</h3>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-white">€3.99</span>
+            <span class="text-xs font-semibold text-slate-500">/mes</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-grow">
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 4 GB RAM DDR5
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 100% vCPU Ryzen 9
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 20 GB NVMe Gen4
+            </li>
+          </ul>
+          <button class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all">Contratar Plan</button>
+        </div>
+
+        <!-- Plan 2 (Destacado) -->
+        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/50 shadow-2xl shadow-blue-500/10 flex flex-col relative md:-translate-y-2">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">Popular</div>
+          <h3 class="text-lg font-bold text-white mb-2">Plan Avanzado</h3>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-white">€7.99</span>
+            <span class="text-xs font-semibold text-slate-500">/mes</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-grow">
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-purple-400">✦</span> 8 GB RAM DDR5
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-purple-400">✦</span> 200% vCPU Ryzen 9
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-purple-400">✦</span> 40 GB NVMe Gen4
+            </li>
+          </ul>
+          <button class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Contratar Plan</button>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="bg-slate-900/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-slate-600 transition-all flex flex-col">
+          <h3 class="text-lg font-bold text-white mb-2">Plan Pro</h3>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-white">€14.99</span>
+            <span class="text-xs font-semibold text-slate-500">/mes</span>
+          </div>
+          <ul class="space-y-4 mb-8 flex-grow">
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 16 GB RAM DDR5
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 400% vCPU Ryzen 9
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="text-blue-500">✦</span> 80 GB NVMe Gen4
+            </li>
+          </ul>
+          <button class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all">Contratar Plan</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Configurador / Calculadora -->
+    <section id="configurador">
+      <div class="bg-slate-900/90 backdrop-blur-xl p-8 md:p-10 rounded-2xl border border-blue-500/20 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-10">
+        
+        <div class="md:col-span-2 space-y-8">
+          <h2 class="text-xl font-bold text-white mb-6">Configura tu servidor a medida</h2>
+          
+          <!-- Slider RAM -->
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-3">
+              <span>Memoria RAM</span>
+              <span id="ram-value" class="text-blue-400 font-bold">8 GB</span>
             </div>
-            <input type="range" min="2" max="32" value="8">
+            <input id="ram-slider" type="range" min="2" max="32" value="8" step="1" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
           </div>
 
-          <div class="slider-group">
-            <div class="slider-header">
-              <label>vCPU Cores</label>
-              <span>2 Cores</span>
+          <!-- Slider CPU -->
+          <div>
+            <div class="flex justify-between text-xs font-semibold text-slate-300 mb-3">
+              <span>vCPU Cores</span>
+              <span id="cpu-value" class="text-blue-400 font-bold">2 Cores</span>
             </div>
-            <input type="range" min="1" max="8" value="2">
-          </div>
-
-          <div class="slider-group">
-            <div class="slider-header">
-              <label>Almacenamiento NVMe</label>
-              <span>40 GB</span>
-            </div>
-            <input type="range" min="10" max="160" value="40">
+            <input id="cpu-slider" type="range" min="1" max="8" value="2" step="1" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
           </div>
         </div>
 
-        <div class="checkout-col">
-          <small style="color: var(--text-muted);">ESTIMACIÓN MENSUAL</small>
-          <div class="total-price">€7.90 <span>/mes</span></div>
-          <a href="#" class="btn btn-primary btn-wide">Continuar al checkout →</a>
+        <!-- Columna Checkout del Configurador -->
+        <div class="bg-slate-950/60 p-6 rounded-xl border border-slate-800 flex flex-col justify-center items-center text-center">
+          <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Estimación Mensual</span>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span id="total-price" class="text-4xl font-extrabold text-white">€7.90</span>
+            <span class="text-xs font-semibold text-slate-500">/mes</span>
+          </div>
+          <button class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Continuar al Checkout</button>
         </div>
+
       </div>
     </section>
 
   </main>
+
+  <!-- Lógica JavaScript Dinámica -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // --- 1. Lógica Interactiva para Pestañas (Tabs) ---
+      const tabs = document.querySelectorAll('.tab-btn');
+      
+      const activeClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
+      const inactiveClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.className = inactiveClasses);
+          tab.className = activeClasses;
+        });
+      });
+
+      // --- 2. Lógica de la Calculadora en Tiempo Real ---
+      const ramSlider = document.getElementById('ram-slider');
+      const ramValue = document.getElementById('ram-value');
+      
+      const cpuSlider = document.getElementById('cpu-slider');
+      const cpuValue = document.getElementById('cpu-value');
+      
+      const totalPrice = document.getElementById('total-price');
+
+      // Precios base configurables
+      const precioPorGB = 0.50;   // 0.50€ por GB de RAM
+      const precioPorCore = 1.00; // 1.00€ por Core de vCPU
+      const precioBase = 1.90;    // Costo base del servidor
+
+      function calcularPrecio() {
+        const ram = parseInt(ramSlider.value);
+        const cpu = parseInt(cpuSlider.value);
+        
+        // Actualizar textos
+        ramValue.textContent = `${ram} GB`;
+        cpuValue.textContent = `${cpu} Cores`;
+
+        // Cálculo total
+        const total = (ram * precioPorGB) + (cpu * precioPorCore) + precioBase;
+        
+        // Renderizar precio formateado
+        totalPrice.textContent = `€${total.toFixed(2)}`;
+      }
+
+      // Escuchar eventos en los sliders (soporta arrastre y clics)
+      ramSlider.addEventListener('input', calcularPrecio);
+      cpuSlider.addEventListener('input', calcularPrecio);
+
+      // Primer cálculo al cargar la página
+      calcularPrecio();
+    });
+  </script>
 
 </body>
 </html>

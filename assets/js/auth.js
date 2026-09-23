@@ -1,67 +1,11 @@
 import { supabaseClient } from './supabaseClient.js'
 
-// Configuración general del sitio
 const CONFIG = {
   BRAND_NAME: 'Synthetix Host',
-  DISCORD_WEBHOOK_URL: '' // Coloca tu URL de Webhook de Discord aquí si deseas recibir alertas
+  DISCORD_WEBHOOK_URL: '' 
 }
 
-// Sistema auxiliar para mostrar notificaciones flotantes (Toast)
-function showToast(message, type = 'success') {
-  let root = document.getElementById('toast-root')
-  if (!root) {
-    root = document.createElement('div')
-    root.id = 'toast-root'
-    document.body.appendChild(root)
-  }
-
-  // Estilo del contenedor principal del toast (Fijo arriba a la derecha)
-  root.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    pointer-events: none;
-    max-width: 90vw;
-  `
-
-  const toast = document.createElement('div')
-  toast.style.cssText = `
-    background: ${type === 'error' ? '#ef4444' : '#10b981'};
-    color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: auto;
-    font-family: system-ui, -apple-system, sans-serif;
-    word-break: break-word;
-  `
-  toast.textContent = message
-  root.appendChild(toast)
-
-  // Animación de entrada
-  requestAnimationFrame(() => {
-    toast.style.opacity = '1'
-    toast.style.transform = 'translateY(0)'
-  })
-
-  // Animación de salida y remoción (los errores duran un poco más para leerse bien)
-  setTimeout(() => {
-    toast.style.opacity = '0'
-    toast.style.transform = 'translateY(-10px)'
-    setTimeout(() => toast.remove(), 300)
-  }, type === 'error' ? 6000 : 3500)
-}
-
-// --- Funciones de Autenticación ---
+// --- Autenticación y Manejo de Sesión ---
 
 export async function registerUser(email, password, username) {
   try {
@@ -70,27 +14,22 @@ export async function registerUser(email, password, username) {
     const { data, error } = await supabaseClient.auth.signUp({
       email,
       password,
-      options: {
-        data: { username }
-      }
+      options: { data: { username } }
     })
 
     if (error) throw error
 
-    showToast('¡Cuenta creada con éxito! Redirigiendo...', 'success')
+    alert('¡Cuenta creada con éxito!')
     sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
     
     if (data?.session?.user?.email) {
       localStorage.setItem('user_email', data.session.user.email)
     }
 
-    setTimeout(() => {
-      window.location.href = 'dashboard.html'
-    }, 1500)
-
+    window.location.href = 'dashboard.html'
   } catch (err) {
     console.error("Error en Registro:", err)
-    showToast("ERROR REGISTRO: " + (err.message || 'Desconocido'), 'error')
+    alert("ERROR REGISTRO: " + (err.message || JSON.stringify(err)))
   }
 }
 
@@ -98,10 +37,7 @@ export async function loginUser(email, password) {
   try {
     if (!supabaseClient) throw new Error("Cliente de Supabase no inicializado.")
 
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    })
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password })
 
     if (error) throw error
 
@@ -109,15 +45,11 @@ export async function loginUser(email, password) {
       localStorage.setItem('user_email', data.user.email)
     }
 
-    showToast('¡Bienvenido de nuevo!')
-    setTimeout(() => {
-      window.location.href = 'dashboard.html'
-    }, 1000)
-
+    alert('¡Bienvenido de nuevo!')
+    window.location.href = 'dashboard.html'
   } catch (err) {
     console.error("Error en Login:", err)
-    // Esto mostrará el error exacto flotando en tu celular
-    showToast("ERROR LOGIN: " + (err.message || 'Credenciales inválidas'), 'error')
+    alert("ERROR LOGIN: " + (err.message || JSON.stringify(err)))
   }
 }
 
@@ -133,43 +65,45 @@ export async function loginWithDiscord() {
     })
     
     if (error) throw error
-
   } catch (err) {
     console.error("Error en Discord OAuth:", err)
-    showToast("ERROR DISCORD: " + (err.message || 'Desconocido'), 'error')
+    alert("ERROR DISCORD: " + (err.message || JSON.stringify(err)))
   }
 }
 
 export async function logoutUser() {
   try {
-    if (supabaseClient) {
-      await supabaseClient.auth.signOut()
-    }
+    if (supabaseClient) await supabaseClient.auth.signOut()
   } catch (err) {
     console.warn("Error durante signout:", err)
   } finally {
     localStorage.removeItem('user_email')
-    showToast('Has cerrado sesión.')
-    setTimeout(() => {
-      window.location.href = 'index.html'
-    }, 800)
+    alert('Has cerrado sesión.')
+    window.location.href = 'index.html'
   }
 }
 
-// Middleware para páginas protegidas (dashboard, panel, etc.)
+// Middleware para páginas protegidas y captura de OAuth de Discord
 export async function checkAuthMiddleware() {
   if (!supabaseClient) return
 
-  const { data: { session } } = await supabaseClient.auth.getSession()
+  // Supabase procesa automáticamente los tokens del hash de la URL al iniciar sesión con OAuth
+  const { data: { session }, error } = await supabaseClient.auth.getSession()
 
-  if (!session) {
-    window.location.href = 'login.html'
+  if (error || !session) {
+    // Si estamos en el dashboard y no hay sesión, regresamos al login
+    if (window.location.pathname.includes('dashboard.html')) {
+      window.location.href = 'login.html'
+    }
   } else if (session.user?.email) {
     localStorage.setItem('user_email', session.user.email)
+    // Si estamos en la página de login/registro pero ya hay sesión, mandamos al dashboard
+    if (window.location.pathname.includes('login.html') || window.location.pathname.includes('register.html')) {
+      window.location.href = 'dashboard.html'
+    }
   }
 }
 
-// Notificaciones por Webhook a Discord
 async function sendDiscordWebhook(messageText) {
   if (!CONFIG.DISCORD_WEBHOOK_URL || CONFIG.DISCORD_WEBHOOK_URL.trim() === '') return
 
@@ -187,14 +121,43 @@ async function sendDiscordWebhook(messageText) {
       })
     })
   } catch (e) {
-    console.warn("Webhook de Discord não enviado:", e)
+    console.warn("Webhook de Discord no enviado:", e)
   }
 }
 
-// --- Vinculación Automática con el DOM ---
+// --- Control del Menú Hamburguesa y Formularios ---
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Inicializar verificación de sesión y tokens OAuth
+  checkAuthMiddleware()
 
-  // 1. Captura Formulario de Login
+  // 2. Control robusto del Menú Hamburguesa (Drawer)
+  const drawer = document.getElementById('drawer')
+  const overlay = document.getElementById('drawerOverlay')
+  const openBtn = document.getElementById('openDrawer')
+  const closeBtn = document.getElementById('closeDrawer')
+
+  if (openBtn && drawer && overlay) {
+    openBtn.addEventListener('click', () => {
+      drawer.classList.add('open')
+      overlay.classList.add('open')
+    })
+  }
+
+  const cerrarMenu = () => {
+    if (drawer) drawer.classList.remove('open')
+    if (overlay) overlay.classList.remove('open')
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', cerrarMenu)
+  if (overlay) overlay.addEventListener('click', cerrarMenu)
+
+  // Cerrar menú al hacer clic en enlaces internos si existen
+  ['inicioLink', 'catalogoLink', 'inicioLinkMobile', 'catalogoLinkMobile'].forEach(id => {
+    const link = document.getElementById(id)
+    if (link) link.addEventListener('click', cerrarMenu)
+  })
+
+  // 3. Captura Formulario de Login
   const loginForm = document.getElementById('login-form')
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -204,12 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (email && password) {
         loginUser(email, password)
       } else {
-        showToast('Por favor completa todos los campos.', 'error')
+        alert('Por favor completa todos los campos.')
       }
     })
   }
 
-  // 2. Captura Formulario de Registro
+  // 4. Captura Formulario de Registro
   const registerForm = document.getElementById('register-form')
   if (registerForm) {
     registerForm.addEventListener('submit', (e) => {
@@ -222,12 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (email && password) {
         registerUser(email, password, username)
       } else {
-        showToast('Por favor completa todos los campos.', 'error')
+        alert('Por favor completa todos los campos.')
       }
     })
   }
 
-  // 3. Captura Botón de Discord
+  // 5. Botón de Discord OAuth
   const discordBtn = document.getElementById('discord-login')
   if (discordBtn) {
     discordBtn.addEventListener('click', (e) => {
@@ -236,17 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // 4. Captura Botón de Cierre de Sesión
+  // 6. Botón de Cierre de Sesión
   const logoutBtn = document.getElementById('logout-btn')
   if (logoutBtn) {
     logoutBtn.addEventListener('click', (e) => {
       e.preventDefault()
       logoutUser()
     })
-  }
-
-  // 5. Verificación de página protegida
-  if (document.body.getAttribute('data-page') === 'dashboard') {
-    checkAuthMiddleware()
   }
 })

@@ -6,7 +6,7 @@
   <title>SynthetixHost - Infraestructura Sin Límites</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Estilos del proyecto (si tienes algún CSS adicional) -->
+  <!-- Estilos del proyecto -->
   <link rel="stylesheet" href="assets/css/styles.css">
   
   <style>
@@ -37,6 +37,23 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    /* Clases para el Menú Móvil / Drawer */
+    #drawer {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #drawer.open {
+      transform: translateX(0);
+    }
+    #drawerOverlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+    #drawerOverlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body class="bg-slate-950 min-h-screen text-slate-100 font-sans selection:bg-blue-500/30">
@@ -45,25 +62,58 @@
   <nav class="sticky top-0 z-50 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-2">
+      <a href="index.html" class="flex items-center gap-2">
         <span class="text-blue-500 text-xl">✦</span>
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
       
       <!-- Enlaces (Ocultos en móvil) -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
-        <a href="#productos" class="hover:text-white transition-colors">Productos</a>
-        <a href="#configurador" class="hover:text-white transition-colors">Configurador</a>
+        <a id="inicioLink" href="#productos" class="hover:text-white transition-colors">Productos</a>
+        <a id="catalogoLink" href="#configurador" class="hover:text-white transition-colors">Configurador</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
       </div>
 
-      <!-- Botones de Autenticación -->
-      <div class="flex items-center gap-3">
-        <a href="login.html" class="hidden sm:block text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
+      <!-- Botones de Autenticación / Escritorio -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
         <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
       </div>
+
+      <!-- Botón Menú Hamburguesa Móvil -->
+      <button id="openDrawer" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <!-- Overlay para el menú móvil -->
+  <div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-50 md:hidden"></div>
+
+  <!-- Drawer / Menú lateral móvil -->
+  <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-bold text-lg text-white">Menú</span>
+        <button id="closeDrawer" class="text-slate-400 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-col gap-4 text-sm font-semibold text-slate-300">
+        <a id="inicioLinkMobile" href="#productos" class="hover:text-blue-400 transition-colors">Productos</a>
+        <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
+        <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 pt-6 border-t border-slate-800">
+      <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
+      <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+    </div>
+  </div>
 
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24">
     
@@ -131,17 +181,11 @@
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
           <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 4 GB RAM DDR5
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 100% vCPU Ryzen 9
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 20 GB NVMe Gen4
-            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM DDR5</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 100% vCPU Ryzen 9</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 20 GB NVMe Gen4</li>
           </ul>
-          <button class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all">Contratar Plan</button>
+          <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all text-center block">Contratar Plan</a>
         </div>
 
         <!-- Plan 2 (Destacado) -->
@@ -153,17 +197,11 @@
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
           <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-purple-400">✦</span> 8 GB RAM DDR5
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-purple-400">✦</span> 200% vCPU Ryzen 9
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-purple-400">✦</span> 40 GB NVMe Gen4
-            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM DDR5</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 200% vCPU Ryzen 9</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 40 GB NVMe Gen4</li>
           </ul>
-          <button class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Contratar Plan</button>
+          <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">Contratar Plan</a>
         </div>
 
         <!-- Plan 3 -->
@@ -174,17 +212,11 @@
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
           <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 16 GB RAM DDR5
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 400% vCPU Ryzen 9
-            </li>
-            <li class="flex items-center gap-3 text-sm text-slate-300">
-              <span class="text-blue-500">✦</span> 80 GB NVMe Gen4
-            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM DDR5</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 400% vCPU Ryzen 9</li>
+            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 80 GB NVMe Gen4</li>
           </ul>
-          <button class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all">Contratar Plan</button>
+          <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all text-center block">Contratar Plan</a>
         </div>
 
       </div>
@@ -223,7 +255,7 @@
             <span id="total-price" class="text-4xl font-extrabold text-white">€7.90</span>
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
-          <button class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Continuar al Checkout</button>
+          <a href="register.html" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
         </div>
 
       </div>
@@ -231,13 +263,37 @@
 
   </main>
 
-  <!-- Lógica JavaScript Dinámica -->
+  <!-- Lógica JavaScript Dinámica (Incluyendo el menú hamburguesa del index) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      
-      // --- 1. Lógica Interactiva para Pestañas (Tabs) ---
+      // --- Control del Menú Hamburguesa en Index ---
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const openBtn = document.getElementById('openDrawer');
+      const closeBtn = document.getElementById('closeDrawer');
+
+      if (openBtn && drawer && overlay) {
+        openBtn.addEventListener('click', () => {
+          drawer.classList.add('open');
+          overlay.classList.add('open');
+        });
+      }
+
+      const cerrarMenu = () => {
+        if (drawer) drawer.classList.remove('open');
+        if (overlay) overlay.classList.remove('open');
+      };
+
+      if (closeBtn) closeBtn.addEventListener('click', cerrarMenu);
+      if (overlay) overlay.addEventListener('click', cerrarMenu);
+
+      ['inicioLink', 'catalogoLink', 'inicioLinkMobile', 'catalogoLinkMobile'].forEach(id => {
+        const link = document.getElementById(id);
+        if (link) link.addEventListener('click', cerrarMenu);
+      });
+
+      // --- Pestañas (Tabs) ---
       const tabs = document.querySelectorAll('.tab-btn');
-      
       const activeClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
       const inactiveClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
 
@@ -248,41 +304,33 @@
         });
       });
 
-      // --- 2. Lógica de la Calculadora en Tiempo Real ---
+      // --- Calculadora en Tiempo Real ---
       const ramSlider = document.getElementById('ram-slider');
       const ramValue = document.getElementById('ram-value');
-      
       const cpuSlider = document.getElementById('cpu-slider');
       const cpuValue = document.getElementById('cpu-value');
-      
       const totalPrice = document.getElementById('total-price');
 
-      // Precios base configurables
-      const precioPorGB = 0.50;   // 0.50€ por GB de RAM
-      const precioPorCore = 1.00; // 1.00€ por Core de vCPU
-      const precioBase = 1.90;    // Costo base del servidor
+      const precioPorGB = 0.50;
+      const precioPorCore = 1.00;
+      const precioBase = 1.90;
 
       function calcularPrecio() {
         const ram = parseInt(ramSlider.value);
         const cpu = parseInt(cpuSlider.value);
         
-        // Actualizar textos
         ramValue.textContent = `${ram} GB`;
         cpuValue.textContent = `${cpu} Cores`;
 
-        // Cálculo total
         const total = (ram * precioPorGB) + (cpu * precioPorCore) + precioBase;
-        
-        // Renderizar precio formateado
         totalPrice.textContent = `€${total.toFixed(2)}`;
       }
 
-      // Escuchar eventos en los sliders (soporta arrastre y clics)
-      ramSlider.addEventListener('input', calcularPrecio);
-      cpuSlider.addEventListener('input', calcularPrecio);
-
-      // Primer cálculo al cargar la página
-      calcularPrecio();
+      if (ramSlider && cpuSlider) {
+        ramSlider.addEventListener('input', calcularPrecio);
+        cpuSlider.addEventListener('input', calcularPrecio);
+        calcularPrecio();
+      }
     });
   </script>
 

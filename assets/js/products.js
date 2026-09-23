@@ -2,7 +2,7 @@ import { supabaseClient } from './supabaseClient.js'
 
 // --- Configuración General ---
 const CONFIG = {
-  CURRENCY: '€',
+  CURRENCY: '$',
   PAYMENTER_URL: 'https://billing.synthetix.host' // Cambia esto por la URL de tu Paymenter
 }
 

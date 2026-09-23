@@ -3,106 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear Cuenta - NixerHost</title>
+  <title>Crear Cuenta | Synthetix Host</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="bg-slate-950 min-h-screen flex items-center justify-center p-6">
-  <div class="w-full max-w-md bg-slate-900/90 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-2xl shadow-blue-500/10">
-    <div class="text-center mb-6">
-      <h1 class="text-2xl font-bold text-white">Crear una Cuenta</h1>
-      <p class="text-xs text-slate-400 mt-1">Únete a la plataforma de NixerHost</p>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center p-6 text-slate-100 font-sans selection:bg-blue-500/30">
+
+  <main class="w-full max-w-md flex flex-col items-center">
+    <!-- Logo / Marca -->
+    <a href="index.html" class="flex items-center gap-2 mb-8 group">
+      <span class="text-blue-500 text-2xl group-hover:scale-110 transition-transform">✦</span>
+      <span class="font-bold text-xl tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
+    </a>
+
+    <!-- Tarjeta Principal -->
+    <div class="w-full bg-slate-900/90 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-2xl shadow-blue-500/10">
+      
+      <div class="text-center mb-6">
+        <span class="inline-block text-[10px] font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 mb-3">
+          Comienza Ahora
+        </span>
+        <h1 class="text-2xl font-bold text-white tracking-tight">Crear una <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Cuenta</span></h1>
+        <p class="text-xs text-slate-400 mt-1">Únete a la plataforma de Synthetix Host</p>
+      </div>
+
+      <!-- Contenedor para Toast y Notificaciones -->
+      <div id="toast-root"></div>
+
+      <!-- Formulario (auth.js captura el evento submit automáticamente por la id "register-form") -->
+      <form id="register-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1" for="username">Nombre de Usuario</label>
+          <input id="username" type="text" required placeholder="tu_usuario" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors placeholder:text-slate-600">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1" for="email">Correo Electrónico</label>
+          <input id="email" type="email" required autocomplete="email" placeholder="tu@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors placeholder:text-slate-600">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1" for="password">Contraseña</label>
+          <input id="password" type="password" required minlength="6" autocomplete="new-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors placeholder:text-slate-600">
+        </div>
+
+        <button id="submit-btn" type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]">
+          Registrarse →
+        </button>
+      </form>
+
+      <p class="text-center text-xs text-slate-400 mt-6">
+        ¿Ya tienes cuenta? <a href="login.html" class="text-purple-400 font-semibold hover:underline">Inicia Sesión</a>
+      </p>
     </div>
 
-    <!-- Caja de Alertas (Mensajes de Error o Éxito) -->
-    <div id="alert" class="hidden p-3.5 rounded-xl text-xs font-semibold mb-4 text-center"></div>
+    <a class="mt-6 text-xs text-slate-500 hover:text-slate-300 font-medium transition-colors flex items-center gap-1" href="index.html">
+      &larr; Volver al inicio
+    </a>
+  </main>
 
-    <form id="register-form" onsubmit="event.preventDefault(); handleRegister();" class="space-y-4">
-      <div>
-        <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre de Usuario</label>
-        <input id="username" type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors">
-      </div>
-
-      <div>
-        <label class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico</label>
-        <input id="email" type="email" required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors">
-      </div>
-
-      <div>
-        <label class="block text-xs font-semibold text-slate-300 mb-1">Contraseña</label>
-        <input id="password" type="password" required minlength="6" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:border-blue-500 focus:outline-none transition-colors">
-      </div>
-
-      <button id="submit-btn" type="submit" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
-        Registrarse
-      </button>
-    </form>
-
-    <p class="text-center text-xs text-slate-400 mt-6">
-      ¿Ya tienes cuenta? <a href="login.html" class="text-purple-400 font-semibold hover:underline">Inicia Sesión</a>
-    </p>
-  </div>
-
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/supabase.js"></script>
-  <script src="assets/js/menu.js"></script>
-  <script src="assets/js/auth.js"></script>
-
-  <script>
-    async function handleRegister() {
-      const user = document.getElementById('username').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const pass = document.getElementById('password').value;
-      const btn = document.getElementById('submit-btn');
-
-      // Limpiar alertas previas
-      showAlert("", "hidden");
-
-      // Bloquear botón durante la carga
-      btn.disabled = true;
-      btn.textContent = "Procesando...";
-
-      try {
-        // Ejecutar la función de registro definida en auth.js
-        if (typeof registerUser === 'function') {
-          const res = await registerUser(email, pass, user);
-          
-          if (res && res.error) {
-            throw res.error;
-          }
-        } else {
-          throw new Error("La función registerUser no está cargada en auth.js");
-        }
-
-        showAlert("¡Cuenta creada correctamente! Redirigiendo...", "success");
-        setTimeout(() => {
-          window.location.href = 'login.html';
-        }, 2000);
-
-      } catch (err) {
-        console.error("Error capturado:", err);
-        showAlert(err.message || "Ocurrió un error al registrar la cuenta.", "error");
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "Registrarse";
-      }
-    }
-
-    function showAlert(message, type) {
-      const alertBox = document.getElementById('alert');
-      if (type === "hidden") {
-        alertBox.className = "hidden";
-        return;
-      }
-      
-      alertBox.textContent = message;
-      if (type === 'error') {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold mb-4 text-center bg-red-500/10 border border-red-500/30 text-red-400 block";
-      } else if (type === 'success') {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold mb-4 text-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 block";
-      }
-    }
-  </script>
+  <!-- Importante: Cargamos auth.js como módulo ES6 -->
+  <script type="module" src="assets/js/auth.js"></script>
 </body>
 </html>

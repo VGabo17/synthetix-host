@@ -3,32 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synthetix Host | Infraestructura de Alto Rendimiento</title>
+  <title>Synthetix Host</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-  <!-- Navegación Móvil y Desktop Corregida -->
   <header class="navbar">
     <a href="#" class="brand">
       <span class="brand-icon">✦</span> synthetix<span>.host</span>
     </a>
     
-    <nav class="nav-links" id="nav-links">
+    <nav class="nav-links">
       <a href="#servicios">Productos</a>
       <a href="#configurador">Configurador</a>
       <a href="#faq">FAQ</a>
     </nav>
 
     <div class="auth-btns">
-      <a href="login.html" class="btn btn-ghost-sm">Iniciar sesión</a>
-      <a href="register.html" class="btn btn-primary-sm">Registrarse</a>
+      <a href="login.html" class="btn btn-ghost btn-sm">Iniciar sesión</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Registrarse</a>
     </div>
   </header>
 
   <main class="container">
     
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
       <div class="eyebrow">
         <span class="pulse"></span> Todos los sistemas operativos • Uptime 99.9%
@@ -38,21 +37,19 @@
       <p>Hosting de alto rendimiento para tus mundos de Minecraft y bots. Configura, despliega y escala sin complicaciones.</p>
 
       <div class="hero-actions">
-        <a href="#servicios" class="btn btn-primary btn-lg">Ver planes →</a>
-        <a href="#configurador" class="btn btn-ghost btn-lg">Crear mi plan</a>
+        <a href="#servicios" class="btn btn-primary btn-wide-mobile">Ver planes →</a>
+        <a href="#configurador" class="btn btn-ghost btn-wide-mobile">Crear mi plan</a>
       </div>
 
-      <!-- Tarjeta de Especificaciones de Servidor -->
       <div class="server-card">
         <div class="server-card-header">
-          <span class="status-dot"></span>
-          <span>SYNT-AMS-01</span>
-          <span class="badge-online">ONLINE</span>
+          <span>SYNT-AMS-01 ONLINE</span>
+          <span class="badge-online">100% OPERATIVO</span>
         </div>
         <div class="server-stats-grid">
           <div class="stat-item">
             <b>24</b>
-            <small>CPU CORES</small>
+            <small>CPU Cores</small>
           </div>
           <div class="stat-item">
             <b>128GB</b>
@@ -60,143 +57,90 @@
           </div>
           <div class="stat-item">
             <b>99.99%</b>
-            <small>UPTIME</small>
+            <small>Uptime</small>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sección de Servicios con Tabs Personalizadas -->
-    <section id="servicios" class="section">
-      <div class="section-title">
-        <small>SERVICIOS</small>
-        <h2>Elige tu potencia.</h2>
-        <p>Planes transparentes, hardware real y todo lo que necesitas para crecer.</p>
+    <!-- Planes con Tabs Deslizables -->
+    <section id="servicios" style="padding: 40px 0;">
+      <div class="tabs-wrapper">
+        <div class="tabs-bar">
+          <button class="tab-btn active">Minecraft Budget</button>
+          <button class="tab-btn">Minecraft Premium</button>
+          <button class="tab-btn">Bots de Discord</button>
+          <button class="tab-btn">Bots de Telegram</button>
+        </div>
       </div>
 
-      <!-- Píldoras de Navegación de Planes (Sin fondos blancos feos) -->
-      <div class="tabs-bar">
-        <button class="tab-btn active">Minecraft Budget</button>
-        <button class="tab-btn">Minecraft Premium</button>
-        <button class="tab-btn">Bots de Discord</button>
-        <button class="tab-btn">Bots de Telegram</button>
-      </div>
-
-      <!-- Grid de Productos -->
       <div class="products-grid">
         <div class="product-card">
-          <div class="card-badge">Popular</div>
+          <span class="card-badge">Popular</span>
           <h3>Plan Inicial</h3>
           <div class="card-price">€3.99 <span>/mes</span></div>
           <ul class="card-features">
-            <li>✦ 4 GB RAM DDR5</li>
-            <li>✦ 100% vCPU Ryzen 9</li>
-            <li>✦ 20 GB NVMe Gen4</li>
-            <li>✦ Anti-DDoS Avanzado</li>
+            <li>4 GB RAM DDR5</li>
+            <li>100% vCPU Ryzen 9</li>
+            <li>20 GB NVMe Gen4</li>
+            <li>Anti-DDoS Avanzado</li>
           </ul>
           <a href="#" class="btn btn-primary btn-wide">Contratar Plan</a>
         </div>
 
-        <div class="product-card featured">
-          <div class="card-badge highlight">Recomendado</div>
+        <div class="product-card">
+          <span class="card-badge highlight">Recomendado</span>
           <h3>Plan Avanzado</h3>
           <div class="card-price">€7.99 <span>/mes</span></div>
           <ul class="card-features">
-            <li>✦ 8 GB RAM DDR5</li>
-            <li>✦ 200% vCPU Ryzen 9</li>
-            <li>✦ 40 GB NVMe Gen4</li>
-            <li>✦ Anti-DDoS Avanzado</li>
+            <li>8 GB RAM DDR5</li>
+            <li>200% vCPU Ryzen 9</li>
+            <li>40 GB NVMe Gen4</li>
+            <li>Anti-DDoS Avanzado</li>
           </ul>
           <a href="#" class="btn btn-primary btn-wide">Contratar Plan</a>
         </div>
       </div>
     </section>
 
-    <!-- Configurador de Servidor con Sliders Estilizados -->
-    <section id="configurador" class="section">
-      <div class="section-title">
-        <small>CONFIGURADOR</small>
-        <h2>Diseña tu servidor.</h2>
-        <p>Más recursos cuando los necesitas. Sin contratos ni sorpresas.</p>
-      </div>
-
+    <!-- Configurador -->
+    <section id="configurador" style="padding: 40px 0;">
       <div class="builder-box">
-        <div class="sliders-col">
+        <div>
           <div class="slider-group">
             <div class="slider-header">
               <label>Memoria RAM</label>
-              <span id="ram-val">8 GB</span>
+              <span>8 GB</span>
             </div>
-            <input type="range" min="2" max="32" value="8" step="2">
+            <input type="range" min="2" max="32" value="8">
           </div>
 
           <div class="slider-group">
             <div class="slider-header">
               <label>vCPU Cores</label>
-              <span id="cpu-val">2 Cores</span>
+              <span>2 Cores</span>
             </div>
-            <input type="range" min="1" max="8" value="2" step="1">
+            <input type="range" min="1" max="8" value="2">
           </div>
 
           <div class="slider-group">
             <div class="slider-header">
               <label>Almacenamiento NVMe</label>
-              <span id="ssd-val">40 GB</span>
+              <span>40 GB</span>
             </div>
-            <input type="range" min="10" max="160" value="40" step="10">
+            <input type="range" min="10" max="160" value="40">
           </div>
         </div>
 
         <div class="checkout-col">
-          <small>ESTIMACIÓN MENSUAL</small>
-          <div class="total-price">€ 7.90 <span>/mes</span></div>
-          <ul class="check-list">
-            <li>✦ Protección DDoS incluida</li>
-            <li>✦ Activación instantánea</li>
-            <li>✦ Cancelación en cualquier momento</li>
-          </ul>
-          <a href="#" class="btn btn-primary btn-wide btn-lg">Continuar al checkout →</a>
+          <small style="color: var(--text-muted);">ESTIMACIÓN MENSUAL</small>
+          <div class="total-price">€7.90 <span>/mes</span></div>
+          <a href="#" class="btn btn-primary btn-wide">Continuar al checkout →</a>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="section-title">
-        <small>PREGUNTAS FRECUENTES</small>
-        <h2>Todo claro desde el primer día.</h2>
-      </div>
-
-      <div class="faq-container">
-        <details>
-          <summary>¿Cuándo estará activo mi servidor?</summary>
-          <p>El despliegue es 100% automatizado e instantáneo tras confirmar el pago.</p>
-        </details>
-        <details>
-          <summary>¿Puedo cambiar de plan más adelante?</summary>
-          <p>Sí, puedes escalar tus recursos (RAM, CPU, SSD) en cualquier momento desde el panel.</p>
-        </details>
-        <details>
-          <summary>¿Qué protección incluye el servicio?</summary>
-          <p>Todos los planes cuentan con protección Anti-DDoS permanente de capa 7.</p>
-        </details>
-      </div>
-    </section>
-
   </main>
-
-  <footer class="footer">
-    <div class="footer-brand">
-      <span class="brand-icon">✦</span> synthetix<span>.host</span>
-      <p>Infraestructura para los que construyen.</p>
-    </div>
-    <div class="footer-links">
-      <a href="#">Servicios</a>
-      <a href="#">FAQ</a>
-      <a href="#">Panel Cliente</a>
-      <a href="#">Soporte</a>
-    </div>
-  </footer>
 
 </body>
 </html>

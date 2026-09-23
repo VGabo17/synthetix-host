@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthetix Host | Hosting de juegos y bots</title>
+  <meta name="description" content="Hosting premium para Minecraft, Discord y Telegram con protección DDoS, NVMe y soporte 24/7." />
+  <meta property="og:title" content="Synthetix Host | Hosting de juegos y bots" />
+  <meta property="og:description" content="Tu infraestructura, sin límites." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://dummyimage.com/1200x630/0f172a/a855f7&text=Synthetix+Host" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body data-page="home">
+  <div id="toast-root" class="toast-root"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand"><span class="brand-mark">✦</span> synthetix<span>.host</span></a>
+
+    <button class="menu-toggle" aria-label="Abrir menú">
+      <i></i>
+      <i></i>
+      <i></i>
+    </button>
+
+    <div class="nav-links">
+      <a href="#productos">Productos</a>
+      <a href="#builder">Configurador</a>
+      <a href="#faq">FAQ</a>
+      <div id="auth-nav">
+        <a class="btn btn-ghost" href="login.html">Iniciar sesión</a>
+        <a class="btn btn-primary" href="register.html">Registrarse</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> Todos los sistemas operativos · Uptime 99.9%</div>
+        <h1>Tu infraestructura.<br /><em>Sin límites.</em></h1>
+        <p>Hosting de alto rendimiento para tus mundos de Minecraft y bots. Configura, despliega y escala sin complicaciones.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#productos">Ver planes <span>→</span></a>
+          <a class="btn btn-ghost btn-lg" href="#builder">Crear mi plan</a>
+        </div>
+
+        <div class="hero-proof">
+          <span>⚡ NVMe Gen4</span>
+          <span>◈ Anti-DDoS</span>
+          <span>◉ Soporte 24/7</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+
+        <div class="server-card glass">
+          <div class="server-head">
+            <span class="status-dot"></span> SYNT-AMS-01 <small>ONLINE</small>
+          </div>
+
+          <div class="server-grid">
+            <div>
+              <b>24</b>
+              <small>CPU CORES</small>
+            </div>
+            <div>
+              <b>128<span>GB</span></b>
+              <small>DDR5 RAM</small>
+            </div>
+            <div>
+              <b>99.99<span>%</span></b>
+              <small>UPTIME</small>
+            </div>
+          </div>
+
+          <div class="graph">
+            <span style="height: 36%"></span>
+            <span style="height: 54%"></span>
+            <span style="height: 42%"></span>
+            <span style="height: 74%"></span>
+            <span style="height: 62%"></span>
+            <span style="height: 88%"></span>
+            <span style="height: 70%"></span>
+            <span style="height: 94%"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="section container">
+      <div class="section-heading">
+        <div>
+          <span class="kicker">SERVICIOS</span>
+          <h2>Elige tu <em>potencia.</em></h2>
+        </div>
+        <p>Planes transparentes, hardware real y todo lo que necesitas para crecer.</p>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-category="budget">Minecraft Budget</button>
+        <button class="tab" data-category="premium">Minecraft Premium</button>
+        <button class="tab" data-category="discord">Bots de Discord</button>
+        <button class="tab" data-category="telegram">Bots de Telegram</button>
+      </div>
+
+      <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <section id="builder" class="section container">
+      <div class="builder glass">
+        <div class="section-heading">
+          <div>
+            <span class="kicker">CONFIGURADOR</span>
+            <h2>Diseña tu <em>servidor.</em></h2>
+          </div>
+          <p>Más recursos cuando los necesitas. Sin contratos ni sorpresas.</p>
+        </div>
+
+        <div class="builder-layout">
+          <div class="sliders">
+            <label>
+              Memoria RAM
+              <output id="ram-value">8 GB</output>
+              <input id="ram" type="range" min="2" max="64" step="2" value="8" />
+            </label>
+
+            <label>
+              vCPU
+              <output id="cpu-value">2 cores</output>
+              <input id="cpu" type="range" min="1" max="16" value="2" />
+            </label>
+
+            <label>
+              Almacenamiento NVMe
+              <output id="disk-value">40 GB</output>
+              <input id="disk" type="range" min="20" max="500" step="10" value="40" />
+            </label>
+          </div>
+
+          <div class="estimate">
+            <span class="kicker">ESTIMACIÓN MENSUAL</span>
+            <div class="price">
+              <sup>€</sup>
+              <strong id="custom-price">7.90</strong>
+              <small>/mes</small>
+            </div>
+
+            <div class="estimate-list">
+              <span>✦ Protección DDoS incluida</span>
+              <span>✦ Activación instantánea</span>
+              <span>✦ Cancelación en cualquier momento</span>
+            </div>
+
+            <button class="btn btn-primary btn-wide" data-plan="custom">Continuar al checkout →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section container narrow">
+      <span class="kicker">PREGUNTAS FRECUENTES</span>
+      <h2>Todo claro desde el <em>primer día.</em></h2>
+
+      <div class="faq-list">
+        <details>
+          <summary>¿Cuándo estará activo mi servidor? <span>+</span></summary>
+          <p>La activación es automática después de confirmar el pago. Normalmente tendrás tus accesos en menos de 60 segundos.</p>
+        </details>
+
+        <details>
+          <summary>¿Puedo cambiar de plan más adelante? <span>+</span></summary>
+          <p>Sí. Puedes escalar RAM, CPU o almacenamiento desde el panel. El ajuste se prorratea en tu siguiente factura.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué protección incluye el servicio? <span>+</span></summary>
+          <p>Todos los planes incluyen mitigación Anti-DDoS, backups opcionales y monitorización 24/7 de la infraestructura.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="index.html" class="brand">✦ synthetix<span>.host</span></a>
+        <p>Infraestructura para los que construyen.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#productos">Servicios</a>
+        <a href="#faq">FAQ</a>
+        <a href="dashboard.html">Panel cliente</a>
+        <a href="mailto:support@synthetix.host">Soporte</a>
+      </div>
+      <small>© 2026 Synthetix Host. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/products.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>

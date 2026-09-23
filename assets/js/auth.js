@@ -25,6 +25,7 @@ function showToast(message, type = 'success') {
     flex-direction: column;
     gap: 10px;
     pointer-events: none;
+    max-width: 90vw;
   `
 
   const toast = document.createElement('div')
@@ -41,6 +42,7 @@ function showToast(message, type = 'success') {
     transform: translateY(-10px);
     pointer-events: auto;
     font-family: system-ui, -apple-system, sans-serif;
+    word-break: break-word;
   `
   toast.textContent = message
   root.appendChild(toast)
@@ -51,12 +53,12 @@ function showToast(message, type = 'success') {
     toast.style.transform = 'translateY(0)'
   })
 
-  // Animación de salida y remoción
+  // Animación de salida y remoción (los errores duran un poco más para leerse bien)
   setTimeout(() => {
     toast.style.opacity = '0'
     toast.style.transform = 'translateY(-10px)'
     setTimeout(() => toast.remove(), 300)
-  }, 3500)
+  }, type === 'error' ? 6000 : 3500)
 }
 
 // --- Funciones de Autenticación ---
@@ -75,30 +77,20 @@ export async function registerUser(email, password, username) {
 
     if (error) throw error
 
-    // Verificamos si Supabase requiere confirmación de correo o crea sesión directa
-    if (data.user && !data.session) {
-      showToast('¡Registro exitoso! Revisa tu correo electrónico para confirmar tu cuenta.', 'success')
-      sendDiscordWebhook(`🎉 **Nuevo Registro (Pendiente Confirmación):** \`${email}\` (${username})`)
-      
-      setTimeout(() => {
-        window.location.href = 'login.html'
-      }, 2500)
-    } else {
-      showToast('¡Cuenta creada e iniciada con éxito! Redirigiendo...', 'success')
-      sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
-      
-      if (data?.session?.user?.email) {
-        localStorage.setItem('user_email', data.session.user.email)
-      }
-
-      setTimeout(() => {
-        window.location.href = 'dashboard.html'
-      }, 1500)
+    showToast('¡Cuenta creada con éxito! Redirigiendo...', 'success')
+    sendDiscordWebhook(`🎉 **Nuevo Cliente Registrado:** \`${email}\` (${username})`)
+    
+    if (data?.session?.user?.email) {
+      localStorage.setItem('user_email', data.session.user.email)
     }
+
+    setTimeout(() => {
+      window.location.href = 'dashboard.html'
+    }, 1500)
 
   } catch (err) {
     console.error("Error en Registro:", err)
-    showToast(err.message || 'Error al registrar el usuario.', 'error')
+    showToast("ERROR REGISTRO: " + (err.message || 'Desconocido'), 'error')
   }
 }
 
@@ -124,13 +116,8 @@ export async function loginUser(email, password) {
 
   } catch (err) {
     console.error("Error en Login:", err)
-    
-    // Control específico si el correo no ha sido confirmado
-    if (err.message && err.message.toLowerCase().includes("email not confirmed")) {
-      showToast("Debes confirmar tu correo electrónico antes de iniciar sesión.", 'error')
-    } else {
-      showToast(err.message || 'Correo o contraseña incorrectos.', 'error')
-    }
+    // Esto mostrará el error exacto flotando en tu celular
+    showToast("ERROR LOGIN: " + (err.message || 'Credenciales inválidas'), 'error')
   }
 }
 
@@ -149,7 +136,7 @@ export async function loginWithDiscord() {
 
   } catch (err) {
     console.error("Error en Discord OAuth:", err)
-    showToast(err.message || 'Error al iniciar sesión con Discord.', 'error')
+    showToast("ERROR DISCORD: " + (err.message || 'Desconocido'), 'error')
   }
 }
 
@@ -200,7 +187,7 @@ async function sendDiscordWebhook(messageText) {
       })
     })
   } catch (e) {
-    console.warn("Webhook de Discord no enviado:", e)
+    console.warn("Webhook de Discord não enviado:", e)
   }
 }
 
@@ -216,6 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = document.getElementById('password')?.value
       if (email && password) {
         loginUser(email, password)
+      } else {
+        showToast('Por favor completa todos los campos.', 'error')
       }
     })
   }
@@ -232,6 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (email && password) {
         registerUser(email, password, username)
+      } else {
+        showToast('Por favor completa todos los campos.', 'error')
       }
     })
   }

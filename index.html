@@ -10,6 +10,14 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   
   <style>
+    /* Script inmediato para limpiar /index.html de la barra de direcciones */
+    <script>
+      if (window.location.pathname.includes('index.html')) {
+        const cleanPath = window.location.pathname.replace('index.html', '') + window.location.search + window.location.hash;
+        window.history.replaceState(null, '', cleanPath);
+      }
+    </script>
+
     /* Estilos para personalización del slider del configurador */
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -67,7 +75,7 @@
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
       
-      <!-- Enlaces y Menú Desplegable de Servicios (Sin dedicados ni web) -->
+      <!-- Enlaces y Menú Desplegable de Servicios (Sin dominios, ni web, ni dedicados) -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
         <!-- Dropdown Servicios -->
         <div class="relative group">
@@ -81,7 +89,6 @@
             <a href="#productos" onclick="switchTabDirect('juegos')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Juegos (Minecraft)</a>
             <a href="#productos" onclick="switchTabDirect('budget')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Minecraft Budget</a>
             <a href="#productos" onclick="switchTabDirect('discord')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Bot Discord</a>
-            <a href="#productos" onclick="switchTabDirect('dominios')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dominios</a>
           </div>
         </div>
 
@@ -93,7 +100,7 @@
       <!-- Botones de Autenticación / Escritorio (Dinámicos según sesión) -->
       <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
         <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
-        <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+        <a href="register.html" class="auth-redirect-btn px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
       </div>
 
       <!-- Botón Menú Hamburguesa Móvil -->
@@ -126,7 +133,6 @@
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Juegos (Minecraft)</a>
         <a href="#productos" onclick="switchTabDirect('budget'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Minecraft Budget</a>
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Bot Discord</a>
-        <a href="#productos" onclick="switchTabDirect('dominios'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Dominios</a>
         
         <div class="border-t border-slate-800 my-2"></div>
         <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
@@ -136,7 +142,7 @@
     </div>
     <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
       <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
-      <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+      <a href="register.html" class="auth-redirect-btn w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
   </div>
 
@@ -193,14 +199,13 @@
         <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría para ver los planes disponibles.</p>
       </div>
 
-      <!-- Tabs de Categoría Actualizadas (Sin dedicados ni web) -->
+      <!-- Tabs de Categoría Actualizadas (Sin dominios) -->
       <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
         <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
         <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS</button>
         <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Juegos</button>
         <button data-target="budget" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Budget</button>
         <button data-target="discord" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bot Discord</button>
-        <button data-target="dominios" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Dominios</button>
       </div>
 
       <!-- Contenedor de Grids de Planes -->
@@ -218,7 +223,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Inicial', '€8.99/mes', 'Plan ideal para iniciar tu red de servidores con Velocity o BungeeCord. Incluye 6 GB de RAM DDR5, almacenamiento NVMe ultra rápido, protección Anti-DDoS dedicada y soporte técnico continuo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -232,7 +237,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Pro', '€15.99/mes', 'Diseñado para redes medianas con multi-backend sincronizado. Ofrece 12 GB de RAM DDR5, copias de seguridad automáticas, baja latencia y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Comprar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -245,7 +250,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Enterprise', '€29.99/mes', 'Máxima potencia para grandes redes. Incluye 24 GB de RAM DDR5, IP dedicada exclusiva y recursos optimizados para cientos de jugadores concurrentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
             </div>
           </div>
         </div>
@@ -262,7 +267,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Basic', '€4.99/mes', 'Servidor Virtual Privado ideal para proyectos ligeros, bots sencillos o pruebas de desarrollo. Cuenta con 2 vCPU Cores, 4 GB de RAM NVMe y 50 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -276,7 +281,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Standard', '€9.99/mes', 'Equilibrio perfecto entre rendimiento y costo para aplicaciones medianas. Incluye 4 vCPU Cores, 8 GB de RAM NVMe y 100 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Desplegar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -289,7 +294,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Performance', '€18.99/mes', 'Alto rendimiento para bases de datos pesadas o entornos de producción exigentes. Dispone de 8 vCPU Cores, 16 GB de RAM NVMe y 200 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
             </div>
           </div>
         </div>
@@ -306,7 +311,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Minecraft / Survival', '€3.99/mes', 'Servidor optimizado para modalidades de supervivencia o vanilla. Impulsado por procesadores Ryzen 9 7900X, 4 GB de RAM DDR5 y panel Pterodactyl.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -320,7 +325,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Servidor Modpack', '€7.99/mes', 'Creado específicamente para soportar mods pesados (Forge / Fabric). Incluye 8 GB de RAM DDR5, instalador automático de modpacks y respaldos frecuentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -333,7 +338,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Servidor Extremo', '€14.99/mes', 'Máxima potencia para servidores con gran cantidad de plugins y jugadores simultáneos. Dispone de 16 GB de RAM DDR5 y rendimiento ultrarrápido garantizado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
         </div>
@@ -350,7 +355,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Starter', '€2.49/mes', 'Opción económica para servidores pequeños con amigos. Incluye 2 GB de RAM DDR4, panel Pterodactyl y excelente estabilidad a bajo costo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -364,7 +369,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Pro', '€4.99/mes', 'Excelente relación calidad-precio para servidores con plugins básicos. Ofrece 6 GB de RAM DDR4, gestión sencilla y copias automáticas.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -377,7 +382,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Ultra', '€8.99/mes', 'Mayor capacidad en gama económica. Dispone de 12 GB de RAM DDR4 para comunidades que buscan ahorrar sin sacrificar espacio ni rendimiento.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
         </div>
@@ -394,7 +399,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Basic', '€1.49/mes', 'Alojamiento 24/7 para tu bot de utilidad o moderación hecho en Node.js o Python. Cuenta con 512 MB de RAM y panel dedicado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -408,7 +413,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Pro', '€2.99/mes', 'Diseñado para bots de música avanzados con soporte para Lavalink. Incluye 2 GB de RAM 24/7 sin cortes ni interrupciones.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -421,48 +426,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Enterprise', '€5.99/mes', 'Para bots complejos con bases de datos pesadas o múltiples instancias simultáneas. Ofrece 4 GB de RAM y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. DOMINIOS -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-dominios">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">.com / .net</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€12.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Protección WHOIS gratis</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Gestión DNS avanzada</li>
-            </ul>
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('.com / .net', '€12.99/año', 'Dominios internacionales de alta confianza. Incluye protección WHOIS gratuita para mantener tu privacidad y panel de gestión DNS avanzado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Registrar</a>
-            </div>
-          </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Especial Gaming</div>
-            <h3 class="text-lg font-bold text-white mb-2">.lol / .gg / .xyz</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Ideal para redes de Minecraft</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Configuración instantánea</li>
-            </ul>
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('.lol / .gg / .xyz', '€4.99/año', 'Extensiones ideales y llamativas para comunidades de gaming y servidores de Minecraft. Configuración instantánea y activación inmediata.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Registrar</a>
-            </div>
-          </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">.org / .io</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€34.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Máxima autoridad web</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Soporte DNSSEC</li>
-            </ul>
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('.org / .io', '€34.99/año', 'Extensiones profesionales de máxima autoridad web con soporte completo para DNSSEC y máxima seguridad para proyectos serios.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Registrar</a>
+              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
             </div>
           </div>
         </div>
@@ -491,7 +455,7 @@
         </div>
 
         <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
-          <div class="text-blue-400 text-2xl mb-4">🛠️</div>
+          <div class="text-blue-500 text-2xl mb-4">🛠️</div>
           <h3 class="font-bold text-white mb-2">Panel de Control Intuitivo</h3>
           <p class="text-xs text-slate-400 leading-relaxed">Gestiona archivos, ejecuta consolas en vivo, instala plugins y programa copias de seguridad con un par de clics.</p>
         </div>
@@ -531,7 +495,7 @@
             <span id="total-price" class="text-4xl font-extrabold text-white">€7.90</span>
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
-          <a href="register.html" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
+          <a href="register.html" class="auth-redirect-btn w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
         </div>
 
       </div>
@@ -547,7 +511,7 @@
       <div class="max-w-3xl mx-auto space-y-4">
         <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
           <h3 class="font-bold text-sm text-white mb-2">¿Cuánto tarda en activarse mi servicio?</h3>
-          <p class="text-xs text-slate-400">La activación es automática. Una vez completado el pago, tus servidores, bots o dominios estarán listos en menos de 60 segundos.</p>
+          <p class="text-xs text-slate-400">La activación es automática. Una vez completado el pago, tus servidores o bots estarán listos en menos de 60 segundos.</p>
         </div>
         <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
           <h3 class="font-bold text-sm text-white mb-2">¿Puedo escalar mi VPS o Plan de Network?</h3>
@@ -570,7 +534,7 @@
       <div id="modalPrice" class="text-2xl font-extrabold text-blue-400 mb-4"></div>
       <p id="modalDescription" class="text-xs text-slate-300 mb-6 leading-relaxed"></p>
       <div class="flex gap-4">
-        <a href="register.html" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
+        <a href="register.html" class="auth-redirect-btn flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
         <button id="closeModalBtn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl">Cerrar</button>
       </div>
     </div>
@@ -625,15 +589,31 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // --- Control de Sesión y Navbar Dinámica ---
+      // --- Limpiar /index.html de la URL de forma instantánea ---
+      if (window.location.pathname.includes('index.html')) {
+        const cleanPath = window.location.pathname.replace('index.html', '') + window.location.search + window.location.hash;
+        window.history.replaceState(null, '', cleanPath);
+      }
+
+      // --- Control de Sesión, Navbar y redirección de botones de compra ---
       const desktopAuth = document.getElementById('auth-actions-desktop')
       const mobileAuth = document.getElementById('auth-actions-mobile')
+      const authRedirectButtons = document.querySelectorAll('.auth-redirect-btn')
 
       try {
         const { data: { session } } = await supabaseClient.auth.getSession()
 
         if (session && session.user) {
           const username = session.user.user_metadata?.username || session.user.email.split('@')[0]
+
+          // Si hay sesión activa, cambiar los botones de compra/registro para que envíen al dashboard directamente
+          authRedirectButtons.forEach(btn => {
+            btn.setAttribute('href', 'dashboard.html');
+            if (btn.textContent.includes('Registrarse') || btn.textContent.includes('Comprar') || btn.textContent.includes('Contratar') || btn.textContent.includes('Desplegar') || btn.textContent.includes('Registrar')) {
+              // Si es un botón de compra dentro del plan o modal, podemos enfocarlo al panel
+              btn.textContent = btn.textContent.replace('Registrarse', 'Ir al Panel').replace('Comprar', 'Gestionar').replace('Contratar', 'Gestionar').replace('Desplegar', 'Gestionar');
+            }
+          });
 
           if (desktopAuth) {
             desktopAuth.innerHTML = `

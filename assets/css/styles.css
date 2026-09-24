@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* --- Reset Estricto de Navegador (Evita viñetas y textos amontonados) --- */
+/* --- Reset Estricto de Navegador --- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 ul, ol {
@@ -27,7 +31,7 @@ button {
 :root {
   --bg: #030712;
   --bg-card: rgba(15, 23, 42, 0.6);
-  --bg-card-hover: rgba(30, 41, 59, 0.7);
+  --bg-card-hover: rgba(30, 41, 59, 0.75);
   --border: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(34, 211, 238, 0.4);
   
@@ -63,7 +67,7 @@ body {
   padding: 0 20px;
 }
 
-/* --- Navigation Bar Limpia para Móvil --- */
+/* --- Navigation Bar --- */
 .navbar {
   display: flex;
   align-items: center;
@@ -106,7 +110,7 @@ body {
   color: var(--text-muted);
   font-size: 0.88rem;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
@@ -126,8 +130,12 @@ body {
   justify-content: center;
   border-radius: 9999px;
   font-weight: 600;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn-primary {
@@ -135,11 +143,11 @@ body {
   color: #ffffff;
   padding: 10px 22px;
   font-size: 0.9rem;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(192, 132, 252, 0.4);
+  box-shadow: 0 0 25px rgba(192, 132, 252, 0.35);
   transform: translateY(-1px);
 }
 
@@ -193,6 +201,12 @@ body {
   background: var(--cyan-bright);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--cyan-bright);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
 }
 
 .hero h1 {
@@ -233,6 +247,8 @@ body {
   border-radius: 20px;
   padding: 20px;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .server-card-header {
@@ -280,7 +296,7 @@ body {
   text-transform: uppercase;
 }
 
-/* --- Tabs Deslizables en Móvil (Scroll Horizontal) --- */
+/* --- Tabs Deslizables --- */
 .tabs-wrapper {
   overflow-x: auto;
   padding-bottom: 8px;
@@ -332,9 +348,11 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
 
 .product-card:hover {
+  transform: translateY(-3px);
   border-color: rgba(34, 211, 238, 0.3);
   background: var(--bg-card-hover);
 }
@@ -403,6 +421,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 32px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .slider-group {
@@ -423,12 +443,40 @@ body {
 }
 
 input[type=range] {
+  appearance: none;
+  -webkit-appearance: none;
   width: 100%;
   height: 6px;
   background: #0f172a;
   border-radius: 3px;
-  accent-color: var(--cyan-bright);
+  outline: none;
   cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan-bright);
+  box-shadow: 0 0 10px var(--cyan-bright);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan-bright);
+  box-shadow: 0 0 10px var(--cyan-bright);
+  cursor: pointer;
+  border: none;
 }
 
 .checkout-col {
@@ -436,6 +484,9 @@ input[type=range] {
   padding: 22px;
   border-radius: 16px;
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .total-price {
@@ -453,7 +504,7 @@ input[type=range] {
 /* --- Ajustes Responsive para Celulares --- */
 @media (max-width: 640px) {
   .nav-links {
-    display: none; /* Oculta links secundarios en celular para evitar desbordes */
+    display: none;
   }
 
   .navbar {
@@ -479,5 +530,6 @@ input[type=range] {
 
   .builder-box {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 }

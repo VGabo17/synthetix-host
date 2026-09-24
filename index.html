@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SynthetixHost - Infraestructura Sin Límites</title>
+  <title>SynthetixHost - Infraestructura de Alto Rendimiento</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Estilos del proyecto -->
   <link rel="stylesheet" href="assets/css/styles.css">
   
   <script>
-    // Limpieza instantánea de /index.html en la barra de direcciones (Compatible con GitHub Pages y Supabase)
+    // Limpieza instantánea de /index.html en la barra de direcciones
     if (window.location.pathname.includes('index.html')) {
       const cleanPath = window.location.pathname.replace('/index.html', '/').replace('index.html', '') + window.location.search + window.location.hash;
       window.history.replaceState(null, '', cleanPath || '/');
@@ -45,20 +45,20 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    /* Clases para el Menú Móvil / Drawer */
-    #drawer {
+    /* Clases para los Menús / Drawers laterales */
+    #drawer, #cartDrawer {
       transform: translateX(100%);
       transition: transform 0.3s ease-in-out;
     }
-    #drawer.open {
+    #drawer.open, #cartDrawer.open {
       transform: translateX(0);
     }
-    #drawerOverlay {
+    #drawerOverlay, #cartOverlay {
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease-in-out;
     }
-    #drawerOverlay.open {
+    #drawerOverlay.open, #cartOverlay.open {
       opacity: 1;
       pointer-events: auto;
     }
@@ -97,33 +97,38 @@
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
       </div>
 
-      <!-- Botones de Autenticación / Escritorio (Dinámicos según sesión) -->
-      <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
-        <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
-        <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
-      </div>
+      <!-- Acciones de Usuario y Botón de Carrito -->
+      <div class="flex items-center gap-3">
+        <!-- Botón Carrito Navbar -->
+        <button id="openCart" class="relative p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white transition-all focus:outline-none" aria-label="Abrir carrito">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          <span id="cart-counter" class="absolute -top-1.5 -right-1.5 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+        </button>
 
-      <!-- Botón Menú Hamburguesa Móvil -->
-      <button id="openDrawer" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir menú">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+        <!-- Botones de Autenticación / Escritorio -->
+        <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
+          <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
+          <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+        </div>
+
+        <!-- Botón Menú Hamburguesa Móvil -->
+        <button id="openDrawer" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir menú">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Overlay para el menú móvil -->
+  <!-- Overlay y Drawer del Menú Móvil -->
   <div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-50 md:hidden"></div>
-
-  <!-- Drawer / Menú lateral móvil -->
   <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl overflow-y-auto">
     <div>
       <div class="flex items-center justify-between mb-6">
         <span class="font-bold text-lg text-white">Menú</span>
         <button id="closeDrawer" class="text-slate-400 hover:text-white p-2">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
       <div class="flex flex-col gap-3 text-sm font-semibold text-slate-300">
@@ -135,7 +140,7 @@
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Bot Discord</a>
         
         <div class="border-t border-slate-800 my-2"></div>
-        <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
+        <a href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
         <a href="#caracteristicas" class="hover:text-blue-400 transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
       </div>
@@ -143,6 +148,31 @@
     <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
       <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
       <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+    </div>
+  </div>
+
+  <!-- Overlay y Drawer del Carrito de Compras -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/60 z-50"></div>
+  <div id="cartDrawer" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+        <h3 class="font-bold text-lg text-white flex items-center gap-2">🛒 Tu Carrito de Servicios</h3>
+        <button id="closeCart" class="text-slate-400 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Lista de ítems en el carrito -->
+      <div id="cart-items" class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+        <p class="text-xs text-slate-500 text-center py-8">Tu carrito está vacío.</p>
+      </div>
+    </div>
+    <!-- Pie del Carrito con Total y Checkout -->
+    <div class="pt-6 border-t border-slate-800">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-xs font-semibold text-slate-400">Total Estimado:</span>
+        <span id="cart-total" class="text-xl font-extrabold text-blue-400">€0.00</span>
+      </div>
+      <a href="https://billing.nixermc.lol" target="_blank" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Proceder al Pago &rarr;</a>
     </div>
   </div>
 
@@ -161,7 +191,7 @@
       </h1>
       
       <p class="text-slate-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed">
-        Soluciones profesionales de hosting, VPS, redes de servidores y bots con hardware de última generación.
+        Soluciones profesionales de hosting, VPS, redes de servidores de juego y bots optimizados con hardware de última generación y baja latencia.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -172,21 +202,21 @@
       <!-- Tarjeta de Estado del Servidor -->
       <div class="w-full max-w-3xl mx-auto mt-16 bg-slate-900/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl border border-blue-500/30 shadow-2xl shadow-blue-500/10 text-left">
         <div class="flex items-center justify-between mb-6">
-          <span class="text-xs font-bold text-slate-400 tracking-wider">SYNT-AMS-01</span>
+          <span class="text-xs font-bold text-slate-400 tracking-wider">SYNT-AMS-01 / NODE-GAMING</span>
           <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-full">ONLINE</span>
         </div>
         <div class="grid grid-cols-3 gap-4 md:gap-8 divide-x divide-slate-800/50">
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">24</div>
-            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">CPU Cores</div>
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">Ryzen 9</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">CPU de Alta Frecuencia</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">128GB</div>
-            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">DDR5 RAM</div>
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">DDR5 ECC</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">Memoria RAM Pro</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">99.9%</div>
-            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">Uptime</div>
+            <div class="text-2xl md:text-3xl font-bold text-blue-400 mb-1">NVMe Gen4</div>
+            <div class="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-widest">Almacenamiento Ultra</div>
           </div>
         </div>
       </div>
@@ -196,7 +226,7 @@
     <section id="productos" class="mb-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-3">Nuestros Servicios</h2>
-        <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría para ver los planes disponibles.</p>
+        <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría y añade el plan ideal a tu carrito o pasarela.</p>
       </div>
 
       <!-- Tabs de Categoría -->
@@ -213,220 +243,250 @@
         
         <!-- 1. PLANES NETWORKS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Network Inicial</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Velocity / BungeeCord</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 6 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Anti-DDoS dedicado</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Inicial</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Proxy Velocity / BungeeCord</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 6 GB RAM DDR5 de alta velocidad</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Protección Anti-DDoS enterprise</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Network Inicial', '€8.99/mes', 'Plan ideal para iniciar tu red de servidores con Velocity o BungeeCord. Incluye 6 GB de RAM DDR5, almacenamiento NVMe ultra rápido, protección Anti-DDoS dedicada y soporte técnico continuo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Comprar</a>
+              <button onclick="openPlanModal('Network Inicial', '€8.99/mes', 'Diseñado para iniciar redes de Minecraft con Velocity o BungeeCord. Incluye 6 GB de RAM DDR5 con corrección de errores, mitigación DDoS avanzada multicapa y soporte para múltiples backends de juego sin retardos.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Network Inicial', 8.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Recomendado</div>
-            <h3 class="text-lg font-bold text-white mb-2">Network Pro</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€15.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Multi-backend sincronizado</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 12 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte prioritario</li>
-            </ul>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Pro</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€15.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Multi-backend sincronizado</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 12 GB RAM DDR5</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Backups automáticos frecuentes</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Network Pro', '€15.99/mes', 'Diseñado para redes medianas con multi-backend sincronizado. Ofrece 12 GB de RAM DDR5, copias de seguridad automáticas, baja latencia y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar</a>
+              <button onclick="openPlanModal('Network Pro', '€15.99/mes', 'Infraestructura profesional para redes medianas con múltiples modalidades conectadas. Ofrece 12 GB de RAM DDR5 de alto rendimiento, sincronización de base de datos optimizada y respaldos automáticos programados.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Network Pro', 15.99)" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Network Enterprise</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€29.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Recursos ilimitados</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 24 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> IP dedicada exclusiva</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Enterprise</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€29.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Recursos y slots ilimitados</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 24 GB RAM DDR5</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> IP dedicada exclusiva</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Network Enterprise', '€29.99/mes', 'Máxima potencia para grandes redes. Incluye 24 GB de RAM DDR5, IP dedicada exclusiva y recursos optimizados para cientos de jugadores concurrentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Comprar</a>
+              <button onclick="openPlanModal('Network Enterprise', '€29.99/mes', 'Máxima potencia para grandes redes comunitarias. Incluye 24 GB de RAM DDR5, IP dedicada exclusiva para tu servidor y asignación prioritaria de recursos con ancho de banda ilimitado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Network Enterprise', 29.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
         </div>
 
         <!-- 2. VPS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-vps">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">VPS Basic</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 vCPU Cores</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM NVMe</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 50 GB SSD Gen4</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">VPS Basic</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 vCPU Cores dedicados</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM NVMe</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 50 GB SSD Gen4</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('VPS Basic', '€4.99/mes', 'Servidor Virtual Privado ideal para proyectos ligeros, bots sencillos o pruebas de desarrollo. Cuenta con 2 vCPU Cores, 4 GB de RAM NVMe y 50 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Desplegar</a>
+              <button onclick="openPlanModal('VPS Basic', '€4.99/mes', 'Servidor Virtual Privado optimizado para proyectos ligeros, paneles de gestión o entornos de pruebas. Equipa 2 vCPU de alta velocidad, 4 GB de RAM y almacenamiento NVMe Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('VPS Basic', 4.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Popular</div>
-            <h3 class="text-lg font-bold text-white mb-2">VPS Standard</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€9.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 4 vCPU Cores</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM NVMe</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 100 GB SSD Gen4</li>
-            </ul>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">VPS Standard</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€9.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 4 vCPU Cores dedicados</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM NVMe</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 100 GB SSD Gen4</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('VPS Standard', '€9.99/mes', 'Equilibrio perfecto entre rendimiento y costo para aplicaciones medianas. Incluye 4 vCPU Cores, 8 GB de RAM NVMe y 100 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Desplegar</a>
+              <button onclick="openPlanModal('VPS Standard', '€9.99/mes', 'La opción ideal para aplicaciones web de producción o nodos secundarios. Ofrece 4 vCPU cores, 8 GB de RAM NVMe y 100 GB de espacio ultrarrápido.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('VPS Standard', 9.99)" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">VPS Performance</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€18.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 8 vCPU Cores</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM NVMe</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 200 GB SSD Gen4</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">VPS Performance</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€18.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 8 vCPU Cores dedicados</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM NVMe</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 200 GB SSD Gen4</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('VPS Performance', '€18.99/mes', 'Alto rendimiento para bases de datos pesadas o entornos de producción exigentes. Dispone de 8 vCPU Cores, 16 GB de RAM NVMe y 200 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Desplegar</a>
+              <button onclick="openPlanModal('VPS Performance', '€18.99/mes', 'Rendimiento extremo para bases de datos pesadas, virtualización o entornos de alta carga. Incluye 8 vCPU cores, 16 GB de RAM y 200 GB SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('VPS Performance', 18.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
         </div>
 
         <!-- 3. JUEGOS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-juegos">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Minecraft / Survival</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€3.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ryzen 9 7900X</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Minecraft / Survival</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€3.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM DDR5</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ryzen 9 7900X</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Minecraft / Survival', '€3.99/mes', 'Servidor optimizado para modalidades de supervivencia o vanilla. Impulsado por procesadores Ryzen 9 7900X, 4 GB de RAM DDR5 y panel Pterodactyl.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Minecraft / Survival', '€3.99/mes', 'Servidor ideal para modalidades Survival vanilla o con pocos plugins. Impulsado por hardware Ryzen 9 7900X de alta frecuencia, 4 GB de RAM DDR5 y control total mediante panel Pterodactyl.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Minecraft / Survival', 3.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Popular</div>
-            <h3 class="text-lg font-bold text-white mb-2">Servidor Modpack</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€7.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Forge / Fabric</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Copias automáticas</li>
-            </ul>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Servidor Modpack</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€7.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM DDR5</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte Forge / Fabric</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Copias de seguridad automáticas</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Servidor Modpack', '€7.99/mes', 'Creado específicamente para soportar mods pesados (Forge / Fabric). Incluye 8 GB de RAM DDR5, instalador automático de modpacks y respaldos frecuentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Servidor Modpack', '€7.99/mes', 'Creado a medida para soportar modpacks pesados de Forge o Fabric sin tirones de lag. Incluye 8 GB de RAM DDR5, instalador de versiones integrado y respaldos automatizados.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Servidor Modpack', 7.99)" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Servidor Extremo</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€14.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM DDR5</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Alto rendimiento</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Uptime 99.9%</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Servidor Extremo</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€14.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM DDR5</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Rendimiento optimizado</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Uptime garantizado 99.9%</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Servidor Extremo', '€14.99/mes', 'Máxima potencia para servidores con gran cantidad de plugins y jugadores simultáneos. Dispone de 16 GB de RAM DDR5 y rendimiento ultrarrápido garantizado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Servidor Extremo', '€14.99/mes', 'Potencia absoluta para servidores públicos masivos con cientos de plugins y jugadores simultáneos. Dispone de 16 GB de RAM DDR5 y estabilidad inigualable.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Servidor Extremo', 14.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
         </div>
 
         <!-- 4. MINECRAFT BUDGET -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-budget">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Budget Starter</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 GB RAM DDR4</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Servidores pequeños</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Budget Starter</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 GB RAM DDR4</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ideal servidores pequeños</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Budget Starter', '€2.49/mes', 'Opción económica para servidores pequeños con amigos. Incluye 2 GB de RAM DDR4, panel Pterodactyl y excelente estabilidad a bajo costo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Budget Starter', '€2.49/mes', 'Alternativa económica para jugar con un grupo reducido de amigos. Cuenta con 2 GB de RAM DDR4, panel de control intuitivo y bajo costo mensual.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Budget Starter', 2.49)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Económico</div>
-            <h3 class="text-lg font-bold text-white mb-2">Budget Pro</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 6 GB RAM DDR4</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Plugins y Mods</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Backups automáticos</li>
-            </ul>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Budget Pro</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 6 GB RAM DDR4</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte Plugins y Mods</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Backups automáticos</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Budget Pro', '€4.99/mes', 'Excelente relación calidad-precio para servidores con plugins básicos. Ofrece 6 GB de RAM DDR4, gestión sencilla y copias automáticas.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Budget Pro', '€4.99/mes', 'Excelente relación calidad-precio en la gama económica. Brinda 6 GB de RAM DDR4, soporte para plugins esenciales y copias de seguridad automáticas.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Budget Pro', 4.99)" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Budget Ultra</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 12 GB RAM DDR4</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Gran capacidad</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel intuitivo</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Budget Ultra</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 12 GB RAM DDR4</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Gran capacidad</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel de control intuitivo</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Budget Ultra', '€8.99/mes', 'Mayor capacidad en gama económica. Dispone de 12 GB de RAM DDR4 para comunidades que buscan ahorrar sin sacrificar espacio ni rendimiento.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Budget Ultra', '€8.99/mes', 'Máximo espacio y memoria dentro de la línea económica. Dispone de 12 GB de RAM DDR4 para presupuestos ajustados que requieren mayor estabilidad.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Budget Ultra', 8.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
         </div>
 
         <!-- 5. BOT DISCORD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-discord">
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Basic</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€1.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 512 MB RAM 24/7</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Node.js / Python</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel dedicado</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Bot Discord Basic</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€1.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 512 MB RAM 24/7</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Entornos Node.js / Python</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel dedicado</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Bot Discord Basic', '€1.49/mes', 'Alojamiento 24/7 para tu bot de utilidad o moderación hecho en Node.js o Python. Cuenta con 512 MB de RAM y panel dedicado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Bot Discord Basic', '€1.49/mes', 'Alojamiento estable 24/7 para tu bot de utilidad, moderación o tickets desarrollado en Node.js o Python. Cuenta con 512 MB de RAM y consola en vivo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Bot Discord Basic', 1.49)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Más Popular</div>
-            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Pro</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 2 GB RAM 24/7</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Lavalink / Bot de Música</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Sin interrupciones</li>
-            </ul>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Bot Discord Pro</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 2 GB RAM 24/7</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte Lavalink / Música</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Sin interrupciones</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Bot Discord Pro', '€2.99/mes', 'Diseñado para bots de música avanzados con soporte para Lavalink. Incluye 2 GB de RAM 24/7 sin cortes ni interrupciones.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Bot Discord Pro', '€2.99/mes', 'Optimizado para bots de música avanzados con soporte completo para Lavalink. Incluye 2 GB de RAM operativa las 24 horas sin cortes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Bot Discord Pro', 2.99)" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
-          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Enterprise</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€5.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
-            <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM 24/7</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Múltiples bots o bases de datos</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Soporte prioritario</li>
-            </ul>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Bot Discord Enterprise</h3>
+              <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€5.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+              <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM 24/7</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Múltiples bots o bases pesadas</li>
+                <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Soporte técnico prioritario</li>
+              </ul>
+            </div>
             <div class="grid grid-cols-2 gap-3">
-              <button onclick="openPlanModal('Bot Discord Enterprise', '€5.99/mes', 'Para bots complejos con bases de datos pesadas o múltiples instancias simultáneas. Ofrece 4 GB de RAM y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
+              <button onclick="openPlanModal('Bot Discord Enterprise', '€5.99/mes', 'Para ecosistemas complejos con múltiples instancias de bots, bases de datos integradas de gran tamaño y exigencia de alta disponibilidad. 4 GB RAM.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="addToCart('Bot Discord Enterprise', 5.99)" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Añadir</button>
             </div>
           </div>
         </div>
@@ -455,7 +515,7 @@
         </div>
 
         <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
-          <div class="text-blue-500 text-2xl mb-4">🛠️</div>
+          <div class="text-blue-400 text-2xl mb-4">🛠️</div>
           <h3 class="font-bold text-white mb-2">Panel de Control Intuitivo</h3>
           <p class="text-xs text-slate-400 leading-relaxed">Gestiona archivos, ejecuta consolas en vivo, instala plugins y programa copias de seguridad con un par de clics.</p>
         </div>
@@ -495,7 +555,7 @@
             <span id="total-price" class="text-4xl font-extrabold text-white">€7.90</span>
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
-          <a href="https://billing.nixermc.lol" target="_blank" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
+          <button onclick="addConfigToCart()" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Añadir Configuración al Carrito</button>
         </div>
 
       </div>
@@ -534,7 +594,7 @@
       <div id="modalPrice" class="text-2xl font-extrabold text-blue-400 mb-4"></div>
       <p id="modalDescription" class="text-xs text-slate-300 mb-6 leading-relaxed"></p>
       <div class="flex gap-4">
-        <a href="https://billing.nixermc.lol" target="_blank" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
+        <a href="https://billing.nixermc.lol" target="_blank" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Ir a Facturación</a>
         <button id="closeModalBtn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl">Cerrar</button>
       </div>
     </div>
@@ -545,11 +605,79 @@
     <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Lógica JavaScript Dinámica -->
+  <!-- Lógica JavaScript Dinámica y Carrito -->
   <script type="module">
     import { supabaseClient } from './assets/js/supabaseClient.js'
 
-    // Funciones globales para control de pestañas y modales desde el HTML
+    // --- Sistema de Carrito de Compras en LocalStorage ---
+    let cart = JSON.parse(localStorage.getItem('synthetix_cart')) || [];
+
+    window.saveCart = function() {
+      localStorage.setItem('synthetix_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    window.addToCart = function(name, price) {
+      cart.push({ name, price });
+      saveCart();
+      openCartDrawer();
+    }
+
+    window.removeFromCart = function(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    window.addConfigToCart = function() {
+      const ram = document.getElementById('ram-slider').value;
+      const cpu = document.getElementById('cpu-slider').value;
+      const priceElement = document.getElementById('total-price').textContent;
+      const price = parseFloat(priceElement.replace('€', ''));
+      
+      const configName = `Servidor Personalizado (${ram} GB RAM, ${cpu} Cores)`;
+      addToCart(configName, price);
+    }
+
+    function updateCartUI() {
+      const counter = document.getElementById('cart-counter');
+      const itemsContainer = document.getElementById('cart-items');
+      const totalContainer = document.getElementById('cart-total');
+
+      if (counter) counter.textContent = cart.length;
+
+      if (itemsContainer) {
+        if (cart.length === 0) {
+          itemsContainer.innerHTML = `<p class="text-xs text-slate-500 text-center py-8">Tu carrito está vacío.</p>`;
+        } else {
+          itemsContainer.innerHTML = cart.map((item, index) => `
+            <div class="flex items-center justify-between bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-xs">
+              <div>
+                <div class="font-bold text-white">${item.name}</div>
+                <div class="text-blue-400 font-semibold">€${item.price.toFixed(2)} / mes</div>
+              </div>
+              <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 p-1 font-bold">&times;</button>
+            </div>
+          `).join('');
+        }
+      }
+
+      if (totalContainer) {
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        totalContainer.textContent = `€${total.toFixed(2)}`;
+      }
+    }
+
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.add('open');
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.remove('open');
+    }
+
+    // Funciones globales para control de pestañas y modales
     window.switchTabDirect = function(targetCategory) {
       const tabs = document.querySelectorAll('.tab-btn');
       const categories = document.querySelectorAll('.plan-category');
@@ -589,7 +717,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // --- Control de Sesión y Navbar Dinámica (Sin afectar los botones de compra) ---
+      // Inicializar UI del carrito al cargar
+      updateCartUI();
+
+      // --- Control de Sesión y Navbar Dinámica ---
       const desktopAuth = document.getElementById('auth-actions-desktop')
       const mobileAuth = document.getElementById('auth-actions-mobile')
 
@@ -626,11 +757,16 @@
         console.error('Error al comprobar la sesión:', err)
       }
 
-      // --- Control del Menú Móvil ---
+      // --- Control de Menús Laterales (Drawer y Carrito) ---
       const drawer = document.getElementById('drawer');
       const overlay = document.getElementById('drawerOverlay');
       const openBtn = document.getElementById('openDrawer');
       const closeBtn = document.getElementById('closeDrawer');
+
+      const cartDrawer = document.getElementById('cartDrawer');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const openCartBtn = document.getElementById('openCart');
+      const closeCartBtn = document.getElementById('closeCart');
 
       if (openBtn && drawer && overlay) {
         openBtn.addEventListener('click', () => {
@@ -638,9 +774,12 @@
           overlay.classList.add('open');
         });
       }
-
       if (closeBtn) closeBtn.addEventListener('click', window.cerrarMenuMobile);
       if (overlay) overlay.addEventListener('click', window.cerrarMenuMobile);
+
+      if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
+      if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+      if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
 
       // --- Control del Modal de Detalles ---
       const modal = document.getElementById('detailsModal');

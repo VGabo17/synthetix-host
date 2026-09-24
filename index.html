@@ -9,15 +9,15 @@
   <!-- Estilos del proyecto -->
   <link rel="stylesheet" href="assets/css/styles.css">
   
-  <style>
-    /* Script inmediato para limpiar /index.html de la barra de direcciones */
-    <script>
-      if (window.location.pathname.includes('index.html')) {
-        const cleanPath = window.location.pathname.replace('index.html', '') + window.location.search + window.location.hash;
-        window.history.replaceState(null, '', cleanPath);
-      }
-    </script>
+  <script>
+    // Limpieza instantánea de /index.html en la barra de direcciones (Compatible con GitHub Pages y Supabase)
+    if (window.location.pathname.includes('index.html')) {
+      const cleanPath = window.location.pathname.replace('/index.html', '/').replace('index.html', '') + window.location.search + window.location.hash;
+      window.history.replaceState(null, '', cleanPath || '/');
+    }
+  </script>
 
+  <style>
     /* Estilos para personalización del slider del configurador */
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -75,7 +75,7 @@
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
       
-      <!-- Enlaces y Menú Desplegable de Servicios (Sin dominios, ni web, ni dedicados) -->
+      <!-- Enlaces y Menú Desplegable de Servicios -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
         <!-- Dropdown Servicios -->
         <div class="relative group">
@@ -100,7 +100,7 @@
       <!-- Botones de Autenticación / Escritorio (Dinámicos según sesión) -->
       <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
         <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
-        <a href="register.html" class="auth-redirect-btn px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+        <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
       </div>
 
       <!-- Botón Menú Hamburguesa Móvil -->
@@ -142,7 +142,7 @@
     </div>
     <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
       <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
-      <a href="register.html" class="auth-redirect-btn w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+      <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
   </div>
 
@@ -199,7 +199,7 @@
         <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría para ver los planes disponibles.</p>
       </div>
 
-      <!-- Tabs de Categoría Actualizadas (Sin dominios) -->
+      <!-- Tabs de Categoría -->
       <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
         <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
         <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS</button>
@@ -223,7 +223,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Inicial', '€8.99/mes', 'Plan ideal para iniciar tu red de servidores con Velocity o BungeeCord. Incluye 6 GB de RAM DDR5, almacenamiento NVMe ultra rápido, protección Anti-DDoS dedicada y soporte técnico continuo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Comprar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -237,7 +237,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Pro', '€15.99/mes', 'Diseñado para redes medianas con multi-backend sincronizado. Ofrece 12 GB de RAM DDR5, copias de seguridad automáticas, baja latencia y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -250,7 +250,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Network Enterprise', '€29.99/mes', 'Máxima potencia para grandes redes. Incluye 24 GB de RAM DDR5, IP dedicada exclusiva y recursos optimizados para cientos de jugadores concurrentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Comprar</a>
             </div>
           </div>
         </div>
@@ -267,7 +267,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Basic', '€4.99/mes', 'Servidor Virtual Privado ideal para proyectos ligeros, bots sencillos o pruebas de desarrollo. Cuenta con 2 vCPU Cores, 4 GB de RAM NVMe y 50 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Desplegar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -281,7 +281,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Standard', '€9.99/mes', 'Equilibrio perfecto entre rendimiento y costo para aplicaciones medianas. Incluye 4 vCPU Cores, 8 GB de RAM NVMe y 100 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Desplegar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -294,7 +294,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('VPS Performance', '€18.99/mes', 'Alto rendimiento para bases de datos pesadas o entornos de producción exigentes. Dispone de 8 vCPU Cores, 16 GB de RAM NVMe y 200 GB de SSD Gen4.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Desplegar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Desplegar</a>
             </div>
           </div>
         </div>
@@ -311,7 +311,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Minecraft / Survival', '€3.99/mes', 'Servidor optimizado para modalidades de supervivencia o vanilla. Impulsado por procesadores Ryzen 9 7900X, 4 GB de RAM DDR5 y panel Pterodactyl.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -325,7 +325,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Servidor Modpack', '€7.99/mes', 'Creado específicamente para soportar mods pesados (Forge / Fabric). Incluye 8 GB de RAM DDR5, instalador automático de modpacks y respaldos frecuentes.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -338,7 +338,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Servidor Extremo', '€14.99/mes', 'Máxima potencia para servidores con gran cantidad de plugins y jugadores simultáneos. Dispone de 16 GB de RAM DDR5 y rendimiento ultrarrápido garantizado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
         </div>
@@ -355,7 +355,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Starter', '€2.49/mes', 'Opción económica para servidores pequeños con amigos. Incluye 2 GB de RAM DDR4, panel Pterodactyl y excelente estabilidad a bajo costo.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -369,7 +369,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Pro', '€4.99/mes', 'Excelente relación calidad-precio para servidores con plugins básicos. Ofrece 6 GB de RAM DDR4, gestión sencilla y copias automáticas.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -382,7 +382,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Budget Ultra', '€8.99/mes', 'Mayor capacidad en gama económica. Dispone de 12 GB de RAM DDR4 para comunidades que buscan ahorrar sin sacrificar espacio ni rendimiento.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
         </div>
@@ -399,7 +399,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Basic', '€1.49/mes', 'Alojamiento 24/7 para tu bot de utilidad o moderación hecho en Node.js o Python. Cuenta con 512 MB de RAM y panel dedicado.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
@@ -413,7 +413,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Pro', '€2.99/mes', 'Diseñado para bots de música avanzados con soporte para Lavalink. Incluye 2 GB de RAM 24/7 sin cortes ni interrupciones.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
@@ -426,7 +426,7 @@
             </ul>
             <div class="grid grid-cols-2 gap-3">
               <button onclick="openPlanModal('Bot Discord Enterprise', '€5.99/mes', 'Para bots complejos con bases de datos pesadas o múltiples instancias simultáneas. Ofrece 4 GB de RAM y soporte prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
-              <a href="register.html" class="auth-redirect-btn py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Contratar</a>
+              <a href="https://billing.nixermc.lol" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 block">Contratar</a>
             </div>
           </div>
         </div>
@@ -495,7 +495,7 @@
             <span id="total-price" class="text-4xl font-extrabold text-white">€7.90</span>
             <span class="text-xs font-semibold text-slate-500">/mes</span>
           </div>
-          <a href="register.html" class="auth-redirect-btn w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
+          <a href="https://billing.nixermc.lol" target="_blank" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 block">Continuar al Checkout</a>
         </div>
 
       </div>
@@ -534,7 +534,7 @@
       <div id="modalPrice" class="text-2xl font-extrabold text-blue-400 mb-4"></div>
       <p id="modalDescription" class="text-xs text-slate-300 mb-6 leading-relaxed"></p>
       <div class="flex gap-4">
-        <a href="register.html" class="auth-redirect-btn flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
+        <a href="https://billing.nixermc.lol" target="_blank" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
         <button id="closeModalBtn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl">Cerrar</button>
       </div>
     </div>
@@ -589,31 +589,15 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // --- Limpiar /index.html de la URL de forma instantánea ---
-      if (window.location.pathname.includes('index.html')) {
-        const cleanPath = window.location.pathname.replace('index.html', '') + window.location.search + window.location.hash;
-        window.history.replaceState(null, '', cleanPath);
-      }
-
-      // --- Control de Sesión, Navbar y redirección de botones de compra ---
+      // --- Control de Sesión y Navbar Dinámica (Sin afectar los botones de compra) ---
       const desktopAuth = document.getElementById('auth-actions-desktop')
       const mobileAuth = document.getElementById('auth-actions-mobile')
-      const authRedirectButtons = document.querySelectorAll('.auth-redirect-btn')
 
       try {
         const { data: { session } } = await supabaseClient.auth.getSession()
 
         if (session && session.user) {
           const username = session.user.user_metadata?.username || session.user.email.split('@')[0]
-
-          // Si hay sesión activa, cambiar los botones de compra/registro para que envíen al dashboard directamente
-          authRedirectButtons.forEach(btn => {
-            btn.setAttribute('href', 'dashboard.html');
-            if (btn.textContent.includes('Registrarse') || btn.textContent.includes('Comprar') || btn.textContent.includes('Contratar') || btn.textContent.includes('Desplegar') || btn.textContent.includes('Registrar')) {
-              // Si es un botón de compra dentro del plan o modal, podemos enfocarlo al panel
-              btn.textContent = btn.textContent.replace('Registrarse', 'Ir al Panel').replace('Comprar', 'Gestionar').replace('Contratar', 'Gestionar').replace('Desplegar', 'Gestionar');
-            }
-          });
 
           if (desktopAuth) {
             desktopAuth.innerHTML = `

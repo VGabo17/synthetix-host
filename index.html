@@ -69,7 +69,7 @@
       
       <!-- Enlaces (Ocultos en móvil) -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
-        <a id="inicioLink" href="#productos" class="hover:text-white transition-colors">Productos</a>
+        <a id="inicioLink" href="#productos" class="hover:text-white transition-colors">Servicios</a>
         <a id="catalogoLink" href="#configurador" class="hover:text-white transition-colors">Configurador</a>
         <a href="#caracteristicas" class="hover:text-white transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
@@ -105,7 +105,7 @@
         </button>
       </div>
       <div class="flex flex-col gap-4 text-sm font-semibold text-slate-300">
-        <a id="inicioLinkMobile" href="#productos" class="hover:text-blue-400 transition-colors">Productos</a>
+        <a id="inicioLinkMobile" href="#productos" class="hover:text-blue-400 transition-colors">Servicios</a>
         <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
         <a href="#caracteristicas" class="hover:text-blue-400 transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
@@ -123,7 +123,7 @@
     <section class="text-center flex flex-col items-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide">
         <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-        Hardware Ryzen 9 • Uptime 99.9%
+        Infraestructura de Alto Rendimiento • Uptime 99.9%
       </div>
       
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white leading-tight">
@@ -132,12 +132,12 @@
       </h1>
       
       <p class="text-slate-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed">
-        Hosting de alto rendimiento para tus mundos de Minecraft y bots. Configura, despliega y escala sin complicaciones con hardware de última generación.
+        Soluciones profesionales de hosting, VPS, redes de servidores y servidores dedicados con hardware de última generación.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-        <a href="#productos" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">Ver planes &rarr;</a>
-        <a href="#configurador" class="px-8 py-3.5 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition-all text-center">Crear mi plan</a>
+        <a href="#productos" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">Ver servicios &rarr;</a>
+        <a href="#configurador" class="px-8 py-3.5 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition-all text-center">Configurar a medida</a>
       </div>
 
       <!-- Tarjeta de Estado del Servidor -->
@@ -163,73 +163,237 @@
       </div>
     </section>
 
-    <!-- Sección de Productos -->
+    <!-- Sección de Servicios / Productos (Tus categorías reales) -->
     <section id="productos" class="mb-24">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-3">Planes Listos para Usar</h2>
-        <p class="text-xs md:text-sm text-slate-400">Despliegue automatizado en menos de 60 segundos.</p>
+        <h2 class="text-3xl font-bold text-white mb-3">Nuestros Servicios</h2>
+        <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría para ver los planes disponibles.</p>
       </div>
 
-      <!-- Tabs de Categoría -->
-      <div class="flex overflow-x-auto gap-3 pb-4 mb-8 snap-x hide-scrollbar justify-center" id="tabs-container">
-        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Minecraft Budget</button>
-        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Premium</button>
-        <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bots de Discord</button>
+      <!-- Tabs de Categoría basados en tu imagen -->
+      <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
+        <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
+        <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS</button>
+        <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Juegos</button>
+        <button data-target="dedicados" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Dedicados</button>
+        <button data-target="web" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Web</button>
+        <button data-target="dominios" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Dominios</button>
       </div>
 
-      <!-- Grid de Planes -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Contenedor de Grids de Planes -->
+      <div id="planes-container">
         
-        <!-- Plan 1 -->
-        <div class="bg-slate-900/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-slate-600 transition-all flex flex-col">
-          <h3 class="text-lg font-bold text-white mb-2">Plan Inicial</h3>
-          <div class="flex items-baseline gap-1 mb-6">
-            <span class="text-3xl font-extrabold text-white">€3.99</span>
-            <span class="text-xs font-semibold text-slate-500">/mes</span>
+        <!-- 1. PLANES NETWORKS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Network Inicial</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Velocity / BungeeCord</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 6 GB RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Anti-DDoS dedicado</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
           </div>
-          <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM DDR5</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 100% vCPU Ryzen 9</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 20 GB NVMe Gen4</li>
-          </ul>
-          <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all text-center block">Contratar Plan</a>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Recomendado</div>
+            <h3 class="text-lg font-bold text-white mb-2">Network Pro</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€15.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Multi-backend sincronizado</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 12 GB RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte prioritario</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Network Enterprise</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€29.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Sin límites aparentes</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 24 GB RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> IP dedicada</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
+          </div>
         </div>
 
-        <!-- Plan 2 (Destacado) -->
-        <div class="bg-slate-900/90 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/50 shadow-2xl shadow-blue-500/10 flex flex-col relative md:-translate-y-2">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">Popular</div>
-          <h3 class="text-lg font-bold text-white mb-2">Plan Avanzado</h3>
-          <div class="flex items-baseline gap-1 mb-6">
-            <span class="text-3xl font-extrabold text-white">€7.99</span>
-            <span class="text-xs font-semibold text-slate-500">/mes</span>
+        <!-- 2. VPS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-vps">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">VPS Basic</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 vCPU Cores</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 50 GB SSD Gen4</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Desplegar</a>
           </div>
-          <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM DDR5</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 200% vCPU Ryzen 9</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 40 GB NVMe Gen4</li>
-          </ul>
-          <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">Contratar Plan</a>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Popular</div>
+            <h3 class="text-lg font-bold text-white mb-2">VPS Standard</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€9.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 4 vCPU Cores</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 100 GB SSD Gen4</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Desplegar</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">VPS Performance</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€18.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 8 vCPU Cores</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 200 GB SSD Gen4</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Desplegar</a>
+          </div>
         </div>
 
-        <!-- Plan 3 -->
-        <div class="bg-slate-900/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-800 hover:border-slate-600 transition-all flex flex-col">
-          <h3 class="text-lg font-bold text-white mb-2">Plan Pro</h3>
-          <div class="flex items-baseline gap-1 mb-6">
-            <span class="text-3xl font-extrabold text-white">€14.99</span>
-            <span class="text-xs font-semibold text-slate-500">/mes</span>
+        <!-- 3. JUEGOS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-juegos">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Minecraft / Survival</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€3.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM DDR5</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ryzen 9 7900X</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
           </div>
-          <ul class="space-y-4 mb-8 flex-grow">
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM DDR5</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 400% vCPU Ryzen 9</li>
-            <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 80 GB NVMe Gen4</li>
-          </ul>
-          <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all text-center block">Contratar Plan</a>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Popular</div>
+            <h3 class="text-lg font-bold text-white mb-2">Servidor Modpack</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€7.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 8 GB RAM DDR5</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Instalador de Forge/Fabric</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Copias automáticas</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Bots & Utilidades</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 1 GB RAM 24/7</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Node.js / Python support</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Uptime garantizado</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
+          </div>
+        </div>
+
+        <!-- 4. DEDICADOS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-dedicados">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Dedicated Entry</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€49.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ryzen 5 5600X</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 64 GB DDR4 RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 1 TB NVMe</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Solicitar</a>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Alto Rendimiento</div>
+            <h3 class="text-lg font-bold text-white mb-2">Dedicated Pro</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€89.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Ryzen 9 7900X</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 128 GB DDR5 RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 2 TB NVMe Gen4</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Solicitar</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Dedicated Beast</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€149.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> AMD EPYC / Intel Xeon</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 256 GB RAM</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 TB NVMe Enterprise</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Solicitar</a>
+          </div>
+        </div>
+
+        <!-- 5. WEB -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-web">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Web Starter</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€1.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 1 Dominio alojado</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 10 GB SSD NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Certificado SSL Gratis</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Web</a>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Ideal Webstores</div>
+            <h3 class="text-lg font-bold text-white mb-2">Web Business</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Dominios ilimitados</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 50 GB SSD NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Cuentas de correo corporativo</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar Web</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Web Enterprise</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€9.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Recursos dedicados cPanel</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 150 GB NVMe</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Copias diarias</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Web</a>
+          </div>
+        </div>
+
+        <!-- 6. DOMINIOS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-dominios">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">.com / .net</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€12.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Protección WHOIS gratis</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Gestión DNS avanzada</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Registrar</a>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Especial Gaming</div>
+            <h3 class="text-lg font-bold text-white mb-2">.lol / .gg / .xyz</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Ideal para redes de Minecraft</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Configuración instantánea</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Registrar</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">.org / .io</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€34.99</span><span class="text-xs font-semibold text-slate-500">/año</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Máxima autoridad web</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Soporte DNSSEC</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Registrar</a>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Nueva Sección: Características / Ventajas -->
+    <!-- Características / Ventajas -->
     <section id="caracteristicas" class="mb-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-3">¿Por qué elegirnos?</h2>
@@ -246,7 +410,7 @@
         <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
           <div class="text-purple-400 text-2xl mb-4">⚡</div>
           <h3 class="font-bold text-white mb-2">Almacenamiento NVMe Gen4</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Cero tiempos de carga. Discos ultrarrápidos para bases de datos pesadas y guardados de mundos instantáneos.</p>
+          <p class="text-xs text-slate-400 leading-relaxed">Cero tiempos de carga. Discos ultrarrápidos para bases de datos pesadas y guardados instantáneos.</p>
         </div>
 
         <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
@@ -296,25 +460,25 @@
       </div>
     </section>
 
-    <!-- Nueva Sección: FAQ (Preguntas Frecuentes) -->
+    <!-- FAQ (Preguntas Frecuentes) -->
     <section id="faq" class="mb-12">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-3">Preguntas Frecuentes</h2>
-        <p class="text-xs md:text-sm text-slate-400">Resolvemos tus dudas sobre nuestros servicios de hosting.</p>
+        <p class="text-xs md:text-sm text-slate-400">Resolvemos tus dudas sobre nuestros servicios de infraestructura.</p>
       </div>
 
       <div class="max-w-3xl mx-auto space-y-4">
         <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
-          <h3 class="font-bold text-sm text-white mb-2">¿Cuánto tarda en activarse mi servidor?</h3>
-          <p class="text-xs text-slate-400">La activación es totalmente automática. Una vez completado el pago o la configuración, tu servidor estará listo en menos de 60 segundos.</p>
+          <h3 class="font-bold text-sm text-white mb-2">¿Cuánto tarda en activarse mi servicio?</h3>
+          <p class="text-xs text-slate-400">La activación es automática. Una vez completado el proceso, tus servidores o dominios estarán listos en menos de 60 segundos.</p>
         </div>
         <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
-          <h3 class="font-bold text-sm text-white mb-2">¿Puedo cambiar de plan más adelante?</h3>
-          <p class="text-xs text-slate-400">¡Sí! Puedes realizar un upgrade o downgrade de tu RAM y CPU en cualquier momento desde tu panel de control sin perder tus archivos.</p>
+          <h3 class="font-bold text-sm text-white mb-2">¿Puedo escalar mi VPS o Plan de Network?</h3>
+          <p class="text-xs text-slate-400">¡Sí! Puedes realizar un upgrade o cambio de recursos en cualquier momento desde tu panel de control.</p>
         </div>
         <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
-          <h3 class="font-bold text-sm text-white mb-2">¿Qué métodos de pago aceptan?</h3>
-          <p class="text-xs text-slate-400">Aceptamos tarjetas de crédito/débito, pasarelas internacionales y métodos de pago locales compatibles con tu cuenta.</p>
+          <h3 class="font-bold text-sm text-white mb-2">¿Ofrecen soporte para la configuración de juegos o redes?</h3>
+          <p class="text-xs text-slate-400">Contamos con documentación detallada y asistencia a través de nuestros canales de comunidad y tickets.</p>
         </div>
       </div>
     </section>
@@ -326,12 +490,12 @@
     <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Lógica JavaScript (Manejo de Menú, Calculadora y Estado de Sesión Dinámico) -->
+  <!-- Lógica JavaScript Dinámica -->
   <script type="module">
     import { supabaseClient } from './assets/js/supabaseClient.js'
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // --- Control de Sesión y Cambio Dinámico de Navbar ---
+      // --- Control de Sesión y Navbar Dinámica ---
       const desktopAuth = document.getElementById('auth-actions-desktop')
       const mobileAuth = document.getElementById('auth-actions-mobile')
 
@@ -341,7 +505,6 @@
         if (session && session.user) {
           const username = session.user.user_metadata?.username || session.user.email.split('@')[0]
 
-          // Renderizar barra para usuario logueado en Escritorio
           if (desktopAuth) {
             desktopAuth.innerHTML = `
               <div class="flex items-center gap-3">
@@ -349,15 +512,14 @@
                   <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                   ${username}
                 </a>
-                <a href="dashboard.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Panel</a>
+                <a href="dashboard.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-500/20">Panel</a>
               </div>
             `
           }
 
-          // Renderizar barra para usuario logueado en Móvil (Drawer)
           if (mobileAuth) {
             mobileAuth.innerHTML = `
-              <a href="dashboard.html" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Mi Panel (${username})</a>
+              <a href="dashboard.html" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-xl">Mi Panel (${username})</a>
               <button id="logout-btn" class="w-full py-3 text-center text-xs font-bold text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 rounded-xl transition-all">Cerrar Sesión</button>
             `
             document.getElementById('logout-btn')?.addEventListener('click', async () => {
@@ -370,7 +532,7 @@
         console.error('Error al comprobar la sesión:', err)
       }
 
-      // --- Control del Menú Hamburguesa en Index ---
+      // --- Control del Menú Móvil ---
       const drawer = document.getElementById('drawer');
       const overlay = document.getElementById('drawerOverlay');
       const openBtn = document.getElementById('openDrawer');
@@ -396,15 +558,27 @@
         if (link) link.addEventListener('click', cerrarMenu);
       });
 
-      // --- Pestañas (Tabs) ---
+      // --- Lógica de Pestañas (Tabs) para tus Servicios Reales ---
       const tabs = document.querySelectorAll('.tab-btn');
-      const activeClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
-      const inactiveClasses = "tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
+      const categories = document.querySelectorAll('.plan-category');
+
+      const activeClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
+      const inactiveClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
 
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           tabs.forEach(t => t.className = inactiveClasses);
           tab.className = activeClasses;
+
+          const targetCategory = tab.getAttribute('data-target');
+
+          categories.forEach(cat => {
+            if (cat.id === `cat-${targetCategory}`) {
+              cat.classList.remove('hidden');
+            } else {
+              cat.classList.add('hidden');
+            }
+          });
         });
       });
 

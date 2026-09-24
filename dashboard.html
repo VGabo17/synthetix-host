@@ -3,65 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Cliente - NixerHost</title>
+  <title>Panel de Cliente - SynthetixHost</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Ocultar barra de scroll */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* Menú lateral móvil / Drawer */
+    #drawer { transform: translateX(100%); transition: transform 0.3s ease-in-out; }
+    #drawer.open { transform: translateX(0); }
+    #drawerOverlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease-in-out; }
+    #drawerOverlay.open { opacity: 1; pointer-events: auto; }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex">
-  <aside class="w-64 bg-slate-900 border-r border-slate-800 p-6 hidden md:flex flex-col justify-between">
-    <div>
-      <div class="flex items-center gap-3 mb-10">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-600 flex items-center justify-center font-black text-white text-sm">N</div>
-        <span class="font-bold text-white text-sm tracking-wider">NIXERHOST</span>
-      </div>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-blue-500/30 flex flex-col md:flex-row">
 
+  <!-- Sidebar para Escritorio -->
+  <aside class="w-64 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 p-6 hidden md:flex flex-col justify-between sticky top-0 h-screen">
+    <div>
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 mb-10">
+        <span class="text-blue-500 text-xl">✦</span>
+        <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
+      </a>
+
+      <!-- Navegación -->
       <nav class="space-y-2 text-xs font-semibold">
-        <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-600/10 text-purple-300 border border-purple-500/30">
+        <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">
           <span>📊</span> Resumen
         </a>
-        <a href="index.html#catalogo" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
+        <a href="index.html#productos" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
           <span>🛒</span> Contratar Servicios
         </a>
       </nav>
     </div>
 
-    <button id="logout-btn" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition-all">
+    <button id="logout-btn-desktop" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition-all border border-slate-700">
       Cerrar Sesión
     </button>
   </aside>
 
-  <main class="flex-1 p-6 md:p-10 max-w-6xl">
-    <header class="flex flex-wrap justify-between items-center gap-4 mb-10">
-      <div>
-        <h1 id="user-greeting" class="text-2xl font-bold text-white">Panel de Control</h1>
-        <p class="text-xs text-slate-400 mt-1">Gestiona tus servidores y accesos directos</p>
+  <!-- Navbar superior solo para Móvil -->
+  <nav class="md:hidden sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="text-blue-500 text-xl">✦</span>
+      <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
+    </a>
+    <button id="openDrawer" class="text-slate-300 hover:text-white p-2" aria-label="Abrir menú">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Overlay y Drawer para Móvil -->
+  <div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-50 md:hidden"></div>
+  <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-bold text-lg text-white">Menú Cliente</span>
+        <button id="closeDrawer" class="text-slate-400 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
-      <div id="user-badge" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-purple-300 font-semibold"></div>
+      <div class="flex flex-col gap-3 text-sm font-semibold text-slate-300">
+        <a href="dashboard.html" class="px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">📊 Resumen</a>
+        <a href="index.html#productos" class="px-4 py-3 rounded-xl hover:bg-slate-800 text-slate-300">🛒 Contratar Servicios</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-slate-800">
+      <button id="logout-btn-mobile" class="w-full py-3 text-center text-xs font-bold text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 rounded-xl transition-all">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <!-- Contenido Principal -->
+  <main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto w-full">
+    
+    <!-- Cabecera de Bienvenida -->
+    <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-6 border-b border-slate-800/80">
+      <div>
+        <h1 id="user-greeting" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Panel de Control</h1>
+        <p class="text-xs md:text-sm text-slate-400 mt-1">Gestiona tus servidores y accesos directos de forma rápida.</p>
+      </div>
+      <div id="user-badge" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-blue-400 font-semibold shadow-inner">
+        Cargando cuenta...
+      </div>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-      <div class="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-        <div class="text-2xl mb-2">🎮</div>
-        <h3 class="font-bold text-white text-base">Panel de Juego (Pterodactyl)</h3>
-        <p class="text-xs text-slate-400 mt-1 mb-4">Administra la consola, archivos y servidores de Minecraft o bots.</p>
-        <button id="btn-pterodactyl" class="px-4 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">
-          Abrir Pterodactyl →
+    <!-- Tarjetas de Estadísticas Rápidas -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl">
+        <div class="text-slate-400 text-xs font-semibold mb-1">Servidores Activos</div>
+        <div class="text-2xl font-bold text-white">0</div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl">
+        <div class="text-slate-400 text-xs font-semibold mb-1">Estado del Nodo</div>
+        <div class="flex items-center gap-2 mt-1">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-sm font-bold text-emerald-400">100% Operativo</span>
+        </div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl">
+        <div class="text-slate-400 text-xs font-semibold mb-1">Soporte / Tickets</div>
+        <div class="text-2xl font-bold text-white">Sin incidencias</div>
+      </div>
+    </div>
+
+    <!-- Paneles de Acceso Directo (Pterodactyl y Paymenter) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Panel Pterodactyl -->
+      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-500/60 transition-all">
+        <div class="absolute -right-6 -bottom-6 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">🎮</div>
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-6 text-blue-400">🎮</div>
+          <h3 class="font-bold text-white text-lg mb-2">Panel de Juego (Pterodactyl)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">Administra la consola en vivo, archivos, configuraciones y redes de tus servidores de Minecraft o bots de Discord.</p>
+        </div>
+        <button id="btn-pterodactyl" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">
+          Abrir Pterodactyl &rarr;
         </button>
       </div>
 
-      <div class="bg-slate-900/80 p-6 rounded-2xl border border-blue-500/30">
-        <div class="text-2xl mb-2">💳</div>
-        <h3 class="font-bold text-white text-base">Área de Facturación (Paymenter)</h3>
-        <p class="text-xs text-slate-400 mt-1 mb-4">Gestiona facturas, renovaciones automáticas y tickets de soporte.</p>
-        <button id="btn-paymenter" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all">
-          Abrir Paymenter →
+      <!-- Área de Facturación Paymenter -->
+      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-purple-500/30 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-purple-500/60 transition-all">
+        <div class="absolute -right-6 -bottom-6 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">💳</div>
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl mb-6 text-purple-400">💳</div>
+          <h3 class="font-bold text-white text-lg mb-2">Área de Facturación (Paymenter)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">Gestiona tus facturas pendientes, métodos de pago, renovaciones automáticas de servicios y apertura de tickets de soporte.</p>
+        </div>
+        <button id="btn-paymenter" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all border border-slate-700 text-center">
+          Abrir Paymenter &rarr;
         </button>
       </div>
+
     </div>
   </main>
 
   <div id="toast-root"></div>
 
+  <!-- Script Drawer Móvil -->
+  <script>
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
+
+    if (openBtn && drawer && overlay) {
+      openBtn.addEventListener('click', () => {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+      });
+    }
+
+    const cerrarMenu = () => {
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', cerrarMenu);
+    if (overlay) overlay.addEventListener('click', cerrarMenu);
+  </script>
+
   <script type="module" src="assets/js/dashboard.js"></script>
 </body>
-  </html>
+</html>

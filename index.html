@@ -67,9 +67,26 @@
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
       
-      <!-- Enlaces (Ocultos en móvil) -->
+      <!-- Enlaces y Menú Desplegable de Servicios -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
-        <a id="inicioLink" href="#productos" class="hover:text-white transition-colors">Servicios</a>
+        <!-- Dropdown Servicios -->
+        <div class="relative group">
+          <button id="inicioLink" class="hover:text-white transition-colors flex items-center gap-1 py-2 focus:outline-none">
+            Servicios 
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute top-full left-0 w-52 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-2 hidden group-hover:block z-50">
+            <a href="#productos" onclick="switchTabDirect('networks')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Planes Networks</a>
+            <a href="#productos" onclick="switchTabDirect('vps')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">VPS</a>
+            <a href="#productos" onclick="switchTabDirect('juegos')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Juegos (Minecraft)</a>
+            <a href="#productos" onclick="switchTabDirect('budget')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Minecraft Budget</a>
+            <a href="#productos" onclick="switchTabDirect('discord')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Bot Discord</a>
+            <a href="#productos" onclick="switchTabDirect('dedicados')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dedicados</a>
+            <a href="#productos" onclick="switchTabDirect('web')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Web</a>
+            <a href="#productos" onclick="switchTabDirect('dominios')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dominios</a>
+          </div>
+        </div>
+
         <a id="catalogoLink" href="#configurador" class="hover:text-white transition-colors">Configurador</a>
         <a href="#caracteristicas" class="hover:text-white transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
@@ -94,9 +111,9 @@
   <div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-50 md:hidden"></div>
 
   <!-- Drawer / Menú lateral móvil -->
-  <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl">
+  <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl overflow-y-auto">
     <div>
-      <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center justify-between mb-6">
         <span class="font-bold text-lg text-white">Menú</span>
         <button id="closeDrawer" class="text-slate-400 hover:text-white p-2">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,14 +121,24 @@
           </svg>
         </button>
       </div>
-      <div class="flex flex-col gap-4 text-sm font-semibold text-slate-300">
-        <a id="inicioLinkMobile" href="#productos" class="hover:text-blue-400 transition-colors">Servicios</a>
+      <div class="flex flex-col gap-3 text-sm font-semibold text-slate-300">
+        <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">Servicios</span>
+        <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Planes Networks</a>
+        <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">VPS</a>
+        <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Juegos (Minecraft)</a>
+        <a href="#productos" onclick="switchTabDirect('budget'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Minecraft Budget</a>
+        <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Bot Discord</a>
+        <a href="#productos" onclick="switchTabDirect('dedicados'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Dedicados</a>
+        <a href="#productos" onclick="switchTabDirect('web'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Web</a>
+        <a href="#productos" onclick="switchTabDirect('dominios'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Dominios</a>
+        
+        <div class="border-t border-slate-800 my-2"></div>
         <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
         <a href="#caracteristicas" class="hover:text-blue-400 transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
       </div>
     </div>
-    <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800">
+    <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
       <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
       <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
@@ -163,18 +190,20 @@
       </div>
     </section>
 
-    <!-- Sección de Servicios / Productos (Tus categorías reales) -->
+    <!-- Sección de Servicios / Productos -->
     <section id="productos" class="mb-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-3">Nuestros Servicios</h2>
         <p class="text-xs md:text-sm text-slate-400">Selecciona una categoría para ver los planes disponibles.</p>
       </div>
 
-      <!-- Tabs de Categoría basados en tu imagen -->
+      <!-- Tabs de Categoría Actualizadas -->
       <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
         <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
         <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS</button>
         <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Juegos</button>
+        <button data-target="budget" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Budget</button>
+        <button data-target="discord" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bot Discord</button>
         <button data-target="dedicados" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Dedicados</button>
         <button data-target="web" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Web</button>
         <button data-target="dominios" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Dominios</button>
@@ -183,7 +212,7 @@
       <!-- Contenedor de Grids de Planes -->
       <div id="planes-container">
         
-        <!-- 1. PLANES NETWORKS -->
+        <!-- 1. PLANES NETWORKS (Con Ver Detalles y Comprar) -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
             <h3 class="text-lg font-bold text-white mb-2">Network Inicial</h3>
@@ -193,7 +222,10 @@
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 6 GB RAM</li>
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Anti-DDoS dedicado</li>
             </ul>
-            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="openPlanModal('Network Inicial', '€8.99/mes', 'Plan ideal para iniciar tu red de servidores con Velocity o BungeeCord, incluyendo 6 GB de RAM y protección Anti-DDoS dedicada.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+            </div>
           </div>
           <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Recomendado</div>
@@ -204,7 +236,10 @@
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 12 GB RAM</li>
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte prioritario</li>
             </ul>
-            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar</a>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="openPlanModal('Network Pro', '€15.99/mes', 'Diseñado para redes medianas con multi-backend sincronizado, 12 GB RAM de alto rendimiento y soporte técnico prioritario.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <a href="register.html" class="py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20">Comprar</a>
+            </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
             <h3 class="text-lg font-bold text-white mb-2">Network Enterprise</h3>
@@ -214,7 +249,10 @@
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 24 GB RAM</li>
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> IP dedicada</li>
             </ul>
-            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="openPlanModal('Network Enterprise', '€29.99/mes', 'Máxima potencia para grandes redes. Incluye 24 GB RAM, IP dedicada exclusiva y recursos ilimitados para cientos de jugadores simultáneos.')" class="py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <a href="register.html" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20">Comprar</a>
+            </div>
           </div>
         </div>
 
@@ -277,18 +315,88 @@
             <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar</a>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
-            <h3 class="text-lg font-bold text-white mb-2">Bots & Utilidades</h3>
-            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <h3 class="text-lg font-bold text-white mb-2">Servidor Extremo</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€14.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
             <ul class="space-y-4 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 1 GB RAM 24/7</li>
-              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Node.js / Python support</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 16 GB RAM DDR5</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Rendimiento optimizado</li>
               <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Uptime garantizado</li>
             </ul>
             <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar</a>
           </div>
         </div>
 
-        <!-- 4. DEDICADOS -->
+        <!-- 4. MINECRAFT BUDGET (Aparte) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-budget">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Budget Starter</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 2 GB RAM DDR4</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel Pterodactyl</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Ideal servidores pequeños</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Budget</a>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Económico</div>
+            <h3 class="text-lg font-bold text-white mb-2">Budget Pro</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€4.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 6 GB RAM DDR4</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Soporte para Plugins/Mods</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Backups automáticos</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar Budget</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Budget Ultra</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€8.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 12 GB RAM DDR4</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Gran capacidad</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel intuitivo</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Budget</a>
+          </div>
+        </div>
+
+        <!-- 5. BOT DISCORD (Aparte) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-discord">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Basic</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€1.49</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 512 MB RAM 24/7</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Node.js / Python</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Panel dedicado</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Bot</a>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Más Popular</div>
+            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Pro</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€2.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> 2 GB RAM 24/7</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Lavalink / Bot de Música</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-purple-400">✦</span> Sin interrupciones</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center block shadow-lg shadow-blue-500/20">Contratar Bot</a>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2">Bot Discord Enterprise</h3>
+            <div class="flex items-baseline gap-1 mb-6"><span class="text-3xl font-extrabold text-white">€5.99</span><span class="text-xs font-semibold text-slate-500">/mes</span></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> 4 GB RAM 24/7</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Múltiples bots o bases de datos</li>
+              <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-blue-500">✦</span> Soporte prioritario</li>
+            </ul>
+            <a href="register.html" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl text-center block">Contratar Bot</a>
+          </div>
+        </div>
+
+        <!-- 6. DEDICADOS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-dedicados">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
             <h3 class="text-lg font-bold text-white mb-2">Dedicated Entry</h3>
@@ -323,7 +431,7 @@
           </div>
         </div>
 
-        <!-- 5. WEB -->
+        <!-- 7. WEB -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-web">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
             <h3 class="text-lg font-bold text-white mb-2">Web Starter</h3>
@@ -358,7 +466,7 @@
           </div>
         </div>
 
-        <!-- 6. DOMINIOS -->
+        <!-- 8. DOMINIOS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-dominios">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col">
             <h3 class="text-lg font-bold text-white mb-2">.com / .net</h3>
@@ -485,6 +593,20 @@
 
   </main>
 
+  <!-- Modal para "Ver detalles" de los Planes Networks -->
+  <div id="detailsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-lg w-full relative shadow-2xl mx-4">
+      <button id="closeModal" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
+      <h3 id="modalTitle" class="text-xl font-bold text-white mb-2"></h3>
+      <div id="modalPrice" class="text-2xl font-extrabold text-blue-400 mb-4"></div>
+      <p id="modalDescription" class="text-xs text-slate-300 mb-6 leading-relaxed"></p>
+      <div class="flex gap-4">
+        <a href="register.html" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 block">Comprar Ahora</a>
+        <button id="closeModalBtn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500">
     <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
@@ -493,6 +615,45 @@
   <!-- Lógica JavaScript Dinámica -->
   <script type="module">
     import { supabaseClient } from './assets/js/supabaseClient.js'
+
+    // Funciones globales para control de pestañas y modales desde el HTML
+    window.switchTabDirect = function(targetCategory) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const categories = document.querySelectorAll('.plan-category');
+
+      const activeClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
+      const inactiveClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
+
+      tabs.forEach(tab => {
+        if (tab.getAttribute('data-target') === targetCategory) {
+          tab.className = activeClasses;
+        } else {
+          tab.className = inactiveClasses;
+        }
+      });
+
+      categories.forEach(cat => {
+        if (cat.id === `cat-${targetCategory}`) {
+          cat.classList.remove('hidden');
+        } else {
+          cat.classList.add('hidden');
+        }
+      });
+    }
+
+    window.openPlanModal = function(title, price, description) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalPrice').textContent = price;
+      document.getElementById('modalDescription').textContent = description;
+      document.getElementById('detailsModal').classList.remove('hidden');
+    }
+
+    window.cerrarMenuMobile = function() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+    }
 
     document.addEventListener('DOMContentLoaded', async () => {
       // --- Control de Sesión y Navbar Dinámica ---
@@ -545,40 +706,29 @@
         });
       }
 
-      const cerrarMenu = () => {
-        if (drawer) drawer.classList.remove('open');
-        if (overlay) overlay.classList.remove('open');
-      };
+      if (closeBtn) closeBtn.addEventListener('click', window.cerrarMenuMobile);
+      if (overlay) overlay.addEventListener('click', window.cerrarMenuMobile);
 
-      if (closeBtn) closeBtn.addEventListener('click', cerrarMenu);
-      if (overlay) overlay.addEventListener('click', cerrarMenu);
+      // --- Control del Modal de Detalles ---
+      const modal = document.getElementById('detailsModal');
+      const closeModal = document.getElementById('closeModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
 
-      ['inicioLink', 'catalogoLink', 'inicioLinkMobile', 'catalogoLinkMobile'].forEach(id => {
-        const link = document.getElementById(id);
-        if (link) link.addEventListener('click', cerrarMenu);
-      });
+      const cerrarModal = () => modal.classList.add('hidden');
+      if (closeModal) closeModal.addEventListener('click', cerrarModal);
+      if (closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) cerrarModal();
+        });
+      }
 
-      // --- Lógica de Pestañas (Tabs) para tus Servicios Reales ---
+      // --- Lógica de Pestañas (Tabs) ---
       const tabs = document.querySelectorAll('.tab-btn');
-      const categories = document.querySelectorAll('.plan-category');
-
-      const activeClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
-      const inactiveClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
-
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-          tabs.forEach(t => t.className = inactiveClasses);
-          tab.className = activeClasses;
-
           const targetCategory = tab.getAttribute('data-target');
-
-          categories.forEach(cat => {
-            if (cat.id === `cat-${targetCategory}`) {
-              cat.classList.remove('hidden');
-            } else {
-              cat.classList.add('hidden');
-            }
-          });
+          window.switchTabDirect(targetCategory);
         });
       });
 

@@ -71,11 +71,12 @@
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
         <a id="inicioLink" href="#productos" class="hover:text-white transition-colors">Productos</a>
         <a id="catalogoLink" href="#configurador" class="hover:text-white transition-colors">Configurador</a>
+        <a href="#caracteristicas" class="hover:text-white transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
       </div>
 
-      <!-- Botones de Autenticación / Escritorio -->
-      <div class="hidden sm:flex items-center gap-3">
+      <!-- Botones de Autenticación / Escritorio (Dinámicos según sesión) -->
+      <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
         <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
         <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
       </div>
@@ -106,10 +107,11 @@
       <div class="flex flex-col gap-4 text-sm font-semibold text-slate-300">
         <a id="inicioLinkMobile" href="#productos" class="hover:text-blue-400 transition-colors">Productos</a>
         <a id="catalogoLinkMobile" href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
+        <a href="#caracteristicas" class="hover:text-blue-400 transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
       </div>
     </div>
-    <div class="flex flex-col gap-3 pt-6 border-t border-slate-800">
+    <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800">
       <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
       <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
@@ -121,7 +123,7 @@
     <section class="text-center flex flex-col items-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide">
         <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-        Todos los sistemas operativos • Uptime 99.9%
+        Hardware Ryzen 9 • Uptime 99.9%
       </div>
       
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white leading-tight">
@@ -163,8 +165,13 @@
 
     <!-- Sección de Productos -->
     <section id="productos" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-3">Planes Listos para Usar</h2>
+        <p class="text-xs md:text-sm text-slate-400">Despliegue automatizado en menos de 60 segundos.</p>
+      </div>
+
       <!-- Tabs de Categoría -->
-      <div class="flex overflow-x-auto gap-3 pb-4 mb-8 snap-x hide-scrollbar" id="tabs-container">
+      <div class="flex overflow-x-auto gap-3 pb-4 mb-8 snap-x hide-scrollbar justify-center" id="tabs-container">
         <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Minecraft Budget</button>
         <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Premium</button>
         <button class="tab-btn snap-start shrink-0 px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bots de Discord</button>
@@ -222,8 +229,36 @@
       </div>
     </section>
 
+    <!-- Nueva Sección: Características / Ventajas -->
+    <section id="caracteristicas" class="mb-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-3">¿Por qué elegirnos?</h2>
+        <p class="text-xs md:text-sm text-slate-400">Diseñado por desarrolladores, para desarrolladores y gamers.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+          <div class="text-blue-500 text-2xl mb-4">🛡️</div>
+          <h3 class="font-bold text-white mb-2">Protección Anti-DDoS</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Mitigación avanzada de ataques volumétricos y de capa 7 para mantener tus servicios siempre online.</p>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+          <div class="text-purple-400 text-2xl mb-4">⚡</div>
+          <h3 class="font-bold text-white mb-2">Almacenamiento NVMe Gen4</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Cero tiempos de carga. Discos ultrarrápidos para bases de datos pesadas y guardados de mundos instantáneos.</p>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+          <div class="text-blue-400 text-2xl mb-4">🛠️</div>
+          <h3 class="font-bold text-white mb-2">Panel de Control Intuitivo</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Gestiona archivos, ejecuta consolas en vivo, instala plugins y programa copias de seguridad con un par de clics.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Configurador / Calculadora -->
-    <section id="configurador">
+    <section id="configurador" class="mb-24">
       <div class="bg-slate-900/90 backdrop-blur-xl p-8 md:p-10 rounded-2xl border border-blue-500/20 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-10">
         
         <div class="md:col-span-2 space-y-8">
@@ -261,11 +296,80 @@
       </div>
     </section>
 
+    <!-- Nueva Sección: FAQ (Preguntas Frecuentes) -->
+    <section id="faq" class="mb-12">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-3">Preguntas Frecuentes</h2>
+        <p class="text-xs md:text-sm text-slate-400">Resolvemos tus dudas sobre nuestros servicios de hosting.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
+          <h3 class="font-bold text-sm text-white mb-2">¿Cuánto tarda en activarse mi servidor?</h3>
+          <p class="text-xs text-slate-400">La activación es totalmente automática. Una vez completado el pago o la configuración, tu servidor estará listo en menos de 60 segundos.</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
+          <h3 class="font-bold text-sm text-white mb-2">¿Puedo cambiar de plan más adelante?</h3>
+          <p class="text-xs text-slate-400">¡Sí! Puedes realizar un upgrade o downgrade de tu RAM y CPU en cualquier momento desde tu panel de control sin perder tus archivos.</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-xl">
+          <h3 class="font-bold text-sm text-white mb-2">¿Qué métodos de pago aceptan?</h3>
+          <p class="text-xs text-slate-400">Aceptamos tarjetas de crédito/débito, pasarelas internacionales y métodos de pago locales compatibles con tu cuenta.</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Lógica JavaScript Dinámica (Incluyendo el menú hamburguesa del index) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Lógica JavaScript (Manejo de Menú, Calculadora y Estado de Sesión Dinámico) -->
+  <script type="module">
+    import { supabaseClient } from './assets/js/supabaseClient.js'
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // --- Control de Sesión y Cambio Dinámico de Navbar ---
+      const desktopAuth = document.getElementById('auth-actions-desktop')
+      const mobileAuth = document.getElementById('auth-actions-mobile')
+
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession()
+
+        if (session && session.user) {
+          const username = session.user.user_metadata?.username || session.user.email.split('@')[0]
+
+          // Renderizar barra para usuario logueado en Escritorio
+          if (desktopAuth) {
+            desktopAuth.innerHTML = `
+              <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-xs font-semibold text-white">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  ${username}
+                </a>
+                <a href="dashboard.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Panel</a>
+              </div>
+            `
+          }
+
+          // Renderizar barra para usuario logueado en Móvil (Drawer)
+          if (mobileAuth) {
+            mobileAuth.innerHTML = `
+              <a href="dashboard.html" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Mi Panel (${username})</a>
+              <button id="logout-btn" class="w-full py-3 text-center text-xs font-bold text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 rounded-xl transition-all">Cerrar Sesión</button>
+            `
+            document.getElementById('logout-btn')?.addEventListener('click', async () => {
+              await supabaseClient.auth.signOut()
+              window.location.reload()
+            })
+          }
+        }
+      } catch (err) {
+        console.error('Error al comprobar la sesión:', err)
+      }
+
       // --- Control del Menú Hamburguesa en Index ---
       const drawer = document.getElementById('drawer');
       const overlay = document.getElementById('drawerOverlay');

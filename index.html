@@ -155,7 +155,7 @@
     </div>
   </div>
 
-  <!-- Overlay y Drawer del Carrito de Compras (Con Sistema de Códigos en el Carrito) -->
+  <!-- Overlay y Drawer del Carrito de Compras -->
   <div id="cartOverlay" class="fixed inset-0 bg-black/60 z-50"></div>
   <div id="cartDrawer" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between shadow-2xl">
     <div>
@@ -185,7 +185,6 @@
 
     <!-- Pie del Carrito: Códigos de Creador, Total y Checkout -->
     <div class="pt-4 border-t border-slate-800 space-y-4">
-      <!-- Input de Código Promocional / Creador -->
       <div>
         <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">¿Tienes un código de creador?</label>
         <div class="flex gap-2">
@@ -244,97 +243,12 @@
 
       <div id="planes-container">
         
-        <!-- 1. NETWORKS -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="cat-networks">
+        <!-- 1. PLANES NETWORKS (Con los planes de múltiples servidores de alta gama y nombres únicos Nexus) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cat-networks">
+          <!-- Nexus Starter -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Network Starter</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="5.99">5.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>3 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Proxy Velocity / Bungee</li>
-                <li class="flex items-center gap-2">✓ Hasta 2 Backends</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Network Starter', 5.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Network Starter', 5.99, 'Ideal para iniciar redes con 2 modalidades.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Popular</div>
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Network Pro</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="9.99">9.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>6 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Sincronización Global</li>
-                <li class="flex items-center gap-2">✓ Backups automáticos</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Network Pro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
-              <button onclick="openPlanModal('Network Pro', 9.99, 'Redes interconectadas avanzadas.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Network Elite</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="16.99">16.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>10 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Backends ilimitados</li>
-                <li class="flex items-center gap-2">✓ Anti-DDoS avanzado</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Network Elite', 16.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Network Elite', 16.99, 'Alto rendimiento para redes consolidadas.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Enterprise</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="27.99">27.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>16 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ IP Dedicada</li>
-                <li class="flex items-center gap-2">✓ Soporte VIP 24/7</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Network Enterprise', 27.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Network Enterprise', 27.99, 'Potencia absoluta con IP dedicada.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. MINECRAFT SERVERS (Actualizados con precios y especificaciones de Aplaxy) -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="cat-juegos">
-          <!-- Plan Pollo -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Pollo</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Starter</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="4.99">4.99</span>
@@ -349,16 +263,16 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Pollo', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Pollo', 4.99, 'Plan económico de alto rendimiento con 10 GB de RAM y procesador AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Starter', 4.99, 'Ideal para redes iniciales con 10 GB de RAM y procesador AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
-          <!-- Plan Zorro (Más popular) -->
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-orange-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-orange-600 text-white text-[9px] font-bold rounded-full uppercase">Más Popular</div>
+          <!-- Nexus Pro (Más Popular) -->
+          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Más Popular</div>
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Zorro</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Pro</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="9.99">9.99</span>
@@ -373,15 +287,15 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Zorro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Zorro', 9.99, 'El plan favorito de las comunidades con 20 GB de RAM y AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Pro', 9.99, 'El plan favorito para redes con 20 GB de RAM y AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
-          <!-- Plan Lobo -->
+          <!-- Nexus Elite -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Lobo</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Elite</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="14.99">14.99</span>
@@ -396,15 +310,15 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Lobo', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Lobo', 14.99, 'Potencia superior con 30 GB de RAM y 800% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Elite', 14.99, 'Potencia superior con 30 GB de RAM y 800% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
-          <!-- Plan Allay -->
+          <!-- Nexus Prime -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Allay</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Prime</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="19.99">19.99</span>
@@ -419,15 +333,15 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Allay', 19.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Allay', 19.99, 'Para servidores de gran exigencia con 40 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Prime', 19.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Prime', 19.99, 'Para redes de gran exigencia con 40 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
-          <!-- Plan Ajolote -->
+          <!-- Nexus Titan -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Ajolote</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Titan</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="24.99">24.99</span>
@@ -442,15 +356,15 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Ajolote', 24.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Ajolote', 24.99, 'Rendimiento sobresaliente con 50 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Titan', 24.99, 'Rendimiento sobresaliente con 50 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
-          <!-- Plan Golem -->
+          <!-- Nexus Sovereign -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Plan Golem</h3>
+              <h3 class="text-base font-bold text-white mb-1">Nexus Sovereign</h3>
               <div class="flex items-baseline gap-1 mb-4">
                 <span class="text-xl font-extrabold text-white">$</span>
                 <span class="price-tag text-2xl font-extrabold text-white" data-usd="32.00">32.00</span>
@@ -465,8 +379,113 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Plan Golem', 32.00)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Plan Golem', 32.00, 'Potencia máxima absoluta con 64 GB de RAM y 1200% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Sovereign', 32.00)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Nexus Sovereign', 32.00, 'Potencia máxima absoluta con 64 GB de RAM y 1200% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MINECRAFT SERVERS (Servidores individuales estándar) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 hidden" id="cat-juegos">
+          <!-- Starter -->
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white mb-1">Starter</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-xl font-extrabold text-white">$</span>
+                <span class="price-tag text-2xl font-extrabold text-white" data-usd="2.50">2.50</span>
+                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
+                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-2 mb-6 text-xs text-slate-300">
+                <li class="flex items-center gap-2">✓ <strong>2 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ Panel Pterodactyl</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Minecraft Starter (2GB)', 2.50)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Minecraft Starter (2GB)', 2.50, 'Económico para jugar con amigos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+            </div>
+          </div>
+          <!-- Pro -->
+          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Popular</div>
+            <div>
+              <h3 class="text-base font-bold text-white mb-1">Pro</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-xl font-extrabold text-white">$</span>
+                <span class="price-tag text-2xl font-extrabold text-white" data-usd="4.99">4.99</span>
+                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
+                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-2 mb-6 text-xs text-slate-300">
+                <li class="flex items-center gap-2">✓ <strong>4 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ Plugins y Mods</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Minecraft Pro (4GB)', 4.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
+              <button onclick="openPlanModal('Minecraft Pro (4GB)', 4.99, 'Ideal para servidores públicos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+            </div>
+          </div>
+          <!-- Elite -->
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white mb-1">Elite</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-xl font-extrabold text-white">$</span>
+                <span class="price-tag text-2xl font-extrabold text-white" data-usd="7.49">7.49</span>
+                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
+                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-2 mb-6 text-xs text-slate-300">
+                <li class="flex items-center gap-2">✓ <strong>6 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ Modpacks medianos</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Minecraft Elite (6GB)', 7.49)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Minecraft Elite (6GB)', 7.49, 'Soporta modpacks y jugadores.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+            </div>
+          </div>
+          <!-- Master -->
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white mb-1">Master</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-xl font-extrabold text-white">$</span>
+                <span class="price-tag text-2xl font-extrabold text-white" data-usd="9.99">9.99</span>
+                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
+                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-2 mb-6 text-xs text-slate-300">
+                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ Modpacks pesados</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Minecraft Master (8GB)', 9.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Minecraft Master (8GB)', 9.99, 'Para modpacks complejos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+            </div>
+          </div>
+          <!-- Ultimate -->
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white mb-1">Ultimate</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-xl font-extrabold text-white">$</span>
+                <span class="price-tag text-2xl font-extrabold text-white" data-usd="14.99">14.99</span>
+                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
+                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-2 mb-6 text-xs text-slate-300">
+                <li class="flex items-center gap-2">✓ <strong>12 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ Sin restricciones</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Minecraft Ultimate (12GB)', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Minecraft Ultimate (12GB)', 14.99, 'Potencia máxima.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
         </div>
@@ -1027,7 +1046,6 @@
         ramValue.textContent = `${ram} GB`;
         cpuValue.textContent = `${cpu}%`;
 
-        // Base price calculation matching Aplaxy tier scales
         let baseUsd = 4.99;
         if (ram >= 64) baseUsd = 32.00;
         else if (ram >= 50) baseUsd = 24.99;

@@ -84,6 +84,7 @@
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="absolute top-full left-0 w-52 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-2 hidden group-hover:block z-50">
+            <a href="#productos" onclick="switchTabDirect('networks')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Planes Networks</a>
             <a href="#productos" onclick="switchTabDirect('juegos')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Minecraft Servers</a>
             <a href="#productos" onclick="switchTabDirect('vps')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">VPS Cloud</a>
             <a href="#productos" onclick="switchTabDirect('discord')" class="block px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Bot Discord</a>
@@ -137,6 +138,7 @@
       </div>
       <div class="flex flex-col gap-3 text-sm font-semibold text-slate-300">
         <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">Servicios</span>
+        <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Planes Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Minecraft Servers</a>
         <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">VPS Cloud</a>
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();" class="pl-3 hover:text-white text-xs">Bot Discord</a>
@@ -188,7 +190,7 @@
     <section class="text-center flex flex-col items-center mb-24">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide">
         <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-        Servidores de Alto Rendimiento • Activación Instantánea
+        Infraestructura Cloud & Gaming • Activación Instantánea
       </div>
       
       <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white leading-tight">
@@ -197,7 +199,7 @@
       </h1>
       
       <p class="text-slate-400 text-sm md:text-base max-w-2xl mb-10 leading-relaxed">
-        Aloja tu servidor de Minecraft, VPS Cloud o Bot de Discord con la mejor relación calidad-precio y panel de control intuitivo.
+        Aloja tus redes de Minecraft, servidores individuales, VPS Cloud o Bots de Discord con alto rendimiento y panel de control intuitivo.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -206,7 +208,7 @@
       </div>
     </section>
 
-    <!-- Sección de Servicios / Productos (Con precios accesibles) -->
+    <!-- Sección de Servicios / Productos -->
     <section id="productos" class="mb-24">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-3">Nuestros Planes</h2>
@@ -215,7 +217,8 @@
 
       <!-- Tabs de Categoría -->
       <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
-        <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Minecraft Servers</button>
+        <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
+        <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Servers</button>
         <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS Cloud</button>
         <button data-target="discord" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bot Discord</button>
       </div>
@@ -223,8 +226,73 @@
       <!-- Contenedor de Grids de Planes -->
       <div id="planes-container">
         
-        <!-- 1. MINECRAFT SERVERS -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-juegos">
+        <!-- 1. PLANES NETWORKS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Starter</h3>
+              <div class="flex items-baseline gap-1 mb-6">
+                <span class="text-2xl font-extrabold text-white">$</span>
+                <span class="price-tag text-3xl font-extrabold text-white" data-usd="7.99">7.99</span>
+                <span class="currency-symbol text-xs font-semibold text-slate-500">USD</span>
+                <span class="text-xs font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>RAM:</strong> 4 GB RAM</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Proxy:</strong> Velocity / BungeeCord</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Conexión:</strong> Múltiples Backends</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Network Starter', 7.99)" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Network Starter', 7.99, 'Ideal para iniciar redes de Minecraft con Velocity o BungeeCord. Incluye 4 GB de RAM y gestión de múltiples servidores backends.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+            </div>
+          </div>
+          <div class="bg-slate-900/90 p-8 rounded-2xl border border-blue-500/50 shadow-2xl flex flex-col justify-between relative md:-translate-y-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold rounded-full uppercase">Recomendado</div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Pro</h3>
+              <div class="flex items-baseline gap-1 mb-6">
+                <span class="text-2xl font-extrabold text-white">$</span>
+                <span class="price-tag text-3xl font-extrabold text-white" data-usd="14.99">14.99</span>
+                <span class="currency-symbol text-xs font-semibold text-slate-500">USD</span>
+                <span class="text-xs font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>RAM:</strong> 8 GB RAM</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Sincronización:</strong> Base de datos global</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Backups:</strong> Automáticos diarios</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Network Pro', 14.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Network Pro', 14.99, 'Redes medianas interconectadas. Ofrece 8 GB de RAM, sincronización avanzada y respaldos automáticos.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+            </div>
+          </div>
+          <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Network Enterprise</h3>
+              <div class="flex items-baseline gap-1 mb-6">
+                <span class="text-2xl font-extrabold text-white">$</span>
+                <span class="price-tag text-3xl font-extrabold text-white" data-usd="24.99">24.99</span>
+                <span class="currency-symbol text-xs font-semibold text-slate-500">USD</span>
+                <span class="text-xs font-semibold text-slate-500">/mes</span>
+              </div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>RAM:</strong> 16 GB RAM</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Capacidad:</strong> Cientos de jugadores simultáneos</li>
+                <li class="flex items-center gap-3 text-xs text-slate-300"><span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-[10px]">✓</span> <strong>Soporte:</strong> Prioritario 24/7</li>
+              </ul>
+            </div>
+            <div class="space-y-2">
+              <button onclick="addToCart('Network Enterprise', 24.99)" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
+              <button onclick="openPlanModal('Network Enterprise', 24.99, 'Potencia absoluta para redes comunitarias grandes. Incluye 16 GB de RAM y estabilidad máxima.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MINECRAFT SERVERS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-juegos">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
               <h3 class="text-lg font-bold text-white mb-2">Plan Starter</h3>
@@ -288,7 +356,7 @@
           </div>
         </div>
 
-        <!-- 2. VPS CLOUD -->
+        <!-- 3. VPS CLOUD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-vps">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
@@ -353,7 +421,7 @@
           </div>
         </div>
 
-        <!-- 3. BOT DISCORD -->
+        <!-- 4. BOT DISCORD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-discord">
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>

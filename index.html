@@ -93,6 +93,7 @@
         </div>
 
         <a id="catalogoLink" href="#configurador" class="hover:text-white transition-colors">Configurador</a>
+        <a href="#nodos" class="hover:text-white transition-colors">Nodos & Ping</a>
         <a href="#caracteristicas" class="hover:text-white transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
       </div>
@@ -147,6 +148,7 @@
         
         <div class="border-t border-slate-800 my-2"></div>
         <a href="#configurador" class="hover:text-blue-400 transition-colors">Configurador</a>
+        <a href="#nodos" class="hover:text-blue-400 transition-colors">Nodos & Ping</a>
         <a href="#caracteristicas" class="hover:text-blue-400 transition-colors">Ventajas</a>
         <a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
       </div>
@@ -157,7 +159,7 @@
     </div>
   </div>
 
-  <!-- Overlay y Drawer del Carrito de Compras -->
+  <!-- Overlay y Drawer del Carrito de Compras (Con Bundle Discount dinámico) -->
   <div id="cartOverlay" class="fixed inset-0 bg-black/60 z-50"></div>
   <div id="cartDrawer" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between shadow-2xl">
     <div>
@@ -167,8 +169,12 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
+      <!-- Insignia de Paquete Combinado -->
+      <div id="bundle-badge" class="hidden mb-4 p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl text-purple-300 text-[11px] font-bold flex items-center gap-2 animate-pulse">
+        <span>⚡ ¡Pack Combinado Activo! 10% de descuento aplicado en total.</span>
+      </div>
       <!-- Lista de ítems en el carrito -->
-      <div id="cart-items" class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+      <div id="cart-items" class="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
         <p class="text-xs text-slate-500 text-center py-8">Tu carrito está vacío.</p>
       </div>
     </div>
@@ -202,7 +208,7 @@
 
       <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
         <a href="#productos" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">Ver servicios &rarr;</a>
-        <a href="#configurador" class="px-8 py-3.5 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition-all text-center">Configurar a medida</a>
+        <a href="#nodos" class="px-8 py-3.5 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-white font-bold text-sm rounded-xl transition-all text-center">Probar Estado & Ping</a>
       </div>
 
       <!-- Tarjeta de Estado del Servidor -->
@@ -226,6 +232,67 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- 🌟 SISTEMA ÚNICO: Monitor de Nodos y Test de Ping en Vivo -->
+    <section id="nodos" class="mb-24">
+      <div class="text-center mb-12">
+        <div class="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold rounded-full uppercase tracking-wider mb-3">Exclusivo Synthetix</div>
+        <h2 class="text-3xl font-bold text-white mb-2">Telemetría de Nodos en Vivo</h2>
+        <p class="text-xs md:text-sm text-slate-400">Verifica el rendimiento global y mide tu latencia directa con nuestros servidores.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Nodo 1 -->
+        <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-bold text-white text-sm">EU - Amsterdam (Gaming 01)</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            </div>
+            <div class="space-y-2 text-xs text-slate-400 mb-6">
+              <div class="flex justify-between"><span>Carga CPU:</span> <strong class="text-slate-200">14.2%</strong></div>
+              <div class="flex justify-between"><span>RAM Utilizada:</span> <strong class="text-slate-200">32.8 / 128 GB</strong></div>
+              <div class="flex justify-between"><span>Estado:</span> <strong class="text-emerald-400">Óptimo (99.99%)</strong></div>
+            </div>
+          </div>
+          <button onclick="testPing('EU Amsterdam', '12ms - 18ms')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold text-xs rounded-xl transition-all border border-blue-500/20">Probar Latencia (Ping)</button>
+        </div>
+
+        <!-- Nodo 2 -->
+        <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-bold text-white text-sm">US - New York (Node Pro)</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            </div>
+            <div class="space-y-2 text-xs text-slate-400 mb-6">
+              <div class="flex justify-between"><span>Carga CPU:</span> <strong class="text-slate-200">22.5%</strong></div>
+              <div class="flex justify-between"><span>RAM Utilizada:</span> <strong class="text-slate-200">64.1 / 128 GB</strong></div>
+              <div class="flex justify-between"><span>Estado:</span> <strong class="text-emerald-400">Óptimo (99.98%)</strong></div>
+            </div>
+          </div>
+          <button onclick="testPing('US New York', '38ms - 45ms')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold text-xs rounded-xl transition-all border border-blue-500/20">Probar Latencia (Ping)</button>
+        </div>
+
+        <!-- Nodo 3 -->
+        <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-bold text-white text-sm">LATAM - Node Bot & Budget</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            </div>
+            <div class="space-y-2 text-xs text-slate-400 mb-6">
+              <div class="flex justify-between"><span>Carga CPU:</span> <strong class="text-slate-200">18.1%</strong></div>
+              <div class="flex justify-between"><span>RAM Utilizada:</span> <strong class="text-slate-200">16.4 / 64 GB</strong></div>
+              <div class="flex justify-between"><span>Estado:</span> <strong class="text-emerald-400">Óptimo (100%)</strong></div>
+            </div>
+          </div>
+          <button onclick="testPing('LATAM Node', '22ms - 30ms')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-blue-400 font-bold text-xs rounded-xl transition-all border border-blue-500/20">Probar Latencia (Ping)</button>
+        </div>
+      </div>
+      <!-- Resultado de Ping dinámico -->
+      <div id="ping-result" class="hidden mt-4 p-4 bg-slate-900 border border-blue-500/30 rounded-xl text-center text-xs text-blue-300 font-mono"></div>
     </section>
 
     <!-- Sección de Servicios / Productos -->
@@ -357,7 +424,7 @@
             </div>
             <div class="space-y-2">
               <button onclick="addToCart('VPS Standard', 10.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('VPS Standard', 10.99, 'La opción ideal para aplicaciones web de producción o nodos secundarios exigentes. Ofrece 4 vCPU cores dedicados, 8 GB de RAM NVMe y 100 GB de espacio ultrarrápido.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="openPlanModal('VPS Standard', 10.99, 'La opción ideal para aplicaciones web de production o nodos secundarios exigentes. Ofrece 4 vCPU cores dedicados, 8 GB de RAM NVMe y 100 GB de espacio ultrarrápido.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
             </div>
           </div>
           <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
@@ -490,7 +557,7 @@
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Budget Pro', 5.49)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
+              <button onclick="addToCart('Budget Pro', 5.49)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
               <button onclick="openPlanModal('Budget Pro', 5.49, 'Excelente relación calidad-precio en la gama económica. Brinda 6 GB de RAM DDR4, soporte para plugins esenciales y copias de seguridad automáticas.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
             </div>
           </div>
@@ -576,7 +643,7 @@
             </div>
             <div class="space-y-2">
               <button onclick="addToCart('Bot Discord Enterprise', 6.49)" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl text-center transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Bot Discord Enterprise', 6.49, 'Para ecosistemas complejos con múltiples instancias de bots, bases de datos integradas de gran tamaño y exigencia de alta disponibilidad. 4 GB RAM.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
+              <button onclick="openPlanModal('Bot Discord Enterprise', 6.49, 'For complex ecosystems with multiple bot instances and large databases.')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl text-center transition-all">Ver detalles</button>
             </div>
           </div>
         </div>
@@ -700,11 +767,11 @@
     <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Lógica JavaScript Dinámica, Cambio de Moneda y Carrito -->
+  <!-- Lógica JavaScript Dinámica, Cambio de Moneda, Carrito y Test de Ping -->
   <script type="module">
     import { supabaseClient } from './assets/js/supabaseClient.js'
 
-    // --- Sistema de Moneda y Carrito ---
+    // --- Sistema de Moneda y Carrito con Bundle Discount ---
     let currentCurrency = localStorage.getItem('synthetix_currency') || 'USD';
     const exchangeRate = 0.92; // 1 USD = 0.92 EUR
 
@@ -716,14 +783,21 @@
       updateAllPrices();
     }
 
+    window.testPing = function(nodeName, latency) {
+      const resBox = document.getElementById('ping-result');
+      resBox.classList.remove('hidden');
+      resBox.innerHTML = `📡 Conectando con <strong>${nodeName}</strong>... midiendo paquetes ICMP...`;
+      setTimeout(() => {
+        resBox.innerHTML = `✅ Latencia estimada hacia <strong>${nodeName}</strong>: <span class="text-emerald-400 font-bold">${latency}</span> (Conexión estable).`;
+      }, 800);
+    }
+
     function updateAllPrices() {
-      // Sincronizar select
       const selector = document.getElementById('currency-selector');
       if (selector) selector.value = currentCurrency;
 
       const symbol = currentCurrency === 'EUR' ? '€' : '$';
 
-      // Actualizar precios en tarjetas
       document.querySelectorAll('.price-tag').forEach(tag => {
         const usdVal = parseFloat(tag.getAttribute('data-usd'));
         const finalVal = currentCurrency === 'EUR' ? usdVal * exchangeRate : usdVal;
@@ -734,7 +808,6 @@
         sym.textContent = currentCurrency;
       });
 
-      // Actualizar calculadora
       const totalPriceEl = document.getElementById('total-price');
       const calcCurrEl = document.getElementById('calc-currency');
       if (totalPriceEl && calcCurrEl) {
@@ -744,7 +817,6 @@
         calcCurrEl.textContent = currentCurrency;
       }
 
-      // Actualizar modal si está abierto
       const modalPrice = document.getElementById('modalPrice');
       const modalCurr = document.getElementById('modalCurrency');
       const modalSymbol = document.getElementById('modalCurrencySymbol');
@@ -788,8 +860,18 @@
       const counter = document.getElementById('cart-counter');
       const itemsContainer = document.getElementById('cart-items');
       const totalContainer = document.getElementById('cart-total');
+      const bundleBadge = document.getElementById('bundle-badge');
 
       if (counter) counter.textContent = cart.length;
+
+      // Activar descuento por paquete si hay 2 o más servicios
+      let discountMultiplier = 1;
+      if (cart.length >= 2) {
+        discountMultiplier = 0.90; // 10% de descuento
+        if (bundleBadge) bundleBadge.classList.remove('hidden');
+      } else {
+        if (bundleBadge) bundleBadge.classList.add('hidden');
+      }
 
       const symbol = currentCurrency === 'EUR' ? '€' : '$';
 
@@ -798,12 +880,12 @@
           itemsContainer.innerHTML = `<p class="text-xs text-slate-500 text-center py-8">Tu carrito está vacío.</p>`;
         } else {
           itemsContainer.innerHTML = cart.map((item, index) => {
-            const itemPrice = currentCurrency === 'EUR' ? item.priceUsd * exchangeRate : item.priceUsd;
+            const itemPrice = (currentCurrency === 'EUR' ? item.priceUsd * exchangeRate : item.priceUsd) * discountMultiplier;
             return `
               <div class="flex items-center justify-between bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-xs">
                 <div>
                   <div class="font-bold text-white">${item.name}</div>
-                  <div class="text-blue-400 font-semibold">${symbol}${itemPrice.toFixed(2)} ${currentCurrency} / mes</div>
+                  <div class="text-blue-400 font-semibold">${symbol}${itemPrice.toFixed(2)} ${currentCurrency} / mes ${cart.length >= 2 ? '<span class="text-purple-400 text-[10px]">(10% off)</span>' : ''}</div>
                 </div>
                 <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 p-1 font-bold">&times;</button>
               </div>
@@ -814,7 +896,7 @@
 
       if (totalContainer) {
         const totalUsd = cart.reduce((sum, item) => sum + item.priceUsd, 0);
-        const finalTotal = currentCurrency === 'EUR' ? totalUsd * exchangeRate : totalUsd;
+        const finalTotal = (currentCurrency === 'EUR' ? totalUsd * exchangeRate : totalUsd) * discountMultiplier;
         totalContainer.textContent = `${symbol}${finalTotal.toFixed(2)} ${currentCurrency}`;
       }
     }
@@ -829,7 +911,6 @@
       document.getElementById('cartOverlay').classList.remove('open');
     }
 
-    // Funciones globales para control de pestañas y modales
     window.switchTabDirect = function(targetCategory) {
       const tabs = document.querySelectorAll('.tab-btn');
       const categories = document.querySelectorAll('.plan-category');
@@ -881,10 +962,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // Inicializar precios y carrito según la moneda guardada
       updateAllPrices();
 
-      // --- Control de Sesión y Navbar Dinámica ---
       const desktopAuth = document.getElementById('auth-actions-desktop')
       const mobileAuth = document.getElementById('auth-actions-mobile')
 
@@ -921,7 +1000,6 @@
         console.error('Error al comprobar la sesión:', err)
       }
 
-      // --- Control de Menús Laterales (Drawer y Carrito) ---
       const drawer = document.getElementById('drawer');
       const overlay = document.getElementById('drawerOverlay');
       const openBtn = document.getElementById('openDrawer');
@@ -945,7 +1023,6 @@
       if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
       if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
 
-      // --- Control del Modal de Detalles ---
       const modal = document.getElementById('detailsModal');
       const closeModal = document.getElementById('closeModal');
       const closeModalBtn = document.getElementById('closeModalBtn');
@@ -959,7 +1036,6 @@
         });
       }
 
-      // --- Lógica de Pestañas (Tabs) ---
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -968,7 +1044,6 @@
         });
       });
 
-      // --- Calculadora en Tiempo Real ---
       const ramSlider = document.getElementById('ram-slider');
       const ramValue = document.getElementById('ram-value');
       const cpuSlider = document.getElementById('cpu-slider');

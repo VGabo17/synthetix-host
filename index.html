@@ -243,8 +243,8 @@
 
       <div id="planes-container">
         
-        <!-- 1. PLANES NETWORKS (Con los planes de múltiples servidores de alta gama y nombres únicos Nexus) -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cat-networks">
+        <!-- 1. PLANES NETWORKS (Económicos orientados a Contabo / AMD EPYC) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="cat-networks">
           <!-- Nexus Starter -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
@@ -256,15 +256,15 @@
                 <span class="text-[10px] font-semibold text-slate-500">/mes</span>
               </div>
               <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 10 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 400% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
+                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ 4 vCPU (AMD EPYC)</li>
+                <li class="flex items-center gap-2">✓ 100 GB SSD / NVMe</li>
+                <li class="flex items-center gap-2">✓ Máximo 5 Backends</li>
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Starter', 4.99, 'Ideal para redes iniciales con 10 GB de RAM y procesador AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Nexus Starter', 4.99, 'Ideal para redes iniciales con 8 GB RAM y nodos AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
@@ -280,15 +280,15 @@
                 <span class="text-[10px] font-semibold text-slate-500">/mes</span>
               </div>
               <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 20 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 600% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
+                <li class="flex items-center gap-2">✓ <strong>16 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ 6 vCPU (AMD EPYC)</li>
+                <li class="flex items-center gap-2">✓ 200 GB SSD / NVMe</li>
+                <li class="flex items-center gap-2">✓ Máximo 10 Backends</li>
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Pro', 9.99, 'El plan favorito para redes con 20 GB de RAM y AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
+              <button onclick="openPlanModal('Nexus Pro', 9.99, 'El plan favorito para redes con 16 GB RAM y AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
@@ -303,38 +303,15 @@
                 <span class="text-[10px] font-semibold text-slate-500">/mes</span>
               </div>
               <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 30 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 800% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
+                <li class="flex items-center gap-2">✓ <strong>24 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ 8 vCPU (AMD EPYC)</li>
+                <li class="flex items-center gap-2">✓ 300 GB SSD / NVMe</li>
+                <li class="flex items-center gap-2">✓ Máximo 15 Backends</li>
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Elite', 14.99, 'Potencia superior con 30 GB de RAM y 800% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-
-          <!-- Nexus Prime -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Prime</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="19.99">19.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 40 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 900% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Prime', 19.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Prime', 19.99, 'Para redes de gran exigencia con 40 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Nexus Elite', 14.99, 'Mayor potencia con 24 GB RAM y 8 núcleos AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
 
@@ -349,45 +326,21 @@
                 <span class="text-[10px] font-semibold text-slate-500">/mes</span>
               </div>
               <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 50 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 1000% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
+                <li class="flex items-center gap-2">✓ <strong>48 GB RAM</strong></li>
+                <li class="flex items-center gap-2">✓ 12 vCPU (AMD EPYC)</li>
+                <li class="flex items-center gap-2">✓ 400 GB SSD / NVMe</li>
+                <li class="flex items-center gap-2">✓ Backends ilimitados</li>
               </ul>
             </div>
             <div class="space-y-2">
-              <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Titan', 24.99, 'Rendimiento sobresaliente con 50 GB de RAM.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
-          </div>
-
-          <!-- Nexus Sovereign -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-            <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Sovereign</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="32.00">32.00</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
-              </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>Ram:</strong> 64 GB</li>
-                <li class="flex items-center gap-2">✓ <strong>Cpu:</strong> 1200% CPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ <strong>Disk:</strong> Almacenamiento ilimitado</li>
-                <li class="flex items-center gap-2">✓ <strong>Servers:</strong> Máximo 10 servidores</li>
-              </ul>
-            </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Sovereign', 32.00)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Ordenar Ahora</button>
-              <button onclick="openPlanModal('Nexus Sovereign', 32.00, 'Potencia máxima absoluta con 64 GB de RAM y 1200% CPU.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
+              <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
+              <button onclick="openPlanModal('Nexus Titan', 24.99, 'Potencia masiva con 48 GB RAM para redes grandes.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
         </div>
 
         <!-- 2. MINECRAFT SERVERS (Servidores individuales estándar) -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 hidden" id="cat-juegos">
-          <!-- Starter -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
               <h3 class="text-base font-bold text-white mb-1">Starter</h3>
@@ -407,7 +360,6 @@
               <button onclick="openPlanModal('Minecraft Starter (2GB)', 2.50, 'Económico para jugar con amigos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
-          <!-- Pro -->
           <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Popular</div>
             <div>
@@ -428,7 +380,6 @@
               <button onclick="openPlanModal('Minecraft Pro (4GB)', 4.99, 'Ideal para servidores públicos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
-          <!-- Elite -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
               <h3 class="text-base font-bold text-white mb-1">Elite</h3>
@@ -448,7 +399,6 @@
               <button onclick="openPlanModal('Minecraft Elite (6GB)', 7.49, 'Soporta modpacks y jugadores.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
-          <!-- Master -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
               <h3 class="text-base font-bold text-white mb-1">Master</h3>
@@ -468,7 +418,6 @@
               <button onclick="openPlanModal('Minecraft Master (8GB)', 9.99, 'Para modpacks complejos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
             </div>
           </div>
-          <!-- Ultimate -->
           <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
             <div>
               <h3 class="text-base font-bold text-white mb-1">Ultimate</h3>
@@ -685,16 +634,16 @@
           <div>
             <div class="flex justify-between text-xs font-semibold text-slate-300 mb-3">
               <span>Memoria RAM</span>
-              <span id="ram-value" class="text-blue-400 font-bold">10 GB</span>
+              <span id="ram-value" class="text-blue-400 font-bold">8 GB</span>
             </div>
-            <input id="ram-slider" type="range" min="10" max="64" value="10" step="10" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
+            <input id="ram-slider" type="range" min="8" max="48" value="8" step="8" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
           </div>
           <div>
             <div class="flex justify-between text-xs font-semibold text-slate-300 mb-3">
               <span>vCPU Cores</span>
-              <span id="cpu-value" class="text-blue-400 font-bold">400%</span>
+              <span id="cpu-value" class="text-blue-400 font-bold">4 vCPU</span>
             </div>
-            <input id="cpu-slider" type="range" min="400" max="1200" value="400" step="200" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
+            <input id="cpu-slider" type="range" min="4" max="12" value="4" step="2" class="w-full h-2 bg-slate-950 rounded-lg appearance-none accent-blue-500 cursor-pointer">
           </div>
         </div>
         <div class="bg-slate-950/60 p-6 rounded-xl border border-slate-800 flex flex-col justify-center items-center text-center">
@@ -844,7 +793,7 @@
       const ram = document.getElementById('ram-slider').value;
       const cpu = document.getElementById('cpu-slider').value;
       const baseUsdVal = parseFloat(document.getElementById('total-price').getAttribute('data-base-usd'));
-      const configName = `Servidor Personalizado (${ram} GB RAM, ${cpu} CPU)`;
+      const configName = `Network Personalizada (${ram} GB RAM, ${cpu} vCPU)`;
       addToCart(configName, baseUsdVal);
     }
 
@@ -1044,14 +993,12 @@
         const ram = parseInt(ramSlider.value);
         const cpu = parseInt(cpuSlider.value);
         ramValue.textContent = `${ram} GB`;
-        cpuValue.textContent = `${cpu}%`;
+        cpuValue.textContent = `${cpu} vCPU`;
 
         let baseUsd = 4.99;
-        if (ram >= 64) baseUsd = 32.00;
-        else if (ram >= 50) baseUsd = 24.99;
-        else if (ram >= 40) baseUsd = 19.99;
-        else if (ram >= 30) baseUsd = 14.99;
-        else if (ram >= 20) baseUsd = 9.99;
+        if (ram >= 48) baseUsd = 24.99;
+        else if (ram >= 24) baseUsd = 14.99;
+        else if (ram >= 16) baseUsd = 9.99;
 
         totalPrice.setAttribute('data-base-usd', baseUsd);
         const finalTotal = currentCurrency === 'EUR' ? baseUsd * exchangeRate : baseUsd;

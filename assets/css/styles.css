@@ -30,8 +30,8 @@ button {
 /* --- Variables de Paleta Dark SaaS --- */
 :root {
   --bg: #030712;
-  --bg-card: rgba(15, 23, 42, 0.6);
-  --bg-card-hover: rgba(30, 41, 59, 0.75);
+  --bg-card: rgba(15, 23, 42, 0.65);
+  --bg-card-hover: rgba(30, 41, 59, 0.8);
   --border: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(34, 211, 238, 0.4);
   
@@ -135,7 +135,7 @@ body {
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .btn-primary {
@@ -143,11 +143,11 @@ body {
   color: #ffffff;
   padding: 10px 22px;
   font-size: 0.9rem;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 25px rgba(192, 132, 252, 0.35);
+  box-shadow: 0 0 28px rgba(192, 132, 252, 0.4);
   transform: translateY(-1px);
 }
 
@@ -206,7 +206,7 @@ body {
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.2); }
+  50% { opacity: 0.4; transform: scale(1.3); }
 }
 
 .hero h1 {
@@ -248,7 +248,7 @@ body {
   padding: 20px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .server-card-header {
@@ -348,13 +348,14 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(34, 211, 238, 0.3);
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.35);
   background: var(--bg-card-hover);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 .card-badge {
@@ -372,6 +373,7 @@ body {
   background: var(--grad-primary);
   color: #ffffff;
   font-weight: 700;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
 }
 
 .product-card h3 {
@@ -423,6 +425,7 @@ body {
   gap: 32px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
 
 .slider-group {
@@ -456,31 +459,32 @@ input[type=range] {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--cyan-bright);
-  box-shadow: 0 0 10px var(--cyan-bright);
+  box-shadow: 0 0 12px var(--cyan-bright);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
 input[type=range]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.25);
+  background: #ffffff;
 }
 
 input[type=range]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--cyan-bright);
-  box-shadow: 0 0 10px var(--cyan-bright);
+  box-shadow: 0 0 12px var(--cyan-bright);
   cursor: pointer;
   border: none;
 }
 
 .checkout-col {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   padding: 22px;
   border-radius: 16px;
   border: 1px solid var(--border);
@@ -531,5 +535,6 @@ input[type=range]::-moz-range-thumb {
   .builder-box {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 20px;
   }
 }

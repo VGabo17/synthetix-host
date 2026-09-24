@@ -24,7 +24,9 @@ function showToast(message, type = 'success') {
 
 document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form')
+  const loginForm = document.getElementById('login-form')
 
+  // 1. Lámate a tu lógica original de registro intacta
   if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -44,8 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return
       }
 
-      submitButton.disabled = true
-      submitButton.textContent = 'Registrando...'
+      if (submitButton) {
+        submitButton.disabled = true
+        submitButton.textContent = 'Registrando...'
+      }
 
       try {
         const loginUrl = 'https://hosting.nixermc.lol/login.html'
@@ -76,17 +80,68 @@ document.addEventListener('DOMContentLoaded', () => {
           'success'
         )
 
-        submitButton.disabled = false
-        submitButton.textContent = 'Registrarse →'
       } catch (error) {
         console.error('Error real de registro:', error)
         showToast(
           `No se pudo registrar: ${error.message || 'error desconocido'}`,
           'error'
         )
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false
+          submitButton.textContent = 'Registrarse →'
+        }
+      }
+    })
+  }
 
-        submitButton.disabled = false
-        submitButton.textContent = 'Registrarse →'
+  // 2. Lógica de inicio de sesión con redirección al dashboard
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault()
+
+      const emailInput = document.getElementById('email')
+      const passwordInput = document.getElementById('password')
+      const submitButton = loginForm.querySelector('button[type="submit"]') || document.getElementById('submit-btn')
+
+      const email = emailInput.value.trim().toLowerCase()
+      const password = passwordInput.value
+
+      if (!email || !password) {
+        showToast('Completa todos los campos.', 'error')
+        return
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true
+        submitButton.textContent = 'Iniciando sesión...'
+      }
+
+      try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password,
+        })
+
+        if (error) throw error
+
+        showToast('¡Inicio de sesión exitoso! Redirigiendo...', 'success')
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html'
+        }, 1200)
+
+      } catch (error) {
+        console.error('Error de login:', error)
+        showToast(
+          error.message || 'Correo o contraseña incorrectos.',
+          'error'
+        )
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false
+          submitButton.textContent = 'Iniciar Sesión'
+        }
       }
     })
   }

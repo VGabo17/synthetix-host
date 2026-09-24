@@ -27,13 +27,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const emailForm = document.getElementById('reset-email-form')
   const passwordForm = document.getElementById('new-password-form')
 
-  const hashParams = new URLSearchParams(
-    window.location.hash.substring(1)
-  )
+  // Detección robusta: revisa tanto en los parámetros normales (?) como en el hash (#)
+  const queryParams = new URLSearchParams(window.location.search)
+  const hashParams = new URLSearchParams(window.location.hash.substring(1))
 
-  const recoveryType = hashParams.get('type')
+  const isRecovery = 
+    queryParams.get('type') === 'recovery' || 
+    hashParams.get('type') === 'recovery' || 
+    queryParams.has('token_hash')
 
-  if (recoveryType === 'recovery') {
+  if (isRecovery) {
     if (emailForm) {
       emailForm.style.display = 'none'
     }
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  // 1. Enviar correo de recuperación
   if (emailForm) {
     emailForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -105,6 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   }
 
+  // 2. Guardar nueva contraseña
   if (passwordForm) {
     passwordForm.addEventListener('submit', async (event) => {
       event.preventDefault()

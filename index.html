@@ -7,7 +7,7 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Estilos del proyecto -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
   
   <script>
     // Limpieza instantánea de /index.html en la barra de direcciones
@@ -112,8 +112,8 @@
 
         <!-- Botones de Autenticación / Escritorio -->
         <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
-          <a href="/login" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
-          <a href="/register" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+          <a href="/login/" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
+          <a href="/register/" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
         </div>
 
         <!-- Botón Menú Hamburguesa Móvil -->
@@ -150,8 +150,8 @@
       </div>
     </div>
     <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
-      <a href="/login" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
-      <a href="/register" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+      <a href="/login/" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
+      <a href="/register/" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
   </div>
 
@@ -243,7 +243,7 @@
 
       <div id="planes-container">
         
-        <!-- 1. PLANES NETWORKS -->
+        <!-- 1. PLANES NETWORKS (Precios profesionales ajustados) -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="cat-networks">
           <!-- Nexus Starter -->
           <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
@@ -258,7 +258,7 @@
               <div class="mb-6">
                 <div class="flex items-baseline gap-1">
                   <span class="text-xl font-extrabold text-white">$</span>
-                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="4.99">4.99</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="11.99">11.99</span>
                   <span class="currency-symbol text-xs text-slate-400">USD</span>
                   <span class="text-xs text-slate-400">/mes</span>
                 </div>
@@ -271,7 +271,7 @@
                 <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>5 Backends</b> máximo</div>
               </div>
             </div>
-            <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+            <button onclick="addToCart('Nexus Starter', 11.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
               Comprar
             </button>
           </div>
@@ -290,7 +290,7 @@
               <div class="mb-6">
                 <div class="flex items-baseline gap-1">
                   <span class="text-xl font-extrabold text-white">$</span>
-                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="9.99">9.99</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="21.99">21.99</span>
                   <span class="currency-symbol text-xs text-slate-400">USD</span>
                   <span class="text-xs text-slate-400">/mes</span>
                 </div>
@@ -303,7 +303,7 @@
                 <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>10 Backends</b> máximo</div>
               </div>
             </div>
-            <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+            <button onclick="addToCart('Nexus Pro', 21.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
               Comprar
             </button>
           </div>
@@ -321,7 +321,7 @@
               <div class="mb-6">
                 <div class="flex items-baseline gap-1">
                   <span class="text-xl font-extrabold text-white">$</span>
-                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="14.99">14.99</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="32.99">32.99</span>
                   <span class="currency-symbol text-xs text-slate-400">USD</span>
                   <span class="text-xs text-slate-400">/mes</span>
                 </div>
@@ -334,7 +334,7 @@
                 <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>15 Backends</b> máximo</div>
               </div>
             </div>
-            <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+            <button onclick="addToCart('Nexus Elite', 32.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
               Comprar
             </button>
           </div>
@@ -352,7 +352,7 @@
               <div class="mb-6">
                 <div class="flex items-baseline gap-1">
                   <span class="text-xl font-extrabold text-white">$</span>
-                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="24.99">24.99</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="59.99">59.99</span>
                   <span class="currency-symbol text-xs text-slate-400">USD</span>
                   <span class="text-xs text-slate-400">/mes</span>
                 </div>
@@ -365,7 +365,7 @@
                 <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>Backends ilimitados</b></div>
               </div>
             </div>
-            <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+            <button onclick="addToCart('Nexus Titan', 59.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
               Comprar
             </button>
           </div>
@@ -821,7 +821,7 @@
           <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Estimación Mensual</span>
           <div class="flex items-baseline gap-1 mb-6">
             <span class="text-2xl font-extrabold text-white">$</span>
-            <span id="total-price" class="text-4xl font-extrabold text-white" data-base-usd="4.99">4.99</span>
+            <span id="total-price" class="text-4xl font-extrabold text-white" data-base-usd="11.99">11.99</span>
             <span id="calc-currency" class="text-xs font-semibold text-slate-500">USD</span>
           </div>
           <button onclick="addConfigToCart()" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/25 block">🛒 Añadir Configuración</button>
@@ -856,7 +856,7 @@
 
   <!-- Lógica JavaScript con Carrito, Pestañas y Sesión Supabase -->
   <script type="module">
-    import { supabaseClient } from './assets/js/supabaseClient.js'
+    import { supabaseClient } from '/assets/js/supabaseClient.js'
 
     let currentCurrency = localStorage.getItem('synthetix_currency') || 'USD';
     const exchangeRate = 0.92;
@@ -1058,18 +1058,18 @@
           if (desktopAuth) {
             desktopAuth.innerHTML = `
               <div class="flex items-center gap-3">
-                <a href="/dashboard" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-xs font-semibold text-white">
+                <a href="/dashboard/" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-xs font-semibold text-white">
                   <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                   ${username}
                 </a>
-                <a href="/dashboard" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-lg">Panel</a>
+                <a href="/dashboard/" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-lg">Panel</a>
               </div>
             `
           }
 
           if (mobileAuth) {
             mobileAuth.innerHTML = `
-              <a href="/dashboard" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 rounded-xl">Mi Panel (${username})</a>
+              <a href="/dashboard/" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 rounded-xl">Mi Panel (${username})</a>
               <button id="logout-btn" class="w-full py-3 text-center text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/30 rounded-xl">Cerrar Sesión</button>
             `
             document.getElementById('logout-btn')?.addEventListener('click', async () => {
@@ -1121,10 +1121,11 @@
         ramValue.textContent = `${ram} GB`;
         cpuValue.textContent = `${cpu} vCPU`;
 
-        let baseUsd = 4.99;
-        if (ram >= 48) baseUsd = 48.00;
-        else if (ram >= 24) baseUsd = 14.99;
-        else if (ram >= 16) baseUsd = 9.99;
+        // Precios escalados y profesionales acordes a los planes Networks
+        let baseUsd = 11.99; // Para 8GB
+        if (ram >= 48) baseUsd = 59.99;
+        else if (ram >= 24) baseUsd = 32.99;
+        else if (ram >= 16) baseUsd = 21.99;
 
         totalPrice.setAttribute('data-base-usd', baseUsd);
         const finalTotal = currentCurrency === 'EUR' ? baseUsd * exchangeRate : baseUsd;

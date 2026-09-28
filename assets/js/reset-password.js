@@ -9,7 +9,6 @@ function showToast(message, type = 'success') {
   }
 
   const toast = document.createElement('div')
-
   toast.className =
     type === 'success'
       ? 'p-4 mb-4 rounded-xl text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
@@ -27,43 +26,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   const emailForm = document.getElementById('reset-email-form')
   const passwordForm = document.getElementById('new-password-form')
 
-  // Detección robusta: revisa tanto en los parámetros normales (?) como en el hash (#)
   const queryParams = new URLSearchParams(window.location.search)
   const hashParams = new URLSearchParams(window.location.hash.substring(1))
 
-  const isRecovery = 
-    queryParams.get('type') === 'recovery' || 
-    hashParams.get('type') === 'recovery' || 
-    queryParams.has('token_hash')
+  // Detección robusta del parámetro 'code' o 'token_hash' que envía Supabase por correo
+  const hasCode = queryParams.has('code')
+  const hasTokenHash = queryParams.has('token_hash')
+  const isRecoveryType = queryParams.get('type') === 'recovery' || hashParams.get('type') === 'recovery'
+
+  let isRecovery = hasCode || hasTokenHash || isRecoveryType
+
+  // Escuchar eventos de sesión de Supabase
+  supabaseClient.auth.onAuthStateChange(async (event) => {
+    if (event === 'PASSWORD_RECOVERY') {
+      isRecovery = true
+      if (emailForm) emailForm.style.display = 'none'
+      if (passwordForm) passwordForm.style.display = 'block'
+    }
+  })
 
   if (isRecovery) {
-    if (emailForm) {
-      emailForm.style.display = 'none'
-    }
-
-    if (passwordForm) {
-      passwordForm.style.display = 'block'
-    }
+    if (emailForm) emailForm.style.display = 'none'
+    if (passwordForm) passwordForm.style.display = 'block'
   } else {
-    if (emailForm) {
-      emailForm.style.display = 'block'
-    }
-
-    if (passwordForm) {
-      passwordForm.style.display = 'none'
-    }
+    if (emailForm) emailForm.style.display = 'block'
+    if (passwordForm) passwordForm.style.display = 'none'
   }
 
-  // 1. Enviar correo de recuperación con ruta limpia
+  // 1. Enviar correo de recuperación
   if (emailForm) {
     emailForm.addEventListener('submit', async (event) => {
       event.preventDefault()
 
       const emailInput = document.getElementById('reset-email')
-      const submitButton = emailForm.querySelector(
-        'button[type="submit"]'
-      )
-
+      const submitButton = emailForm.querySelector('button[type="submit"]')
       const email = emailInput.value.trim().toLowerCase()
 
       if (!email) {
@@ -77,57 +73,38 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       try {
-        const redirectTo =
-          `${window.location.origin}/reset-password/`
+        const redirectTo = `${window.location.origin}/reset-password/`
 
-        const { error } =
-          await supabaseClient.auth.resetPasswordForEmail(email, {
-            redirectTo
-          })
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+          redirectTo
+        })
 
-        if (error) {
-          throw error
-        }
+        if (error) throw error
 
-        showToast(
-          'Correo enviado. Revisa tu bandeja de entrada y spam.',
-          'success'
-        )
+        showToast('Correo enviado. Revisa tu bandeja de entrada y spam.', 'success')
       } catch (error) {
         console.error('Error al enviar recuperación:', error)
-
-        showToast(
-          error.message || 'No se pudo enviar el enlace.',
-          'error'
-        )
+        showToast(error.message || 'No se pudo enviar el enlace.', 'error')
       } finally {
         if (submitButton) {
           submitButton.disabled = false
-          submitButton.textContent = 'Enviar enlace'
+          submitButton.textContent = 'Enviar enlace →'
         }
       }
     })
   }
 
-  // 2. Guardar nueva contraseña y redirigir al login limpio
+  // 2. Guardar nueva contraseña
   if (passwordForm) {
     passwordForm.addEventListener('submit', async (event) => {
       event.preventDefault()
 
-      const passwordInput =
-        document.getElementById('new-password')
-
-      const submitButton = passwordForm.querySelector(
-        'button[type="submit"]'
-      )
-
+      const passwordInput = document.getElementById('new-password')
+      const submitButton = passwordForm.querySelector('button[type="submit"]')
       const newPassword = passwordInput.value
 
       if (!newPassword || newPassword.length < 6) {
-        showToast(
-          'La contraseña debe tener al menos 6 caracteres.',
-          'error'
-        )
+        showToast('La contraseña debe tener al menos 6 caracteres.', 'error')
         return
       }
 
@@ -137,34 +114,23 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       try {
-        const { error } =
-          await supabaseClient.auth.updateUser({
-            password: newPassword
-          })
+        const { error } = await supabaseClient.auth.updateUser({
+          password: newPassword
+        })
 
-        if (error) {
-          throw error
-        }
+        if (error) throw error
 
-        showToast(
-          'Contraseña actualizada correctamente.',
-          'success'
-        )
+        showToast('Contraseña actualizada correctamente.', 'success')
 
         setTimeout(() => {
           window.location.href = '/login/'
         }, 1800)
       } catch (error) {
         console.error('Error al actualizar contraseña:', error)
-
-        showToast(
-          error.message || 'No se pudo cambiar la contraseña.',
-          'error'
-        )
-
+        showToast(error.message || 'No se pudo cambiar la contraseña.', 'error')
         if (submitButton) {
           submitButton.disabled = false
-          submitButton.textContent = 'Guardar contraseña'
+          submitButton.textContent = 'Guardar contraseña →'
         }
       }
     })

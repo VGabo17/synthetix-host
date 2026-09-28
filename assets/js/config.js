@@ -2,9 +2,9 @@ const CONFIG = {
   SUPABASE_URL: 'https://pnnnhkbriqizjmkhodbu.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_6mgwm2JwyzzveWGAGCXyJQ_NjF1Mxrx',
 
-  PAYMENTER_URL: 'https://billing.tudominio.com',
-  PTERODACTYL_URL: 'https://panel.nixermc.lol',
-  DISCORD_INVITE_URL: 'https://discord.gg/tudominio',
+  PAYMENTER_URL:'https://ve.synthetixhost.lol/',
+  PTERODACTYL_URL: 'https://panel.synthetixhost.lol',
+  DISCORD_INVITE_URL: 'https://discord.gg/QDZ5ff5Shb',
   DISCORD_WEBHOOK_URL:
     'https://discord.com/api/webhooks/tu-webhook-id/tu-webhook-token',
 

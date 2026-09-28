@@ -55,7 +55,7 @@ async function updateNavbarState() {
   const authNav = document.getElementById('auth-nav-items');
   const mobileAuthNav = document.getElementById('mobile-auth-nav');
   
-  if (!authNav || !supabaseClient) return;
+  if (!authNav || typeof supabaseClient === 'undefined') return;
 
   const { data: { session } } = await supabaseClient.auth.getSession();
 
@@ -64,7 +64,7 @@ async function updateNavbarState() {
     const userInitial = userEmail.charAt(0).toUpperCase();
 
     const userHtml = `
-      <a href="dashboard.html" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 transition-all font-medium text-sm">
+      <a href="/dashboard" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 hover:bg-purple-500/20 transition-all font-medium text-sm">
         <span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">${userInitial}</span>
         <span>Dashboard</span>
       </a>
@@ -77,15 +77,23 @@ async function updateNavbarState() {
     if (mobileAuthNav) mobileAuthNav.innerHTML = userHtml;
   } else {
     const guestHtml = `
-      <a href="login.html" class="px-4 py-2 rounded-xl border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 text-sm font-semibold transition-all">
+      <a href="/login" class="px-4 py-2 rounded-xl border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 text-sm font-semibold transition-all">
         Iniciar Sesión
       </a>
-      <a href="register.html" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all">
+      <a href="/register" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-lg shadow-blue-500/20 transition-all">
         Registrarse
       </a>
     `;
 
     authNav.innerHTML = guestHtml;
     if (mobileAuthNav) mobileAuthNav.innerHTML = guestHtml;
+  }
+}
+
+// Función global para cerrar sesión desde la navbar
+async function logoutUser() {
+  if (typeof supabaseClient !== 'undefined') {
+    await supabaseClient.auth.signOut();
+    window.location.href = '/login';
   }
 }

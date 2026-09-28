@@ -6,7 +6,7 @@
   <title>Panel de Cliente - SynthetixHost</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
   <style>
     /* Ocultar barra de scroll */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -24,17 +24,17 @@
   <aside class="w-64 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 p-6 hidden md:flex flex-col justify-between sticky top-0 h-screen">
     <div>
       <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-2 mb-10">
+      <a href="/" class="flex items-center gap-2 mb-10">
         <span class="text-blue-500 text-xl">✦</span>
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
 
-      <!-- Navegación -->
+      <!-- Navegación con rutas absolutas corregidas -->
       <nav class="space-y-2 text-xs font-semibold">
-        <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">
+        <a href="/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">
           <span>📊</span> Resumen
         </a>
-        <a href="index.html#productos" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
+        <a href="/index.html#productos" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
           <span>🛒</span> Contratar Servicios
         </a>
       </nav>
@@ -47,7 +47,7 @@
 
   <!-- Navbar superior solo para Móvil -->
   <nav class="md:hidden sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800 px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
+    <a href="/" class="flex items-center gap-2">
       <span class="text-blue-500 text-xl">✦</span>
       <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
     </a>
@@ -71,8 +71,8 @@
         </button>
       </div>
       <div class="flex flex-col gap-3 text-sm font-semibold text-slate-300">
-        <a href="dashboard.html" class="px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">📊 Resumen</a>
-        <a href="index.html#productos" class="px-4 py-3 rounded-xl hover:bg-slate-800 text-slate-300">🛒 Contratar Servicios</a>
+        <a href="/dashboard/" class="px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">📊 Resumen</a>
+        <a href="/index.html#productos" class="px-4 py-3 rounded-xl hover:bg-slate-800 text-slate-300">🛒 Contratar Servicios</a>
       </div>
     </div>
     <div class="pt-6 border-t border-slate-800">
@@ -170,6 +170,6 @@
     if (overlay) overlay.addEventListener('click', cerrarMenu);
   </script>
 
-  <script type="module" src="assets/js/dashboard.js"></script>
+  <script type="module" src="/assets/js/dashboard.js"></script>
 </body>
 </html>

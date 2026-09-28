@@ -19,33 +19,31 @@ function showToast(message, type = 'success') {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const userEmailEl = document.getElementById('user-badge');
+  const userBadgeEl = document.getElementById('user-badge');
+  const greetingEl = document.getElementById('user-greeting');
 
   try {
     const { data: { session }, error } = await supabaseClient.auth.getSession();
 
-    // Si no hay sesión, redirige de forma limpia a /login/
     if (error || !session) {
       window.location.href = '/login/';
       return;
     }
 
-    if (userEmailEl) {
-      userEmailEl.textContent = `Cliente: ${session.user.email}`;
+    const user = session.user;
+    const username = user.user_metadata?.username || user.email.split('@')[0];
+
+    if (userBadgeEl) {
+      userBadgeEl.textContent = `Cliente: ${user.email}`;
     }
 
-    const greeting = document.getElementById('user-greeting');
-    const username = session.user.user_metadata?.username || session.user.email.split('@')[0];
-    if (greeting) {
-      greeting.textContent = `Bienvenido, ${username}`;
+    if (greetingEl) {
+      greetingEl.textContent = `Bienvenido, ${username}`;
     }
 
   } catch (err) {
-    console.error('Error al verificar la sesión:', err);
-    if (userEmailEl) {
-      userEmailEl.textContent = 'Error al cargar';
-    }
-    showToast('No se pudo verificar la sesión del usuario.', 'error');
+    console.error('Error al verificar sesión:', err);
+    if (userBadgeEl) userBadgeEl.textContent = 'Error de sesión';
   }
 
   const pterodactylBtn = document.getElementById('btn-pterodactyl');
@@ -62,29 +60,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Función unificada para cerrar sesión (tanto en Escritorio como en Móvil)
   const handleLogout = async () => {
     try {
-      const { error: logoutError } = await supabaseClient.auth.signOut();
-
-      if (logoutError) {
-        throw logoutError;
-      }
-
+      await supabaseClient.auth.signOut();
       window.location.href = '/login/';
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+    } catch (err) {
+      console.error('Error al cerrar sesión:', err);
       showToast('No se pudo cerrar sesión.', 'error');
     }
   };
 
-  const logoutBtnDesktop = document.getElementById('logout-btn-desktop');
-  if (logoutBtnDesktop) {
-    logoutBtnDesktop.addEventListener('click', handleLogout);
-  }
+  const logoutDesktop = document.getElementById('logout-btn-desktop');
+  if (logoutDesktop) logoutDesktop.addEventListener('click', handleLogout);
 
-  const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-  if (logoutBtnMobile) {
-    logoutBtnMobile.addEventListener('click', handleLogout);
-  }
+  const logoutMobile = document.getElementById('logout-btn-mobile');
+  if (logoutMobile) logoutMobile.addEventListener('click', handleLogout);
 });

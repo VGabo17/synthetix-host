@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // 1. Enviar correo de recuperación
+  // 1. Enviar correo de recuperación con ruta limpia
   if (emailForm) {
     emailForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       try {
         const redirectTo =
-          `${window.location.origin}/reset-password.html`
+          `${window.location.origin}/reset-password/`
 
         const { error } =
           await supabaseClient.auth.resetPasswordForEmail(email, {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   }
 
-  // 2. Guardar nueva contraseña
+  // 2. Guardar nueva contraseña y redirigir al login limpio
   if (passwordForm) {
     passwordForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         )
 
         setTimeout(() => {
-          window.location.href = 'login.html'
+          window.location.href = '/login/'
         }, 1800)
       } catch (error) {
         console.error('Error al actualizar contraseña:', error)

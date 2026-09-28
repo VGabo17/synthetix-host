@@ -233,368 +233,539 @@
         <p class="text-xs md:text-sm text-slate-400">Infraestructura optimizada con niveles de alto rendimiento y especificaciones exactas.</p>
       </div>
 
-      <!-- Tabs -->
-      <div class="flex overflow-x-auto gap-2 pb-4 mb-8 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
-        <button data-target="networks" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all">Planes Networks</button>
-        <button data-target="juegos" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Minecraft Servers</button>
-        <button data-target="vps" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">VPS Cloud</button>
-        <button data-target="discord" class="tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all">Bot Discord</button>
+      <!-- Tabs de Categorías -->
+      <div class="flex overflow-x-auto gap-2 pb-4 mb-10 snap-x hide-scrollbar justify-center flex-wrap" id="tabs-container">
+        <button data-target="networks" class="tab-btn snap-start px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs transition-all shadow-lg shadow-blue-500/20">Planes Networks</button>
+        <button data-target="juegos" class="tab-btn snap-start px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:text-white transition-all">Minecraft Servers</button>
+        <button data-target="vps" class="tab-btn snap-start px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:text-white transition-all">VPS Cloud</button>
+        <button data-target="discord" class="tab-btn snap-start px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:text-white transition-all">Bot Discord</button>
       </div>
 
       <div id="planes-container">
         
-        <!-- 1. PLANES NETWORKS (Económicos orientados a Contabo / AMD EPYC) -->
+        <!-- 1. PLANES NETWORKS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="cat-networks">
           <!-- Nexus Starter -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Starter</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="4.99">4.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Nexus Starter</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para redes iniciales con AMD EPYC.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">8 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ 4 vCPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ 100 GB SSD / NVMe</li>
-                <li class="flex items-center gap-2">✓ Máximo 5 Backends</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="4.99">4.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>8 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>4 vCPU</b> AMD EPYC</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>100 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>5 Backends</b> máximo</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Nexus Starter', 4.99, 'Ideal para redes iniciales con 8 GB RAM y nodos AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Nexus Starter', 4.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
 
           <!-- Nexus Pro (Más Popular) -->
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Más Popular</div>
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</div>
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Pro</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="9.99">9.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Nexus Pro</h3>
+                  <p class="text-xs text-slate-400 mt-1">Ideal para redes en crecimiento.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">16 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>16 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ 6 vCPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ 200 GB SSD / NVMe</li>
-                <li class="flex items-center gap-2">✓ Máximo 10 Backends</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="9.99">9.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>16 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>6 vCPU</b> AMD EPYC</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>200 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>10 Backends</b> máximo</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
-              <button onclick="openPlanModal('Nexus Pro', 9.99, 'El plan favorito para redes con 16 GB RAM y AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Nexus Pro', 9.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
 
           <!-- Nexus Elite -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Elite</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="14.99">14.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Nexus Elite</h3>
+                  <p class="text-xs text-slate-400 mt-1">Mayor potencia con 24 GB.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">24 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>24 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ 8 vCPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ 300 GB SSD / NVMe</li>
-                <li class="flex items-center gap-2">✓ Máximo 15 Backends</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="14.99">14.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>24 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>8 vCPU</b> AMD EPYC</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>300 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>15 Backends</b> máximo</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Nexus Elite', 14.99, 'Mayor potencia con 24 GB RAM y 8 núcleos AMD EPYC.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Nexus Elite', 14.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
 
           <!-- Nexus Titan -->
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Nexus Titan</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="24.99">24.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Nexus Titan</h3>
+                  <p class="text-xs text-slate-400 mt-1">Potencia masiva para redes grandes.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">48 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>48 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ 12 vCPU (AMD EPYC)</li>
-                <li class="flex items-center gap-2">✓ 400 GB SSD / NVMe</li>
-                <li class="flex items-center gap-2">✓ Backends ilimitados</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="24.99">24.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>48 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>12 vCPU</b> AMD EPYC</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>400 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> <b>Backends ilimitados</b></div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Nexus Titan', 24.99, 'Potencia masiva con 48 GB RAM para redes grandes.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Nexus Titan', 24.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
         </div>
 
-        <!-- 2. MINECRAFT SERVERS (Servidores individuales estándar) -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 hidden" id="cat-juegos">
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+        <!-- 2. MINECRAFT SERVERS -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="cat-juegos">
+          <!-- Starter Minecraft -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Starter</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="2.50">2.50</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Starter</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para probar o jugar tú solo.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">2 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>2 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Panel Pterodactyl</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="2.50">2.50</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>2 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> Panel Pterodactyl</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🛡️</span> Anti-DDoS incluido</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Minecraft Starter (2GB)', 2.50)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Minecraft Starter (2GB)', 2.50, 'Económico para jugar con amigos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Minecraft Starter (2GB)', 2.50)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Popular</div>
+
+          <!-- Pro Minecraft (Popular) -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Popular</div>
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Pro</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="4.99">4.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Pro</h3>
+                  <p class="text-xs text-slate-400 mt-1">Ideal para servidores públicos.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">4 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>4 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Plugins y Mods</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="4.99">4.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>4 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">📦</span> Soporte de Plugins y Mods</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> Panel Pterodactyl</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Minecraft Pro (4GB)', 4.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
-              <button onclick="openPlanModal('Minecraft Pro (4GB)', 4.99, 'Ideal para servidores públicos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Minecraft Pro (4GB)', 4.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Elite Minecraft -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Elite</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="7.49">7.49</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Elite</h3>
+                  <p class="text-xs text-slate-400 mt-1">Soporta modpacks y jugadores.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">6 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>6 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Modpacks medianos</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="7.49">7.49</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>6 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">📦</span> Modpacks medianos</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> Panel Pterodactyl</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Minecraft Elite (6GB)', 7.49)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Minecraft Elite (6GB)', 7.49, 'Soporta modpacks y jugadores.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Minecraft Elite (6GB)', 7.49)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Master Minecraft -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Master</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="9.99">9.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Master</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para modpacks complejos.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">8 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Modpacks pesados</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="9.99">9.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>8 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">📦</span> Modpacks pesados</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> Panel Pterodactyl</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Minecraft Master (8GB)', 9.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Minecraft Master (8GB)', 9.99, 'Para modpacks complejos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Minecraft Master (8GB)', 9.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Ultimate Minecraft -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Ultimate</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="14.99">14.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Ultimate</h3>
+                  <p class="text-xs text-slate-400 mt-1">Potencia máxima sin límites.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">12 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>12 GB RAM</strong></li>
-                <li class="flex items-center gap-2">✓ Sin restricciones</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="14.99">14.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>12 GB RAM</b> DDR4</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🚀</span> Rendimiento extremo</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> Panel Pterodactyl</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Minecraft Ultimate (12GB)', 14.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Minecraft Ultimate (12GB)', 14.99, 'Potencia máxima.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Minecraft Ultimate (12GB)', 14.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
         </div>
 
         <!-- 3. VPS CLOUD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden" id="cat-vps">
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <!-- VPS Basic -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">VPS Basic</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="3.99">3.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">VPS Basic</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para pruebas y proyectos web.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold rounded-lg">2 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>2 GB RAM</strong> / 1 vCPU</li>
-                <li class="flex items-center gap-2">✓ 30 GB SSD</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="3.99">3.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-emerald-400">⚡</span> <b>2 GB RAM</b></div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">💻</span> <b>1 vCPU</b> Core</div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">🗄️</span> <b>30 GB</b> SSD NVMe</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('VPS Basic', 3.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('VPS Basic', 3.99, 'Para pruebas y web.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('VPS Basic', 3.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Cloud VPS 1 -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Cloud VPS 1</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="6.99">6.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Cloud VPS 1</h3>
+                  <p class="text-xs text-slate-400 mt-1">Equilibrio perfecto.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold rounded-lg">4 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>4 GB RAM</strong> / 2 vCPU</li>
-                <li class="flex items-center gap-2">✓ 50 GB SSD</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="6.99">6.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-emerald-400">⚡</span> <b>4 GB RAM</b></div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">💻</span> <b>2 vCPU</b> Cores</div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">🗄️</span> <b>50 GB</b> SSD NVMe</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Cloud VPS 1', 6.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Cloud VPS 1', 6.99, 'Equilibrio perfecto.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Cloud VPS 1', 6.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Recomendado</div>
+
+          <!-- Cloud VPS 4 (Recomendado) -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Recomendado</div>
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Cloud VPS 4</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="10.99">10.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Cloud VPS 4</h3>
+                  <p class="text-xs text-slate-400 mt-1">Ideal como nodo o servidor web.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold rounded-lg">8 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong> / 4 vCPU</li>
-                <li class="flex items-center gap-2">✓ 100 GB SSD</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="10.99">10.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-emerald-400">⚡</span> <b>8 GB RAM</b></div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">💻</span> <b>4 vCPU</b> Cores</div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">🗄️</span> <b>100 GB</b> SSD NVMe</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Cloud VPS 4', 10.99)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
-              <button onclick="openPlanModal('Cloud VPS 4', 10.99, 'Ideal como nodo.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Cloud VPS 4', 10.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- VPS Pro -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">VPS Pro</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="18.99">18.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">VPS Pro</h3>
+                  <p class="text-xs text-slate-400 mt-1">Máximo rendimiento y acceso root.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold rounded-lg">16 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>16 GB RAM</strong> / 6 vCPU</li>
-                <li class="flex items-center gap-2">✓ 200 GB SSD</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="18.99">18.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-emerald-400">⚡</span> <b>16 GB RAM</b></div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">💻</span> <b>6 vCPU</b> Cores</div>
+                <div class="flex items-center gap-3"><span class="text-emerald-400">🗄️</span> <b>200 GB</b> SSD NVMe</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Cloud VPS Pro', 18.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Cloud VPS Pro', 18.99, 'Máximo rendimiento.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Cloud VPS Pro', 18.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
         </div>
 
         <!-- 4. BOT DISCORD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden" id="cat-discord">
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <!-- Bot Basic -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Bot Basic</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="1.29">1.29</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot Basic</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para bots sencillos y moderación.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold rounded-lg">512 MB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>512 MB RAM</strong> 24/7</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="1.29">1.29</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-purple-400">⚡</span> <b>512 MB RAM</b> 24/7</div>
+                <div class="flex items-center gap-3"><span class="text-purple-400">🕒</span> 100% Uptime garantizado</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Bot Basic', 1.29)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Bot Basic', 1.29, 'Para bots simples.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Bot Basic', 1.29)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/90 p-6 rounded-2xl border border-blue-500/50 shadow-xl flex flex-col justify-between relative">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-full uppercase">Popular</div>
+
+          <!-- Bot Pro (Popular) -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Popular</div>
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Bot Pro</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="2.49">2.49</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot Pro</h3>
+                  <p class="text-xs text-slate-400 mt-1">Ideal para música y Lavalink.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold rounded-lg">2 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>2 GB RAM</strong> 24/7</li>
-                <li class="flex items-center gap-2">✓ Lavalink / Música</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="2.49">2.49</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-purple-400">⚡</span> <b>2 GB RAM</b> 24/7</div>
+                <div class="flex items-center gap-3"><span class="text-purple-400">🎵</span> Soporte Lavalink / Música</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Bot Pro', 2.49)" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-md">🛒 Comprar</button>
-              <button onclick="openPlanModal('Bot Pro', 2.49, 'Ideal para música.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Bot Pro', 2.49)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Bot Enterprise -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Enterprise</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="4.99">4.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Enterprise</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para sistemas y bases de datos.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold rounded-lg">4 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>4 GB RAM</strong> 24/7</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="4.99">4.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-purple-400">⚡</span> <b>4 GB RAM</b> 24/7</div>
+                <div class="flex items-center gap-3"><span class="text-purple-400">💾</span> Alto rendimiento continuo</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Bot Enterprise', 4.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Bot Enterprise', 4.99, 'Para sistemas complejos.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Bot Enterprise', 4.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
-          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+
+          <!-- Bot Ultra -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
             <div>
-              <h3 class="text-base font-bold text-white mb-1">Bot Ultra</h3>
-              <div class="flex items-baseline gap-1 mb-4">
-                <span class="text-xl font-extrabold text-white">$</span>
-                <span class="price-tag text-2xl font-extrabold text-white" data-usd="7.99">7.99</span>
-                <span class="currency-symbol text-[10px] font-semibold text-slate-500">USD</span>
-                <span class="text-[10px] font-semibold text-slate-500">/mes</span>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot Ultra</h3>
+                  <p class="text-xs text-slate-400 mt-1">Máxima potencia para bots gigantes.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold rounded-lg">8 GB</span>
               </div>
-              <ul class="space-y-2 mb-6 text-xs text-slate-300">
-                <li class="flex items-center gap-2">✓ <strong>8 GB RAM</strong> 24/7</li>
-              </ul>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="7.99">7.99</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación instantánea</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-purple-400">⚡</span> <b>8 GB RAM</b> 24/7</div>
+                <div class="flex items-center gap-3"><span class="text-purple-400">🚀</span> Sin límites de procesamiento</div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <button onclick="addToCart('Bot Ultra (8GB)', 7.99)" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl">🛒 Comprar</button>
-              <button onclick="openPlanModal('Bot Ultra (8GB)', 7.99, 'Máxima potencia.')" class="w-full py-2 bg-slate-800 text-slate-300 text-[11px] rounded-xl">Detalles</button>
-            </div>
+            <button onclick="addToCart('Bot Ultra (8GB)', 7.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block">
+              Comprar
+            </button>
           </div>
         </div>
 
@@ -678,30 +849,12 @@
 
   </main>
 
-  <!-- Modal -->
-  <div id="detailsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-    <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-lg w-full relative shadow-2xl mx-4">
-      <button id="closeModal" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 id="modalTitle" class="text-xl font-bold text-white mb-2"></h3>
-      <div class="flex items-baseline gap-1 mb-4">
-        <span id="modalCurrencySymbol" class="text-xl font-extrabold text-blue-400">$</span>
-        <span id="modalPrice" class="text-2xl font-extrabold text-blue-400" data-usd=""></span>
-        <span id="modalCurrency" class="text-xs font-semibold text-slate-500">USD</span>
-      </div>
-      <p id="modalDescription" class="text-xs text-slate-300 mb-6 leading-relaxed"></p>
-      <div class="flex gap-4">
-        <a href="https://billing.nixermc.lol" target="_blank" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl text-center shadow-lg">Ir a Facturación</a>
-        <button id="closeModalBtn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500">
     <p>&copy; 2026 SynthetixHost. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Lógica JavaScript con Carrito y Códigos solo en el Carrito -->
+  <!-- Lógica JavaScript con Carrito, Pestañas y Sesión Supabase -->
   <script type="module">
     import { supabaseClient } from './assets/js/supabaseClient.js'
 
@@ -748,8 +901,6 @@
     function updateAllPrices() {
       const selector = document.getElementById('currency-selector');
       if (selector) selector.value = currentCurrency;
-
-      const symbol = currentCurrency === 'EUR' ? '€' : '$';
 
       document.querySelectorAll('.price-tag').forEach(tag => {
         const usdVal = parseFloat(tag.getAttribute('data-usd'));
@@ -865,8 +1016,8 @@
       const tabs = document.querySelectorAll('.tab-btn');
       const categories = document.querySelectorAll('.plan-category');
 
-      const activeClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs transition-all";
-      const inactiveClasses = "tab-btn snap-start px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:border-slate-700 transition-all";
+      const activeClasses = "tab-btn snap-start px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs transition-all shadow-lg shadow-blue-500/20";
+      const inactiveClasses = "tab-btn snap-start px-6 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 font-bold text-xs hover:text-white transition-all";
 
       tabs.forEach(tab => {
         if (tab.getAttribute('data-target') === targetCategory) {
@@ -883,24 +1034,6 @@
           cat.classList.add('hidden');
         }
       });
-    }
-
-    window.openPlanModal = function(title, usdPrice, description) {
-      document.getElementById('modalTitle').textContent = title;
-      const modalPriceEl = document.getElementById('modalPrice');
-      const modalCurrEl = document.getElementById('modalCurrency');
-      const modalSymbolEl = document.getElementById('modalCurrencySymbol');
-      
-      modalPriceEl.setAttribute('data-usd', usdPrice);
-      const finalPrice = currentCurrency === 'EUR' ? usdPrice * exchangeRate : usdPrice;
-      const symbol = currentCurrency === 'EUR' ? '€' : '$';
-
-      modalPriceEl.textContent = finalPrice.toFixed(2);
-      modalSymbolEl.textContent = symbol;
-      modalCurrEl.textContent = currentCurrency;
-
-      document.getElementById('modalDescription').textContent = description;
-      document.getElementById('detailsModal').classList.remove('hidden');
     }
 
     window.cerrarMenuMobile = function() {
@@ -968,13 +1101,6 @@
       if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
       if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
       if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
-
-      const modal = document.getElementById('detailsModal');
-      const closeModal = document.getElementById('closeModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const cerrarModal = () => modal.classList.add('hidden');
-      if (closeModal) closeModal.addEventListener('click', cerrarModal);
-      if (closeModalBtn) closeModalBtn.addEventListener('click', cerrarModal);
 
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(tab => {

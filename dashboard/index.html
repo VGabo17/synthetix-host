@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Cliente - SynthetixHost</title>
+  <title>Panel de Cliente - Synthetix Host</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/styles.css">
@@ -24,12 +24,12 @@
   <aside class="w-64 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 p-6 hidden md:flex flex-col justify-between sticky top-0 h-screen">
     <div>
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 mb-10">
-        <span class="text-blue-500 text-xl">✦</span>
+      <a href="/" class="flex items-center gap-2 mb-10 group">
+        <span class="text-blue-500 text-xl group-hover:scale-110 transition-transform">✦</span>
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
 
-      <!-- Navegación con rutas absolutas corregidas -->
+      <!-- Navegación -->
       <nav class="space-y-2 text-xs font-semibold">
         <a href="/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/30">
           <span>📊</span> Resumen
@@ -87,7 +87,7 @@
     <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-6 border-b border-slate-800/80">
       <div>
         <h1 id="user-greeting" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Panel de Control</h1>
-        <p class="text-xs md:text-sm text-slate-400 mt-1">Gestiona tus servidores y accesos directos de forma rápida.</p>
+        <p class="text-xs md:text-sm text-slate-400 mt-1">Gestiona tus servicios de hosting y accesos directos.</p>
       </div>
       <div id="user-badge" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-blue-400 font-semibold shadow-inner">
         Cargando cuenta...
@@ -95,13 +95,13 @@
     </header>
 
     <!-- Tarjetas de Estadísticas Rápidas -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
       <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl">
-        <div class="text-slate-400 text-xs font-semibold mb-1">Servidores Activos</div>
-        <div class="text-2xl font-bold text-white">0</div>
+        <div class="text-slate-400 text-xs font-semibold mb-1">Servicios Activos</div>
+        <div class="text-2xl font-bold text-white">1</div>
       </div>
       <div class="bg-slate-900/60 border border-slate-800/80 p-5 rounded-2xl">
-        <div class="text-slate-400 text-xs font-semibold mb-1">Estado del Nodo</div>
+        <div class="text-slate-400 text-xs font-semibold mb-1">Estado de los Nodos</div>
         <div class="flex items-center gap-2 mt-1">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="text-sm font-bold text-emerald-400">100% Operativo</span>
@@ -113,36 +113,121 @@
       </div>
     </div>
 
+    <!-- 1. MIS SERVICIOS ACTIVOS -->
+    <section class="mb-10">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>🖥️</span> Mis Servicios Activos
+        </h2>
+        <a href="/index.html#productos" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+          + Contratar nuevo servicio
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Tarjeta de Servicio Activo -->
+        <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">Activo</span>
+                <h3 class="font-bold text-white text-base mt-2">Cloud VPS 4 (Node-US)</h3>
+              </div>
+              <span class="text-xs font-bold text-slate-400">$10.99 / mes</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">8 GB RAM • 4 vCPU • 100 GB NVMe</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80">
+            <button id="btn-pterodactyl" class="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all text-center">
+              Administrar Panel
+            </button>
+            <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all">
+              Renovar
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Contratación Rápida -->
+        <div class="bg-slate-900/40 border border-dashed border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center">
+          <div class="text-2xl mb-2 opacity-40">📦</div>
+          <p class="text-xs font-semibold text-slate-300">¿Necesitas más recursos?</p>
+          <p class="text-[11px] text-slate-500 mt-1 mb-4">Despliega servidores adicionales de forma instantánea.</p>
+          <a href="/index.html#configurador" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all">
+            Configurar a medida
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. HISTORIAL DE TRANSACCIONES Y FACTURAS -->
+    <section class="mb-12">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>🧾</span> Historial de Transacciones
+        </h2>
+      </div>
+
+      <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950/60 text-slate-400 uppercase font-semibold text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th class="px-6 py-4">ID Factura</th>
+                <th class="px-6 py-4">Concepto / Servicio</th>
+                <th class="px-6 py-4">Fecha</th>
+                <th class="px-6 py-4">Monto</th>
+                <th class="px-6 py-4">Estado</th>
+                <th class="px-6 py-4 text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr class="hover:bg-slate-800/30 transition-colors">
+                <td class="px-6 py-4 font-mono text-blue-400">#SYN-1042</td>
+                <td class="px-6 py-4 font-semibold text-white">Cloud VPS 4 (Mensual)</td>
+                <td class="px-6 py-4 text-slate-400">26 Sep, 2026</td>
+                <td class="px-6 py-4 font-bold text-white">$10.99 USD</td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Pagada
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button class="text-blue-400 hover:text-blue-300 font-semibold">Ver Recibo</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- Paneles de Acceso Directo (Pterodactyl y Paymenter) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      
       <!-- Panel Pterodactyl -->
-      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-500/60 transition-all">
-        <div class="absolute -right-6 -bottom-6 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">🎮</div>
+      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/35 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-500/60 transition-all">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-6 text-blue-400">🎮</div>
           <h3 class="font-bold text-white text-lg mb-2">Panel de Juego (Pterodactyl)</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-6">Administra la consola en vivo, archivos, configuraciones y redes de tus servidores de Minecraft o bots de Discord.</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">Administra la consola en vivo, archivos y configuraciones de tus servidores.</p>
         </div>
-        <button id="btn-pterodactyl" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">
+        <button id="btn-pterodactyl-card" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">
           Abrir Pterodactyl &rarr;
         </button>
       </div>
 
       <!-- Área de Facturación Paymenter -->
-      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-purple-500/30 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-purple-500/60 transition-all">
-        <div class="absolute -right-6 -bottom-6 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">💳</div>
+      <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-purple-500/35 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-purple-500/60 transition-all">
         <div>
           <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl mb-6 text-purple-400">💳</div>
           <h3 class="font-bold text-white text-lg mb-2">Área de Facturación (Paymenter)</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-6">Gestiona tus facturas pendientes, métodos de pago, renovaciones automáticas de servicios y apertura de tickets de soporte.</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">Gestiona tus facturas pendientes, métodos de pago y apertura de tickets.</p>
         </div>
         <button id="btn-paymenter" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all border border-slate-700 text-center">
           Abrir Paymenter &rarr;
         </button>
       </div>
-
     </div>
+
   </main>
 
   <div id="toast-root"></div>

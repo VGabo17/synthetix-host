@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form')
   const loginForm = document.getElementById('login-form')
 
-  // 1. Lámate a tu lógica original de registro intacta
+  // 1. Lógica de registro con la URL limpia y dominio actualizado
   if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        const loginUrl = 'https://hosting.nixermc.lol/login.html'
+        const loginUrl = 'https://ve.synthetixhost.lol/login/'
 
         const result = await supabaseClient.auth.signUp({
           email,
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // 2. Lógica de inicio de sesión con redirección al dashboard
+  // 2. Lógica de inicio de sesión con redirección limpia al dashboard
   if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
       event.preventDefault()
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('¡Inicio de sesión exitoso! Redirigiendo...', 'success')
 
         setTimeout(() => {
-          window.location.href = 'dashboard.html'
+          window.location.href = '/dashboard/'
         }, 1200)
 
       } catch (error) {

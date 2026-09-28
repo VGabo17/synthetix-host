@@ -21,8 +21,9 @@ function showToast(message, type = 'success') {
 document.addEventListener('DOMContentLoaded', async () => {
   const { data: { session }, error } = await supabaseClient.auth.getSession();
 
+  // Si no hay sesión, redirige de forma limpia a /login
   if (error || !session) {
-    window.location.href = 'login.html';
+    window.location.href = '/login';
     return;
   }
 
@@ -62,7 +63,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      window.location.href = 'login.html';
+      // Redirección limpia al salir
+      window.location.href = '/login';
     });
   }
 });

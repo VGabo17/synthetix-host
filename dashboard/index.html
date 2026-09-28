@@ -169,15 +169,15 @@
 
     <!-- Paneles de Acceso Directo -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Pterodactyl Panel -->
+      <!-- Pterodactyl Panel (Con enlace directo onclick asegurado) -->
       <div class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-blue-500/30 shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-blue-500/60 transition-all">
         <div>
           <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-6 text-blue-400">🎮</div>
           <h3 class="font-bold text-white text-lg mb-2">Panel de Control (Pterodactyl)</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-6">Accede directamente a la consola en vivo, gestión de archivos y rendimiento en <span class="text-blue-400 font-semibold">https://panel.synthetixhost.lol</span>.</p>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6">Accede directamente a la consola en vivo, gestión de archivos y rendimiento en <span class="text-blue-400 font-semibold">panel.synthetixhost.lol</span>.</p>
         </div>
-        <button id="btn-pterodactyl-card" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center">
-          Abrir panel &rarr;
+        <button onclick="window.open('https://panel.synthetixhost.lol', '_blank')" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center cursor-pointer">
+          Abrir panel.synthetixhost.lol &rarr;
         </button>
       </div>
 

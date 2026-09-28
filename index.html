@@ -112,8 +112,8 @@
 
         <!-- Botones de Autenticación / Escritorio -->
         <div id="auth-actions-desktop" class="hidden sm:flex items-center gap-3">
-          <a href="login.html" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
-          <a href="register.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+          <a href="/login" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Iniciar sesión</a>
+          <a href="/register" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
         </div>
 
         <!-- Botón Menú Hamburguesa Móvil -->
@@ -150,8 +150,8 @@
       </div>
     </div>
     <div id="auth-actions-mobile" class="flex flex-col gap-3 pt-6 border-t border-slate-800 mt-6">
-      <a href="login.html" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
-      <a href="register.html" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
+      <a href="/login" class="w-full py-3 text-center text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">Iniciar sesión</a>
+      <a href="/register" class="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
     </div>
   </div>
 
@@ -925,18 +925,18 @@
           if (desktopAuth) {
             desktopAuth.innerHTML = `
               <div class="flex items-center gap-3">
-                <a href="dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-xs font-semibold text-white">
+                <a href="/dashboard" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-xs font-semibold text-white">
                   <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                   ${username}
                 </a>
-                <a href="dashboard.html" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-lg">Panel</a>
+                <a href="/dashboard" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl shadow-lg">Panel</a>
               </div>
             `
           }
 
           if (mobileAuth) {
             mobileAuth.innerHTML = `
-              <a href="dashboard.html" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 rounded-xl">Mi Panel (${username})</a>
+              <a href="/dashboard" class="w-full py-3 text-center text-xs font-semibold text-white bg-slate-800 rounded-xl">Mi Panel (${username})</a>
               <button id="logout-btn" class="w-full py-3 text-center text-xs font-bold text-red-400 bg-red-500/10 border border-red-500/30 rounded-xl">Cerrar Sesión</button>
             `
             document.getElementById('logout-btn')?.addEventListener('click', async () => {

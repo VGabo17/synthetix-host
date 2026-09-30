@@ -90,16 +90,16 @@
   <!-- Navegación -->
   <nav class="sticky top-0 z-40 w-full bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
-        <span class="text-blue-500 text-xl group-hover:scale-110 transition-transform">✦</span>
+      <!-- Logo Nuevo (Metálico S) -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <img src="/assets/img/logo.png" alt="Synthetix Host" class="w-8 h-8 object-contain group-hover:scale-110 transition-transform filter drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]">
         <span class="font-bold text-lg tracking-tight text-white">synthetix<span class="text-blue-500">.host</span></span>
       </a>
       
       <!-- Enlaces de navegación -->
       <div class="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
         <div class="relative group">
-          <button class="hover:text-white transition-colors flex items-center gap-1 py-2 focus:outline-none">
+          <button class="hover:text-white transition-colors flex items-center gap-1 py-2 focus:outline-none cursor-pointer">
             Servicios 
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
@@ -135,7 +135,7 @@
           <a href="/register/" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20">Registrarse</a>
         </div>
 
-        <button id="openDrawer" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Abrir menú">
+        <button id="openDrawer" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none cursor-pointer" aria-label="Abrir menú">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
       </div>
@@ -147,8 +147,11 @@
   <div id="drawer" class="fixed top-0 right-0 h-full w-72 bg-slate-900 border-l border-slate-800 z-50 p-6 flex flex-col justify-between md:hidden shadow-2xl overflow-y-auto">
     <div>
       <div class="flex items-center justify-between mb-6">
-        <span class="font-bold text-lg text-white">Menú</span>
-        <button id="closeDrawer" class="text-slate-400 hover:text-white p-2">
+        <div class="flex items-center gap-2">
+          <img src="/assets/img/logo.png" alt="Synthetix" class="w-7 h-7 object-contain">
+          <span class="font-bold text-lg text-white">Synthetix Host</span>
+        </div>
+        <button id="closeDrawer" class="text-slate-400 hover:text-white p-2 cursor-pointer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
@@ -177,7 +180,7 @@
     <div>
       <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
         <h3 class="font-bold text-lg text-white flex items-center gap-2">🛒 Tu Carrito de Servicios</h3>
-        <button id="closeCart" class="text-slate-400 hover:text-white p-2">
+        <button id="closeCart" class="text-slate-400 hover:text-white p-2 cursor-pointer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
@@ -188,7 +191,7 @@
 
       <div id="promo-badge" class="hidden mb-3 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-300 text-[11px] font-bold flex items-center justify-between">
         <span id="promo-badge-text">🎁 Código aplicado</span>
-        <button onclick="removePromoCode()" class="text-red-400 hover:text-red-300 font-bold">&times;</button>
+        <button onclick="removePromoCode()" class="text-red-400 hover:text-red-300 font-bold cursor-pointer">&times;</button>
       </div>
 
       <div id="cart-items" class="space-y-4 max-h-[40vh] overflow-y-auto pr-1">
@@ -222,7 +225,7 @@
     <section class="text-center flex flex-col items-center mb-20 relative">
       <div class="absolute -top-10 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-bold mb-8 uppercase tracking-wide shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
         Infraestructura Cloud & Gaming • Activación Instantánea
       </div>
@@ -265,7 +268,7 @@
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
           
           <!-- Plan Network Starter ($9.99) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all group">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -297,7 +300,7 @@
           </div>
 
           <!-- Plan Network Pro ($14.99) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all group">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -329,8 +332,8 @@
           </div>
 
           <!-- Plan Mega Network ($19.99) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
-            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</div>
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/10 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)] transition-all group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Más Popular</div>
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -365,7 +368,7 @@
 
         <!-- 2. MINECRAFT SERVERS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden" id="cat-juegos">
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all group">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -396,8 +399,8 @@
             </button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
-            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Popular</div>
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/10 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)] transition-all group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Popular</div>
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -428,7 +431,7 @@
             </button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all group">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -459,7 +462,7 @@
             </button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all group">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -480,9 +483,9 @@
               <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
                 <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>12 GB RAM</b> DDR4</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>4 vCPU Cores</b> dedicados</div>
-                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>150 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️️</span> <b>150 GB</b> SSD NVMe</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">🚀</span> Prioridad máxima en nodos</div>
-                <div class="flex items-center gap-3"><span class="text-blue-400">🛠️</span> Panel Pterodactyl avanzado</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🛠️️</span> Panel Pterodactyl avanzado</div>
               </div>
             </div>
             <button onclick="addToCart('Minecraft Ultimate (12GB)', 14.99)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block cursor-pointer">
@@ -493,7 +496,7 @@
 
         <!-- 3. VPS CLOUD -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden" id="cat-vps">
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <h3 class="text-xl font-bold text-white">VPS Basic</h3>
@@ -507,11 +510,11 @@
                 <div class="flex items-center gap-2"><span>🌐</span> Acceso Root completo (SSH)</div>
               </div>
             </div>
-            <button onclick="addToCart('VPS Basic', 3.99)" class="w-full py-3 bg-blue-600 text-white font-bold text-xs rounded-xl cursor-pointer">Comprar</button>
+            <button onclick="addToCart('VPS Basic', 3.99)" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all cursor-pointer">Comprar</button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl">
-            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Recomendado</div>
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl hover:shadow-[0_0_35px_rgba(59,130,246,0.25)] transition-all">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-md">Recomendado</div>
             <div>
               <div class="flex justify-between items-start mb-4">
                 <h3 class="text-xl font-bold text-white">Cloud VPS 4</h3>
@@ -525,10 +528,10 @@
                 <div class="flex items-center gap-2"><span>🌐</span> Acceso Root completo + IP dedicada</div>
               </div>
             </div>
-            <button onclick="addToCart('Cloud VPS 4', 10.99)" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl cursor-pointer">Comprar</button>
+            <button onclick="addToCart('Cloud VPS 4', 10.99)" class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xs rounded-xl transition-all cursor-pointer">Comprar</button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <h3 class="text-xl font-bold text-white">VPS Pro</h3>
@@ -542,7 +545,7 @@
                 <div class="flex items-center gap-2"><span>🌐</span> Acceso Root completo (SSH)</div>
               </div>
             </div>
-            <button onclick="addToCart('VPS Pro', 18.99)" class="w-full py-3 bg-blue-600 text-white font-bold text-xs rounded-xl cursor-pointer">Comprar</button>
+            <button onclick="addToCart('VPS Pro', 18.99)" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all cursor-pointer">Comprar</button>
           </div>
         </div>
 
@@ -550,7 +553,7 @@
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-discord">
           
           <!-- Plan Bot #1 (Iniciación) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -581,8 +584,8 @@
           </div>
 
           <!-- Plan Bot #2 (Crecimiento) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
-            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Popular</div>
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/10 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)] transition-all">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Popular</div>
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -613,7 +616,7 @@
           </div>
 
           <!-- Plan Bot #3 (Profesional) -->
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all">
             <div>
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -651,7 +654,7 @@
     <!-- HARDWARE -->
     <section id="hardware" class="mb-24">
       <div class="text-center mb-12">
-        <span class="inline-block text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-3">
+        <span class="inline-block text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-3 shadow-sm">
           Rendimiento Extremo
         </span>
         <h2 class="text-3xl font-extrabold text-white tracking-tight">Potenciado por <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Hardware Empresarial</span></h2>
@@ -659,17 +662,17 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl hover:border-blue-500/30 transition-all">
           <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-5 text-blue-400">💻</div>
           <h3 class="font-bold text-white text-base mb-2">Procesadores AMD EPYC™</h3>
           <p class="text-xs text-slate-400 leading-relaxed">Frecuencias de reloj ultra altas con múltiples núcleos dedicados para garantizar cero lag en juegos y compilaciones pesadas.</p>
         </div>
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl hover:border-purple-500/30 transition-all">
           <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl mb-5 text-purple-400">⚡</div>
           <h3 class="font-bold text-white text-base mb-2">Almacenamiento NVMe Gen4</h3>
           <p class="text-xs text-slate-400 leading-relaxed">Discos de estado sólido de última generación en RAID configurados para lecturas instantáneas y guardados de mundos sin pausas.</p>
         </div>
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl hover:border-emerald-500/30 transition-all">
           <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl mb-5 text-emerald-400">🛡️</div>
           <h3 class="font-bold text-white text-base mb-2">Anti-DDoS de Capa 7</h3>
           <p class="text-xs text-slate-400 leading-relaxed">Mitigación inteligente automática integrada para proteger tu servidor de ataques maliciosos sin afectar la latencia legítima.</p>
@@ -680,7 +683,7 @@
     <!-- RESEÑAS -->
     <section id="reseñas" class="mb-24">
       <div class="text-center mb-12">
-        <span class="inline-block text-[10px] font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 mb-3">
+        <span class="inline-block text-[10px] font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 mb-3 shadow-sm">
           Comunidad
         </span>
         <h2 class="text-3xl font-extrabold text-white tracking-tight">Lo que dicen <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">nuestros clientes</span></h2>
@@ -688,7 +691,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-slate-700 transition-all">
           <div>
             <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
             <p class="text-xs text-slate-300 leading-relaxed mb-6">"Migramos nuestra Network completa a Synthetix Host y el rendimiento con los nodos AMD EPYC es increíble. Cero lag y el panel vuela."</p>
@@ -702,7 +705,7 @@
           </div>
         </div>
 
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-slate-700 transition-all">
           <div>
             <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
             <p class="text-xs text-slate-300 leading-relaxed mb-6">"El mejor soporte y los precios más competitivos. Tengo mis bots de Discord y un VPS para pruebas corriendo 24/7 sin interrupciones."</p>
@@ -716,7 +719,7 @@
           </div>
         </div>
 
-        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+        <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between hover:border-slate-700 transition-all">
           <div>
             <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">★★★★★</div>
             <p class="text-xs text-slate-300 leading-relaxed mb-6">"La activación instantánea es real. Pagué el plan y en menos de 1 minuto ya tenía los datos de acceso en mi panel. 100 recomendado."</p>

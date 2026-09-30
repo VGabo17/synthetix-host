@@ -231,7 +231,7 @@
 
       <div id="planes-container">
         
-        <!-- 1. PLANES NETWORKS (Ordenados de menor a mayor precio) -->
+        <!-- 1. PLANES NETWORKS -->
         <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6" id="cat-networks">
           
           <!-- Plan Network Starter ($9.99) -->
@@ -288,7 +288,7 @@
               <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
                 <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>9 GB RAM</b> dedicada</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>3 vCPU</b> (100% Dedicados)</div>
-                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️️</span> <b>120 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>120 GB</b> SSD NVMe</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">🌐</span> Proxy (Velocity) + Lobby + BoxPvP</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">📍</span> Virginia, USA • Anti-DDoS</div>
               </div>
@@ -298,7 +298,7 @@
             </button>
           </div>
 
-          <!-- Plan Mega Network ($19.99) - Destacado -->
+          <!-- Plan Mega Network ($19.99) -->
           <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
             <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</div>
             <div>
@@ -356,7 +356,7 @@
               <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
                 <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>2 GB RAM</b> DDR4</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>1 vCPU Core</b> dedicado</div>
-                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>25 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️️</span> <b>25 GB</b> SSD NVMe</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">👥</span> Slots ilimitados</div>
                 <div class="flex items-center gap-3"><span class="text-blue-400">🔌</span> Plugins / Mods soportados</div>
               </div>
@@ -516,41 +516,103 @@
           </div>
         </div>
 
-        <!-- 4. BOT DISCORD -->
-        <div class="plan-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden" id="cat-discord">
+        <!-- 4. BOT DISCORD (Actualizado con los 3 nuevos planes exactos) -->
+        <div class="plan-category grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="cat-discord">
+          
+          <!-- Plan Bot #1 (Iniciación) -->
           <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-xl font-bold text-white">Bot Basic</h3>
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot #1 (Iniciación)</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para bots ligeros en línea 24/7.</p>
+                </div>
                 <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">512 MB</span>
               </div>
-              <div class="flex items-baseline gap-1 mb-4"><span class="text-4xl font-extrabold text-white price-tag" data-usd="1.29">1.29</span><span class="currency-symbol text-xs text-slate-400">USD</span><span class="text-xs text-slate-400">/mes</span></div>
-              <div class="border-t border-slate-800/80 pt-6 space-y-3 mb-6 text-xs text-slate-300">
-                <div class="flex items-center gap-2"><span>⚡</span> <b>512 MB RAM</b> dedicada</div>
-                <div class="flex items-center gap-2"><span>🤖</span> <b>24/7 Uptime</b> garantizado</div>
-                <div class="flex items-center gap-2"><span>📂</span> Soporte Node.js y Python</div>
-                <div class="flex items-center gap-2"><span>💻</span> Consola y archivos en vivo</div>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="1.50">1.50</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación inmediata</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>512 MB RAM</b> dedicada</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>50% CPU</b> dedicado</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>5 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🤖</span> Uptime 24/7 garantizado</div>
               </div>
             </div>
-            <button onclick="addToCart('Bot Basic', 1.29)" class="w-full py-3 bg-blue-600 text-white font-bold text-xs rounded-xl cursor-pointer">Comprar</button>
+            <button onclick="addToCart('Plan Bot #1 (Iniciación)', 1.50)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block cursor-pointer">
+              Comprar Plan
+            </button>
           </div>
 
-          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between">
+          <!-- Plan Bot #2 (Crecimiento) -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-blue-500/40 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-blue-500/5 group">
+            <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Popular</div>
             <div>
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-xl font-bold text-white">Bot Pro</h3>
-                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">2 GB</span>
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot #2 (Crecimiento)</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para bots medianos con bases de datos y comandos avanzados.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">1 GB</span>
               </div>
-              <div class="flex items-baseline gap-1 mb-4"><span class="text-4xl font-extrabold text-white price-tag" data-usd="2.49">2.49</span><span class="currency-symbol text-xs text-slate-400">USD</span><span class="text-xs text-slate-400">/mes</span></div>
-              <div class="border-t border-slate-800/80 pt-6 space-y-3 mb-6 text-xs text-slate-300">
-                <div class="flex items-center gap-2"><span>⚡</span> <b>2 GB RAM</b> dedicada</div>
-                <div class="flex items-center gap-2"><span>🎵</span> <b>Soporte Lavalink / Música</b></div>
-                <div class="flex items-center gap-2"><span>🤖</span> <b>24/7 Uptime</b> garantizado</div>
-                <div class="flex items-center gap-2"><span>📂</span> Ideal para bots grandes</div>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="3.00">3.00</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación inmediata</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>1 GB RAM</b> dedicada</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>100% CPU</b> dedicado</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>10 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🤖</span> Uptime 24/7 garantizado</div>
               </div>
             </div>
-            <button onclick="addToCart('Bot Pro', 2.49)" class="w-full py-3 bg-blue-600 text-white font-bold text-xs rounded-xl cursor-pointer">Comprar</button>
+            <button onclick="addToCart('Plan Bot #2 (Crecimiento)', 3.00)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block cursor-pointer">
+              Comprar Plan
+            </button>
           </div>
+
+          <!-- Plan Bot #3 (Profesional) -->
+          <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all group">
+            <div>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Bot #3 (Profesional)</h3>
+                  <p class="text-xs text-slate-400 mt-1">Para bots grandes con soporte Lavalink / Música.</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold rounded-lg">2 GB</span>
+              </div>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-extrabold text-white">$</span>
+                  <span class="price-tag text-4xl font-extrabold text-white" data-usd="5.50">5.50</span>
+                  <span class="currency-symbol text-xs text-slate-400">USD</span>
+                  <span class="text-xs text-slate-400">/mes</span>
+                </div>
+                <span class="text-[11px] text-slate-500">Activación inmediata</span>
+              </div>
+              <div class="border-t border-slate-800/80 pt-6 space-y-3.5 mb-8 text-xs text-slate-300">
+                <div class="flex items-center gap-3"><span class="text-blue-400">⚡</span> <b>2 GB RAM</b> dedicada</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">💻</span> <b>200% CPU</b> dedicado</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🗄️</span> <b>25 GB</b> SSD NVMe</div>
+                <div class="flex items-center gap-3"><span class="text-blue-400">🎵</span> Soporte Lavalink / Música</div>
+              </div>
+            </div>
+            <button onclick="addToCart('Plan Bot #3 (Profesional)', 5.50)" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-blue-500/20 text-center block cursor-pointer">
+              Comprar Plan
+            </button>
+          </div>
+
         </div>
 
       </div>

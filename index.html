@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Synthetix Host - Infraestructura Cloud & Gaming Enterprise</title>
   
-  <!-- Estilos principales -->
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- Estilos CSS Externos -->
+  <link rel="stylesheet" href="styles.css">
 
-  <!-- Tawk.to Script -->
+  <!-- Tawk.to Chat Widget -->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
@@ -30,16 +30,16 @@
 </head>
 <body>
 
-  <!-- Notificaciones Toast -->
-  <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
+  <!-- Contenedor de Notificaciones Toast -->
+  <div id="toast-container" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
 
-  <!-- Banner Flash -->
+  <!-- 1. Flash Banner con Código Aledevv -->
   <div class="flash-bar">
-    <span>🔥 ¡OFERTA LIMITADA! Usa el código <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
+    <span>🔥 ¡OFERTA LIMITADA! Usa el código de creador <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
     <div class="countdown-badge">Finaliza en: <span id="flash-countdown">04:32:15</span></div>
   </div>
 
-  <!-- Barra Superior -->
+  <!-- 2. Barra Superior Global -->
   <div class="top-status-bar">
     <div style="display: flex; align-items: center; gap: 6px;">
       <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);"></span>
@@ -51,11 +51,11 @@
     <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata En 60 Segundos</span>
   </div>
 
-  <!-- Header / Navbar -->
-  <header class="container" style="position: sticky; top: 10px; z-index: 100;">
+  <!-- 3. Header y Navbar -->
+  <header class="container" style="position: sticky; top: 12px; z-index: 100;">
     <nav class="navbar">
       <a href="/" class="brand">
-        <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 30px; height: 30px; object-fit: contain;">
+        <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 32px; height: 32px; object-fit: contain;">
         <span>synthetix<span style="color: var(--neon-blue);">.host</span></span>
       </a>
 
@@ -74,12 +74,12 @@
 
       <!-- Actions -->
       <div class="auth-btns">
-        <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
+        <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.82rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
 
-        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 6px 12px;" aria-label="Abrir Carrito">
+        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 6px 14px;" aria-label="Abrir Carrito">
           🛒
           <span id="cart-counter" style="position: absolute; top: -4px; right: -4px; background: var(--neon-blue); color: #fff; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
         </button>
@@ -98,23 +98,23 @@
   <div id="drawerOverlay" class="drawer-overlay"></div>
   <div id="drawer" class="drawer-content">
     <div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
         <div style="display: flex; align-items: center; gap: 8px;">
           <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px;">
           <span style="font-weight: bold; color: #fff;">Synthetix Host</span>
         </div>
-        <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer;">&times;</button>
+        <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;">&times;</button>
       </div>
       
-      <div style="margin-bottom: 16px;">
-        <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 6px;">Moneda de pago</label>
+      <div style="margin-bottom: 18px;">
+        <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 6px; text-transform: uppercase; font-weight: 700;">Moneda de pago</label>
         <select id="currency-selector-mobile" onchange="changeCurrency(this.value)" style="width: 100%; background: rgba(3, 7, 18, 0.9); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.85rem; font-weight: 700; padding: 10px 14px; border-radius: 12px; outline: none;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; font-weight: 600;">
+      <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem; font-weight: 600;">
         <span style="font-size: 0.75rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: 800;">Navegación</span>
         <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();">Planes Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();">Minecraft Servers</a>
@@ -129,7 +129,7 @@
       </div>
     </div>
 
-    <div id="auth-actions-mobile" style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--border-subtle);">
+    <div id="auth-actions-mobile" style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--border-subtle);">
       <a href="/login/" class="btn btn-ghost btn-wide" style="text-align: center;">Iniciar sesión</a>
       <a href="/register/" class="btn btn-primary btn-wide" style="text-align: center;">Registrarse</a>
     </div>
@@ -153,7 +153,7 @@
         <button onclick="removePromoCode()" style="background: none; border: none; color: #ef4444; font-weight: bold; cursor: pointer;">&times;</button>
       </div>
 
-      <div id="cart-items" style="display: flex; flex-direction: column; gap: 12px; max-height: 40vh; overflow-y: auto;">
+      <div id="cart-items" style="display: flex; flex-direction: column; gap: 12px; max-height: 42vh; overflow-y: auto;">
         <p style="font-size: 0.8rem; color: var(--text-dim); text-align: center; padding: 24px 0;">Tu carrito está vacío.</p>
       </div>
     </div>
@@ -199,7 +199,7 @@
 
       <!-- IP Copier -->
       <div class="ip-copier">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor de Prueba:</span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor:</span>
         <span style="font-family: var(--font-code); font-size: 0.8rem; font-weight: 700; color: var(--neon-cyan);">mc.synthetixhost.lol</span>
         <button onclick="copyServerIP()" class="btn btn-primary btn-sm">📋 Copiar</button>
       </div>
@@ -218,15 +218,15 @@
         <div class="server-stats-grid">
           <div class="stat-item">
             <b>99.98%</b>
-            <small>Uptime Garantizado</small>
+            <small>Uptime</small>
           </div>
           <div class="stat-item">
             <b>NVMe Gen4</b>
-            <small>Almacenamiento RAID</small>
+            <small>RAID Rápido</small>
           </div>
           <div class="stat-item">
             <b>DDoS L7</b>
-            <small>Mitigación Activa</small>
+            <small>Mitigación</small>
           </div>
         </div>
       </div>
@@ -237,12 +237,12 @@
       <div class="domain-box">
         <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">REGISTRO DE DOMINIOS</span>
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px;">Encuentra tu Dominio Ideal</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Consulta la disponibilidad en nuestros registros y adhiérelo a tu carrito.</p>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Consulta la disponibilidad y adhiérelo a tu carrito.</p>
 
         <div class="domain-search-bar">
           <input type="text" id="domain-input" placeholder="Escribe tu marca (ej. nixermc)">
-          <div style="display: flex; gap: 8px; width: 100%;">
-            <select id="tld-select" style="flex: 1; background: #0b0f19; border: 1px solid var(--border-subtle); color: var(--neon-cyan); border-radius: 12px; padding: 10px; font-weight: 700; outline: none; cursor: pointer;">
+          <div style="display: flex; gap: 8px; width: 100%; flex-wrap: wrap;">
+            <select id="tld-select" style="flex: 1; min-width: 140px; background: #0b0f19; border: 1px solid var(--border-subtle); color: var(--neon-cyan); border-radius: 12px; padding: 10px; font-weight: 700; outline: none; cursor: pointer;">
               <option value=".lol">.lol ($1.99/año)</option>
               <option value=".store">.store ($2.50/año)</option>
               <option value=".com">.com ($11.99/año)</option>
@@ -253,10 +253,10 @@
           </div>
         </div>
 
-        <div id="domain-result" style="display: none; margin-top: 18px; padding: 14px 20px; background: rgba(3, 7, 18, 0.85); border: 1px solid var(--border-subtle); border-radius: 16px; justify-content: space-between; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 12px;">
+        <div id="domain-result" style="display: none; margin-top: 18px; padding: 14px 20px; background: rgba(3, 7, 18, 0.85); border: 1px solid var(--border-subtle); border-radius: 16px; justify-content: space-between; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 12px; box-sizing: border-box;">
           <div style="font-size: 0.88rem; text-align: left;">
             <span id="domain-name-display" style="font-weight: bold; color: #fff;">nixermc.lol</span>
-            <span id="domain-status-span" style="font-weight: bold; margin-left: 8px;">¡Disponible para registro!</span>
+            <span id="domain-status-span" style="font-weight: bold; margin-left: 8px;">¡Disponible!</span>
           </div>
           <button id="domain-buy-btn" onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
         </div>
@@ -267,26 +267,23 @@
     <section id="productos" style="padding: 10px 0 30px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura de alto rendimiento optimizada para gaming empresarial.</p>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura de alto rendimiento optimizada para gaming.</p>
         
-        <!-- Switch de Ciclo de Facturación -->
-        <div style="display: inline-flex; gap: 6px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%;">
+        <div style="display: inline-flex; gap: 6px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%; flex-wrap: wrap; justify-content: center;">
           <button id="billing-monthly-btn" onclick="setBillingCycle('monthly')" class="btn btn-primary btn-sm">Facturación Mensual</button>
           <button id="billing-annual-btn" onclick="setBillingCycle('annual')" class="btn btn-ghost btn-sm" style="border: none;">Facturación Anual (-20% OFF)</button>
         </div>
       </div>
 
-      <!-- Selector de Región Global del Nodo -->
-      <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 28px; font-size: 0.82rem; color: var(--text-muted);">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 28px; font-size: 0.82rem; color: var(--text-muted); flex-wrap: wrap;">
         <span>🌍 Ubicación del Nodo:</span>
         <select id="region-selector" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border-subtle); color: var(--neon-cyan); padding: 6px 12px; border-radius: 10px; font-weight: 700; outline: none; cursor: pointer;">
-          <option value="US">🇺🇸 US East (Virginia - Principal)</option>
+          <option value="US">🇺🇸 US East (Virginia)</option>
           <option value="EU">🇩🇪 EU Central (Frankfurt)</option>
           <option value="SA">🇧🇷 SA East (São Paulo)</option>
         </select>
       </div>
 
-      <!-- Tabs de Categorías -->
       <div class="tabs-wrapper">
         <div class="tabs-bar">
           <button data-target="networks" class="tab-btn active" onclick="switchTabDirect('networks')">Planes Networks</button>
@@ -303,8 +300,8 @@
           <div class="product-card">
             <span class="card-badge">6 GB RAM</span>
             <h3>Network Starter</h3>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Ideal para iniciar tu red con rendimiento real y cero lag.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Ideal para iniciar tu red con rendimiento real.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>6 GB</b> RAM Dedicada</li>
               <li><b>2 vCPU</b> Cores AMD EPYC</li>
@@ -319,7 +316,7 @@
             <span class="card-badge">9 GB RAM</span>
             <h3>Network Pro</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">El equilibrio perfecto para comunidades en crecimiento.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>9 GB</b> RAM Dedicada</li>
               <li><b>3 vCPU</b> Cores AMD EPYC</li>
@@ -334,7 +331,7 @@
             <span class="card-badge highlight">MÁS POPULAR</span>
             <h3>Mega Network</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Potencia bruta para redes grandes con mundos masivos.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>14 GB</b> RAM (Repartida)</li>
               <li><b>4 vCPU</b> Cores AMD EPYC</li>
@@ -352,7 +349,7 @@
             <span class="card-badge">2 GB RAM</span>
             <h3>Starter</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para jugar con amigos cercanos.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="2.50">2.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="2.50">2.50</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>2 GB</b> RAM DDR4</li>
               <li><b>1 vCPU Core</b> dedicado</li>
@@ -366,7 +363,7 @@
             <span class="card-badge highlight">POPULAR</span>
             <h3>Pro Server</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para servidores públicos y comunidades.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="4.99">4.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="4.99">4.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>4 GB</b> RAM DDR4</li>
               <li><b>2 vCPU Cores</b> dedicados</li>
@@ -380,7 +377,7 @@
             <span class="card-badge">8 GB RAM</span>
             <h3>Master Server</h3>
             <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para modpacks pesados y alta concurrencia.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>8 GB</b> RAM DDR4</li>
               <li><b>3 vCPU Cores</b> dedicados</li>
@@ -396,7 +393,7 @@
           <div class="product-card">
             <span class="card-badge">2 GB RAM</span>
             <h3>VPS Basic</h3>
-            <div class="card-price">$<span class="price-tag" data-usd="3.99">3.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="3.99">3.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>2 GB</b> RAM Dedicada</li>
               <li><b>1 vCPU Core</b> KVM</li>
@@ -409,7 +406,7 @@
           <div class="product-card" style="border-color: var(--border-glow);">
             <span class="card-badge highlight">RECOMENDADO</span>
             <h3>Cloud VPS 4</h3>
-            <div class="card-price">$<span class="price-tag" data-usd="10.99">10.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="10.99">10.99</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>8 GB</b> RAM Dedicada</li>
               <li><b>4 vCPU Cores</b> KVM</li>
@@ -425,7 +422,7 @@
           <div class="product-card">
             <span class="card-badge">512 MB</span>
             <h3>Bot #1 (Iniciación)</h3>
-            <div class="card-price">$<span class="price-tag" data-usd="1.50">1.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="1.50">1.50</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>512 MB</b> RAM Dedicada</li>
               <li><b>50% CPU</b> Dedicado</li>
@@ -438,7 +435,7 @@
           <div class="product-card" style="border-color: var(--border-glow);">
             <span class="card-badge highlight">POPULAR</span>
             <h3>Bot #2 (Crecimiento)</h3>
-            <div class="card-price">$<span class="price-tag" data-usd="3.00">3.00</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <div class="card-price">$<span class="price-tag" data-usd="3.00">3.00</span> <span>USD /mes</span></div>
             <ul class="card-features">
               <li><b>1 GB</b> RAM Dedicada</li>
               <li><b>100% CPU</b> Dedicado</li>
@@ -508,27 +505,27 @@
 
     <!-- Test de Latencia -->
     <section id="pingtest" style="padding: 10px 0 30px;">
-      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 26px; backdrop-filter: blur(16px);">
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 26px; backdrop-filter: blur(16px); box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
           <div>
             <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">BAJA LATENCIA</span>
             <h2 style="font-family: var(--font-heading); font-size: 1.6rem;">Test de Respuesta Global</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Prueba la velocidad de conexión directa desde tu ubicación actual.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Prueba la velocidad de conexión directa.</p>
           </div>
           <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
           <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇺🇸 US Virginia</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Principal</div></div>
+            <div><b>🇺🇸 US Virginia</b><div style="font-size: 0.65rem; color: var(--text-dim);">Principal</div></div>
             <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
           <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇩🇪 EU Frankfurt</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Europa</div></div>
+            <div><b>🇩🇪 EU Frankfurt</b><div style="font-size: 0.65rem; color: var(--text-dim);">Europa</div></div>
             <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
           <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇧🇷 SA São Paulo</b><div style="font-size: 0.65rem; color: var(--text-dim);">Routing Latam</div></div>
+            <div><b>🇧🇷 SA São Paulo</b><div style="font-size: 0.65rem; color: var(--text-dim);">Latam</div></div>
             <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
         </div>
@@ -540,7 +537,7 @@
       <div class="builder-box">
         <div>
           <h2 style="font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 6px;">Configura tu servidor a medida</h2>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px;">Ajusta los recursos según las exigencias de tus modalidades.</p>
           
           <div class="slider-group">
             <div class="slider-header">
@@ -606,7 +603,7 @@
     <p style="margin-top: 6px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts de Lógica Integrada -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 
@@ -643,7 +640,6 @@
       }
     }
 
-    // Verificador de dominios inteligente y realista (Exclusivo Synthetix Host)
     window.checkDomainAvailability = function() {
       const input = document.getElementById('domain-input');
       const tld = document.getElementById('tld-select').value;
@@ -662,7 +658,6 @@
       const fullName = cleanName + tld;
 
       const prices = { ".lol": 1.99, ".store": 2.50, ".com": 11.99, ".net": 13.50, ".gg": 19.99 };
-      
       const takenDomains = ["nixermc", "google", "minecraft", "synthetix", "play", "store", "shop", "survival", "pvp", "aledevv"];
       const isTaken = takenDomains.includes(cleanName);
 
@@ -670,15 +665,13 @@
 
       if (isTaken) {
         if (statusSpan) {
-          statusSpan.textContent = "❌ No disponible (Ya registrado)";
+          statusSpan.textContent = "❌ No disponible";
           statusSpan.style.color = "#ef4444";
         }
-        if (buyBtn) {
-          buyBtn.style.display = "none";
-        }
+        if (buyBtn) buyBtn.style.display = "none";
       } else {
         if (statusSpan) {
-          statusSpan.textContent = "✅ ¡Disponible para registro!";
+          statusSpan.textContent = "✅ ¡Disponible!";
           statusSpan.style.color = "var(--neon-green)";
         }
         if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
@@ -701,7 +694,7 @@
       if (resultBox) {
         const isTaken = resultBox.getAttribute('data-is-taken') === 'true';
         if (isTaken) {
-          alert("Este dominio ya se encuentra registrado y no se puede añadir.");
+          alert("Este dominio ya se encuentra registrado.");
           return;
         }
         const name = resultBox.getAttribute('data-domain-name');
@@ -804,7 +797,7 @@
 
       try {
         await navigator.clipboard.writeText(orderMessage);
-        alert('¡Tu orden ha sido copiada al portapapeles!\n\nTe estamos redirigiendo a Discord. Ve al canal de tickets y pega tu orden (Ctrl+V).');
+        alert('¡Orden copiada al portapapeles! Te estamos redirigiendo a Discord para pegar tu orden en tickets.');
       } catch (err) {
         alert('Toma una captura de tu pedido antes de ir a Discord.');
       }
@@ -825,14 +818,6 @@
         const usdVal = rawUsd * cycleMultiplier;
         const finalVal = currentCurrency === 'EUR' ? usdVal * exchangeRate : usdVal;
         tag.textContent = finalVal.toFixed(2);
-      });
-
-      document.querySelectorAll('.currency-symbol').forEach(sym => {
-        sym.textContent = currentCurrency;
-      });
-
-      document.querySelectorAll('.billing-label').forEach(lbl => {
-        lbl.textContent = currentBillingCycle === 'annual' ? '/mes (Anual)' : '/mes';
       });
 
       const totalPriceEl = document.getElementById('total-price');

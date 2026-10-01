@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Synthetix Host - Infraestructura Cloud & Gaming Enterprise</title>
   
-  <!-- Estilos CSS Externos -->
+  <!-- Estilos Externos Separados -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Tawk.to Chat Widget -->
+  <!-- Tawk.to Widget Integration -->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
@@ -30,16 +30,16 @@
 </head>
 <body>
 
-  <!-- Contenedor de Notificaciones Toast -->
+  <!-- Contenedor de Notificaciones Toast Dinámicas -->
   <div id="toast-container" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
 
-  <!-- 1. Flash Banner con Código Aledevv -->
+  <!-- 1. Banner Flash de Creador -->
   <div class="flash-bar">
-    <span>🔥 ¡OFERTA LIMITADA! Usa el código de creador <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
+    <span>🔥 ¡OFERTA LIMITADA! Usa el código de creador <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra en Synthetix Labs</span>
     <div class="countdown-badge">Finaliza en: <span id="flash-countdown">04:32:15</span></div>
   </div>
 
-  <!-- 2. Barra Superior Global -->
+  <!-- 2. Barra de Estado Global de Nodos -->
   <div class="top-status-bar">
     <div style="display: flex; align-items: center; gap: 6px;">
       <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);"></span>
@@ -51,7 +51,7 @@
     <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata En 60 Segundos</span>
   </div>
 
-  <!-- 3. Header y Navbar -->
+  <!-- 3. Header y Navegación Principal -->
   <header class="container" style="position: sticky; top: 12px; z-index: 100;">
     <nav class="navbar">
       <a href="/" class="brand">
@@ -72,7 +72,7 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
 
-      <!-- Actions -->
+      <!-- Acciones y Moneda -->
       <div class="auth-btns">
         <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.82rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
@@ -94,7 +94,7 @@
     </nav>
   </header>
 
-  <!-- Menú Móvil Drawer -->
+  <!-- Menú Móvil Lateral (Drawer) -->
   <div id="drawerOverlay" class="drawer-overlay"></div>
   <div id="drawer" class="drawer-content">
     <div>
@@ -135,7 +135,7 @@
     </div>
   </div>
 
-  <!-- Carrito Drawer -->
+  <!-- Carrito Drawer / Checkout -->
   <div id="cartOverlay" class="drawer-overlay"></div>
   <div id="cartDrawer" class="drawer-content">
     <div>
@@ -181,7 +181,7 @@
 
   <main class="container">
     
-    <!-- Hero Section -->
+    <!-- Hero Section Principal -->
     <section class="hero">
       <div class="eyebrow">
         <span class="pulse"></span>
@@ -197,7 +197,7 @@
         Aloja tus redes de Minecraft, servidores dedicados, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <span style="color: var(--neon-cyan); font-weight: 600;">panel.synthetixhost.lol</span>.
       </p>
 
-      <!-- IP Copier -->
+      <!-- Copiador de IP de Prueba -->
       <div class="ip-copier">
         <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor:</span>
         <span style="font-family: var(--font-code); font-size: 0.8rem; font-weight: 700; color: var(--neon-cyan);">mc.synthetixhost.lol</span>
@@ -209,7 +209,7 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-ghost">💬 Unirse a Discord</a>
       </div>
 
-      <!-- Server Status Card -->
+      <!-- Tarjeta de Estado de Nodos -->
       <div class="server-card">
         <div class="server-card-header">
           <span>ESTADO DE NODOS EN TIEMPO REAL</span>
@@ -232,7 +232,7 @@
       </div>
     </section>
 
-    <!-- Verificador de Dominios -->
+    <!-- Verificador de Dominios Realista -->
     <section id="dominios">
       <div class="domain-box">
         <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">REGISTRO DE DOMINIOS</span>
@@ -263,7 +263,7 @@
       </div>
     </section>
 
-    <!-- Catálogos y Planes -->
+    <!-- Catálogos y Planes de Alojamiento -->
     <section id="productos" style="padding: 10px 0 30px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
@@ -503,7 +503,7 @@
       </div>
     </section>
 
-    <!-- Test de Latencia -->
+    <!-- Test de Latencia Global -->
     <section id="pingtest" style="padding: 10px 0 30px;">
       <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 26px; backdrop-filter: blur(16px); box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
@@ -532,7 +532,7 @@
       </div>
     </section>
 
-    <!-- Configurador Interactivo -->
+    <!-- Configurador Interactivo de VPS / Servidor -->
     <section id="configurador" style="padding: 10px 0 40px;">
       <div class="builder-box">
         <div>
@@ -567,7 +567,7 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- Preguntas Frecuentes (FAQ) -->
     <section id="faq" style="padding: 10px 0 40px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Preguntas Frecuentes</h2>
@@ -603,7 +603,7 @@
     <p style="margin-top: 6px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
   </footer>
 
-  <!-- Scripts de Lógica Integrada -->
+  <!-- Scripts de Lógica y Controladores Extendidos -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 

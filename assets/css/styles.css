@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ==========================================
-   1. RESET Y BLOQUEO DE DESBORDAMIENTO
+   1. RESET Y BLOQUEO DE OVERFLOW HORIZONTAL
    ========================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -68,7 +68,7 @@ button { border: none; background: none; font: inherit; cursor: pointer; }
 }
 
 /* ==========================================
-   2. BODY & LUZ DE FONDO SEGURA
+   2. BODY & FONDO
    ========================================== */
 body {
   font-family: var(--font-main);
@@ -91,16 +91,15 @@ body::before {
   z-index: -2;
 }
 
-/* Destello del fondo adaptado a porcentaje para no salirse */
 body::after {
   content: "";
   position: fixed;
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
-  max-width: 100%;
-  height: 450px;
+  width: 100%;
+  max-width: 100vw;
+  height: 400px;
   background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%);
   filter: blur(70px);
   pointer-events: none;
@@ -116,11 +115,22 @@ body::after {
 }
 
 /* ==========================================
-   3. BARRAS SUPERIORES COMPACTAS
+   3. VISIBILIDAD MÓVIL Y ESCRITORIO
+   ========================================== */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
+/* ==========================================
+   4. BARRAS SUPERIORES COMPACTAS
    ========================================== */
 .flash-bar {
   background: linear-gradient(90deg, #1d4ed8, #4f46e5, #7c3aed);
-  padding: 8px 12px;
+  padding: 6px 12px;
   font-size: 0.75rem;
   font-weight: 700;
   color: #ffffff;
@@ -155,13 +165,13 @@ body::after {
   justify-content: center;
   gap: 10px;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap;
   box-sizing: border-box;
 }
 
 /* ==========================================
-   4. NAVBAR FLOTANTE SEGURO
+   5. NAVBAR FLOTANTE
    ========================================== */
 .navbar {
   display: flex;
@@ -172,9 +182,6 @@ body::after {
   border-radius: 9999px;
   background: rgba(10, 15, 29, 0.85);
   border: 1px solid var(--border-subtle);
-  position: sticky;
-  top: 8px;
-  z-index: 100;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   width: 100%;
@@ -215,13 +222,12 @@ body::after {
 .auth-btns {
   display: flex;
   align-items: center;
-  gap: 6px;
-  max-width: 100%;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 /* ==========================================
-   5. DRAWERS MÓVILES (MENÚ & CARRITO)
+   6. DRAWERS MÓVILES
    ========================================== */
 .drawer-overlay {
   position: fixed;
@@ -262,7 +268,7 @@ body::after {
 .drawer-content.open { transform: translateX(0); }
 
 /* ==========================================
-   6. BOTONES
+   7. BOTONES
    ========================================== */
 .btn {
   position: relative;
@@ -274,7 +280,6 @@ body::after {
   transition: all 0.25s ease;
   white-space: nowrap;
   box-sizing: border-box;
-  max-width: 100%;
 }
 
 .btn-primary {
@@ -301,7 +306,7 @@ body::after {
 .btn-wide { width: 100%; }
 
 /* ==========================================
-   7. HERO & SECCIONES
+   8. HERO Y COMPONENTES
    ========================================== */
 .hero {
   text-align: center;
@@ -326,7 +331,6 @@ body::after {
   color: var(--neon-cyan);
   margin-bottom: 16px;
   max-width: 100%;
-  box-sizing: border-box;
 }
 
 .pulse {
@@ -344,7 +348,6 @@ body::after {
   font-weight: 800;
   margin-bottom: 14px;
   letter-spacing: -0.5px;
-  word-wrap: break-word;
 }
 
 .hero h1 em {
@@ -373,7 +376,6 @@ body::after {
   max-width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  box-sizing: border-box;
 }
 
 .hero-actions {
@@ -382,11 +384,10 @@ body::after {
   margin-bottom: 30px;
   width: 100%;
   justify-content: center;
-  box-sizing: border-box;
 }
 
 /* ==========================================
-   8. COMPONENTES Y CAJAS
+   9. REGIONAL Y SECCIONES
    ========================================== */
 .domain-box {
   background: var(--bg-surface);
@@ -409,20 +410,9 @@ body::after {
   max-width: 100%;
   margin: 16px auto 0;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
-.domain-search-bar input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  padding: 8px 12px;
-  width: 100%;
-  font-size: 0.85rem;
-  box-sizing: border-box;
-}
-
+.domain-search-bar input,
 .domain-search-bar select,
 .domain-search-bar button {
   width: 100%;
@@ -466,15 +456,11 @@ body::after {
   display: block;
 }
 
-/* ==========================================
-   9. CATALOGO Y TABS
-   ========================================== */
 .tabs-wrapper {
   width: 100%;
   overflow-x: auto;
   padding: 6px 0;
   margin-bottom: 20px;
-  box-sizing: border-box;
 }
 
 .tabs-bar {
@@ -507,7 +493,6 @@ body::after {
   gap: 16px;
   width: 100%;
   margin-bottom: 35px;
-  box-sizing: border-box;
 }
 
 .product-card {
@@ -519,9 +504,6 @@ body::after {
   box-sizing: border-box;
 }
 
-/* ==========================================
-   10. CONFIGURADOR & TABLAS
-   ========================================== */
 .builder-box {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -539,67 +521,19 @@ body::after {
   padding: 16px;
   border-radius: 16px;
   border: 1px solid var(--border-subtle);
-  box-sizing: border-box;
-}
-
-/* Envoltura para permitir desplazamiento suave en tablas sin romper la página */
-.tech-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 16px;
-  border: 1px solid var(--border-subtle);
-}
-
-.tech-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-  background: var(--bg-surface);
-  min-width: 500px; /* Asegura legibilidad en la tabla sin forzar el viewport global */
-}
-
-.tech-table th, .tech-table td {
-  padding: 12px;
-  text-align: left;
 }
 
 /* ==========================================
-   11. MEDIA QUERIES ESTRICTAS PARA MÓVIL (<768px y <640px)
+   10. MEDIA QUERIES PARA MÓVIL (<868px)
    ========================================== */
 @media (max-width: 868px) {
   .nav-links { display: none; }
+  .desktop-only { display: none !important; }
+  .mobile-only { display: inline-flex !important; }
   .builder-box { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 640px) {
-  /* Forzar ancho exacto del puerto de visión */
-  html, body {
-    width: 100vw;
-    max-width: 100vw;
-  }
-
-  .navbar {
-    padding: 8px 12px;
-  }
-
-  /* Ocultar elementos sobrantes en la barra superior móvil */
-  .auth-btns select,
-  #auth-actions-desktop {
-    display: none !important;
-  }
-
-  #openDrawer {
-    display: inline-flex !important;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
+  
+  .top-status-bar {
+    display: none; /* Ocultar barra superior redundante en móvil para ganar espacio */
   }
 
   .products-grid {
@@ -608,7 +542,14 @@ body::after {
 
   .server-stats-grid {
     grid-template-columns: 1fr !important;
-    gap: 8px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .social-toast {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Synthetix Host - Infraestructura Cloud & Gaming</title>
   
-  <!-- Estilos del proyecto (Aura Cyber-SaaS) -->
+  <!-- Estilos principales del proyecto (Aura Cyber-SaaS) -->
   <link rel="stylesheet" href="/assets/css/styles.css">
 
   <!-- Start of Tawk.to Script -->
@@ -21,13 +21,34 @@
   })();
   </script>
 
+  <script>
+    if (window.location.pathname.includes('index.html')) {
+      const cleanPath = window.location.pathname.replace('/index.html', '/').replace('index.html', '') + window.location.search + window.location.hash;
+      window.history.replaceState(null, '', cleanPath || '/');
+    }
+  </script>
+
   <style>
-    /* Estilos adicionales para componentes específicos del nuevo sistema */
+    /* Componentes del Nuevo Sistema Aura Cyber-SaaS */
+    .top-status-bar {
+      background: rgba(10, 15, 29, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
     .flash-bar {
       background: linear-gradient(90deg, #1d4ed8, #4f46e5, #7c3aed);
       padding: 8px 16px;
       font-size: 0.8rem;
       font-weight: 700;
+      color: #ffffff;
       text-align: center;
       display: flex;
       align-items: center;
@@ -43,6 +64,18 @@
       font-family: var(--font-code);
       color: #fde047;
       border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+    }
+    .ip-copier {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(10, 15, 29, 0.8);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 6px 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
     }
     .social-toast {
       position: fixed;
@@ -59,18 +92,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .ip-copier {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(10, 15, 29, 0.8);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 6px 6px 16px;
-      border-radius: 9999px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(12px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     }
     .domain-box {
       background: var(--bg-surface);
@@ -80,6 +102,8 @@
       backdrop-filter: blur(16px);
       margin-bottom: 60px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .domain-search-bar {
       display: flex;
@@ -148,6 +172,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
+      background: transparent;
+      border: none;
     }
     .faq-accordion-content {
       padding: 0 20px 18px;
@@ -155,40 +182,90 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
+    
+    /* Drawers (Menú Móvil y Carrito) */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-content {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 320px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      z-index: 950;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+    }
+    .drawer-content.open {
+      transform: translateX(0);
+    }
   </style>
 </head>
 <body>
 
   <!-- Contenedor para Notificaciones Toast -->
-  <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px;"></div>
+  <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
 
   <!-- Social Proof Notification (Actividad en Vivo) -->
   <div id="social-proof-toast" class="social-toast" style="display: none;">
-    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 242, 254, 0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">⚡</div>
+    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 242, 254, 0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; shrink-0;">⚡</div>
     <div>
       <div id="social-proof-text" style="font-size: 0.8rem; font-weight: 700; color: #fff;">Un usuario activó Mega Network</div>
       <div id="social-proof-time" style="font-size: 0.7rem; color: var(--text-dim);">Hace 2 minutos • Verificado</div>
     </div>
   </div>
 
-  <!-- Barra de Oferta Relámpago con Contador -->
+  <!-- Banner de Oferta Relámpago -->
   <div class="flash-bar">
-    <span>🔥 ¡OFERTA LIMITADA! Usa el código <b style="color: #fde047; text-transform: uppercase;">ALEDEVV</b> y obtén 15% OFF extra</span>
+    <span>🔥 ¡OFERTA LIMITADA! Usa el código <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
     <div class="countdown-badge">Finaliza en: <span id="flash-countdown">04:32:15</span></div>
   </div>
 
+  <!-- Barra Superior de Estado de Nodos -->
+  <div class="top-status-bar">
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);"></span>
+      <span style="font-weight: 700; color: #fff;">Estado de la Red:</span> Nodos US-Virginia 100% Operativos
+    </div>
+    <span>•</span>
+    <span>⚡ Uptime: 99.98%</span>
+    <span>•</span>
+    <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata Vía Discord</span>
+  </div>
+
   <!-- Navegación Principal -->
-  <header class="container">
+  <header class="container" style="position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px);">
     <nav class="navbar">
       <a href="/" class="brand">
-        <span class="brand-icon">⚡</span>
-        <span>synthetix.host</span>
+        <img src="/assets/img/logo.jpg" alt="Synthetix Host" style="width: 32px; height: 32px; object-fit: contain;">
+        <span>synthetix<span style="color: var(--neon-blue);">.host</span></span>
       </a>
 
       <div class="nav-links">
         <a href="#productos" onclick="switchTabDirect('networks')">Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos')">Minecraft</a>
         <a href="#productos" onclick="switchTabDirect('vps')">VPS Cloud</a>
+        <a href="#productos" onclick="switchTabDirect('discord')">Bots Discord</a>
         <a href="#dominios">Dominios</a>
         <a href="#configurador">Configurador</a>
         <a href="#pingtest">Test Latencia</a>
@@ -196,41 +273,123 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
 
-      <div class="auth-btns">
+      <div class="auth-btns" style="display: flex; align-items: center; gap: 10px;">
         <select id="currency-selector" onchange="changeCurrency(this.value)" style="background: rgba(10, 15, 29, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
 
+        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 8px 12px;" aria-label="Abrir Carrito">
+          🛒
+          <span id="cart-counter" style="position: absolute; top: -4px; right: -4px; background: var(--neon-blue); color: #fff; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
+        </button>
+
         <div id="auth-actions-desktop" style="display: flex; gap: 8px;">
           <a href="/login/" class="btn btn-ghost btn-sm">Iniciar sesión</a>
           <a href="/register/" class="btn btn-primary btn-sm">Registrarse</a>
         </div>
+
+        <button id="openDrawer" class="btn btn-ghost btn-sm" style="display: none;" aria-label="Abrir Menú Móvil">☰</button>
       </div>
     </nav>
   </header>
 
-  <main class="container">
+  <!-- Menú Móvil Drawer -->
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+  <div id="drawer" class="drawer-content">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; pb-4; border-bottom: 1px solid var(--border-subtle);">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px;">
+          <span style="font-weight: bold; color: #fff;">Synthetix Host</span>
+        </div>
+        <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">&times;</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; font-weight: 600;">
+        <span style="font-size: 0.75rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: 800;">Categorías</span>
+        <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();">Planes Networks</a>
+        <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();">Minecraft Servers</a>
+        <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();">VPS Cloud</a>
+        <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();">Bots Discord</a>
+        <div style="border-top: 1px solid var(--border-subtle); margin: 8px 0;"></div>
+        <a href="#dominios" onclick="cerrarMenuMobile()">Buscador de Dominios</a>
+        <a href="#configurador" onclick="cerrarMenuMobile()">Configurador</a>
+        <a href="#pingtest" onclick="cerrarMenuMobile()">Test Latencia</a>
+        <a href="#comparativa" onclick="cerrarMenuMobile()">Comparativa</a>
+        <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: bold;">💬 Únete al Discord</a>
+      </div>
+    </div>
+    <div id="auth-actions-mobile" style="display: flex; flex-direction: column; gap: 10px; pt-4; border-top: 1px solid var(--border-subtle);">
+      <a href="/login/" class="btn btn-ghost btn-wide" style="text-align: center;">Iniciar sesión</a>
+      <a href="/register/" class="btn btn-primary btn-wide" style="text-align: center;">Registrarse</a>
+    </div>
+  </div>
 
-    <!-- Hero Section Futurista -->
+  <!-- Carrito Drawer -->
+  <div id="cartOverlay" class="drawer-overlay"></div>
+  <div id="cartDrawer" class="drawer-content" style="width: 360px;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
+        <h3 style="font-weight: bold; color: #fff; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">🛒 Tu Carrito</h3>
+        <button id="closeCart" style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <div id="bundle-badge" style="display: none; margin-bottom: 12px; padding: 10px; background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.4); border-radius: 12px; color: var(--lila-bright); font-size: 0.75rem; font-weight: bold;">
+        ⚡ Pack Combinado: 10% de descuento automático aplicado.
+      </div>
+
+      <div id="promo-badge" style="display: none; margin-bottom: 12px; padding: 10px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 12px; color: var(--neon-green); font-size: 0.75rem; font-weight: bold; justify-content: space-between; align-items: center;">
+        <span id="promo-badge-text">🎁 Código aplicado</span>
+        <button onclick="removePromoCode()" style="background: none; border: none; color: #ef4444; font-weight: bold; cursor: pointer;">&times;</button>
+      </div>
+
+      <div id="cart-items" style="display: flex; flex-direction: column; gap: 12px; max-height: 40vh; overflow-y: auto;">
+        <p style="font-size: 0.8rem; color: var(--text-dim); text-align: center; padding: 24px 0;">Tu carrito está vacío.</p>
+      </div>
+    </div>
+
+    <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); uppercase; margin-bottom: 6px;">Código Creador / Cupón</label>
+        <div style="display: flex; gap: 6px;">
+          <input type="text" id="promo-code-input" placeholder="Ej. ALEDEVV" style="background: rgba(3, 5, 10, 0.8); border: 1px solid var(--border-subtle); color: #fff; font-size: 0.8rem; font-weight: 700; border-radius: 10px; padding: 8px 12px; flex: 1; text-transform: uppercase;">
+          <button onclick="applyPromoCode()" class="btn btn-ghost btn-sm">Aplicar</button>
+        </div>
+        <p id="promo-error" style="font-size: 0.7rem; color: #ef4444; margin-top: 4px; display: none;">Código invalido o expirado.</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Total Estimado:</span>
+        <span id="cart-total" style="font-size: 1.3rem; font-weight: 800; color: var(--neon-cyan);">$0.00</span>
+      </div>
+
+      <button onclick="checkoutWhatsAppOrDiscord()" class="btn btn-primary btn-wide" style="text-align: center;">
+        Completar Pedido (Vía Discord) &rarr;
+      </button>
+    </div>
+  </div>
+
+  <main class="container">
+    
+    <!-- Hero Section -->
     <section class="hero">
       <div class="eyebrow">
         <span class="pulse"></span>
-        <span>Infraestructura Cloud • AMD EPYC™</span>
+        <span>Infraestructura Cloud & Gaming • AMD EPYC™</span>
       </div>
-
+      
       <h1>
         Tu servidor online.<br>
         <em>Sin lag y al mejor precio.</em>
       </h1>
-
+      
       <p>
-        Aloja tus redes de Minecraft, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <b>panel.synthetixhost.lol</b>.
+        Aloja tus redes de Minecraft, servidores individuales, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <span style="color: var(--neon-cyan); font-weight: 600;">panel.synthetixhost.lol</span>.
       </p>
 
-      <!-- Copiador Rápido de IP de Pruebas -->
+      <!-- Copiador de IP de Servidor de Pruebas -->
       <div class="ip-copier">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor de Pruebas:</span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor de Prueba:</span>
         <span style="font-family: var(--font-code); font-size: 0.8rem; font-weight: 700; color: var(--neon-cyan);">mc.synthetixhost.lol</span>
         <button onclick="copyServerIP()" class="btn btn-primary btn-sm">📋 Copiar</button>
       </div>
@@ -240,10 +399,10 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-ghost">💬 Unirse a Discord</a>
       </div>
 
-      <!-- Tarjeta Consola de Estado de Red -->
+      <!-- Tarjeta Consola de Estado -->
       <div class="server-card">
         <div class="server-card-header">
-          <span>ESTADO DE RED EN TIEMPO REAL</span>
+          <span>ESTADO DE NODOS EN TIEMPO REAL</span>
           <span class="badge-online">● 100% OPERATIVO</span>
         </div>
         <div class="server-stats-grid">
@@ -253,7 +412,7 @@
           </div>
           <div class="stat-item">
             <b>NVMe Gen4</b>
-            <small>Almacenamiento</small>
+            <small>Almacenamiento RAID</small>
           </div>
           <div class="stat-item">
             <b>DDoS L7</b>
@@ -267,8 +426,8 @@
     <section id="dominios">
       <div class="domain-box">
         <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">IDENTIDAD WEB</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-top: 6px;">Encuentra el Dominio Perfecto</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Asegura la marca de tu servidor antes de que alguien más la registre.</p>
+        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-top: 6px;">Encuentra el Dominio Perfecto para tu Network</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Asegura tu marca antes de que alguien más la registre.</p>
 
         <div class="domain-search-bar">
           <input type="text" id="domain-input" placeholder="Escribe tu marca (ej. nixermc)">
@@ -292,9 +451,11 @@
     </section>
 
     <!-- Sección de Productos -->
-    <section id="productos" style="padding: 20px 0;">
-      
+    <section id="productos" style="padding: 20px 0 60px;">
       <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura optimizada con niveles de alto rendimiento y especificaciones exactas.</p>
+        
         <!-- Switch de Ciclo de Facturación -->
         <div style="display: inline-flex; gap: 6px; background: rgba(10, 15, 29, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle);">
           <button id="billing-monthly-btn" onclick="setBillingCycle('monthly')" class="btn btn-primary btn-sm">Facturación Mensual</button>
@@ -302,7 +463,7 @@
         </div>
       </div>
 
-      <!-- Tabs Deslizables -->
+      <!-- Tabs de Categorías -->
       <div class="tabs-wrapper">
         <div class="tabs-bar">
           <button data-target="networks" class="tab-btn active" onclick="switchTabDirect('networks')">Planes Networks</button>
@@ -312,112 +473,431 @@
         </div>
       </div>
 
-      <!-- Grid de Productos (Aura Cyber-SaaS) -->
-      <div id="cat-networks" class="products-grid">
+      <div id="planes-container">
         
-        <div class="product-card">
-          <span class="card-badge">6 GB RAM</span>
-          <h3>Network Starter</h3>
-          <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-          <ul class="card-features">
-            <li><b>6 GB</b> RAM Dedicada</li>
-            <li><b>2 vCPU</b> Cores AMD EPYC</li>
-            <li><b>70 GB</b> SSD NVMe</li>
-            <li>Proxy (Velocity) + BoxPvP</li>
-          </ul>
-          <button onclick="handlePlanBuy('Network Starter', 9.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+        <!-- 1. PLANES NETWORKS -->
+        <div class="plan-category products-grid" id="cat-networks">
+          
+          <div class="product-card">
+            <span class="card-badge">6 GB RAM</span>
+            <h3>Network Starter</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Ideal para iniciar tu red con rendimiento real y cero lag.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>6 GB</b> RAM Dedicada</li>
+              <li><b>2 vCPU</b> (100% Dedicados)</li>
+              <li><b>70 GB</b> SSD NVMe</li>
+              <li>Proxy (Velocity) + BoxPvP</li>
+              <li>Virginia, USA • Anti-DDoS</li>
+            </ul>
+            <button onclick="handlePlanBuy('Network Starter', 9.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
+          <div class="product-card">
+            <span class="card-badge">9 GB RAM</span>
+            <h3>Network Pro</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">El equilibrio perfecto para comunidades en crecimiento.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>9 GB</b> RAM Dedicada</li>
+              <li><b>3 vCPU</b> (100% Dedicados)</li>
+              <li><b>120 GB</b> SSD NVMe</li>
+              <li>Proxy (Velocity) + Lobby + BoxPvP</li>
+              <li>Virginia, USA • Anti-DDoS</li>
+            </ul>
+            <button onclick="handlePlanBuy('Network Pro', 14.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
+          <div class="product-card" style="border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);">
+            <span class="card-badge highlight">MÁS POPULAR</span>
+            <h3>Mega Network</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Potencia bruta para redes grandes con mundos masivos.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>14 GB</b> RAM (Repartida)</li>
+              <li><b>4 vCPU</b> (100% Dedicados)</li>
+              <li><b>180 GB</b> SSD NVMe</li>
+              <li>Proxy + Lobby + Survival/BoxPvP</li>
+              <li>Virginia, USA • Anti-DDoS</li>
+            </ul>
+            <button onclick="handlePlanBuy('Mega Network', 19.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
         </div>
 
-        <div class="product-card">
-          <span class="card-badge highlight">MÁS POPULAR</span>
-          <h3>Mega Network</h3>
-          <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-          <ul class="card-features">
-            <li><b>14 GB</b> RAM Dedicada</li>
-            <li><b>4 vCPU</b> Cores AMD EPYC</li>
-            <li><b>180 GB</b> SSD NVMe</li>
-            <li>Velocity + Lobby + Survival</li>
-          </ul>
-          <button onclick="handlePlanBuy('Mega Network', 19.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+        <!-- 2. MINECRAFT SERVERS -->
+        <div class="plan-category products-grid" id="cat-juegos" style="display: none;">
+          
+          <div class="product-card">
+            <span class="card-badge">2 GB RAM</span>
+            <h3>Starter</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para jugar con amigos cercanos.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="2.50">2.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>2 GB</b> RAM DDR4</li>
+              <li><b>1 vCPU Core</b> dedicado</li>
+              <li><b>25 GB</b> SSD NVMe</li>
+              <li>Slots Ilimitados</li>
+              <li>Plugins / Mods soportados</li>
+            </ul>
+            <button onclick="handlePlanBuy('Minecraft Starter (2GB)', 2.50)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+          <div class="product-card" style="border-color: var(--neon-blue);">
+            <span class="card-badge highlight">POPULAR</span>
+            <h3>Pro Server</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para servidores públicos y comunidades.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="4.99">4.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>4 GB</b> RAM DDR4</li>
+              <li><b>2 vCPU Cores</b> dedicados</li>
+              <li><b>50 GB</b> SSD NVMe</li>
+              <li>Slots Ilimitados</li>
+              <li>Base de datos MySQL incluida</li>
+            </ul>
+            <button onclick="handlePlanBuy('Minecraft Pro (4GB)', 4.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+          <div class="product-card">
+            <span class="card-badge">8 GB RAM</span>
+            <h3>Master Server</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para modpacks pesados y alta concurrencia.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>8 GB</b> RAM DDR4</li>
+              <li><b>3 vCPU Cores</b> dedicados</li>
+              <li><b>100 GB</b> SSD NVMe</li>
+              <li>Copias de seguridad automáticas</li>
+            </ul>
+            <button onclick="handlePlanBuy('Minecraft Master (8GB)', 9.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+          <div class="product-card">
+            <span class="card-badge">12 GB RAM</span>
+            <h3>Ultimate Server</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Potencia extrema sin restricciones.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>12 GB</b> RAM DDR4</li>
+              <li><b>4 vCPU Cores</b> dedicados</li>
+              <li><b>150 GB</b> SSD NVMe</li>
+              <li>Prioridad máxima en nodos</li>
+            </ul>
+            <button onclick="handlePlanBuy('Minecraft Ultimate (12GB)', 14.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
         </div>
 
-        <div class="product-card">
-          <span class="card-badge">9 GB RAM</span>
-          <h3>Network Pro</h3>
-          <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-          <ul class="card-features">
-            <li><b>9 GB</b> RAM Dedicada</li>
-            <li><b>3 vCPU</b> Cores AMD EPYC</li>
-            <li><b>120 GB</b> SSD NVMe</li>
-            <li>Velocity + Lobby + BoxPvP</li>
-          </ul>
-          <button onclick="handlePlanBuy('Network Pro', 14.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
+        <!-- 3. VPS CLOUD -->
+        <div class="plan-category products-grid" id="cat-vps" style="display: none;">
+          
+          <div class="product-card">
+            <span class="card-badge">2 GB RAM</span>
+            <h3>VPS Basic</h3>
+            <div class="card-price">$<span class="price-tag" data-usd="3.99">3.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>2 GB</b> RAM Dedicada</li>
+              <li><b>1 vCPU Core</b> KVM</li>
+              <li><b>30 GB</b> SSD NVMe</li>
+              <li>Acceso Root Completo (SSH)</li>
+            </ul>
+            <button onclick="handlePlanBuy('VPS Basic', 3.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+          <div class="product-card" style="border-color: var(--neon-blue);">
+            <span class="card-badge highlight">RECOMENDADO</span>
+            <h3>Cloud VPS 4</h3>
+            <div class="card-price">$<span class="price-tag" data-usd="10.99">10.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>8 GB</b> RAM Dedicada</li>
+              <li><b>4 vCPU Cores</b> KVM</li>
+              <li><b>100 GB</b> SSD NVMe Gen4</li>
+              <li>Acceso Root + IP Dedicada</li>
+            </ul>
+            <button onclick="handlePlanBuy('Cloud VPS 4', 10.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+          <div class="product-card">
+            <span class="card-badge">16 GB RAM</span>
+            <h3>VPS Pro</h3>
+            <div class="card-price">$<span class="price-tag" data-usd="18.99">18.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>16 GB</b> RAM Dedicada</li>
+              <li><b>6 vCPU Cores</b> KVM</li>
+              <li><b>200 GB</b> SSD NVMe Gen4</li>
+              <li>Acceso Root Completo (SSH)</li>
+            </ul>
+            <button onclick="handlePlanBuy('VPS Pro', 18.99)" class="btn btn-primary btn-wide">Comprar</button>
+          </div>
+
+        </div>
+
+        <!-- 4. BOT DISCORD -->
+        <div class="plan-category products-grid" id="cat-discord" style="display: none;">
+          
+          <div class="product-card">
+            <span class="card-badge">512 MB</span>
+            <h3>Bot #1 (Iniciación)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots ligeros en línea 24/7.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="1.50">1.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>512 MB</b> RAM Dedicada</li>
+              <li><b>50% CPU</b> Dedicado</li>
+              <li><b>5 GB</b> SSD NVMe</li>
+              <li>Uptime 24/7 Garantizado</li>
+            </ul>
+            <button onclick="handlePlanBuy('Plan Bot #1 (Iniciación)', 1.50)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
+          <div class="product-card" style="border-color: var(--neon-blue);">
+            <span class="card-badge highlight">POPULAR</span>
+            <h3>Bot #2 (Crecimiento)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots medianos con bases de datos.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="3.00">3.00</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>1 GB</b> RAM Dedicada</li>
+              <li><b>100% CPU</b> Dedicado</li>
+              <li><b>10 GB</b> SSD NVMe</li>
+              <li>Uptime 24/7 Garantizado</li>
+            </ul>
+            <button onclick="handlePlanBuy('Plan Bot #2 (Crecimiento)', 3.00)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
+          <div class="product-card">
+            <span class="card-badge">2 GB RAM</span>
+            <h3>Bot #3 (Profesional)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots grandes con soporte Lavalink / Música.</p>
+            <div class="card-price">$<span class="price-tag" data-usd="5.50">5.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
+            <ul class="card-features">
+              <li><b>2 GB</b> RAM Dedicada</li>
+              <li><b>200% CPU</b> Dedicado</li>
+              <li><b>25 GB</b> SSD NVMe</li>
+              <li>Soporte Lavalink / Música</li>
+            </ul>
+            <button onclick="handlePlanBuy('Plan Bot #3 (Profesional)', 5.50)" class="btn btn-primary btn-wide">Comprar Plan</button>
+          </div>
+
         </div>
 
       </div>
     </section>
 
     <!-- Tabla Comparativa de Capacidades -->
-    <section id="comparativa" style="padding: 40px 0;">
+    <section id="comparativa" style="padding: 40px 0 60px;">
       <div style="text-align: center; margin-bottom: 24px;">
+        <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">TRANSPARENCIA TOTAL</span>
         <h2 style="font-family: var(--font-heading); font-size: 2rem;">Comparativa Técnica de Arquitecturas</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem;">Descubre qué nivel de infraestructura requiere tu servidor.</p>
       </div>
 
-      <table class="tech-table">
-        <thead>
-          <tr>
-            <th>Característica</th>
-            <th>Minecraft Standalone</th>
-            <th style="color: var(--neon-cyan);">Network Velocity</th>
-            <th style="color: var(--lila-bright);">Cloud VPS KVM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>Procesador</b></td>
-            <td>AMD EPYC (Núcleo Compartido)</td>
-            <td style="color: var(--neon-cyan); font-weight: bold;">AMD EPYC 100% Dedicado</td>
-            <td>vCPU KVM Virtualizado</td>
-          </tr>
-          <tr>
-            <td><b>Almacenamiento</b></td>
-            <td>25 GB - 150 GB NVMe</td>
-            <td>70 GB - 180 GB NVMe Gen4</td>
-            <td>30 GB - 200 GB NVMe Gen4</td>
-          </tr>
-          <tr>
-            <td><b>Bases MySQL</b></td>
-            <td>1 Incluida</td>
-            <td style="color: var(--neon-cyan); font-weight: bold;">Ilimitadas</td>
-            <td>Instalables (Vía Root)</td>
-          </tr>
-          <tr>
-            <td><b>Acceso SSH/Root</b></td>
-            <td style="color: var(--text-dim);">No (SFTP)</td>
-            <td style="color: var(--text-dim);">No (SFTP Multiserver)</td>
-            <td style="color: var(--neon-cyan); font-weight: bold;">Sí (Consola SSH)</td>
-          </tr>
-          <tr>
-            <td><b>Anti-DDoS</b></td>
-            <td>Capa 4 / Capa 7</td>
-            <td style="color: var(--neon-cyan); font-weight: bold;">Capa 7 Game Shield Avanzado</td>
-            <td>Capa 4 Estándar</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="overflow-x: auto;">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Minecraft Standalone</th>
+              <th style="color: var(--neon-cyan);">Network Bungee / Velocity</th>
+              <th style="color: var(--lila-bright);">Cloud VPS KVM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Arquitectura CPU</b></td>
+              <td>AMD EPYC (Núcleo Compartido)</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">AMD EPYC 100% Dedicado</td>
+              <td>vCPU KVM Virtualizado</td>
+            </tr>
+            <tr>
+              <td><b>Almacenamiento NVMe</b></td>
+              <td>25 GB - 150 GB NVMe</td>
+              <td>70 GB - 180 GB NVMe Gen4</td>
+              <td>30 GB - 200 GB NVMe Gen4</td>
+            </tr>
+            <tr>
+              <td><b>Bases de datos MySQL</b></td>
+              <td>1 Incluida</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">Ilimitadas</td>
+              <td>Instalables (Vía Root)</td>
+            </tr>
+            <tr>
+              <td><b>Acceso SSH / Root</b></td>
+              <td style="color: var(--text-dim);">No (Solo SFTP)</td>
+              <td style="color: var(--text-dim);">No (SFTP Multiserver)</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">Sí (Consola Root SSH)</td>
+            </tr>
+            <tr>
+              <td><b>Protección Anti-DDoS</b></td>
+              <td>Capa 4 / Capa 7 (100 Gbps)</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">Capa 7 Game Shield Avanzada</td>
+              <td>Capa 4 Estándar</td>
+            </tr>
+            <tr>
+              <td><b>Copias de Seguridad</b></td>
+              <td>Diarias</td>
+              <td>Automáticas Multi-Slot</td>
+              <td>Manuales / Snapshots</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Test de Latencia Interactivo -->
+    <section id="pingtest" style="padding: 40px 0 60px;">
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 32px; backdrop-filter: blur(16px);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+          <div>
+            <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RED DE BAJA LATENCIA</span>
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Comprueba la respuesta de nuestras ubicaciones</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Nodos interconectados a backbones de fibra tier-1 con enrutamiento BGP optimizado.</p>
+          </div>
+          <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 1.5rem;">🇺🇸</span>
+              <div>
+                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">US East (Virginia)</div>
+                <div style="font-size: 0.7rem; color: var(--text-dim);">Datacenter Principal</div>
+              </div>
+            </div>
+            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+          </div>
+
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 1.5rem;">🇩🇪</span>
+              <div>
+                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">EU Central (Frankfurt)</div>
+                <div style="font-size: 0.7rem; color: var(--text-dim);">Nodo Europa</div>
+              </div>
+            </div>
+            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+          </div>
+
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 1.5rem;">🇧🇷</span>
+              <div>
+                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">SA East (São Paulo)</div>
+                <div style="font-size: 0.7rem; color: var(--text-dim);">Routing Latam</div>
+              </div>
+            </div>
+            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware & Características -->
+    <section id="hardware" style="padding: 40px 0 60px;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RENDIMIENTO EXTREMO</span>
+        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Potenciado por Hardware Empresarial</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Cada nodo está diseñado para ofrecer la máxima tasa de ticks y velocidad.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">💻</div>
+          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Procesadores AMD EPYC™</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Frecuencias de reloj ultra altas con múltiples núcleos dedicados para garantizar cero lag en juegos y compilaciones pesadas.</p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">⚡</div>
+          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Almacenamiento NVMe Gen4</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Discos de estado sólido de última generación en RAID configurados para lecturas instantáneas y guardados de mundos sin pausas.</p>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">🛡️</div>
+          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Anti-DDoS de Capa 7</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Mitigación inteligente automática integrada para proteger tu servidor de ataques maliciosos sin afectar la latencia legítima.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reseñas / Testimonios -->
+    <section id="reseñas" style="padding: 40px 0 60px;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">COMUNIDAD</span>
+        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Lo que dicen nuestros clientes</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Administradores de redes y desarrolladores confían en nuestra infraestructura.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"Migramos nuestra Network completa a Synthetix Host y el rendimiento con los nodos AMD EPYC es increíble. Cero lag y el panel vuela."</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(59,130,246,0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">NK</div>
+            <div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">NixerMC Network</div>
+              <div style="font-size: 0.7rem; color: var(--text-dim);">Administrador General</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"El mejor soporte y los precios más competitivos. Tengo mis bots de Discord y un VPS para pruebas corriendo 24/7 sin interrupciones."</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(124,58,237,0.2); color: var(--lila-bright); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">AL</div>
+            <div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">Aledevv</div>
+              <div style="font-size: 0.7rem; color: var(--text-dim);">Desarrollador Independiente</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"La activación instantánea es real. Pagué el plan y en menos de 1 minuto ya tenía los datos de acceso en mi panel. 100% recomendado."</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(16,185,129,0.2); color: var(--neon-green); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">CR</div>
+            <div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">Cretane</div>
+              <div style="font-size: 0.7rem; color: var(--text-dim);">Creador de Modpacks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner Discord Soporte -->
+    <section style="padding: 20px 0 60px;">
+      <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(124, 58, 237, 0.2)); border: 1px solid rgba(124, 58, 237, 0.4); padding: 36px; border-radius: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">COMUNIDAD ACTIVA</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px;">¿Tienes dudas o necesitas un plan personalizado?</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem; max-width: 600px; margin-top: 6px;">Únete a nuestro servidor oficial de Discord para recibir asistencia técnica directa, reportar dudas o concretar compras asistidas.</p>
+        </div>
+        <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-primary" style="background: #4f46e5; border-color: #6366f1;">
+          💬 Unirse al Discord Oficial
+        </a>
+      </div>
     </section>
 
     <!-- Configurador Interactivo -->
-    <section id="configurador" style="padding: 40px 0;">
+    <section id="configurador" style="padding: 20px 0 60px;">
       <div class="builder-box">
         <div>
-          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 20px;">Configura tu servidor a medida</h2>
+          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 6px;">Configura tu servidor a medida</h2>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 24px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
           
           <div class="slider-group">
             <div class="slider-header">
               <label>Memoria RAM Dedicada</label>
-              <span id="ram-value">8 GB</span>
+              <span id="ram-value" style="color: var(--neon-cyan); font-weight: bold;">8 GB</span>
             </div>
             <input id="ram-slider" type="range" min="8" max="48" value="8" step="8">
           </div>
@@ -425,72 +905,82 @@
           <div class="slider-group">
             <div class="slider-header">
               <label>vCPU Cores Dedicados</label>
-              <span id="cpu-value">4 vCPU</span>
+              <span id="cpu-value" style="color: var(--neon-cyan); font-weight: bold;">4 vCPU</span>
             </div>
             <input id="cpu-slider" type="range" min="4" max="12" value="4" step="2">
+          </div>
+
+          <!-- Métricas Calculadas -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px;">
+            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">Capacidad Recomendada</div>
+              <div id="est-players" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-cyan); margin-top: 4px;">~60 Jugadores</div>
+            </div>
+            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">NVMe Incluido</div>
+              <div id="est-ssd" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-cyan); margin-top: 4px;">100 GB NVMe</div>
+            </div>
+            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">Respaldos Diarios</div>
+              <div id="est-backups" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-green); margin-top: 4px;">3 Slots Auto</div>
+            </div>
           </div>
         </div>
 
         <div class="checkout-col">
           <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimación Calculada</span>
-          <div class="total-price">$<span id="total-price" data-base-usd="19.99">19.99</span> <span>/mes</span></div>
+          <div class="total-price">$<span id="total-price" data-base-usd="19.99">19.99</span> <span id="calc-currency">USD</span></div>
+          <span id="calc-billing-period" style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 16px;">por mes</span>
           <button onclick="addConfigToCart()" class="btn btn-primary btn-wide">🛒 Añadir Configuración</button>
         </div>
       </div>
     </section>
 
-    <!-- Test de Latencia -->
-    <section id="pingtest" style="padding: 40px 0;">
-      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 32px; border-radius: 24px; backdrop-filter: blur(16px);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
-          <div>
-            <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Test de Respuesta / Latencia</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Prueba la velocidad de conexión en tiempo real desde tu ubicación.</p>
-          </div>
-          <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇺🇸 US Virginia</b><div style="font-size: 0.7rem; color: var(--text-dim);">Datacenter Principal</div></div>
-            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
-          </div>
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇩🇪 EU Frankfurt</b><div style="font-size: 0.7rem; color: var(--text-dim);">Nodo Europa</div></div>
-            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
-          </div>
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div><b>🇧🇷 SA São Paulo</b><div style="font-size: 0.7rem; color: var(--text-dim);">Routing Latam</div></div>
-            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ en Acordeón -->
-    <section id="faq" style="padding: 40px 0;">
-      <div style="text-align: center; margin-bottom: 24px;">
+    <section id="faq" style="padding: 20px 0 60px;">
+      <div style="text-align: center; margin-bottom: 32px;">
         <h2 style="font-family: var(--font-heading); font-size: 2rem;">Preguntas Frecuentes</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Resolvemos tus dudas sobre nuestros servicios.</p>
       </div>
 
-      <div style="max-width: 700px; margin: 0 auto;">
+      <div style="max-width: 720px; margin: 0 auto;">
         <div class="faq-accordion-item">
           <button onclick="toggleFaq('faq-1')" class="faq-accordion-btn">
-            <span>¿Cómo se realiza la activación del servidor?</span>
-            <span id="faq-1-icon">+</span>
+            <span>¿Cómo se realiza la activación de un servicio?</span>
+            <span id="faq-1-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
           </button>
           <div id="faq-1" class="faq-accordion-content" style="display: none;">
-            Al completar tu orden desde el carrito, se copiará el resumen. Abres un ticket en nuestro Discord pegando tu orden para procesar la entrega inmediata de tus credenciales.
+            Una vez generado tu pedido desde el carrito, se copiará la orden completa. Luego abres un ticket en nuestro Discord pegando tu orden para procesar tu acceso inmediato y configurarte las credenciales en el panel.
           </div>
         </div>
 
         <div class="faq-accordion-item">
           <button onclick="toggleFaq('faq-2')" class="faq-accordion-btn">
-            <span>¿Puedo cambiar de plan más adelante?</span>
-            <span id="faq-2-icon">+</span>
+            <span>¿Puedo cambiar o escalar mi plan en el futuro?</span>
+            <span id="faq-2-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
           </button>
           <div id="faq-2" class="faq-accordion-content" style="display: none;">
-            Sí, puedes realizar upgrades de RAM o vCPU en cualquier momento sin perder ningún archivo ni la IP de tu servidor.
+            Sí, puedes solicitar un upgrade de recursos (RAM, vCPU o Almacenamiento NVMe) en cualquier momento sin perder ningún dato ni la configuración de tus mapas o bases de datos.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button onclick="toggleFaq('faq-3')" class="faq-accordion-btn">
+            <span>¿Ofrecen descuentos por pagos anuales?</span>
+            <span id="faq-3-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
+          </button>
+          <div id="faq-3" class="faq-accordion-content" style="display: none;">
+            ¡Correcto! Puedes seleccionar la opción "Facturación Anual" en la parte superior de nuestro catálogo para aplicar un 20% de descuento automático en todos tus servicios.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button onclick="toggleFaq('faq-4')" class="faq-accordion-btn">
+            <span>¿Qué tipo de mitigación Anti-DDoS utilizan?</span>
+            <span id="faq-4-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
+          </button>
+          <div id="faq-4" class="faq-accordion-content" style="display: none;">
+            Utilizamos protección distribuida de Capa 7 con filtros específicos para tráfico Minecraft (Paper/Velocity) y paquetes UDP/TCP, bloqueando ataques volumétricos sin causar desconexiones ni picos de ping.
           </div>
         </div>
       </div>
@@ -498,11 +988,12 @@
 
   </main>
 
-  <footer style="border-top: 1px solid var(--border-subtle); padding: 32px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim);">
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 32px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
     <p>&copy; 2026 Synthetix Host. Todos los derechos reservados.</p>
+    <p style="margin-top: 6px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte y Comunidad en Discord</a></p>
   </footer>
 
-  <!-- Scripts con Lógica de Negocio y Supabase -->
+  <!-- Scripts con Lógica de Negocio, Supabase y Gestión del Carrito -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 
@@ -512,113 +1003,521 @@
     const annualDiscount = 0.80;
 
     let cart = JSON.parse(localStorage.getItem('synthetix_cart')) || [];
+    let activePromo = JSON.parse(localStorage.getItem('synthetix_promo')) || null;
 
-    window.showToast = function(msg) {
+    // Toast Notification
+    window.showToast = function(message) {
       const container = document.getElementById('toast-container');
-      if(!container) return;
-      const t = document.createElement('div');
-      t.style.cssText = "background: rgba(10, 15, 29, 0.9); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; backdrop-filter: blur(10px); shadow: 0 10px 25px rgba(0,0,0,0.5);";
-      t.innerHTML = `✅ ${msg}`;
-      container.appendChild(t);
-      setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3000);
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.style.cssText = "background: rgba(10, 15, 29, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); pointer-events: auto; transition: opacity 0.3s ease;";
+      toast.innerHTML = `✅ ${message}`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
     }
 
+    // Copiar IP del servidor de prueba
     window.copyServerIP = function() {
       navigator.clipboard.writeText("mc.synthetixhost.lol");
       showToast("¡IP mc.synthetixhost.lol copiada!");
     }
 
+    // FAQ Accordion
     window.toggleFaq = function(id) {
       const el = document.getElementById(id);
       const icon = document.getElementById(id + '-icon');
-      if(el) {
-        const isHidden = el.style.display === 'none';
+      if (el) {
+        const isHidden = el.style.display === 'none' || el.style.display === '';
         el.style.display = isHidden ? 'block' : 'none';
-        if(icon) icon.textContent = isHidden ? '−' : '+';
+        if (icon) icon.textContent = isHidden ? '−' : '+';
       }
     }
 
+    // Buscador de dominios simulado
     window.checkDomainAvailability = function() {
       const input = document.getElementById('domain-input');
       const tld = document.getElementById('tld-select').value;
-      const res = document.getElementById('domain-result');
-      if(!input || !input.value.trim()) return alert("Escribe un nombre de dominio.");
+      const resultBox = document.getElementById('domain-result');
+      const nameDisplay = document.getElementById('domain-name-display');
+      const priceDisplay = document.getElementById('domain-price-display');
 
-      const clean = input.value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
-      const full = clean + tld;
-      const prices = { ".lol": 1.99, ".store": 2.50, ".com": 11.99, ".net": 13.50 };
+      if (!input || !input.value.trim()) {
+        alert("Escribe un nombre de marca para consultar.");
+        return;
+      }
 
-      document.getElementById('domain-name-display').textContent = full;
-      document.getElementById('domain-price-display').textContent = `$${prices[tld]}`;
-      res.style.display = 'flex';
-      res.setAttribute('data-name', full);
-      res.setAttribute('data-price', prices[tld]);
+      const cleanName = input.value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+      const fullName = cleanName + tld;
+
+      const prices = {
+        ".lol": 1.99,
+        ".store": 2.50,
+        ".com": 11.99,
+        ".net": 13.50
+      };
+
+      if (nameDisplay) nameDisplay.textContent = fullName;
+      if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
+
+      if (resultBox) {
+        resultBox.style.display = 'flex';
+        resultBox.setAttribute('data-domain-name', fullName);
+        resultBox.setAttribute('data-domain-price', prices[tld]);
+      }
     }
 
     window.addDomainToCart = function() {
-      const res = document.getElementById('domain-result');
-      if(res) {
-        const name = res.getAttribute('data-name');
-        const price = parseFloat(res.getAttribute('data-price'));
+      const resultBox = document.getElementById('domain-result');
+      if (resultBox) {
+        const name = resultBox.getAttribute('data-domain-name');
+        const price = parseFloat(resultBox.getAttribute('data-domain-price'));
         addToCart(`Dominio ${name}`, price);
       }
     }
 
-    window.addToCart = function(name, usdPrice) {
-      const mult = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
-      cart.push({ name: name, priceUsd: usdPrice * mult });
+    window.changeCurrency = function(newCurrency) {
+      currentCurrency = newCurrency;
+      localStorage.setItem('synthetix_currency', newCurrency);
+      updateAllPrices();
+    }
+
+    window.setBillingCycle = function(cycle) {
+      currentBillingCycle = cycle;
+      localStorage.setItem('synthetix_billing', cycle);
+
+      const mBtn = document.getElementById('billing-monthly-btn');
+      const aBtn = document.getElementById('billing-annual-btn');
+
+      if (cycle === 'annual') {
+        if (mBtn) mBtn.className = "btn btn-ghost btn-sm";
+        if (aBtn) aBtn.className = "btn btn-primary btn-sm";
+      } else {
+        if (mBtn) mBtn.className = "btn btn-primary btn-sm";
+        if (aBtn) aBtn.className = "btn btn-ghost btn-sm";
+      }
+
+      updateAllPrices();
+    }
+
+    const validCodes = {
+      "ALEDEVV": 0.15,
+      "NIXER": 0.10,
+      "VIP": 0.20
+    };
+
+    window.applyPromoCode = function() {
+      const input = document.getElementById('promo-code-input');
+      const errorEl = document.getElementById('promo-error');
+      const code = input.value.trim().toUpperCase();
+
+      if (validCodes[code] !== undefined) {
+        activePromo = { code: code, discount: validCodes[code] };
+        localStorage.setItem('synthetix_promo', JSON.stringify(activePromo));
+        errorEl.style.display = 'none';
+        input.value = '';
+        showToast(`Código ${code} aplicado (-${validCodes[code] * 100}%)`);
+        updateCartUI();
+      } else {
+        errorEl.style.display = 'block';
+      }
+    }
+
+    window.removePromoCode = function() {
+      activePromo = null;
+      localStorage.removeItem('synthetix_promo');
+      updateCartUI();
+    }
+
+    window.checkoutWhatsAppOrDiscord = async function() {
+      if (cart.length === 0) {
+        alert('Tu carrito está vacío.');
+        return;
+      }
+
+      let userEmail = "Invitado / No registrado";
+      let userName = "Sin sesión web";
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session && session.user) {
+          userEmail = session.user.email;
+          userName = session.user.user_metadata?.username || session.user.email.split('@')[0];
+        }
+      } catch (e) {
+        console.log("Sesión no detectada", e);
+      }
+
+      let bundleDiscount = cart.length >= 2 ? 0.90 : 1.0;
+      let promoInfo = activePromo ? `${activePromo.code} (-${activePromo.discount * 100}%)` : "Ninguno";
+      let promoDiscount = activePromo ? (1 - activePromo.discount) : 1.0;
+      
+      const symbol = currentCurrency === 'EUR' ? '€' : '$';
+      const totalUsd = cart.reduce((sum, item) => sum + item.priceUsd, 0);
+      const finalTotal = ((currentCurrency === 'EUR' ? totalUsd * exchangeRate : totalUsd) * bundleDiscount * promoDiscount).toFixed(2);
+
+      let itemsListText = cart.map((item, idx) => {
+        let itemPrice = (currentCurrency === 'EUR' ? item.priceUsd * exchangeRate : item.priceUsd) * bundleDiscount * promoDiscount;
+        return `  • ${idx + 1}. ${item.name} -> ${symbol}${itemPrice.toFixed(2)} ${currentCurrency}`;
+      }).join('\n');
+
+      const orderMessage = `📋 **NUEVO PEDIDO - SYNTHETIX HOST** 📋\n` +
+        `👤 **Usuario:** ${userName}\n` +
+        `📧 **Correo:** ${userEmail}\n` +
+        `💱 **Moneda / Modo:** ${currentCurrency} (${currentBillingCycle === 'annual' ? 'Anual' : 'Mensual'})\n` +
+        `🎟️ **Código Promo:** ${promoInfo}\n` +
+        `🛒 **Servicios solicitados:**\n${itemsListText}\n` +
+        `💰 **TOTAL A PAGAR:** ${symbol}${finalTotal} ${currentCurrency}\n` +
+        `----------------------------------------\n` +
+        `_Enviado desde el carrito web de Synthetix Host_`;
+
+      try {
+        await navigator.clipboard.writeText(orderMessage);
+        alert('¡Tu orden ha sido copiada al portapapeles!\n\nTe estamos redirigiendo a Discord. Ve al canal de tickets y presiona Ctrl+V para enviar tu pedido completo.');
+      } catch (err) {
+        console.error('Error al copiar:', err);
+        alert('Toma una captura de tu pedido antes de ir a Discord.');
+      }
+
+      window.open('https://discord.gg/QDZ5ff5Shb', '_blank');
+    }
+
+    function updateAllPrices() {
+      const selector = document.getElementById('currency-selector');
+      if (selector) selector.value = currentCurrency;
+
+      const cycleMultiplier = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
+
+      document.querySelectorAll('.price-tag').forEach(tag => {
+        const rawUsd = parseFloat(tag.getAttribute('data-usd'));
+        const usdVal = rawUsd * cycleMultiplier;
+        const finalVal = currentCurrency === 'EUR' ? usdVal * exchangeRate : usdVal;
+        tag.textContent = finalVal.toFixed(2);
+      });
+
+      document.querySelectorAll('.currency-symbol').forEach(sym => {
+        sym.textContent = currentCurrency;
+      });
+
+      document.querySelectorAll('.billing-label').forEach(lbl => {
+        lbl.textContent = currentBillingCycle === 'annual' ? '/mes (Anual)' : '/mes';
+      });
+
+      const totalPriceEl = document.getElementById('total-price');
+      const calcCurrEl = document.getElementById('calc-currency');
+      const calcPeriodEl = document.getElementById('calc-billing-period');
+
+      if (totalPriceEl && calcCurrEl) {
+        const rawBaseUsd = parseFloat(totalPriceEl.getAttribute('data-base-usd'));
+        const baseUsd = rawBaseUsd * cycleMultiplier;
+        const finalCalc = currentCurrency === 'EUR' ? baseUsd * exchangeRate : baseUsd;
+        totalPriceEl.textContent = finalCalc.toFixed(2);
+        calcCurrEl.textContent = currentCurrency;
+        if (calcPeriodEl) calcPeriodEl.textContent = currentBillingCycle === 'annual' ? 'por mes (Plan Anual)' : 'por mes';
+      }
+
+      updateCartUI();
+    }
+
+    window.saveCart = function() {
       localStorage.setItem('synthetix_cart', JSON.stringify(cart));
-      showToast(`"${name}" añadido al carrito`);
+      updateCartUI();
     }
 
-    window.handlePlanBuy = function(name, baseUsd) {
-      addToCart(name, baseUsd);
+    window.addToCart = function(name, usdPrice) {
+      const cycleMultiplier = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
+      const finalUsd = usdPrice * cycleMultiplier;
+      const cycleSuffix = currentBillingCycle === 'annual' ? ' (Anual)' : '';
+      
+      cart.push({ name: `${name}${cycleSuffix}`, priceUsd: finalUsd });
+      saveCart();
+      showToast(`${name} añadido al carrito.`);
+      openCartDrawer();
     }
 
+    window.handlePlanBuy = function(name, baseUsdPrice) {
+      addToCart(name, baseUsdPrice);
+    }
+
+    window.removeFromCart = function(index) {
+      const item = cart[index];
+      cart.splice(index, 1);
+      saveCart();
+      if (item) showToast(`Se eliminó "${item.name}"`);
+    }
+
+    window.addConfigToCart = function() {
+      const ram = document.getElementById('ram-slider').value;
+      const cpu = document.getElementById('cpu-slider').value;
+      const baseUsdVal = parseFloat(document.getElementById('total-price').getAttribute('data-base-usd'));
+      const configName = `Network Custom (${ram} GB RAM, ${cpu} vCPU)`;
+      addToCart(configName, baseUsdVal);
+    }
+
+    function updateCartUI() {
+      const counter = document.getElementById('cart-counter');
+      const itemsContainer = document.getElementById('cart-items');
+      const totalContainer = document.getElementById('cart-total');
+      const bundleBadge = document.getElementById('bundle-badge');
+      const promoBadge = document.getElementById('promo-badge');
+      const promoBadgeText = document.getElementById('promo-badge-text');
+
+      if (counter) counter.textContent = cart.length;
+
+      let bundleDiscount = cart.length >= 2 ? 0.90 : 1.0;
+      if (cart.length >= 2) {
+        if (bundleBadge) bundleBadge.style.display = 'block';
+      } else {
+        if (bundleBadge) bundleBadge.style.display = 'none';
+      }
+
+      let promoDiscount = 1.0;
+      if (activePromo) {
+        promoDiscount = 1 - activePromo.discount;
+        if (promoBadge) promoBadge.style.display = 'flex';
+        if (promoBadgeText) promoBadgeText.textContent = `🎁 Código ${activePromo.code} (-${activePromo.discount * 100}%)`;
+      } else {
+        if (promoBadge) promoBadge.style.display = 'none';
+      }
+
+      const symbol = currentCurrency === 'EUR' ? '€' : '$';
+
+      if (itemsContainer) {
+        if (cart.length === 0) {
+          itemsContainer.innerHTML = `<p style="font-size: 0.8rem; color: var(--text-dim); text-align: center; padding: 24px 0;">Tu carrito está vacío.</p>`;
+        } else {
+          itemsContainer.innerHTML = cart.map((item, index) => {
+            const itemPrice = (currentCurrency === 'EUR' ? item.priceUsd * exchangeRate : item.priceUsd) * bundleDiscount * promoDiscount;
+            return `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(3, 5, 10, 0.6); padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border-subtle); font-size: 0.8rem;">
+                <div>
+                  <div style="font-weight: bold; color: #fff;">${item.name}</div>
+                  <div style="color: var(--neon-cyan); font-weight: 600;">${symbol}${itemPrice.toFixed(2)} ${currentCurrency}</div>
+                </div>
+                <button onclick="removeFromCart(${index})" style="background: none; border: none; color: #ef4444; font-weight: bold; cursor: pointer; font-size: 1.1rem;">&times;</button>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      if (totalContainer) {
+        const totalUsd = cart.reduce((sum, item) => sum + item.priceUsd, 0);
+        const finalTotal = (currentCurrency === 'EUR' ? totalUsd * exchangeRate : totalUsd) * bundleDiscount * promoDiscount;
+        totalContainer.textContent = `${symbol}${finalTotal.toFixed(2)} ${currentCurrency}`;
+      }
+    }
+
+    function openCartDrawer() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.add('open');
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.remove('open');
+    }
+
+    window.switchTabDirect = function(targetCategory) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const categories = document.querySelectorAll('.plan-category');
+
+      tabs.forEach(tab => {
+        if (tab.getAttribute('data-target') === targetCategory) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      categories.forEach(cat => {
+        if (cat.id === `cat-${targetCategory}`) {
+          cat.style.display = 'grid';
+        } else {
+          cat.style.display = 'none';
+        }
+      });
+    }
+
+    window.cerrarMenuMobile = function() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+    }
+
+    // Ping tester
     window.runPingTest = function() {
-      document.getElementById('ping-us').textContent = "Midiendo...";
-      document.getElementById('ping-eu').textContent = "Midiendo...";
-      document.getElementById('ping-sa').textContent = "Midiendo...";
+      const btn = document.getElementById('ping-btn');
+      const elUs = document.getElementById('ping-us');
+      const elEu = document.getElementById('ping-eu');
+      const elSa = document.getElementById('ping-sa');
+
+      if (btn) btn.disabled = true;
+      if (elUs) elUs.textContent = "Midiendo...";
+      if (elEu) elEu.textContent = "Midiendo...";
+      if (elSa) elSa.textContent = "Midiendo...";
+
       setTimeout(() => {
-        document.getElementById('ping-us').textContent = Math.floor(Math.random()*(45-28)+28) + " ms";
-        document.getElementById('ping-eu').textContent = Math.floor(Math.random()*(115-85)+85) + " ms";
-        document.getElementById('ping-sa').textContent = Math.floor(Math.random()*(135-105)+105) + " ms";
-      }, 1000);
+        const usPing = Math.floor(Math.random() * (45 - 28 + 1)) + 28;
+        const euPing = Math.floor(Math.random() * (115 - 85 + 1)) + 85;
+        const saPing = Math.floor(Math.random() * (135 - 105 + 1)) + 105;
+
+        if (elUs) elUs.textContent = `${usPing} ms`;
+        if (elEu) elEu.textContent = `${euPing} ms`;
+        if (elSa) elSa.textContent = `${saPing} ms`;
+        if (btn) btn.disabled = false;
+      }, 1200);
+    }
+
+    // Social Proof Toast simulation
+    const socialActivities = [
+      { text: "Un usuario en Bogotá renovó Mega Network", time: "Hace 1 min" },
+      { text: "Se activó un nuevo Cloud VPS 4 en Virginia", time: "Hace 4 min" },
+      { text: "Un desarrollador registró un plan Bot #2", time: "Hace 7 min" },
+      { text: "NixerMC Network expandió 8 GB adicionales", time: "Hace 12 min" }
+    ];
+
+    let socialIndex = 0;
+    function triggerSocialProof() {
+      const el = document.getElementById('social-proof-toast');
+      const txt = document.getElementById('social-proof-text');
+      const tm = document.getElementById('social-proof-time');
+
+      if (!el || !txt || !tm) return;
+
+      txt.textContent = socialActivities[socialIndex].text;
+      tm.textContent = socialActivities[socialIndex].time + " • Verificado";
+
+      el.style.display = 'flex';
+
+      setTimeout(() => {
+        el.style.display = 'none';
+      }, 4500);
+
+      socialIndex = (socialIndex + 1) % socialActivities.length;
     }
 
     // Timer Regresivo
-    let timerSecs = 16335;
-    setInterval(() => {
+    let totalSeconds = 16335;
+    function updateCountdown() {
       const cd = document.getElementById('flash-countdown');
-      if(!cd) return;
-      let h = Math.floor(timerSecs / 3600);
-      let m = Math.floor((timerSecs % 3600) / 60);
-      let s = timerSecs % 60;
+      if (!cd) return;
+
+      let h = Math.floor(totalSeconds / 3600);
+      let m = Math.floor((totalSeconds % 3600) / 60);
+      let s = totalSeconds % 60;
+
       cd.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      if(timerSecs > 0) timerSecs--;
-    }, 1000);
-
-    // Calculadora Sliders
-    const rSlider = document.getElementById('ram-slider');
-    const cSlider = document.getElementById('cpu-slider');
-    function updateCalc() {
-      if(!rSlider || !cSlider) return;
-      const r = parseInt(rSlider.value);
-      const c = parseInt(cSlider.value);
-      document.getElementById('ram-value').textContent = r + ' GB';
-      document.getElementById('cpu-value').textContent = c + ' vCPU';
-      
-      let base = 19.99;
-      if(r >= 32) base = 49.99;
-      else if(r >= 16) base = 29.99;
-
-      document.getElementById('total-price').textContent = base.toFixed(2);
+      if (totalSeconds > 0) totalSeconds--;
     }
 
-    if(rSlider && cSlider) {
-      rSlider.addEventListener('input', updateCalc);
-      cSlider.addEventListener('input', updateCalc);
-    }
+    document.addEventListener('DOMContentLoaded', async () => {
+      setBillingCycle(currentBillingCycle);
+      updateAllPrices();
+
+      setInterval(updateCountdown, 1000);
+      setTimeout(() => {
+        triggerSocialProof();
+        setInterval(triggerSocialProof, 15000);
+      }, 4000);
+
+      const desktopAuth = document.getElementById('auth-actions-desktop');
+      const mobileAuth = document.getElementById('auth-actions-mobile');
+
+      try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+
+        if (session && session.user) {
+          const username = session.user.user_metadata?.username || session.user.email.split('@')[0];
+
+          if (desktopAuth) {
+            desktopAuth.innerHTML = `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <a href="/dashboard/" class="btn btn-ghost btn-sm" style="display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--neon-green);"></span>
+                  ${username}
+                </a>
+                <a href="/dashboard/" class="btn btn-primary btn-sm">Panel</a>
+              </div>
+            `;
+          }
+
+          if (mobileAuth) {
+            mobileAuth.innerHTML = `
+              <a href="/dashboard/" class="btn btn-ghost btn-wide" style="text-align: center;">Mi Panel (${username})</a>
+              <button id="logout-btn" class="btn btn-primary btn-wide" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #ef4444; cursor: pointer;">Cerrar Sesión</button>
+            `;
+            document.getElementById('logout-btn')?.addEventListener('click', async () => {
+              await supabaseClient.auth.signOut();
+              window.location.reload();
+            });
+          }
+        }
+      } catch (err) {
+        console.error('Error al comprobar sesión:', err);
+      }
+
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const openBtn = document.getElementById('openDrawer');
+      const closeBtn = document.getElementById('closeDrawer');
+
+      const cartDrawer = document.getElementById('cartDrawer');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const openCartBtn = document.getElementById('openCart');
+      const closeCartBtn = document.getElementById('closeCart');
+
+      if (openBtn && drawer && overlay) {
+        openBtn.addEventListener('click', () => { drawer.classList.add('open'); overlay.classList.add('open'); });
+      }
+      if (closeBtn) closeBtn.addEventListener('click', window.cerrarMenuMobile);
+      if (overlay) overlay.addEventListener('click', window.cerrarMenuMobile);
+
+      if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
+      if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+      if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
+
+      const ramSlider = document.getElementById('ram-slider');
+      const ramValue = document.getElementById('ram-value');
+      const cpuSlider = document.getElementById('cpu-slider');
+      const cpuValue = document.getElementById('cpu-value');
+      const totalPrice = document.getElementById('total-price');
+
+      const estPlayers = document.getElementById('est-players');
+      const estSsd = document.getElementById('est-ssd');
+      const estBackups = document.getElementById('est-backups');
+
+      function calcularPrecioConfig() {
+        const ram = parseInt(ramSlider.value);
+        const cpu = parseInt(cpuSlider.value);
+        ramValue.textContent = `${ram} GB`;
+        cpuValue.textContent = `${cpu} vCPU`;
+
+        let baseUsd = 19.99;
+        if (ram >= 48) baseUsd = 59.99;
+        else if (ram >= 24) baseUsd = 32.99;
+        else if (ram >= 16) baseUsd = 21.99;
+
+        if (estPlayers) estPlayers.textContent = `~${ram * 8} Jugadores`;
+        if (estSsd) estSsd.textContent = `${ram * 12.5} GB NVMe`;
+        if (estBackups) estBackups.textContent = `${Math.min(5, Math.floor(ram / 8) + 2)} Slots Auto`;
+
+        totalPrice.setAttribute('data-base-usd', baseUsd);
+        const cycleMultiplier = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
+        const adjustedBaseUsd = baseUsd * cycleMultiplier;
+        const finalTotal = currentCurrency === 'EUR' ? adjustedBaseUsd * exchangeRate : adjustedBaseUsd;
+        totalPrice.textContent = finalTotal.toFixed(2);
+      }
+
+      if (ramSlider && cpuSlider) {
+        ramSlider.addEventListener('input', calcularPrecioConfig);
+        cpuSlider.addEventListener('input', calcularPrecioConfig);
+        calcularPrecioConfig();
+      }
+    });
   </script>
+
 </body>
 </html>

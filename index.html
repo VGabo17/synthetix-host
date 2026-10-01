@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Synthetix Host - Infraestructura Cloud & Gaming</title>
   
   <!-- Estilos principales del proyecto (Aura Cyber-SaaS) -->
@@ -27,199 +27,6 @@
       window.history.replaceState(null, '', cleanPath || '/');
     }
   </script>
-
-  <style>
-    /* Componentes del Nuevo Sistema Aura Cyber-SaaS */
-    .top-status-bar {
-      background: rgba(10, 15, 29, 0.95);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 6px 16px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-    .flash-bar {
-      background: linear-gradient(90deg, #1d4ed8, #4f46e5, #7c3aed);
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
-    }
-    .countdown-badge {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 3px 10px;
-      border-radius: 9999px;
-      font-family: var(--font-code);
-      color: #fde047;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 0.75rem;
-    }
-    .ip-copier {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(10, 15, 29, 0.8);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 6px 6px 16px;
-      border-radius: 9999px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(12px);
-    }
-    .social-toast {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 90;
-      background: rgba(10, 15, 29, 0.9);
-      border: 1px solid var(--border-subtle);
-      border-left: 4px solid var(--neon-cyan);
-      padding: 12px 16px;
-      border-radius: 16px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    }
-    .domain-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 24px;
-      padding: 32px;
-      backdrop-filter: blur(16px);
-      margin-bottom: 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .domain-search-bar {
-      display: flex;
-      gap: 8px;
-      background: rgba(3, 5, 10, 0.8);
-      padding: 6px;
-      border-radius: 9999px;
-      border: 1px solid var(--border-subtle);
-      max-width: 600px;
-      margin: 20px auto 0;
-    }
-    .domain-search-bar input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      padding: 8px 16px;
-      flex: 1;
-      font-size: 0.9rem;
-    }
-    .domain-search-bar select {
-      background: var(--bg-surface-hover);
-      border: 1px solid var(--border-subtle);
-      color: var(--neon-cyan);
-      border-radius: 9999px;
-      padding: 0 14px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
-    }
-    .tech-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      background: var(--bg-surface);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      backdrop-filter: blur(16px);
-    }
-    .tech-table th, .tech-table td {
-      padding: 16px 20px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .tech-table th {
-      background: rgba(3, 5, 10, 0.8);
-      color: #fff;
-      font-family: var(--font-heading);
-    }
-    .faq-accordion-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      margin-bottom: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s ease;
-    }
-    .faq-accordion-btn {
-      width: 100%;
-      padding: 18px 20px;
-      text-align: left;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-    }
-    .faq-accordion-content {
-      padding: 0 20px 18px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
-    /* Drawers (Menú Móvil y Carrito) */
-    .drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 900;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .drawer-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .drawer-content {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 320px;
-      background: var(--bg-surface);
-      border-left: 1px solid var(--border-subtle);
-      z-index: 950;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
-      overflow-y: auto;
-    }
-    .drawer-content.open {
-      transform: translateX(0);
-    }
-  </style>
 </head>
 <body>
 
@@ -228,7 +35,7 @@
 
   <!-- Social Proof Notification (Actividad en Vivo) -->
   <div id="social-proof-toast" class="social-toast" style="display: none;">
-    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 242, 254, 0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; shrink-0;">⚡</div>
+    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 242, 254, 0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; flex-shrink: 0;">⚡</div>
     <div>
       <div id="social-proof-text" style="font-size: 0.8rem; font-weight: 700; color: #fff;">Un usuario activó Mega Network</div>
       <div id="social-proof-time" style="font-size: 0.7rem; color: var(--text-dim);">Hace 2 minutos • Verificado</div>
@@ -254,13 +61,14 @@
   </div>
 
   <!-- Navegación Principal -->
-  <header class="container" style="position: sticky; top: 0; z-index: 100; backdrop-filter: blur(20px);">
+  <header class="container" style="position: sticky; top: 8px; z-index: 100;">
     <nav class="navbar">
       <a href="/" class="brand">
-        <img src="/assets/img/logo.jpg" alt="Synthetix Host" style="width: 32px; height: 32px; object-fit: contain;">
+        <img src="/assets/img/logo.jpg" alt="Synthetix Host" style="width: 28px; height: 28px; object-fit: contain;">
         <span>synthetix<span style="color: var(--neon-blue);">.host</span></span>
       </a>
 
+      <!-- Navegación de Escritorio -->
       <div class="nav-links">
         <a href="#productos" onclick="switchTabDirect('networks')">Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos')">Minecraft</a>
@@ -273,23 +81,24 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
 
-      <div class="auth-btns" style="display: flex; align-items: center; gap: 10px;">
-        <select id="currency-selector" onchange="changeCurrency(this.value)" style="background: rgba(10, 15, 29, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
+      <!-- Acciones de Usuario -->
+      <div class="auth-btns">
+        <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(10, 15, 29, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 10px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
 
-        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 8px 12px;" aria-label="Abrir Carrito">
+        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 6px 10px;" aria-label="Abrir Carrito">
           🛒
           <span id="cart-counter" style="position: absolute; top: -4px; right: -4px; background: var(--neon-blue); color: #fff; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
         </button>
 
-        <div id="auth-actions-desktop" style="display: flex; gap: 8px;">
+        <div id="auth-actions-desktop" class="desktop-only" style="display: flex; gap: 6px;">
           <a href="/login/" class="btn btn-ghost btn-sm">Iniciar sesión</a>
           <a href="/register/" class="btn btn-primary btn-sm">Registrarse</a>
         </div>
 
-        <button id="openDrawer" class="btn btn-ghost btn-sm" style="display: none;" aria-label="Abrir Menú Móvil">☰</button>
+        <button id="openDrawer" class="btn btn-ghost btn-sm mobile-only" aria-label="Abrir Menú Móvil">☰</button>
       </div>
     </nav>
   </header>
@@ -298,13 +107,22 @@
   <div id="drawerOverlay" class="drawer-overlay"></div>
   <div id="drawer" class="drawer-content">
     <div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; pb-4; border-bottom: 1px solid var(--border-subtle);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
         <div style="display: flex; align-items: center; gap: 8px;">
           <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px;">
           <span style="font-weight: bold; color: #fff;">Synthetix Host</span>
         </div>
         <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">&times;</button>
       </div>
+      
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Moneda de pago</label>
+        <select id="currency-selector-mobile" onchange="changeCurrency(this.value)" style="width: 100%; background: rgba(3, 5, 10, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.85rem; font-weight: 700; padding: 8px 12px; border-radius: 12px; outline: none;">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+      </div>
+
       <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; font-weight: 600;">
         <span style="font-size: 0.75rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: 800;">Categorías</span>
         <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();">Planes Networks</a>
@@ -319,7 +137,8 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: bold;">💬 Únete al Discord</a>
       </div>
     </div>
-    <div id="auth-actions-mobile" style="display: flex; flex-direction: column; gap: 10px; pt-4; border-top: 1px solid var(--border-subtle);">
+
+    <div id="auth-actions-mobile" style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--border-subtle);">
       <a href="/login/" class="btn btn-ghost btn-wide" style="text-align: center;">Iniciar sesión</a>
       <a href="/register/" class="btn btn-primary btn-wide" style="text-align: center;">Registrarse</a>
     </div>
@@ -327,7 +146,7 @@
 
   <!-- Carrito Drawer -->
   <div id="cartOverlay" class="drawer-overlay"></div>
-  <div id="cartDrawer" class="drawer-content" style="width: 360px;">
+  <div id="cartDrawer" class="drawer-content">
     <div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
         <h3 style="font-weight: bold; color: #fff; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">🛒 Tu Carrito</h3>
@@ -350,7 +169,7 @@
 
     <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 16px;">
       <div>
-        <label style="display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); uppercase; margin-bottom: 6px;">Código Creador / Cupón</label>
+        <label style="display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Código Creador / Cupón</label>
         <div style="display: flex; gap: 6px;">
           <input type="text" id="promo-code-input" placeholder="Ej. ALEDEVV" style="background: rgba(3, 5, 10, 0.8); border: 1px solid var(--border-subtle); color: #fff; font-size: 0.8rem; font-weight: 700; border-radius: 10px; padding: 8px 12px; flex: 1; text-transform: uppercase;">
           <button onclick="applyPromoCode()" class="btn btn-ghost btn-sm">Aplicar</button>
@@ -426,7 +245,7 @@
     <section id="dominios">
       <div class="domain-box">
         <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">IDENTIDAD WEB</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-top: 6px;">Encuentra el Dominio Perfecto para tu Network</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 6px;">Encuentra el Dominio Perfecto para tu Network</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Asegura tu marca antes de que alguien más la registre.</p>
 
         <div class="domain-search-bar">
@@ -451,13 +270,13 @@
     </section>
 
     <!-- Sección de Productos -->
-    <section id="productos" style="padding: 20px 0 60px;">
+    <section id="productos" style="padding: 20px 0 40px;">
       <div style="text-align: center; margin-bottom: 24px;">
-        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura optimizada con niveles de alto rendimiento y especificaciones exactas.</p>
         
         <!-- Switch de Ciclo de Facturación -->
-        <div style="display: inline-flex; gap: 6px; background: rgba(10, 15, 29, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle);">
+        <div style="display: inline-flex; gap: 6px; background: rgba(10, 15, 29, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%;">
           <button id="billing-monthly-btn" onclick="setBillingCycle('monthly')" class="btn btn-primary btn-sm">Facturación Mensual</button>
           <button id="billing-annual-btn" onclick="setBillingCycle('annual')" class="btn btn-ghost btn-sm" style="border: none;">Facturación Anual (-20% OFF)</button>
         </div>
@@ -683,14 +502,14 @@
     </section>
 
     <!-- Tabla Comparativa de Capacidades -->
-    <section id="comparativa" style="padding: 40px 0 60px;">
+    <section id="comparativa" style="padding: 20px 0 40px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">TRANSPARENCIA TOTAL</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Comparativa Técnica de Arquitecturas</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Comparativa Técnica de Arquitecturas</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem;">Descubre qué nivel de infraestructura requiere tu servidor.</p>
       </div>
 
-      <div style="overflow-x: auto;">
+      <div class="tech-table-wrapper">
         <table class="tech-table">
           <thead>
             <tr>
@@ -743,130 +562,130 @@
     </section>
 
     <!-- Test de Latencia Interactivo -->
-    <section id="pingtest" style="padding: 40px 0 60px;">
-      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 32px; backdrop-filter: blur(16px);">
+    <section id="pingtest" style="padding: 20px 0 40px;">
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
           <div>
             <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RED DE BAJA LATENCIA</span>
-            <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Comprueba la respuesta de nuestras ubicaciones</h2>
+            <h2 style="font-family: var(--font-heading); font-size: 1.6rem;">Comprueba la respuesta de nuestras ubicaciones</h2>
             <p style="color: var(--text-muted); font-size: 0.85rem;">Nodos interconectados a backbones de fibra tier-1 con enrutamiento BGP optimizado.</p>
           </div>
           <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 1.5rem;">🇺🇸</span>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.3rem;">🇺🇸</span>
               <div>
-                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">US East (Virginia)</div>
-                <div style="font-size: 0.7rem; color: var(--text-dim);">Datacenter Principal</div>
+                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">US East (Virginia)</div>
+                <div style="font-size: 0.65rem; color: var(--text-dim);">Datacenter Principal</div>
               </div>
             </div>
-            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
           </div>
 
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 1.5rem;">🇩🇪</span>
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.3rem;">🇩🇪</span>
               <div>
-                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">EU Central (Frankfurt)</div>
-                <div style="font-size: 0.7rem; color: var(--text-dim);">Nodo Europa</div>
+                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">EU Central (Frankfurt)</div>
+                <div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Europa</div>
               </div>
             </div>
-            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
           </div>
 
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 18px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 1.5rem;">🇧🇷</span>
+          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.3rem;">🇧🇷</span>
               <div>
-                <div style="font-size: 0.85rem; font-weight: bold; color: #fff;">SA East (São Paulo)</div>
-                <div style="font-size: 0.7rem; color: var(--text-dim);">Routing Latam</div>
+                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">SA East (São Paulo)</div>
+                <div style="font-size: 0.65rem; color: var(--text-dim);">Routing Latam</div>
               </div>
             </div>
-            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.85rem;">-- ms</span>
+            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Hardware & Características -->
-    <section id="hardware" style="padding: 40px 0 60px;">
-      <div style="text-align: center; margin-bottom: 32px;">
+    <section id="hardware" style="padding: 20px 0 40px;">
+      <div style="text-align: center; margin-bottom: 24px;">
         <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RENDIMIENTO EXTREMO</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Potenciado por Hardware Empresarial</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Potenciado por Hardware Empresarial</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem;">Cada nodo está diseñado para ofrecer la máxima tasa de ticks y velocidad.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">💻</div>
-          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Procesadores AMD EPYC™</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Frecuencias de reloj ultra altas con múltiples núcleos dedicados para garantizar cero lag en juegos y compilaciones pesadas.</p>
+      <div class="products-grid">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">💻</div>
+          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Procesadores AMD EPYC™</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Frecuencias de reloj ultra altas con múltiples núcleos dedicados para garantizar cero lag en juegos y compilaciones pesadas.</p>
         </div>
 
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">⚡</div>
-          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Almacenamiento NVMe Gen4</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Discos de estado sólido de última generación en RAID configurados para lecturas instantáneas y guardados de mundos sin pausas.</p>
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">⚡</div>
+          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Almacenamiento NVMe Gen4</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Discos de estado sólido de última generación en RAID configurados para lecturas instantáneas y guardados de mundos sin pausas.</p>
         </div>
 
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 20px; backdrop-filter: blur(16px);">
-          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 16px;">🛡️</div>
-          <h3 style="font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Anti-DDoS de Capa 7</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">Mitigación inteligente automática integrada para proteger tu servidor de ataques maliciosos sin afectar la latencia legítima.</p>
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">🛡️</div>
+          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Anti-DDoS de Capa 7</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Mitigación inteligente automática integrada para proteger tu servidor de ataques maliciosos sin afectar la latencia legítima.</p>
         </div>
       </div>
     </section>
 
     <!-- Reseñas / Testimonios -->
-    <section id="reseñas" style="padding: 40px 0 60px;">
-      <div style="text-align: center; margin-bottom: 32px;">
+    <section id="reseñas" style="padding: 20px 0 40px;">
+      <div style="text-align: center; margin-bottom: 24px;">
         <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">COMUNIDAD</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Lo que dicen nuestros clientes</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Lo que dicen nuestros clientes</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem;">Administradores de redes y desarrolladores confían en nuestra infraestructura.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="products-grid">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"Migramos nuestra Network completa a Synthetix Host y el rendimiento con los nodos AMD EPYC es increíble. Cero lag y el panel vuela."</p>
+            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"Migramos nuestra Network completa a Synthetix Host y el rendimiento con los nodos AMD EPYC es increíble. Cero lag y el panel vuela."</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(59,130,246,0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">NK</div>
+          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(59,130,246,0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">NK</div>
             <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">NixerMC Network</div>
-              <div style="font-size: 0.7rem; color: var(--text-dim);">Administrador General</div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">NixerMC Network</div>
+              <div style="font-size: 0.65rem; color: var(--text-dim);">Administrador General</div>
             </div>
           </div>
         </div>
 
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"El mejor soporte y los precios más competitivos. Tengo mis bots de Discord y un VPS para pruebas corriendo 24/7 sin interrupciones."</p>
+            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"El mejor soporte y los precios más competitivos. Tengo mis bots de Discord y un VPS para pruebas corriendo 24/7 sin interrupciones."</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(124,58,237,0.2); color: var(--lila-bright); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">AL</div>
+          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(124,58,237,0.2); color: var(--lila-bright); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">AL</div>
             <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">Aledevv</div>
-              <div style="font-size: 0.7rem; color: var(--text-dim);">Desarrollador Independiente</div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">Aledevv</div>
+              <div style="font-size: 0.65rem; color: var(--text-dim);">Desarrollador Independiente</div>
             </div>
           </div>
         </div>
 
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <div style="color: #f59e0b; font-size: 0.9rem; margin-bottom: 12px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">"La activación instantánea es real. Pagué el plan y en menos de 1 minuto ya tenía los datos de acceso en mi panel. 100% recomendado."</p>
+            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"La activación instantánea es real. Pagué el plan y en menos de 1 minuto ya tenía los datos de acceso en mi panel. 100% recomendado."</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 12px; pt-3; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(16,185,129,0.2); color: var(--neon-green); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">CR</div>
+          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.2); color: var(--neon-green); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">CR</div>
             <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.85rem;">Cretane</div>
-              <div style="font-size: 0.7rem; color: var(--text-dim);">Creador de Modpacks</div>
+              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">Cretane</div>
+              <div style="font-size: 0.65rem; color: var(--text-dim);">Creador de Modpacks</div>
             </div>
           </div>
         </div>
@@ -874,12 +693,12 @@
     </section>
 
     <!-- Banner Discord Soporte -->
-    <section style="padding: 20px 0 60px;">
-      <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(124, 58, 237, 0.2)); border: 1px solid rgba(124, 58, 237, 0.4); padding: 36px; border-radius: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+    <section style="padding: 10px 0 40px;">
+      <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(124, 58, 237, 0.2)); border: 1px solid rgba(124, 58, 237, 0.4); padding: 24px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div>
-          <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">COMUNIDAD ACTIVA</span>
-          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px;">¿Tienes dudas o necesitas un plan personalizado?</h2>
-          <p style="color: var(--text-muted); font-size: 0.88rem; max-width: 600px; margin-top: 6px;">Únete a nuestro servidor oficial de Discord para recibir asistencia técnica directa, reportar dudas o concretar compras asistidas.</p>
+          <span class="badge-online" style="margin-bottom: 6px; display: inline-block;">COMUNIDAD ACTIVA</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-top: 2px;">¿Tienes dudas o necesitas un plan personalizado?</h2>
+          <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 600px; margin-top: 4px;">Únete a nuestro servidor oficial de Discord para recibir asistencia técnica directa, reportar dudas o concretar compras asistidas.</p>
         </div>
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-primary" style="background: #4f46e5; border-color: #6366f1;">
           💬 Unirse al Discord Oficial
@@ -888,11 +707,11 @@
     </section>
 
     <!-- Configurador Interactivo -->
-    <section id="configurador" style="padding: 20px 0 60px;">
+    <section id="configurador" style="padding: 10px 0 40px;">
       <div class="builder-box">
         <div>
-          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 6px;">Configura tu servidor a medida</h2>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 24px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
+          <h2 style="font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 4px;">Configura tu servidor a medida</h2>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
           
           <div class="slider-group">
             <div class="slider-header">
@@ -911,35 +730,35 @@
           </div>
 
           <!-- Métricas Calculadas -->
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px;">
-            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">Capacidad Recomendada</div>
-              <div id="est-players" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-cyan); margin-top: 4px;">~60 Jugadores</div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px;">
+            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">Capacidad</div>
+              <div id="est-players" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); margin-top: 2px;">~60 Jugadores</div>
             </div>
-            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">NVMe Incluido</div>
-              <div id="est-ssd" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-cyan); margin-top: 4px;">100 GB NVMe</div>
+            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">NVMe</div>
+              <div id="est-ssd" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); margin-top: 2px;">100 GB NVMe</div>
             </div>
-            <div style="background: rgba(3,5,10,0.6); padding: 12px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.65rem; color: var(--text-dim); font-weight: bold; uppercase;">Respaldos Diarios</div>
-              <div id="est-backups" style="font-size: 0.8rem; font-weight: 800; color: var(--neon-green); margin-top: 4px;">3 Slots Auto</div>
+            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
+              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">Respaldos</div>
+              <div id="est-backups" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-green); margin-top: 2px;">3 Slots Auto</div>
             </div>
           </div>
         </div>
 
         <div class="checkout-col">
-          <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimación Calculada</span>
+          <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimación Calculada</span>
           <div class="total-price">$<span id="total-price" data-base-usd="19.99">19.99</span> <span id="calc-currency">USD</span></div>
-          <span id="calc-billing-period" style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 16px;">por mes</span>
+          <span id="calc-billing-period" style="font-size: 0.7rem; color: var(--text-dim); margin-bottom: 12px;">por mes</span>
           <button onclick="addConfigToCart()" class="btn btn-primary btn-wide">🛒 Añadir Configuración</button>
         </div>
       </div>
     </section>
 
     <!-- FAQ en Acordeón -->
-    <section id="faq" style="padding: 20px 0 60px;">
-      <div style="text-align: center; margin-bottom: 32px;">
-        <h2 style="font-family: var(--font-heading); font-size: 2rem;">Preguntas Frecuentes</h2>
+    <section id="faq" style="padding: 10px 0 40px;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Preguntas Frecuentes</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem;">Resolvemos tus dudas sobre nuestros servicios.</p>
       </div>
 
@@ -988,9 +807,9 @@
 
   </main>
 
-  <footer style="border-top: 1px solid var(--border-subtle); padding: 32px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 24px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
     <p>&copy; 2026 Synthetix Host. Todos los derechos reservados.</p>
-    <p style="margin-top: 6px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte y Comunidad en Discord</a></p>
+    <p style="margin-top: 4px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte y Comunidad en Discord</a></p>
   </footer>
 
   <!-- Scripts con Lógica de Negocio, Supabase y Gestión del Carrito -->
@@ -1081,6 +900,12 @@
     window.changeCurrency = function(newCurrency) {
       currentCurrency = newCurrency;
       localStorage.setItem('synthetix_currency', newCurrency);
+      
+      const selDesktop = document.getElementById('currency-selector');
+      const selMobile = document.getElementById('currency-selector-mobile');
+      if (selDesktop) selDesktop.value = newCurrency;
+      if (selMobile) selMobile.value = newCurrency;
+
       updateAllPrices();
     }
 
@@ -1185,7 +1010,9 @@
 
     function updateAllPrices() {
       const selector = document.getElementById('currency-selector');
+      const selectorMobile = document.getElementById('currency-selector-mobile');
       if (selector) selector.value = currentCurrency;
+      if (selectorMobile) selectorMobile.value = currentCurrency;
 
       const cycleMultiplier = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
 

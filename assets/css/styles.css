@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* ==========================================================================
-   1. RESET Y CONFIGURACIÓN BASE (Blindado contra scroll horizontal)
-   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +15,6 @@ html, body {
   color: #f8fafc;
   font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -31,12 +27,9 @@ a { text-decoration: none; color: inherit; }
 button { border: none; background: none; font: inherit; cursor: pointer; }
 input, select, textarea { font: inherit; outline: none; }
 
-/* ==========================================================================
-   2. DESIGN TOKENS & VARIABLES DE ESTÉTICA CYBERPUNK CLOUD
-   ========================================================================== */
 :root {
   --bg-deep: #030712;
-  --bg-surface: rgba(11, 15, 25, 0.82);
+  --bg-surface: rgba(11, 15, 25, 0.85);
   --bg-surface-hover: rgba(17, 24, 39, 0.95);
   --bg-glass: rgba(255, 255, 255, 0.025);
   
@@ -54,7 +47,6 @@ input, select, textarea { font: inherit; outline: none; }
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(6, 182, 212, 0.4);
   --glow-cyan: 0 0 35px rgba(6, 182, 212, 0.2);
-  --glow-purple: 0 0 35px rgba(139, 92, 246, 0.2);
 
   --font-main: 'Plus Jakarta Sans', sans-serif;
   --font-heading: 'Space Grotesk', sans-serif;
@@ -65,9 +57,6 @@ input, select, textarea { font: inherit; outline: none; }
   --text-dim: #64748b;
 }
 
-/* ==========================================================================
-   3. SCROLLBAR Y PATRONES DE FONDO ATMOSFÉRICOS
-   ========================================================================== */
 ::-webkit-scrollbar { width: 7px; height: 7px; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 4px; }
@@ -99,9 +88,6 @@ body::after {
   z-index: -1;
 }
 
-/* ==========================================================================
-   4. LAYOUT GENERAL Y CONTENEDORES
-   ========================================================================== */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -113,9 +99,6 @@ body::after {
 .mobile-only { display: none !important; }
 .desktop-only { display: flex !important; }
 
-/* ==========================================================================
-   5. BANNERS SUPERIORES Y STATUS BARS
-   ========================================================================== */
 .flash-bar {
   background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #6d28d9 100%);
   padding: 9px 16px;
@@ -141,7 +124,6 @@ body::after {
   color: var(--warning-yellow);
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.75rem;
-  letter-spacing: 0.5px;
 }
 
 .top-status-bar {
@@ -160,9 +142,6 @@ body::after {
   white-space: nowrap;
 }
 
-/* ==========================================================================
-   6. NAVBAR Y NAVEGACIÓN FLOTANTE
-   ========================================================================== */
 .navbar {
   display: flex;
   align-items: center;
@@ -200,9 +179,6 @@ body::after {
 
 .auth-btns { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
-/* ==========================================================================
-   7. DRAWERS (MENÚ MÓVIL Y CARRITO)
-   ========================================================================== */
 .drawer-overlay {
   position: fixed; inset: 0; background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(10px); z-index: 900; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -218,36 +194,24 @@ body::after {
 }
 .drawer-content.open { transform: translateX(0); }
 
-/* ==========================================================================
-   8. SISTEMA DE BOTONES AVANZADOS
-   ========================================================================== */
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center;
   border-radius: 9999px; font-weight: 700; transition: all 0.25s ease; white-space: nowrap; box-sizing: border-box; cursor: pointer;
 }
 .btn-primary { background: var(--grad-aura); color: #030712; padding: 11px 26px; font-size: 0.9rem; box-shadow: var(--glow-cyan); }
-.btn-primary:hover { opacity: 0.94; transform: translateY(-2px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.45); }
+.btn-primary:hover { opacity: 0.94; transform: translateY(-2px); }
 .btn-ghost { background: var(--bg-glass); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 11px 26px; font-size: 0.9rem; }
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); }
 .btn-sm { padding: 7px 16px; font-size: 0.82rem; }
 .btn-wide { width: 100%; }
 
-/* ==========================================================================
-   9. HERO SECTION & SERVER CARDS
-   ========================================================================== */
 .hero { text-align: center; padding: 55px 0 40px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px; background: rgba(6, 182, 212, 0.09);
   border: 1px solid rgba(6, 182, 212, 0.35); padding: 7px 18px; border-radius: 9999px;
   font-size: 0.78rem; font-weight: 700; color: var(--neon-cyan); margin-bottom: 22px;
 }
-.pulse { width: 8px; height: 8px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 12px var(--neon-cyan); flex-shrink: 0; animation: pulseGlow 2s infinite; }
-
-@keyframes pulseGlow {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 18px var(--neon-cyan); }
-  100% { transform: scale(0.95); opacity: 0.8; }
-}
+.pulse { width: 8px; height: 8px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 12px var(--neon-cyan); flex-shrink: 0; }
 
 .hero h1 {
   font-family: var(--font-heading); font-size: clamp(2.4rem, 6.5vw, 4.2rem);
@@ -259,7 +223,6 @@ body::after {
 .ip-copier {
   display: inline-flex; align-items: center; gap: 12px; background: rgba(15, 23, 42, 0.92);
   border: 1px solid var(--border-subtle); padding: 8px 8px 8px 18px; border-radius: 9999px; margin-bottom: 28px; max-width: 100%; flex-wrap: wrap; justify-content: center; box-sizing: border-box;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 .hero-actions { display: flex; gap: 16px; margin-bottom: 40px; width: 100%; justify-content: center; box-sizing: border-box; }
 
@@ -270,11 +233,8 @@ body::after {
 .stat-item b { font-size: 1.3rem; color: var(--neon-cyan); font-family: var(--font-heading); }
 .stat-item small { font-size: 0.7rem; color: var(--text-dim); display: block; margin-top: 3px; font-weight: 600; }
 
-.badge-online { background: rgba(16, 185, 129, 0.12); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.35); padding: 5px 14px; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-online { background: rgba(16, 185, 129, 0.12); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.35); padding: 5px 14px; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; }
 
-/* ==========================================================================
-   10. VERIFICADOR DE DOMINIOS PRO
-   ========================================================================== */
 .domain-box {
   background: var(--grad-card); border: 1px solid var(--border-subtle); border-radius: 28px;
   padding: 38px 24px; margin-bottom: 50px; text-align: center; width: 100%; box-sizing: border-box; backdrop-filter: blur(20px);
@@ -289,9 +249,6 @@ body::after {
 }
 .domain-search-bar select, .domain-search-bar button { width: 100%; box-sizing: border-box; }
 
-/* ==========================================================================
-   11. TABS Y CATÁLOGOS DE PRODUCTOS
-   ========================================================================== */
 .tabs-wrapper { width: 100%; overflow-x: auto; padding: 10px 0; margin-bottom: 28px; box-sizing: border-box; }
 .tabs-bar { display: flex; gap: 8px; width: max-content; margin: 0 auto; background: rgba(15, 23, 42, 0.85); padding: 6px; border-radius: 9999px; border: 1px solid var(--border-subtle); }
 .tab-btn { padding: 10px 20px; border-radius: 9999px; font-size: 0.85rem; color: var(--text-muted); font-weight: 700; transition: all 0.25s ease; }
@@ -319,13 +276,10 @@ body::after {
 .card-features li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 .card-features li::before { content: "✓"; color: var(--neon-cyan); font-weight: bold; font-size: 0.9rem; }
 
-/* ==========================================================================
-   12. TABLA TÉCNICA Y CONFIGURADOR DE SERVIDORES
-   ========================================================================== */
 .tech-table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 20px; border: 1px solid var(--border-subtle); background: var(--grad-card); box-sizing: border-box; }
 .tech-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 600px; }
 .tech-table th, .tech-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-.tech-table th { background: rgba(3, 7, 18, 0.95); color: #fff; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+.tech-table th { background: rgba(3, 7, 18, 0.95); color: #fff; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; }
 
 .builder-box {
   background: var(--grad-card); border: 1px solid var(--border-subtle); border-radius: 28px;
@@ -342,9 +296,6 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: 
 .total-price { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin: 12px 0; color: #fff; }
 .total-price span { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
 
-/* ==========================================================================
-   13. FAQ ACORDEÓN Y MEDIA QUERIES RESPONSIVAS
-   ========================================================================== */
 .faq-accordion-item { background: var(--grad-card); border: 1px solid var(--border-subtle); border-radius: 18px; margin-bottom: 12px; overflow: hidden; backdrop-filter: blur(16px); box-sizing: border-box; }
 .faq-accordion-btn { width: 100%; padding: 18px 24px; text-align: left; font-weight: 700; color: #fff; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: transparent; box-sizing: border-box; }
 .faq-accordion-content { padding: 0 24px 18px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; box-sizing: border-box; }

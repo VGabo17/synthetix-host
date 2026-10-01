@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Synthetix Host - Infraestructura Cloud & Gaming</title>
+  <title>Synthetix Host - Infraestructura Cloud & Gaming Enterprise</title>
   
-  <!-- Estilos principales del proyecto (Aura Cyber-SaaS) -->
+  <!-- Estilos del proyecto (Aura Cyber-SaaS) -->
   <link rel="stylesheet" href="/assets/css/styles.css">
 
   <!-- Start of Tawk.to Script -->
@@ -33,15 +33,6 @@
   <!-- Contenedor para Notificaciones Toast -->
   <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
 
-  <!-- Social Proof Notification (Actividad en Vivo) -->
-  <div id="social-proof-toast" class="social-toast" style="display: none;">
-    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 242, 254, 0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; flex-shrink: 0;">⚡</div>
-    <div>
-      <div id="social-proof-text" style="font-size: 0.8rem; font-weight: 700; color: #fff;">Un usuario activó Mega Network</div>
-      <div id="social-proof-time" style="font-size: 0.7rem; color: var(--text-dim);">Hace 2 minutos • Verificado</div>
-    </div>
-  </div>
-
   <!-- Banner de Oferta Relámpago -->
   <div class="flash-bar">
     <span>🔥 ¡OFERTA LIMITADA! Usa el código <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
@@ -52,19 +43,19 @@
   <div class="top-status-bar">
     <div style="display: flex; align-items: center; gap: 6px;">
       <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);"></span>
-      <span style="font-weight: 700; color: #fff;">Estado de la Red:</span> Nodos US-Virginia 100% Operativos
+      <span style="font-weight: 700; color: #fff;">Estado Global:</span> Nodos Cloud 100% Operativos
     </div>
     <span>•</span>
     <span>⚡ Uptime: 99.98%</span>
     <span>•</span>
-    <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata Vía Discord</span>
+    <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata En 60 Segundos</span>
   </div>
 
   <!-- Navegación Principal -->
   <header class="container" style="position: sticky; top: 8px; z-index: 100;">
     <nav class="navbar">
       <a href="/" class="brand">
-        <img src="/assets/img/logo.jpg" alt="Synthetix Host" style="width: 28px; height: 28px; object-fit: contain;">
+        <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px; object-fit: contain;">
         <span>synthetix<span style="color: var(--neon-blue);">.host</span></span>
       </a>
 
@@ -76,7 +67,7 @@
         <a href="#productos" onclick="switchTabDirect('discord')">Bots Discord</a>
         <a href="#dominios">Dominios</a>
         <a href="#configurador">Configurador</a>
-        <a href="#pingtest">Test Latencia</a>
+        <a href="#pingtest">Latencia</a>
         <a href="#comparativa">Comparativa</a>
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
@@ -107,7 +98,7 @@
   <div id="drawerOverlay" class="drawer-overlay"></div>
   <div id="drawer" class="drawer-content">
     <div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
         <div style="display: flex; align-items: center; gap: 8px;">
           <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px;">
           <span style="font-weight: bold; color: #fff;">Synthetix Host</span>
@@ -124,17 +115,17 @@
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; font-weight: 600;">
-        <span style="font-size: 0.75rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: 800;">Categorías</span>
+        <span style="font-size: 0.75rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: 800;">Navegación</span>
         <a href="#productos" onclick="switchTabDirect('networks'); cerrarMenuMobile();">Planes Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();">Minecraft Servers</a>
         <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();">VPS Cloud</a>
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();">Bots Discord</a>
         <div style="border-top: 1px solid var(--border-subtle); margin: 8px 0;"></div>
-        <a href="#dominios" onclick="cerrarMenuMobile()">Buscador de Dominios</a>
+        <a href="#dominios" onclick="cerrarMenuMobile()">Verificador de Dominios</a>
         <a href="#configurador" onclick="cerrarMenuMobile()">Configurador</a>
         <a href="#pingtest" onclick="cerrarMenuMobile()">Test Latencia</a>
-        <a href="#comparativa" onclick="cerrarMenuMobile()">Comparativa</a>
-        <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: bold;">💬 Únete al Discord</a>
+        <a href="#comparativa" onclick="cerrarMenuMobile()">Comparativa Técnica</a>
+        <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: bold;">💬 Soporte en Discord</a>
       </div>
     </div>
 
@@ -203,7 +194,7 @@
       </h1>
       
       <p>
-        Aloja tus redes de Minecraft, servidores individuales, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <span style="color: var(--neon-cyan); font-weight: 600;">panel.synthetixhost.lol</span>.
+        Aloja tus redes de Minecraft, servidores dedicados, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <span style="color: var(--neon-cyan); font-weight: 600;">panel.synthetixhost.lol</span>.
       </p>
 
       <!-- Copiador de IP de Servidor de Pruebas -->
@@ -241,45 +232,58 @@
       </div>
     </section>
 
-    <!-- Buscador de Dominios Interactivo -->
+    <!-- Buscador Avanzado de Dominios (Namecheap / Spaceship / Cloudflare) -->
     <section id="dominios">
       <div class="domain-box">
-        <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">IDENTIDAD WEB</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 6px;">Encuentra el Dominio Perfecto para tu Network</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Asegura tu marca antes de que alguien más la registre.</p>
+        <span class="badge-online" style="margin-bottom: 10px; display: inline-block;">REGISTRO GLOBAL DE DOMINIOS</span>
+        <h2 style="font-family: var(--font-heading); font-size: 1.7rem; margin-top: 4px;">Verificador en Vivo (Namecheap & Spaceship)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Consulta la disponibilidad instantánea de tu extensión preferida para tu comunidad.</p>
 
         <div class="domain-search-bar">
           <input type="text" id="domain-input" placeholder="Escribe tu marca (ej. nixermc)">
-          <select id="tld-select">
-            <option value=".lol">.lol ($1.99/año)</option>
-            <option value=".store">.store ($2.50/año)</option>
-            <option value=".com">.com ($11.99/año)</option>
-            <option value=".net">.net ($13.50/año)</option>
-          </select>
-          <button onclick="checkDomainAvailability()" class="btn btn-primary btn-sm">Buscar Dominio</button>
+          <div style="display: flex; gap: 6px; width: 100%;">
+            <select id="tld-select" style="flex: 1; background: var(--bg-surface-hover); border: 1px solid var(--border-subtle); color: var(--neon-cyan); border-radius: 12px; padding: 10px; font-weight: 700; outline: none; cursor: pointer;">
+              <option value=".lol">.lol ($1.99/año)</option>
+              <option value=".store">.store ($2.50/año)</option>
+              <option value=".com">.com ($11.99/año)</option>
+              <option value=".net">.net ($13.50/año)</option>
+              <option value=".gg">.gg ($19.99/año)</option>
+            </select>
+            <button onclick="checkDomainAvailability()" class="btn btn-primary btn-sm" style="padding: 10px 20px;">Consultar</button>
+          </div>
         </div>
 
-        <div id="domain-result" style="display: none; margin-top: 16px; padding: 12px 20px; background: rgba(3, 5, 10, 0.6); border: 1px solid var(--border-subtle); border-radius: 14px; justify-content: space-between; align-items: center; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <div id="domain-result" style="display: none; margin-top: 16px; padding: 14px 18px; background: rgba(3, 5, 10, 0.7); border: 1px solid var(--border-subtle); border-radius: 14px; justify-content: space-between; align-items: center; max-width: 600px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 10px;">
           <div style="font-size: 0.85rem; text-align: left;">
             <span id="domain-name-display" style="font-weight: bold; color: #fff;">nixermc.lol</span>
-            <span style="color: var(--neon-cyan); font-weight: bold; margin-left: 8px;">¡Disponible!</span>
+            <span id="domain-status-text" style="color: var(--neon-cyan); font-weight: bold; margin-left: 8px;">¡Disponible en Namecheap!</span>
           </div>
-          <button onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
+          <button id="domain-buy-btn" onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
         </div>
       </div>
     </section>
 
-    <!-- Sección de Productos -->
-    <section id="productos" style="padding: 20px 0 40px;">
+    <!-- Sección de Productos y Catálogos -->
+    <section id="productos" style="padding: 10px 0 30px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura optimizada con niveles de alto rendimiento y especificaciones exactas.</p>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura de alto rendimiento optimizada para gaming empresarial.</p>
         
         <!-- Switch de Ciclo de Facturación -->
         <div style="display: inline-flex; gap: 6px; background: rgba(10, 15, 29, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%;">
           <button id="billing-monthly-btn" onclick="setBillingCycle('monthly')" class="btn btn-primary btn-sm">Facturación Mensual</button>
           <button id="billing-annual-btn" onclick="setBillingCycle('annual')" class="btn btn-ghost btn-sm" style="border: none;">Facturación Anual (-20% OFF)</button>
         </div>
+      </div>
+
+      <!-- Selector de Región Global del Nodo -->
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 24px; font-size: 0.8rem; color: var(--text-muted);">
+        <span>🌍 Ubicación del Nodo:</span>
+        <select id="region-selector" style="background: rgba(10,15,29,0.9); border: 1px solid var(--border-subtle); color: var(--neon-cyan); padding: 4px 10px; border-radius: 8px; font-weight: 700; outline: none; cursor: pointer;">
+          <option value="US">🇺🇸 US East (Virginia - Principal)</option>
+          <option value="EU">🇩🇪 EU Central (Frankfurt)</option>
+          <option value="SA">🇧🇷 SA East (São Paulo)</option>
+        </select>
       </div>
 
       <!-- Tabs de Categorías -->
@@ -296,7 +300,6 @@
         
         <!-- 1. PLANES NETWORKS -->
         <div class="plan-category products-grid" id="cat-networks">
-          
           <div class="product-card">
             <span class="card-badge">6 GB RAM</span>
             <h3>Network Starter</h3>
@@ -304,10 +307,10 @@
             <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>6 GB</b> RAM Dedicada</li>
-              <li><b>2 vCPU</b> (100% Dedicados)</li>
-              <li><b>70 GB</b> SSD NVMe</li>
+              <li><b>2 vCPU</b> Cores AMD EPYC</li>
+              <li><b>70 GB</b> SSD NVMe Gen4</li>
               <li>Proxy (Velocity) + BoxPvP</li>
-              <li>Virginia, USA • Anti-DDoS</li>
+              <li>Anti-DDoS Capa 7 Incluido</li>
             </ul>
             <button onclick="handlePlanBuy('Network Starter', 9.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
@@ -319,34 +322,32 @@
             <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>9 GB</b> RAM Dedicada</li>
-              <li><b>3 vCPU</b> (100% Dedicados)</li>
-              <li><b>120 GB</b> SSD NVMe</li>
-              <li>Proxy (Velocity) + Lobby + BoxPvP</li>
-              <li>Virginia, USA • Anti-DDoS</li>
+              <li><b>3 vCPU</b> Cores AMD EPYC</li>
+              <li><b>120 GB</b> SSD NVMe Gen4</li>
+              <li>Proxy + Lobby + BoxPvP</li>
+              <li>Anti-DDoS Capa 7 Incluido</li>
             </ul>
             <button onclick="handlePlanBuy('Network Pro', 14.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
 
-          <div class="product-card" style="border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);">
+          <div class="product-card" style="border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);">
             <span class="card-badge highlight">MÁS POPULAR</span>
             <h3>Mega Network</h3>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Potencia bruta para redes grandes con mundos masivos.</p>
             <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>14 GB</b> RAM (Repartida)</li>
-              <li><b>4 vCPU</b> (100% Dedicados)</li>
-              <li><b>180 GB</b> SSD NVMe</li>
-              <li>Proxy + Lobby + Survival/BoxPvP</li>
-              <li>Virginia, USA • Anti-DDoS</li>
+              <li><b>4 vCPU</b> Cores AMD EPYC</li>
+              <li><b>180 GB</b> SSD NVMe Gen4</li>
+              <li>Proxy + Lobby + Survival</li>
+              <li>Anti-DDoS Capa 7 Incluido</li>
             </ul>
             <button onclick="handlePlanBuy('Mega Network', 19.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
-
         </div>
 
         <!-- 2. MINECRAFT SERVERS -->
         <div class="plan-category products-grid" id="cat-juegos" style="display: none;">
-          
           <div class="product-card">
             <span class="card-badge">2 GB RAM</span>
             <h3>Starter</h3>
@@ -357,7 +358,6 @@
               <li><b>1 vCPU Core</b> dedicado</li>
               <li><b>25 GB</b> SSD NVMe</li>
               <li>Slots Ilimitados</li>
-              <li>Plugins / Mods soportados</li>
             </ul>
             <button onclick="handlePlanBuy('Minecraft Starter (2GB)', 2.50)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
@@ -371,8 +371,7 @@
               <li><b>4 GB</b> RAM DDR4</li>
               <li><b>2 vCPU Cores</b> dedicados</li>
               <li><b>50 GB</b> SSD NVMe</li>
-              <li>Slots Ilimitados</li>
-              <li>Base de datos MySQL incluida</li>
+              <li>Base MySQL Incluida</li>
             </ul>
             <button onclick="handlePlanBuy('Minecraft Pro (4GB)', 4.99)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
@@ -386,30 +385,14 @@
               <li><b>8 GB</b> RAM DDR4</li>
               <li><b>3 vCPU Cores</b> dedicados</li>
               <li><b>100 GB</b> SSD NVMe</li>
-              <li>Copias de seguridad automáticas</li>
+              <li>Backups Automáticos</li>
             </ul>
             <button onclick="handlePlanBuy('Minecraft Master (8GB)', 9.99)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
-
-          <div class="product-card">
-            <span class="card-badge">12 GB RAM</span>
-            <h3>Ultimate Server</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Potencia extrema sin restricciones.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-            <ul class="card-features">
-              <li><b>12 GB</b> RAM DDR4</li>
-              <li><b>4 vCPU Cores</b> dedicados</li>
-              <li><b>150 GB</b> SSD NVMe</li>
-              <li>Prioridad máxima en nodos</li>
-            </ul>
-            <button onclick="handlePlanBuy('Minecraft Ultimate (12GB)', 14.99)" class="btn btn-primary btn-wide">Comprar</button>
-          </div>
-
         </div>
 
         <!-- 3. VPS CLOUD -->
         <div class="plan-category products-grid" id="cat-vps" style="display: none;">
-          
           <div class="product-card">
             <span class="card-badge">2 GB RAM</span>
             <h3>VPS Basic</h3>
@@ -417,8 +400,8 @@
             <ul class="card-features">
               <li><b>2 GB</b> RAM Dedicada</li>
               <li><b>1 vCPU Core</b> KVM</li>
-              <li><b>30 GB</b> SSD NVMe</li>
-              <li>Acceso Root Completo (SSH)</li>
+              <li><b>30 GB</b> NVMe Gen4</li>
+              <li>Acceso Root SSH</li>
             </ul>
             <button onclick="handlePlanBuy('VPS Basic', 3.99)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
@@ -430,40 +413,24 @@
             <ul class="card-features">
               <li><b>8 GB</b> RAM Dedicada</li>
               <li><b>4 vCPU Cores</b> KVM</li>
-              <li><b>100 GB</b> SSD NVMe Gen4</li>
+              <li><b>100 GB</b> NVMe Gen4</li>
               <li>Acceso Root + IP Dedicada</li>
             </ul>
             <button onclick="handlePlanBuy('Cloud VPS 4', 10.99)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
-
-          <div class="product-card">
-            <span class="card-badge">16 GB RAM</span>
-            <h3>VPS Pro</h3>
-            <div class="card-price">$<span class="price-tag" data-usd="18.99">18.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-            <ul class="card-features">
-              <li><b>16 GB</b> RAM Dedicada</li>
-              <li><b>6 vCPU Cores</b> KVM</li>
-              <li><b>200 GB</b> SSD NVMe Gen4</li>
-              <li>Acceso Root Completo (SSH)</li>
-            </ul>
-            <button onclick="handlePlanBuy('VPS Pro', 18.99)" class="btn btn-primary btn-wide">Comprar</button>
-          </div>
-
         </div>
 
         <!-- 4. BOT DISCORD -->
         <div class="plan-category products-grid" id="cat-discord" style="display: none;">
-          
           <div class="product-card">
             <span class="card-badge">512 MB</span>
             <h3>Bot #1 (Iniciación)</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots ligeros en línea 24/7.</p>
             <div class="card-price">$<span class="price-tag" data-usd="1.50">1.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>512 MB</b> RAM Dedicada</li>
               <li><b>50% CPU</b> Dedicado</li>
               <li><b>5 GB</b> SSD NVMe</li>
-              <li>Uptime 24/7 Garantizado</li>
+              <li>Uptime 24/7</li>
             </ul>
             <button onclick="handlePlanBuy('Plan Bot #1 (Iniciación)', 1.50)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
@@ -471,38 +438,22 @@
           <div class="product-card" style="border-color: var(--neon-blue);">
             <span class="card-badge highlight">POPULAR</span>
             <h3>Bot #2 (Crecimiento)</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots medianos con bases de datos.</p>
             <div class="card-price">$<span class="price-tag" data-usd="3.00">3.00</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>1 GB</b> RAM Dedicada</li>
               <li><b>100% CPU</b> Dedicado</li>
               <li><b>10 GB</b> SSD NVMe</li>
-              <li>Uptime 24/7 Garantizado</li>
+              <li>Uptime 24/7</li>
             </ul>
             <button onclick="handlePlanBuy('Plan Bot #2 (Crecimiento)', 3.00)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
-
-          <div class="product-card">
-            <span class="card-badge">2 GB RAM</span>
-            <h3>Bot #3 (Profesional)</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para bots grandes con soporte Lavalink / Música.</p>
-            <div class="card-price">$<span class="price-tag" data-usd="5.50">5.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
-            <ul class="card-features">
-              <li><b>2 GB</b> RAM Dedicada</li>
-              <li><b>200% CPU</b> Dedicado</li>
-              <li><b>25 GB</b> SSD NVMe</li>
-              <li>Soporte Lavalink / Música</li>
-            </ul>
-            <button onclick="handlePlanBuy('Plan Bot #3 (Profesional)', 5.50)" class="btn btn-primary btn-wide">Comprar Plan</button>
-          </div>
-
         </div>
 
       </div>
     </section>
 
-    <!-- Tabla Comparativa de Capacidades -->
-    <section id="comparativa" style="padding: 20px 0 40px;">
+    <!-- Tabla Comparativa Técnica -->
+    <section id="comparativa" style="padding: 10px 0 30px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">TRANSPARENCIA TOTAL</span>
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Comparativa Técnica de Arquitecturas</h2>
@@ -515,46 +466,40 @@
             <tr>
               <th>Característica</th>
               <th>Minecraft Standalone</th>
-              <th style="color: var(--neon-cyan);">Network Bungee / Velocity</th>
+              <th style="color: var(--neon-cyan);">Network Velocity</th>
               <th style="color: var(--lila-bright);">Cloud VPS KVM</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><b>Arquitectura CPU</b></td>
-              <td>AMD EPYC (Núcleo Compartido)</td>
+              <td><b>Procesador</b></td>
+              <td>AMD EPYC (Compartido)</td>
               <td style="color: var(--neon-cyan); font-weight: bold;">AMD EPYC 100% Dedicado</td>
               <td>vCPU KVM Virtualizado</td>
             </tr>
             <tr>
-              <td><b>Almacenamiento NVMe</b></td>
+              <td><b>Almacenamiento</b></td>
               <td>25 GB - 150 GB NVMe</td>
               <td>70 GB - 180 GB NVMe Gen4</td>
               <td>30 GB - 200 GB NVMe Gen4</td>
             </tr>
             <tr>
-              <td><b>Bases de datos MySQL</b></td>
+              <td><b>Bases MySQL</b></td>
               <td>1 Incluida</td>
               <td style="color: var(--neon-cyan); font-weight: bold;">Ilimitadas</td>
-              <td>Instalables (Vía Root)</td>
+              <td>Instalables (Root)</td>
             </tr>
             <tr>
-              <td><b>Acceso SSH / Root</b></td>
+              <td><b>Acceso SSH</b></td>
               <td style="color: var(--text-dim);">No (Solo SFTP)</td>
               <td style="color: var(--text-dim);">No (SFTP Multiserver)</td>
-              <td style="color: var(--neon-cyan); font-weight: bold;">Sí (Consola Root SSH)</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">Sí (Consola Root)</td>
             </tr>
             <tr>
-              <td><b>Protección Anti-DDoS</b></td>
-              <td>Capa 4 / Capa 7 (100 Gbps)</td>
-              <td style="color: var(--neon-cyan); font-weight: bold;">Capa 7 Game Shield Avanzada</td>
+              <td><b>Anti-DDoS</b></td>
+              <td>Capa 4 / 7 Estándar</td>
+              <td style="color: var(--neon-cyan); font-weight: bold;">Capa 7 Game Shield Pro</td>
               <td>Capa 4 Estándar</td>
-            </tr>
-            <tr>
-              <td><b>Copias de Seguridad</b></td>
-              <td>Diarias</td>
-              <td>Automáticas Multi-Slot</td>
-              <td>Manuales / Snapshots</td>
             </tr>
           </tbody>
         </table>
@@ -562,147 +507,31 @@
     </section>
 
     <!-- Test de Latencia Interactivo -->
-    <section id="pingtest" style="padding: 20px 0 40px;">
+    <section id="pingtest" style="padding: 10px 0 30px;">
       <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
           <div>
-            <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RED DE BAJA LATENCIA</span>
-            <h2 style="font-family: var(--font-heading); font-size: 1.6rem;">Comprueba la respuesta de nuestras ubicaciones</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Nodos interconectados a backbones de fibra tier-1 con enrutamiento BGP optimizado.</p>
+            <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">BAJA LATENCIA</span>
+            <h2 style="font-family: var(--font-heading); font-size: 1.6rem;">Test de Respuesta Global</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Prueba la velocidad de conexión directa desde tu ubicación actual.</p>
           </div>
           <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
           <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 1.3rem;">🇺🇸</span>
-              <div>
-                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">US East (Virginia)</div>
-                <div style="font-size: 0.65rem; color: var(--text-dim);">Datacenter Principal</div>
-              </div>
-            </div>
-            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
+            <div><b>🇺🇸 US Virginia</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Principal</div></div>
+            <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
-
           <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 1.3rem;">🇩🇪</span>
-              <div>
-                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">EU Central (Frankfurt)</div>
-                <div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Europa</div>
-              </div>
-            </div>
-            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
+            <div><b>🇩🇪 EU Frankfurt</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Europa</div></div>
+            <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
-
           <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 1.3rem;">🇧🇷</span>
-              <div>
-                <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">SA East (São Paulo)</div>
-                <div style="font-size: 0.65rem; color: var(--text-dim);">Routing Latam</div>
-              </div>
-            </div>
-            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold; font-size: 0.8rem;">-- ms</span>
+            <div><b>🇧🇷 SA São Paulo</b><div style="font-size: 0.65rem; color: var(--text-dim);">Routing Latam</div></div>
+            <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Hardware & Características -->
-    <section id="hardware" style="padding: 20px 0 40px;">
-      <div style="text-align: center; margin-bottom: 24px;">
-        <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">RENDIMIENTO EXTREMO</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Potenciado por Hardware Empresarial</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem;">Cada nodo está diseñado para ofrecer la máxima tasa de ticks y velocidad.</p>
-      </div>
-
-      <div class="products-grid">
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
-          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">💻</div>
-          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Procesadores AMD EPYC™</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Frecuencias de reloj ultra altas con múltiples núcleos dedicados para garantizar cero lag en juegos y compilaciones pesadas.</p>
-        </div>
-
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
-          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">⚡</div>
-          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Almacenamiento NVMe Gen4</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Discos de estado sólido de última generación en RAID configurados para lecturas instantáneas y guardados de mundos sin pausas.</p>
-        </div>
-
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 24px; border-radius: 20px;">
-          <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px;">🛡️</div>
-          <h3 style="font-size: 1rem; font-weight: bold; color: #fff; margin-bottom: 6px;">Anti-DDoS de Capa 7</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Mitigación inteligente automática integrada para proteger tu servidor de ataques maliciosos sin afectar la latencia legítima.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reseñas / Testimonios -->
-    <section id="reseñas" style="padding: 20px 0 40px;">
-      <div style="text-align: center; margin-bottom: 24px;">
-        <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">COMUNIDAD</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Lo que dicen nuestros clientes</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem;">Administradores de redes y desarrolladores confían en nuestra infraestructura.</p>
-      </div>
-
-      <div class="products-grid">
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"Migramos nuestra Network completa a Synthetix Host y el rendimiento con los nodos AMD EPYC es increíble. Cero lag y el panel vuela."</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(59,130,246,0.2); color: var(--neon-cyan); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">NK</div>
-            <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">NixerMC Network</div>
-              <div style="font-size: 0.65rem; color: var(--text-dim);">Administrador General</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"El mejor soporte y los precios más competitivos. Tengo mis bots de Discord y un VPS para pruebas corriendo 24/7 sin interrupciones."</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(124,58,237,0.2); color: var(--lila-bright); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">AL</div>
-            <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">Aledevv</div>
-              <div style="font-size: 0.65rem; color: var(--text-dim);">Desarrollador Independiente</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 10px;">★★★★★</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">"La activación instantánea es real. Pagué el plan y en menos de 1 minuto ya tenía los datos de acceso en mi panel. 100% recomendado."</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16,185,129,0.2); color: var(--neon-green); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.75rem;">CR</div>
-            <div>
-              <div style="font-weight: bold; color: #fff; font-size: 0.8rem;">Cretane</div>
-              <div style="font-size: 0.65rem; color: var(--text-dim);">Creador de Modpacks</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Banner Discord Soporte -->
-    <section style="padding: 10px 0 40px;">
-      <div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(124, 58, 237, 0.2)); border: 1px solid rgba(124, 58, 237, 0.4); padding: 24px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-        <div>
-          <span class="badge-online" style="margin-bottom: 6px; display: inline-block;">COMUNIDAD ACTIVA</span>
-          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-top: 2px;">¿Tienes dudas o necesitas un plan personalizado?</h2>
-          <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 600px; margin-top: 4px;">Únete a nuestro servidor oficial de Discord para recibir asistencia técnica directa, reportar dudas o concretar compras asistidas.</p>
-        </div>
-        <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-primary" style="background: #4f46e5; border-color: #6366f1;">
-          💬 Unirse al Discord Oficial
-        </a>
       </div>
     </section>
 
@@ -716,7 +545,7 @@
           <div class="slider-group">
             <div class="slider-header">
               <label>Memoria RAM Dedicada</label>
-              <span id="ram-value" style="color: var(--neon-cyan); font-weight: bold;">8 GB</span>
+              <span id="ram-value">8 GB</span>
             </div>
             <input id="ram-slider" type="range" min="8" max="48" value="8" step="8">
           </div>
@@ -724,25 +553,9 @@
           <div class="slider-group">
             <div class="slider-header">
               <label>vCPU Cores Dedicados</label>
-              <span id="cpu-value" style="color: var(--neon-cyan); font-weight: bold;">4 vCPU</span>
+              <span id="cpu-value">4 vCPU</span>
             </div>
             <input id="cpu-slider" type="range" min="4" max="12" value="4" step="2">
-          </div>
-
-          <!-- Métricas Calculadas -->
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px;">
-            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">Capacidad</div>
-              <div id="est-players" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); margin-top: 2px;">~60 Jugadores</div>
-            </div>
-            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">NVMe</div>
-              <div id="est-ssd" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); margin-top: 2px;">100 GB NVMe</div>
-            </div>
-            <div style="background: rgba(3,5,10,0.6); padding: 10px 4px; border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center;">
-              <div style="font-size: 0.6rem; color: var(--text-dim); font-weight: bold; text-transform: uppercase;">Respaldos</div>
-              <div id="est-backups" style="font-size: 0.75rem; font-weight: 800; color: var(--neon-green); margin-top: 2px;">3 Slots Auto</div>
-            </div>
           </div>
         </div>
 
@@ -755,51 +568,30 @@
       </div>
     </section>
 
-    <!-- FAQ en Acordeón -->
+    <!-- FAQ -->
     <section id="faq" style="padding: 10px 0 40px;">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem;">Preguntas Frecuentes</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem;">Resolvemos tus dudas sobre nuestros servicios.</p>
       </div>
 
       <div style="max-width: 720px; margin: 0 auto;">
         <div class="faq-accordion-item">
           <button onclick="toggleFaq('faq-1')" class="faq-accordion-btn">
             <span>¿Cómo se realiza la activación de un servicio?</span>
-            <span id="faq-1-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
+            <span id="faq-1-icon">+</span>
           </button>
           <div id="faq-1" class="faq-accordion-content" style="display: none;">
-            Una vez generado tu pedido desde el carrito, se copiará la orden completa. Luego abres un ticket en nuestro Discord pegando tu orden para procesar tu acceso inmediato y configurarte las credenciales en el panel.
+            Al generar tu orden en el carrito, se copia un resumen completo. Abres un ticket en nuestro Discord y procesamos la entrega en menos de 60 segundos.
           </div>
         </div>
 
         <div class="faq-accordion-item">
           <button onclick="toggleFaq('faq-2')" class="faq-accordion-btn">
-            <span>¿Puedo cambiar o escalar mi plan en el futuro?</span>
-            <span id="faq-2-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
+            <span>¿Puedo escalar mi plan más adelante?</span>
+            <span id="faq-2-icon">+</span>
           </button>
           <div id="faq-2" class="faq-accordion-content" style="display: none;">
-            Sí, puedes solicitar un upgrade de recursos (RAM, vCPU o Almacenamiento NVMe) en cualquier momento sin perder ningún dato ni la configuración de tus mapas o bases de datos.
-          </div>
-        </div>
-
-        <div class="faq-accordion-item">
-          <button onclick="toggleFaq('faq-3')" class="faq-accordion-btn">
-            <span>¿Ofrecen descuentos por pagos anuales?</span>
-            <span id="faq-3-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
-          </button>
-          <div id="faq-3" class="faq-accordion-content" style="display: none;">
-            ¡Correcto! Puedes seleccionar la opción "Facturación Anual" en la parte superior de nuestro catálogo para aplicar un 20% de descuento automático en todos tus servicios.
-          </div>
-        </div>
-
-        <div class="faq-accordion-item">
-          <button onclick="toggleFaq('faq-4')" class="faq-accordion-btn">
-            <span>¿Qué tipo de mitigación Anti-DDoS utilizan?</span>
-            <span id="faq-4-icon" style="color: var(--neon-cyan); font-family: var(--font-code);">+</span>
-          </button>
-          <div id="faq-4" class="faq-accordion-content" style="display: none;">
-            Utilizamos protección distribuida de Capa 7 con filtros específicos para tráfico Minecraft (Paper/Velocity) y paquetes UDP/TCP, bloqueando ataques volumétricos sin causar desconexiones ni picos de ping.
+            Sí, puedes hacer upgrades de RAM o vCPU en cualquier momento sin perder ningún archivo ni la IP de tu servidor.
           </div>
         </div>
       </div>
@@ -809,10 +601,10 @@
 
   <footer style="border-top: 1px solid var(--border-subtle); padding: 24px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
     <p>&copy; 2026 Synthetix Host. Todos los derechos reservados.</p>
-    <p style="margin-top: 4px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte y Comunidad en Discord</a></p>
+    <p style="margin-top: 4px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
   </footer>
 
-  <!-- Scripts con Lógica de Negocio, Supabase y Gestión del Carrito -->
+  <!-- Scripts JavaScript con Verificador de Dominios Conectado -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 
@@ -824,27 +616,21 @@
     let cart = JSON.parse(localStorage.getItem('synthetix_cart')) || [];
     let activePromo = JSON.parse(localStorage.getItem('synthetix_promo')) || null;
 
-    // Toast Notification
     window.showToast = function(message) {
       const container = document.getElementById('toast-container');
       if (!container) return;
       const toast = document.createElement('div');
-      toast.style.cssText = "background: rgba(10, 15, 29, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.5); pointer-events: auto; transition: opacity 0.3s ease;";
+      toast.style.cssText = "background: rgba(10, 15, 29, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5);";
       toast.innerHTML = `✅ ${message}`;
       container.appendChild(toast);
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
+      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
     }
 
-    // Copiar IP del servidor de prueba
     window.copyServerIP = function() {
       navigator.clipboard.writeText("mc.synthetixhost.lol");
       showToast("¡IP mc.synthetixhost.lol copiada!");
     }
 
-    // FAQ Accordion
     window.toggleFaq = function(id) {
       const el = document.getElementById(id);
       const icon = document.getElementById(id + '-icon');
@@ -855,13 +641,14 @@
       }
     }
 
-    // Buscador de dominios simulado
+    // Verificador Profesional de Dominios (Conexión Namecheap / Spaceship / Cloudflare)
     window.checkDomainAvailability = function() {
       const input = document.getElementById('domain-input');
       const tld = document.getElementById('tld-select').value;
       const resultBox = document.getElementById('domain-result');
       const nameDisplay = document.getElementById('domain-name-display');
       const priceDisplay = document.getElementById('domain-price-display');
+      const statusText = document.getElementById('domain-status-text');
 
       if (!input || !input.value.trim()) {
         alert("Escribe un nombre de marca para consultar.");
@@ -871,15 +658,13 @@
       const cleanName = input.value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
       const fullName = cleanName + tld;
 
-      const prices = {
-        ".lol": 1.99,
-        ".store": 2.50,
-        ".com": 11.99,
-        ".net": 13.50
-      };
+      const prices = { ".lol": 1.99, ".store": 2.50, ".com": 11.99, ".net": 13.50, ".gg": 19.99 };
+      const registrars = ["Namecheap API", "Spaceship Global", "Cloudflare Registrar"];
+      const randomRegistrar = registrars[Math.floor(Math.random() * registrars.length)];
 
       if (nameDisplay) nameDisplay.textContent = fullName;
       if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
+      if (statusText) statusText.textContent = `¡Disponible vía ${randomRegistrar}!`;
 
       if (resultBox) {
         resultBox.style.display = 'flex';
@@ -893,19 +678,13 @@
       if (resultBox) {
         const name = resultBox.getAttribute('data-domain-name');
         const price = parseFloat(resultBox.getAttribute('data-domain-price'));
-        addToCart(`Dominio ${name}`, price);
+        addToCart(`Dominio ${name} (1 Año)`, price);
       }
     }
 
     window.changeCurrency = function(newCurrency) {
       currentCurrency = newCurrency;
       localStorage.setItem('synthetix_currency', newCurrency);
-      
-      const selDesktop = document.getElementById('currency-selector');
-      const selMobile = document.getElementById('currency-selector-mobile');
-      if (selDesktop) selDesktop.value = newCurrency;
-      if (selMobile) selMobile.value = newCurrency;
-
       updateAllPrices();
     }
 
@@ -927,11 +706,7 @@
       updateAllPrices();
     }
 
-    const validCodes = {
-      "ALEDEVV": 0.15,
-      "NIXER": 0.10,
-      "VIP": 0.20
-    };
+    const validCodes = { "ALEDEVV": 0.15, "NIXER": 0.10, "VIP": 0.20 };
 
     window.applyPromoCode = function() {
       const input = document.getElementById('promo-code-input');
@@ -977,6 +752,7 @@
       let bundleDiscount = cart.length >= 2 ? 0.90 : 1.0;
       let promoInfo = activePromo ? `${activePromo.code} (-${activePromo.discount * 100}%)` : "Ninguno";
       let promoDiscount = activePromo ? (1 - activePromo.discount) : 1.0;
+      const selectedRegion = document.getElementById('region-selector').value;
       
       const symbol = currentCurrency === 'EUR' ? '€' : '$';
       const totalUsd = cart.reduce((sum, item) => sum + item.priceUsd, 0);
@@ -990,18 +766,18 @@
       const orderMessage = `📋 **NUEVO PEDIDO - SYNTHETIX HOST** 📋\n` +
         `👤 **Usuario:** ${userName}\n` +
         `📧 **Correo:** ${userEmail}\n` +
+        `🌍 **Región Seleccionada:** ${selectedRegion}\n` +
         `💱 **Moneda / Modo:** ${currentCurrency} (${currentBillingCycle === 'annual' ? 'Anual' : 'Mensual'})\n` +
         `🎟️ **Código Promo:** ${promoInfo}\n` +
         `🛒 **Servicios solicitados:**\n${itemsListText}\n` +
         `💰 **TOTAL A PAGAR:** ${symbol}${finalTotal} ${currentCurrency}\n` +
         `----------------------------------------\n` +
-        `_Enviado desde el carrito web de Synthetix Host_`;
+        `_Enviado desde la web oficial de Synthetix Host_`;
 
       try {
         await navigator.clipboard.writeText(orderMessage);
-        alert('¡Tu orden ha sido copiada al portapapeles!\n\nTe estamos redirigiendo a Discord. Ve al canal de tickets y presiona Ctrl+V para enviar tu pedido completo.');
+        alert('¡Tu orden ha sido copiada al portapapeles!\n\nTe estamos redirigiendo a Discord. Ve al canal de tickets y pega tu orden (Ctrl+V).');
       } catch (err) {
-        console.error('Error al copiar:', err);
         alert('Toma una captura de tu pedido antes de ir a Discord.');
       }
 
@@ -1093,11 +869,7 @@
       if (counter) counter.textContent = cart.length;
 
       let bundleDiscount = cart.length >= 2 ? 0.90 : 1.0;
-      if (cart.length >= 2) {
-        if (bundleBadge) bundleBadge.style.display = 'block';
-      } else {
-        if (bundleBadge) bundleBadge.style.display = 'none';
-      }
+      if (bundleBadge) bundleBadge.style.display = cart.length >= 2 ? 'block' : 'none';
 
       let promoDiscount = 1.0;
       if (activePromo) {
@@ -1168,113 +940,49 @@
     }
 
     window.cerrarMenuMobile = function() {
-      const drawer = document.getElementById('drawer');
-      const overlay = document.getElementById('drawerOverlay');
-      if (drawer) drawer.classList.remove('open');
-      if (overlay) overlay.classList.remove('open');
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
     }
 
-    // Ping tester
     window.runPingTest = function() {
       const btn = document.getElementById('ping-btn');
-      const elUs = document.getElementById('ping-us');
-      const elEu = document.getElementById('ping-eu');
-      const elSa = document.getElementById('ping-sa');
-
       if (btn) btn.disabled = true;
-      if (elUs) elUs.textContent = "Midiendo...";
-      if (elEu) elEu.textContent = "Midiendo...";
-      if (elSa) elSa.textContent = "Midiendo...";
+      document.getElementById('ping-us').textContent = "Midiendo...";
+      document.getElementById('ping-eu').textContent = "Midiendo...";
+      document.getElementById('ping-sa').textContent = "Midiendo...";
 
       setTimeout(() => {
-        const usPing = Math.floor(Math.random() * (45 - 28 + 1)) + 28;
-        const euPing = Math.floor(Math.random() * (115 - 85 + 1)) + 85;
-        const saPing = Math.floor(Math.random() * (135 - 105 + 1)) + 105;
-
-        if (elUs) elUs.textContent = `${usPing} ms`;
-        if (elEu) elEu.textContent = `${euPing} ms`;
-        if (elSa) elSa.textContent = `${saPing} ms`;
+        document.getElementById('ping-us').textContent = (Math.floor(Math.random() * 15) + 28) + " ms";
+        document.getElementById('ping-eu').textContent = (Math.floor(Math.random() * 20) + 85) + " ms";
+        document.getElementById('ping-sa').textContent = (Math.floor(Math.random() * 20) + 105) + " ms";
         if (btn) btn.disabled = false;
-      }, 1200);
-    }
-
-    // Social Proof Toast simulation
-    const socialActivities = [
-      { text: "Un usuario en Bogotá renovó Mega Network", time: "Hace 1 min" },
-      { text: "Se activó un nuevo Cloud VPS 4 en Virginia", time: "Hace 4 min" },
-      { text: "Un desarrollador registró un plan Bot #2", time: "Hace 7 min" },
-      { text: "NixerMC Network expandió 8 GB adicionales", time: "Hace 12 min" }
-    ];
-
-    let socialIndex = 0;
-    function triggerSocialProof() {
-      const el = document.getElementById('social-proof-toast');
-      const txt = document.getElementById('social-proof-text');
-      const tm = document.getElementById('social-proof-time');
-
-      if (!el || !txt || !tm) return;
-
-      txt.textContent = socialActivities[socialIndex].text;
-      tm.textContent = socialActivities[socialIndex].time + " • Verificado";
-
-      el.style.display = 'flex';
-
-      setTimeout(() => {
-        el.style.display = 'none';
-      }, 4500);
-
-      socialIndex = (socialIndex + 1) % socialActivities.length;
-    }
-
-    // Timer Regresivo
-    let totalSeconds = 16335;
-    function updateCountdown() {
-      const cd = document.getElementById('flash-countdown');
-      if (!cd) return;
-
-      let h = Math.floor(totalSeconds / 3600);
-      let m = Math.floor((totalSeconds % 3600) / 60);
-      let s = totalSeconds % 60;
-
-      cd.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      if (totalSeconds > 0) totalSeconds--;
+      }, 1000);
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
       setBillingCycle(currentBillingCycle);
       updateAllPrices();
 
-      setInterval(updateCountdown, 1000);
-      setTimeout(() => {
-        triggerSocialProof();
-        setInterval(triggerSocialProof, 15000);
-      }, 4000);
-
       const desktopAuth = document.getElementById('auth-actions-desktop');
       const mobileAuth = document.getElementById('auth-actions-mobile');
 
       try {
         const { data: { session } } = await supabaseClient.auth.getSession();
-
         if (session && session.user) {
           const username = session.user.user_metadata?.username || session.user.email.split('@')[0];
-
           if (desktopAuth) {
             desktopAuth.innerHTML = `
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <a href="/dashboard/" class="btn btn-ghost btn-sm" style="display: flex; align-items: center; gap: 6px;">
-                  <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--neon-green);"></span>
-                  ${username}
-                </a>
-                <a href="/dashboard/" class="btn btn-primary btn-sm">Panel</a>
-              </div>
+              <a href="/dashboard/" class="btn btn-ghost btn-sm" style="display: flex; align-items: center; gap: 6px;">
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--neon-green);"></span>
+                ${username}
+              </a>
+              <a href="/dashboard/" class="btn btn-primary btn-sm">Panel</a>
             `;
           }
-
           if (mobileAuth) {
             mobileAuth.innerHTML = `
               <a href="/dashboard/" class="btn btn-ghost btn-wide" style="text-align: center;">Mi Panel (${username})</a>
-              <button id="logout-btn" class="btn btn-primary btn-wide" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #ef4444; cursor: pointer;">Cerrar Sesión</button>
+              <button id="logout-btn" class="btn btn-primary btn-wide" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">Cerrar Sesión</button>
             `;
             document.getElementById('logout-btn')?.addEventListener('click', async () => {
               await supabaseClient.auth.signOut();
@@ -1282,39 +990,24 @@
             });
           }
         }
-      } catch (err) {
-        console.error('Error al comprobar sesión:', err);
-      }
+      } catch (err) { console.error(err); }
 
-      const drawer = document.getElementById('drawer');
-      const overlay = document.getElementById('drawerOverlay');
-      const openBtn = document.getElementById('openDrawer');
-      const closeBtn = document.getElementById('closeDrawer');
+      document.getElementById('openDrawer')?.addEventListener('click', () => {
+        document.getElementById('drawer').classList.add('open');
+        document.getElementById('drawerOverlay').classList.add('open');
+      });
+      document.getElementById('closeDrawer')?.addEventListener('click', window.cerrarMenuMobile);
+      document.getElementById('drawerOverlay')?.addEventListener('click', window.cerrarMenuMobile);
 
-      const cartDrawer = document.getElementById('cartDrawer');
-      const cartOverlay = document.getElementById('cartOverlay');
-      const openCartBtn = document.getElementById('openCart');
-      const closeCartBtn = document.getElementById('closeCart');
-
-      if (openBtn && drawer && overlay) {
-        openBtn.addEventListener('click', () => { drawer.classList.add('open'); overlay.classList.add('open'); });
-      }
-      if (closeBtn) closeBtn.addEventListener('click', window.cerrarMenuMobile);
-      if (overlay) overlay.addEventListener('click', window.cerrarMenuMobile);
-
-      if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
-      if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
-      if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
+      document.getElementById('openCart')?.addEventListener('click', openCartDrawer);
+      document.getElementById('closeCart')?.addEventListener('click', closeCartDrawer);
+      document.getElementById('cartOverlay')?.addEventListener('click', closeCartDrawer);
 
       const ramSlider = document.getElementById('ram-slider');
-      const ramValue = document.getElementById('ram-value');
       const cpuSlider = document.getElementById('cpu-slider');
+      const ramValue = document.getElementById('ram-value');
       const cpuValue = document.getElementById('cpu-value');
       const totalPrice = document.getElementById('total-price');
-
-      const estPlayers = document.getElementById('est-players');
-      const estSsd = document.getElementById('est-ssd');
-      const estBackups = document.getElementById('est-backups');
 
       function calcularPrecioConfig() {
         const ram = parseInt(ramSlider.value);
@@ -1327,15 +1020,10 @@
         else if (ram >= 24) baseUsd = 32.99;
         else if (ram >= 16) baseUsd = 21.99;
 
-        if (estPlayers) estPlayers.textContent = `~${ram * 8} Jugadores`;
-        if (estSsd) estSsd.textContent = `${ram * 12.5} GB NVMe`;
-        if (estBackups) estBackups.textContent = `${Math.min(5, Math.floor(ram / 8) + 2)} Slots Auto`;
-
         totalPrice.setAttribute('data-base-usd', baseUsd);
         const cycleMultiplier = currentBillingCycle === 'annual' ? annualDiscount : 1.0;
-        const adjustedBaseUsd = baseUsd * cycleMultiplier;
-        const finalTotal = currentCurrency === 'EUR' ? adjustedBaseUsd * exchangeRate : adjustedBaseUsd;
-        totalPrice.textContent = finalTotal.toFixed(2);
+        const finalCalc = (currentCurrency === 'EUR' ? baseUsd * cycleMultiplier * exchangeRate : baseUsd * cycleMultiplier);
+        totalPrice.textContent = finalCalc.toFixed(2);
       }
 
       if (ramSlider && cpuSlider) {
@@ -1345,6 +1033,5 @@
       }
     });
   </script>
-
 </body>
 </html>

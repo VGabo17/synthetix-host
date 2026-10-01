@@ -237,7 +237,7 @@
       <div class="domain-box">
         <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">REGISTRO DE DOMINIOS</span>
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px;">Encuentra tu Dominio Ideal</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Consulta la disponibilidad y adhiérelo a tu carrito para registrarlo con nosotros.</p>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Consulta la disponibilidad en nuestros registros y adhiérelo a tu carrito.</p>
 
         <div class="domain-search-bar">
           <input type="text" id="domain-input" placeholder="Escribe tu marca (ej. nixermc)">
@@ -256,9 +256,9 @@
         <div id="domain-result" style="display: none; margin-top: 18px; padding: 14px 20px; background: rgba(3, 7, 18, 0.85); border: 1px solid var(--border-subtle); border-radius: 16px; justify-content: space-between; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 12px;">
           <div style="font-size: 0.88rem; text-align: left;">
             <span id="domain-name-display" style="font-weight: bold; color: #fff;">nixermc.lol</span>
-            <span style="color: var(--neon-green); font-weight: bold; margin-left: 8px;">¡Disponible para registro!</span>
+            <span id="domain-status-span" style="font-weight: bold; margin-left: 8px;">¡Disponible para registro!</span>
           </div>
-          <button onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
+          <button id="domain-buy-btn" onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
         </div>
       </div>
     </section>
@@ -643,13 +643,15 @@
       }
     }
 
-    // Verificador de dominios exclusivo de Synthetix Host (Sin mención a terceros)
+    // Verificador de dominios inteligente y realista (Exclusivo Synthetix Host)
     window.checkDomainAvailability = function() {
       const input = document.getElementById('domain-input');
       const tld = document.getElementById('tld-select').value;
       const resultBox = document.getElementById('domain-result');
       const nameDisplay = document.getElementById('domain-name-display');
       const priceDisplay = document.getElementById('domain-price-display');
+      const statusSpan = document.getElementById('domain-status-span');
+      const buyBtn = document.getElementById('domain-buy-btn');
 
       if (!input || !input.value.trim()) {
         alert("Escribe un nombre de marca para consultar.");
@@ -660,20 +662,49 @@
       const fullName = cleanName + tld;
 
       const prices = { ".lol": 1.99, ".store": 2.50, ".com": 11.99, ".net": 13.50, ".gg": 19.99 };
+      
+      // Lista de dominios simulados como ya ocupados/registrados (incluyendo marcas comunes y la tuya)
+      const takenDomains = ["nixermc", "google", "minecraft", "synthetix", "play", "store", "shop", "survival", "pvp", "aledevv"];
+      const isTaken = takenDomains.includes(cleanName);
 
       if (nameDisplay) nameDisplay.textContent = fullName;
-      if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
+
+      if (isTaken) {
+        if (statusSpan) {
+          statusSpan.textContent = "❌ No disponible (Ya registrado)";
+          statusSpan.style.color = "#ef4444";
+        }
+        if (buyBtn) {
+          buyBtn.style.display = "none";
+        }
+      } else {
+        if (statusSpan) {
+          statusSpan.textContent = "✅ ¡Disponible para registro!";
+          statusSpan.style.color = "var(--neon-green)";
+        }
+        if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
+        if (buyBtn) {
+          buyBtn.style.display = "inline-flex";
+          buyBtn.innerHTML = `Añadir por $${prices[tld]}`;
+        }
+      }
 
       if (resultBox) {
         resultBox.style.display = 'flex';
         resultBox.setAttribute('data-domain-name', fullName);
         resultBox.setAttribute('data-domain-price', prices[tld]);
+        resultBox.setAttribute('data-is-taken', isTaken);
       }
     }
 
     window.addDomainToCart = function() {
       const resultBox = document.getElementById('domain-result');
       if (resultBox) {
+        const isTaken = resultBox.getAttribute('data-is-taken') === 'true';
+        if (isTaken) {
+          alert("Este dominio ya se encuentra registrado y no se puede añadir.");
+          return;
+        }
         const name = resultBox.getAttribute('data-domain-name');
         const price = parseFloat(resultBox.getAttribute('data-domain-price'));
         addToCart(`Dominio ${name} (1 Año)`, price);

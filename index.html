@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Synthetix Host - Infraestructura Cloud & Gaming Enterprise</title>
   
-  <!-- Estilos del proyecto (Aura Cyber-SaaS) -->
+  <!-- Estilos principales -->
   <link rel="stylesheet" href="/assets/css/styles.css">
 
-  <!-- Start of Tawk.to Script -->
+  <!-- Tawk.to Script -->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
@@ -30,16 +30,16 @@
 </head>
 <body>
 
-  <!-- Contenedor para Notificaciones Toast -->
+  <!-- Notificaciones Toast -->
   <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
 
-  <!-- Banner de Oferta Relámpago -->
+  <!-- Banner Flash -->
   <div class="flash-bar">
     <span>🔥 ¡OFERTA LIMITADA! Usa el código <b style="color: #fde047; text-transform: uppercase; background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px;">ALEDEVV</b> y obtén 15% OFF extra</span>
     <div class="countdown-badge">Finaliza en: <span id="flash-countdown">04:32:15</span></div>
   </div>
 
-  <!-- Barra Superior de Estado de Nodos -->
+  <!-- Barra Superior -->
   <div class="top-status-bar">
     <div style="display: flex; align-items: center; gap: 6px;">
       <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);"></span>
@@ -51,15 +51,15 @@
     <span style="color: var(--neon-cyan); font-weight: 600;">💬 Activación Inmediata En 60 Segundos</span>
   </div>
 
-  <!-- Navegación Principal -->
-  <header class="container" style="position: sticky; top: 8px; z-index: 100;">
+  <!-- Header / Navbar -->
+  <header class="container" style="position: sticky; top: 10px; z-index: 100;">
     <nav class="navbar">
       <a href="/" class="brand">
-        <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px; object-fit: contain;">
+        <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 30px; height: 30px; object-fit: contain;">
         <span>synthetix<span style="color: var(--neon-blue);">.host</span></span>
       </a>
 
-      <!-- Navegación de Escritorio -->
+      <!-- Desktop Links -->
       <div class="nav-links">
         <a href="#productos" onclick="switchTabDirect('networks')">Networks</a>
         <a href="#productos" onclick="switchTabDirect('juegos')">Minecraft</a>
@@ -72,14 +72,14 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
 
-      <!-- Acciones de Usuario -->
+      <!-- Actions -->
       <div class="auth-btns">
-        <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(10, 15, 29, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 10px; border-radius: 9999px; outline: none; cursor: pointer;">
+        <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
 
-        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 6px 10px;" aria-label="Abrir Carrito">
+        <button id="openCart" class="btn btn-ghost btn-sm" style="position: relative; padding: 6px 12px;" aria-label="Abrir Carrito">
           🛒
           <span id="cart-counter" style="position: absolute; top: -4px; right: -4px; background: var(--neon-blue); color: #fff; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
         </button>
@@ -103,12 +103,12 @@
           <img src="/assets/img/logo.jpg" alt="Synthetix" style="width: 28px; height: 28px;">
           <span style="font-weight: bold; color: #fff;">Synthetix Host</span>
         </div>
-        <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">&times;</button>
+        <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer;">&times;</button>
       </div>
       
       <div style="margin-bottom: 16px;">
-        <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Moneda de pago</label>
-        <select id="currency-selector-mobile" onchange="changeCurrency(this.value)" style="width: 100%; background: rgba(3, 5, 10, 0.8); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.85rem; font-weight: 700; padding: 8px 12px; border-radius: 12px; outline: none;">
+        <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 6px;">Moneda de pago</label>
+        <select id="currency-selector-mobile" onchange="changeCurrency(this.value)" style="width: 100%; background: rgba(3, 7, 18, 0.9); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.85rem; font-weight: 700; padding: 10px 14px; border-radius: 12px; outline: none;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
         </select>
@@ -120,7 +120,7 @@
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();">Minecraft Servers</a>
         <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();">VPS Cloud</a>
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();">Bots Discord</a>
-        <div style="border-top: 1px solid var(--border-subtle); margin: 8px 0;"></div>
+        <div style="border-top: 1px solid var(--border-subtle); margin: 6px 0;"></div>
         <a href="#dominios" onclick="cerrarMenuMobile()">Verificador de Dominios</a>
         <a href="#configurador" onclick="cerrarMenuMobile()">Configurador</a>
         <a href="#pingtest" onclick="cerrarMenuMobile()">Test Latencia</a>
@@ -144,7 +144,7 @@
         <button id="closeCart" style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;">&times;</button>
       </div>
 
-      <div id="bundle-badge" style="display: none; margin-bottom: 12px; padding: 10px; background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.4); border-radius: 12px; color: var(--lila-bright); font-size: 0.75rem; font-weight: bold;">
+      <div id="bundle-badge" style="display: none; margin-bottom: 12px; padding: 10px; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 12px; color: var(--lila-bright); font-size: 0.75rem; font-weight: bold;">
         ⚡ Pack Combinado: 10% de descuento automático aplicado.
       </div>
 
@@ -162,7 +162,7 @@
       <div>
         <label style="display: block; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Código Creador / Cupón</label>
         <div style="display: flex; gap: 6px;">
-          <input type="text" id="promo-code-input" placeholder="Ej. ALEDEVV" style="background: rgba(3, 5, 10, 0.8); border: 1px solid var(--border-subtle); color: #fff; font-size: 0.8rem; font-weight: 700; border-radius: 10px; padding: 8px 12px; flex: 1; text-transform: uppercase;">
+          <input type="text" id="promo-code-input" placeholder="Ej. ALEDEVV" style="background: rgba(3, 7, 18, 0.9); border: 1px solid var(--border-subtle); color: #fff; font-size: 0.8rem; font-weight: 700; border-radius: 10px; padding: 8px 12px; flex: 1; text-transform: uppercase;">
           <button onclick="applyPromoCode()" class="btn btn-ghost btn-sm">Aplicar</button>
         </div>
         <p id="promo-error" style="font-size: 0.7rem; color: #ef4444; margin-top: 4px; display: none;">Código invalido o expirado.</p>
@@ -197,7 +197,7 @@
         Aloja tus redes de Minecraft, servidores dedicados, VPS Cloud o Bots de Discord con rendimiento extremo y panel de control intuitivo en <span style="color: var(--neon-cyan); font-weight: 600;">panel.synthetixhost.lol</span>.
       </p>
 
-      <!-- Copiador de IP de Servidor de Pruebas -->
+      <!-- IP Copier -->
       <div class="ip-copier">
         <span style="font-size: 0.8rem; color: var(--text-muted);">🎮 IP Servidor de Prueba:</span>
         <span style="font-family: var(--font-code); font-size: 0.8rem; font-weight: 700; color: var(--neon-cyan);">mc.synthetixhost.lol</span>
@@ -209,7 +209,7 @@
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" class="btn btn-ghost">💬 Unirse a Discord</a>
       </div>
 
-      <!-- Tarjeta Consola de Estado -->
+      <!-- Server Status Card -->
       <div class="server-card">
         <div class="server-card-header">
           <span>ESTADO DE NODOS EN TIEMPO REAL</span>
@@ -232,54 +232,54 @@
       </div>
     </section>
 
-    <!-- Buscador Avanzado de Dominios (Namecheap / Spaceship / Cloudflare) -->
+    <!-- Verificador de Dominios (Exclusivo Synthetix Host) -->
     <section id="dominios">
       <div class="domain-box">
-        <span class="badge-online" style="margin-bottom: 10px; display: inline-block;">REGISTRO GLOBAL DE DOMINIOS</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.7rem; margin-top: 4px;">Verificador en Vivo (Namecheap & Spaceship)</h2>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Consulta la disponibilidad instantánea de tu extensión preferida para tu comunidad.</p>
+        <span class="badge-online" style="margin-bottom: 12px; display: inline-block;">REGISTRO DE DOMINIOS</span>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px;">Encuentra tu Dominio Ideal</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px;">Consulta la disponibilidad y adhiérelo a tu carrito para registrarlo con nosotros.</p>
 
         <div class="domain-search-bar">
           <input type="text" id="domain-input" placeholder="Escribe tu marca (ej. nixermc)">
-          <div style="display: flex; gap: 6px; width: 100%;">
-            <select id="tld-select" style="flex: 1; background: var(--bg-surface-hover); border: 1px solid var(--border-subtle); color: var(--neon-cyan); border-radius: 12px; padding: 10px; font-weight: 700; outline: none; cursor: pointer;">
+          <div style="display: flex; gap: 8px; width: 100%;">
+            <select id="tld-select" style="flex: 1; background: #0b0f19; border: 1px solid var(--border-subtle); color: var(--neon-cyan); border-radius: 12px; padding: 10px; font-weight: 700; outline: none; cursor: pointer;">
               <option value=".lol">.lol ($1.99/año)</option>
               <option value=".store">.store ($2.50/año)</option>
               <option value=".com">.com ($11.99/año)</option>
               <option value=".net">.net ($13.50/año)</option>
               <option value=".gg">.gg ($19.99/año)</option>
             </select>
-            <button onclick="checkDomainAvailability()" class="btn btn-primary btn-sm" style="padding: 10px 20px;">Consultar</button>
+            <button onclick="checkDomainAvailability()" class="btn btn-primary btn-sm" style="padding: 10px 24px;">Buscar</button>
           </div>
         </div>
 
-        <div id="domain-result" style="display: none; margin-top: 16px; padding: 14px 18px; background: rgba(3, 5, 10, 0.7); border: 1px solid var(--border-subtle); border-radius: 14px; justify-content: space-between; align-items: center; max-width: 600px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 10px;">
-          <div style="font-size: 0.85rem; text-align: left;">
+        <div id="domain-result" style="display: none; margin-top: 18px; padding: 14px 20px; background: rgba(3, 7, 18, 0.85); border: 1px solid var(--border-subtle); border-radius: 16px; justify-content: space-between; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 12px;">
+          <div style="font-size: 0.88rem; text-align: left;">
             <span id="domain-name-display" style="font-weight: bold; color: #fff;">nixermc.lol</span>
-            <span id="domain-status-text" style="color: var(--neon-cyan); font-weight: bold; margin-left: 8px;">¡Disponible en Namecheap!</span>
+            <span style="color: var(--neon-green); font-weight: bold; margin-left: 8px;">¡Disponible para registro!</span>
           </div>
-          <button id="domain-buy-btn" onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
+          <button onclick="addDomainToCart()" class="btn btn-primary btn-sm">Añadir por <span id="domain-price-display">$1.99</span></button>
         </div>
       </div>
     </section>
 
-    <!-- Sección de Productos y Catálogos -->
+    <!-- Catálogos y Planes -->
     <section id="productos" style="padding: 10px 0 30px;">
       <div style="text-align: center; margin-bottom: 24px;">
-        <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
+        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Catálogos y Planes</h2>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">Infraestructura de alto rendimiento optimizada para gaming empresarial.</p>
         
         <!-- Switch de Ciclo de Facturación -->
-        <div style="display: inline-flex; gap: 6px; background: rgba(10, 15, 29, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%;">
+        <div style="display: inline-flex; gap: 6px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 9999px; border: 1px solid var(--border-subtle); max-width: 100%;">
           <button id="billing-monthly-btn" onclick="setBillingCycle('monthly')" class="btn btn-primary btn-sm">Facturación Mensual</button>
           <button id="billing-annual-btn" onclick="setBillingCycle('annual')" class="btn btn-ghost btn-sm" style="border: none;">Facturación Anual (-20% OFF)</button>
         </div>
       </div>
 
       <!-- Selector de Región Global del Nodo -->
-      <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 24px; font-size: 0.8rem; color: var(--text-muted);">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 28px; font-size: 0.82rem; color: var(--text-muted);">
         <span>🌍 Ubicación del Nodo:</span>
-        <select id="region-selector" style="background: rgba(10,15,29,0.9); border: 1px solid var(--border-subtle); color: var(--neon-cyan); padding: 4px 10px; border-radius: 8px; font-weight: 700; outline: none; cursor: pointer;">
+        <select id="region-selector" style="background: rgba(15,23,42,0.9); border: 1px solid var(--border-subtle); color: var(--neon-cyan); padding: 6px 12px; border-radius: 10px; font-weight: 700; outline: none; cursor: pointer;">
           <option value="US">🇺🇸 US East (Virginia - Principal)</option>
           <option value="EU">🇩🇪 EU Central (Frankfurt)</option>
           <option value="SA">🇧🇷 SA East (São Paulo)</option>
@@ -303,7 +303,7 @@
           <div class="product-card">
             <span class="card-badge">6 GB RAM</span>
             <h3>Network Starter</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Ideal para iniciar tu red con rendimiento real y cero lag.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Ideal para iniciar tu red con rendimiento real y cero lag.</p>
             <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>6 GB</b> RAM Dedicada</li>
@@ -318,7 +318,7 @@
           <div class="product-card">
             <span class="card-badge">9 GB RAM</span>
             <h3>Network Pro</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">El equilibrio perfecto para comunidades en crecimiento.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">El equilibrio perfecto para comunidades en crecimiento.</p>
             <div class="card-price">$<span class="price-tag" data-usd="14.99">14.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>9 GB</b> RAM Dedicada</li>
@@ -330,10 +330,10 @@
             <button onclick="handlePlanBuy('Network Pro', 14.99)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
 
-          <div class="product-card" style="border-color: var(--neon-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);">
+          <div class="product-card" style="border-color: var(--border-glow); box-shadow: 0 0 35px rgba(6, 182, 212, 0.12);">
             <span class="card-badge highlight">MÁS POPULAR</span>
             <h3>Mega Network</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Potencia bruta para redes grandes con mundos masivos.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Potencia bruta para redes grandes con mundos masivos.</p>
             <div class="card-price">$<span class="price-tag" data-usd="19.99">19.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>14 GB</b> RAM (Repartida)</li>
@@ -351,7 +351,7 @@
           <div class="product-card">
             <span class="card-badge">2 GB RAM</span>
             <h3>Starter</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para jugar con amigos cercanos.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para jugar con amigos cercanos.</p>
             <div class="card-price">$<span class="price-tag" data-usd="2.50">2.50</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>2 GB</b> RAM DDR4</li>
@@ -362,10 +362,10 @@
             <button onclick="handlePlanBuy('Minecraft Starter (2GB)', 2.50)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
 
-          <div class="product-card" style="border-color: var(--neon-blue);">
+          <div class="product-card" style="border-color: var(--border-glow);">
             <span class="card-badge highlight">POPULAR</span>
             <h3>Pro Server</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para servidores públicos y comunidades.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para servidores públicos y comunidades.</p>
             <div class="card-price">$<span class="price-tag" data-usd="4.99">4.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>4 GB</b> RAM DDR4</li>
@@ -379,7 +379,7 @@
           <div class="product-card">
             <span class="card-badge">8 GB RAM</span>
             <h3>Master Server</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Para modpacks pesados y alta concurrencia.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">Para modpacks pesados y alta concurrencia.</p>
             <div class="card-price">$<span class="price-tag" data-usd="9.99">9.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
             <ul class="card-features">
               <li><b>8 GB</b> RAM DDR4</li>
@@ -406,7 +406,7 @@
             <button onclick="handlePlanBuy('VPS Basic', 3.99)" class="btn btn-primary btn-wide">Comprar</button>
           </div>
 
-          <div class="product-card" style="border-color: var(--neon-blue);">
+          <div class="product-card" style="border-color: var(--border-glow);">
             <span class="card-badge highlight">RECOMENDADO</span>
             <h3>Cloud VPS 4</h3>
             <div class="card-price">$<span class="price-tag" data-usd="10.99">10.99</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
@@ -435,7 +435,7 @@
             <button onclick="handlePlanBuy('Plan Bot #1 (Iniciación)', 1.50)" class="btn btn-primary btn-wide">Comprar Plan</button>
           </div>
 
-          <div class="product-card" style="border-color: var(--neon-blue);">
+          <div class="product-card" style="border-color: var(--border-glow);">
             <span class="card-badge highlight">POPULAR</span>
             <h3>Bot #2 (Crecimiento)</h3>
             <div class="card-price">$<span class="price-tag" data-usd="3.00">3.00</span> <span class="currency-symbol">USD</span> <span class="billing-label">/mes</span></div>
@@ -506,9 +506,9 @@
       </div>
     </section>
 
-    <!-- Test de Latencia Interactivo -->
+    <!-- Test de Latencia -->
     <section id="pingtest" style="padding: 10px 0 30px;">
-      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px;">
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 26px; backdrop-filter: blur(16px);">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
           <div>
             <span class="badge-online" style="margin-bottom: 8px; display: inline-block;">BAJA LATENCIA</span>
@@ -518,16 +518,16 @@
           <button onclick="runPingTest()" id="ping-btn" class="btn btn-primary btn-sm">📡 Probar Latencia</button>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+          <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
             <div><b>🇺🇸 US Virginia</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Principal</div></div>
             <span id="ping-us" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+          <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
             <div><b>🇩🇪 EU Frankfurt</b><div style="font-size: 0.65rem; color: var(--text-dim);">Nodo Europa</div></div>
             <span id="ping-eu" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
-          <div style="background: rgba(3, 5, 10, 0.6); padding: 14px; border-radius: 14px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+          <div style="background: rgba(3, 7, 18, 0.7); padding: 16px; border-radius: 16px; border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
             <div><b>🇧🇷 SA São Paulo</b><div style="font-size: 0.65rem; color: var(--text-dim);">Routing Latam</div></div>
             <span id="ping-sa" style="color: var(--neon-cyan); font-family: var(--font-code); font-weight: bold;">-- ms</span>
           </div>
@@ -539,8 +539,8 @@
     <section id="configurador" style="padding: 10px 0 40px;">
       <div class="builder-box">
         <div>
-          <h2 style="font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 4px;">Configura tu servidor a medida</h2>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
+          <h2 style="font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 6px;">Configura tu servidor a medida</h2>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px;">Ajusta los recursos según las exigencias de tus modalidades y mundos.</p>
           
           <div class="slider-group">
             <div class="slider-header">
@@ -560,9 +560,11 @@
         </div>
 
         <div class="checkout-col">
-          <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimación Calculada</span>
-          <div class="total-price">$<span id="total-price" data-base-usd="19.99">19.99</span> <span id="calc-currency">USD</span></div>
-          <span id="calc-billing-period" style="font-size: 0.7rem; color: var(--text-dim); margin-bottom: 12px;">por mes</span>
+          <div>
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimación Calculada</span>
+            <div class="total-price">$<span id="total-price" data-base-usd="19.99">19.99</span> <span id="calc-currency">USD</span></div>
+            <span id="calc-billing-period" style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 16px; display: block;">por mes</span>
+          </div>
           <button onclick="addConfigToCart()" class="btn btn-primary btn-wide">🛒 Añadir Configuración</button>
         </div>
       </div>
@@ -599,12 +601,12 @@
 
   </main>
 
-  <footer style="border-top: 1px solid var(--border-subtle); padding: 24px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 28px 0; text-align: center; font-size: 0.8rem; color: var(--text-dim); background: var(--bg-surface);">
     <p>&copy; 2026 Synthetix Host. Todos los derechos reservados.</p>
-    <p style="margin-top: 4px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
+    <p style="margin-top: 6px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
   </footer>
 
-  <!-- Scripts JavaScript con Verificador de Dominios Conectado -->
+  <!-- Scripts -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 
@@ -620,7 +622,7 @@
       const container = document.getElementById('toast-container');
       if (!container) return;
       const toast = document.createElement('div');
-      toast.style.cssText = "background: rgba(10, 15, 29, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5);";
+      toast.style.cssText = "background: rgba(15, 23, 42, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5);";
       toast.innerHTML = `✅ ${message}`;
       container.appendChild(toast);
       setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
@@ -641,14 +643,13 @@
       }
     }
 
-    // Verificador Profesional de Dominios (Conexión Namecheap / Spaceship / Cloudflare)
+    // Verificador de dominios exclusivo de Synthetix Host (Sin mención a terceros)
     window.checkDomainAvailability = function() {
       const input = document.getElementById('domain-input');
       const tld = document.getElementById('tld-select').value;
       const resultBox = document.getElementById('domain-result');
       const nameDisplay = document.getElementById('domain-name-display');
       const priceDisplay = document.getElementById('domain-price-display');
-      const statusText = document.getElementById('domain-status-text');
 
       if (!input || !input.value.trim()) {
         alert("Escribe un nombre de marca para consultar.");
@@ -659,12 +660,9 @@
       const fullName = cleanName + tld;
 
       const prices = { ".lol": 1.99, ".store": 2.50, ".com": 11.99, ".net": 13.50, ".gg": 19.99 };
-      const registrars = ["Namecheap API", "Spaceship Global", "Cloudflare Registrar"];
-      const randomRegistrar = registrars[Math.floor(Math.random() * registrars.length)];
 
       if (nameDisplay) nameDisplay.textContent = fullName;
       if (priceDisplay) priceDisplay.textContent = `$${prices[tld]}`;
-      if (statusText) statusText.textContent = `¡Disponible vía ${randomRegistrar}!`;
 
       if (resultBox) {
         resultBox.style.display = 'flex';
@@ -889,7 +887,7 @@
           itemsContainer.innerHTML = cart.map((item, index) => {
             const itemPrice = (currentCurrency === 'EUR' ? item.priceUsd * exchangeRate : item.priceUsd) * bundleDiscount * promoDiscount;
             return `
-              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(3, 5, 10, 0.6); padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border-subtle); font-size: 0.8rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(3, 7, 18, 0.7); padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border-subtle); font-size: 0.8rem;">
                 <div>
                   <div style="font-weight: bold; color: #fff;">${item.name}</div>
                   <div style="color: var(--neon-cyan); font-weight: 600;">${symbol}${itemPrice.toFixed(2)} ${currentCurrency}</div>

@@ -8,15 +8,6 @@
   <!-- Ruta de estilos absoluta apuntando a tu estructura en GitHub -->
   <link rel="stylesheet" href="/assets/css/styles.css">
 
-  <!-- ========================================== -->
-  <!-- INICIO SCRIPT GLOBAL GOOGLE ADSENSE        -->
-  <!-- (Borrar esto si quieres desactivar AdSense) -->
-  <!-- ========================================== -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9519830131255251" crossorigin="anonymous"></script>
-  <!-- ========================================== -->
-  <!-- FIN SCRIPT GLOBAL GOOGLE ADSENSE           -->
-  <!-- ========================================== -->
-
   <!-- Tawk.to Widget Integration -->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -74,18 +65,13 @@
         <a href="#productos" onclick="switchTabDirect('juegos')">Minecraft</a>
         <a href="#productos" onclick="switchTabDirect('vps')">VPS Cloud</a>
         <a href="#productos" onclick="switchTabDirect('discord')">Bots Discord</a>
-        <a href="#afk-system" style="color: var(--warning-yellow);">🪙 S-Coins</a>
         <a href="#dominios">Dominios</a>
         <a href="#configurador">Configurador</a>
         <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); font-weight: 700;">💬 Discord</a>
       </div>
 
-      <!-- Acciones, S-Coins Badge y Moneda -->
+      <!-- Acciones y Moneda -->
       <div class="auth-btns">
-        <div id="scoins-counter" style="background: rgba(253, 224, 71, 0.12); border: 1px solid rgba(253, 224, 71, 0.35); color: var(--warning-yellow); font-size: 0.78rem; font-weight: 800; padding: 6px 12px; border-radius: 9999px; display: flex; align-items: center; gap: 4px;">
-          🪙 0 S-Coins
-        </div>
-
         <select id="currency-selector" class="desktop-only" onchange="changeCurrency(this.value)" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-subtle); color: var(--text-main); font-size: 0.82rem; font-weight: 700; padding: 6px 12px; border-radius: 9999px; outline: none; cursor: pointer;">
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
@@ -132,7 +118,6 @@
         <a href="#productos" onclick="switchTabDirect('juegos'); cerrarMenuMobile();">Minecraft Servers</a>
         <a href="#productos" onclick="switchTabDirect('vps'); cerrarMenuMobile();">VPS Cloud</a>
         <a href="#productos" onclick="switchTabDirect('discord'); cerrarMenuMobile();">Bots Discord</a>
-        <a href="#afk-system" onclick="cerrarMenuMobile()" style="color: var(--warning-yellow);">🪙 Sistema AFK S-Coins</a>
         <div style="border-top: 1px solid var(--border-subtle); margin: 4px 0;"></div>
         <a href="#dominios" onclick="cerrarMenuMobile()">Verificador de Dominios</a>
         <a href="#configurador" onclick="cerrarMenuMobile()">Configurador</a>
@@ -238,65 +223,6 @@
           <div class="stat-item">
             <b>DDoS L7</b>
             <small>Mitigación</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- INICIO BLOQUE DE ANUNCIO VISUAL            -->
-    <!-- (Borra todo este bloque si ya no lo quieres) -->
-    <!-- ========================================== -->
-    <section style="margin: 30px 0; text-align: center;">
-      <div style="background: var(--grad-card); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 16px; max-width: 800px; margin: 0 auto; box-sizing: border-box;">
-        <span style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 8px; letter-spacing: 1px;">Patrocinado / Publicidad</span>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9519830131255251"
-             data-ad-slot="1234567890" 
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </section>
-    <!-- ========================================== -->
-    <!-- FIN BLOQUE DE ANUNCIO VISUAL               -->
-    <!-- ========================================== -->
-
-    <!-- SISTEMA AFK DE S-COINS -->
-    <section id="afk-system" style="padding: 10px 0 35px;">
-      <div style="background: var(--grad-card); border: 1px solid rgba(253, 224, 71, 0.3); border-radius: 24px; padding: 30px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
-        <span class="badge-online" style="background: rgba(253, 224, 71, 0.15); color: var(--warning-yellow); border-color: rgba(253, 224, 71, 0.4); margin-bottom: 10px; display: inline-block;">SISTEMA AFK & MINING</span>
-        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-top: 4px; color: #fff;">Gana S-Coins Manteniéndote Activo</h2>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 6px; max-width: 600px; margin-left: auto; margin-right: auto;">Por cada 20 segundos que dejes esta pestaña abierta, ganarás automáticamente <b style="color: var(--warning-yellow);">+1 S-Coin</b> para canjear servidores gratis.</p>
-
-        <div style="margin: 24px 0; background: rgba(3, 7, 18, 0.8); border: 1px solid var(--border-subtle); display: inline-block; padding: 16px 36px; border-radius: 20px;">
-          <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Tu Balance Actual</div>
-          <div style="font-size: 2.5rem; font-weight: 800; color: var(--warning-yellow); font-family: var(--font-heading);">
-            <span id="display-scoins">0</span> <span style="font-size: 1rem; color: #fff;">S-Coins</span>
-          </div>
-          <div id="afk-timer-status" style="font-size: 0.75rem; color: var(--neon-cyan); margin-top: 6px;">⏱️ Siguiente S-Coin en: 20s</div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 10px;">
-          <div style="background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 20px; text-align: left;">
-            <div style="font-size: 1.2rem; font-weight: bold; color: #fff; margin-bottom: 6px;">🎁 Servidor Minecraft Free</div>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">1 GB RAM, NVMe y panel propio para iniciar tu comunidad.</p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-weight: 800; color: var(--warning-yellow);">500 S-Coins</span>
-              <button onclick="claimAfkReward('Servidor Minecraft Free (1GB)', 500)" class="btn btn-primary btn-sm">Canjear</button>
-            </div>
-          </div>
-
-          <div style="background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 20px; text-align: left;">
-            <div style="font-size: 1.2rem; font-weight: bold; color: #fff; margin-bottom: 6px;">📢 Espacio de Anuncio Global</div>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Publica tu servidor o marca en el banner superior por 24 horas.</p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-weight: 800; color: var(--warning-yellow);">200 S-Coins</span>
-              <button onclick="claimAfkReward('Anuncio Global 24h', 200)" class="btn btn-primary btn-sm">Canjear</button>
-            </div>
           </div>
         </div>
       </div>
@@ -673,7 +599,7 @@
     <p style="margin-top: 4px;"><a href="https://discord.gg/QDZ5ff5Shb" target="_blank" style="color: var(--lila-bright); text-decoration: underline;">Soporte Oficial en Discord</a></p>
   </footer>
 
-  <!-- Scripts de Lógica, Controladores y Sistema AFK -->
+  <!-- Scripts de Lógica y Controladores -->
   <script type="module">
     import { supabaseClient } from '/assets/js/supabaseClient.js';
 
@@ -685,68 +611,11 @@
     let cart = JSON.parse(localStorage.getItem('synthetix_cart')) || [];
     let activePromo = JSON.parse(localStorage.getItem('synthetix_promo')) || null;
 
-    // --- SISTEMA AFK S-COINS ---
-    let sCoins = parseInt(localStorage.getItem('synthetix_scoins')) || 0;
-    let afkSecondsLeft = 20;
-
-    function initAfkSystem() {
-      updateSCoinsUI();
-      
-      setInterval(() => {
-        afkSecondsLeft--;
-        const statusEl = document.getElementById('afk-timer-status');
-        if (statusEl) {
-          statusEl.textContent = `⏱️ Siguiente S-Coin en: ${afkSecondsLeft}s`;
-        }
-
-        if (afkSecondsLeft <= 0) {
-          afkSecondsLeft = 20;
-          sCoins += 1;
-          localStorage.setItem('synthetix_scoins', sCoins);
-          updateSCoinsUI();
-          showToast("🪙 ¡Has ganado +1 S-Coin por tiempo AFK!");
-        }
-      }, 1000);
-    }
-
-    function updateSCoinsUI() {
-      const counterNav = document.getElementById('scoins-counter');
-      const displaySec = document.getElementById('display-scoins');
-      if (counterNav) counterNav.textContent = `🪙 ${sCoins} S-Coins`;
-      if (displaySec) displaySec.textContent = sCoins;
-    }
-
-    window.claimAfkReward = function(rewardName, cost) {
-      if (sCoins < cost) {
-        alert(`❌ No tienes suficientes S-Coins. Tienes ${sCoins} S-Coins y necesitas ${cost} S-Coins. ¡Deja la pestaña abierta para acumular más!`);
-        return;
-      }
-
-      sCoins -= cost;
-      localStorage.setItem('synthetix_scoins', sCoins);
-      updateSCoinsUI();
-
-      const orderMessage = `🎁 **CANJE DE S-COINS - SYNTHETIX HOST** 🎁\n` +
-        `🏆 **Recompensa Canjeada:** ${rewardName}\n` +
-        `🪙 **S-Coins Gastadas:** ${cost}\n` +
-        `----------------------------------------\n` +
-        `_Reclamado mediante el sistema AFK web._`;
-
-      try {
-        navigator.clipboard.writeText(orderMessage);
-        alert(`🎉 ¡Canje exitoso de "${rewardName}"! Tu código de orden se ha copiado al portapapeles. Pégalo en un ticket de Discord para recibirlo.`);
-      } catch (err) {
-        alert(`🎉 ¡Canje exitoso! Toma captura de pantalla de esto y reclama tu "${rewardName}" en Discord.`);
-      }
-
-      window.open('https://discord.gg/QDZ5ff5Shb', '_blank');
-    }
-
     window.showToast = function(message) {
       const container = document.getElementById('toast-container');
       if (!container) return;
       const toast = document.createElement('div');
-      toast.style.cssText = "background: rgba(15, 23, 42, 0.95); border: 1px solid var(--warning-yellow); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5);";
+      toast.style.cssText = "background: rgba(15, 23, 42, 0.95); border: 1px solid var(--neon-cyan); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 10px 25px rgba(0,0,0,0.5);";
       toast.innerHTML = `✅ ${message}`;
       container.appendChild(toast);
       setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
@@ -1087,7 +956,6 @@
     document.addEventListener('DOMContentLoaded', async () => {
       setBillingCycle(currentBillingCycle);
       updateAllPrices();
-      initAfkSystem();
 
       const desktopAuth = document.getElementById('auth-actions-desktop');
       const mobileAuth = document.getElementById('auth-actions-mobile');

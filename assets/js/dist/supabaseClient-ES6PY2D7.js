@@ -1,1 +1,0 @@
-import"./chunk-EK7ODJWE.js";import{createClient as e}from"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";var t="https://pnnnhkbriqizjmkhodbu.supabase.co",s="sb_publishable_6mgwm2JwyzzveWGAGCXyJQ_NjF1Mxrx",o=e(t,s,{auth:{persistSession:!0,autoRefreshToken:!0,detectSessionInUrl:!0}});export{o as supabaseClient};

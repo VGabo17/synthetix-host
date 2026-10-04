@@ -10,6 +10,363 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
+
+<style id="responsive-dashboard-fix">
+/* =========================================================
+   Synthetix Host — responsive dashboard patch
+   Android + desktop
+   ========================================================= */
+:root {
+  --dash-max: 1440px;
+  --mobile-pad: 16px;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, svg, video {
+  max-width: 100%;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dash {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+/* Desktop layout */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 250px;
+  height: 100dvh;
+  z-index: 40;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dash > div:last-child {
+  min-width: 0;
+}
+
+.dash-main {
+  width: min(100%, var(--dash-max));
+  min-width: 0;
+  margin-left: 250px;
+  padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 64px);
+}
+
+.dash-head {
+  gap: 24px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stat {
+  min-width: 0;
+}
+
+.block {
+  min-width: 0;
+}
+
+.block__head {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  gap: 16px;
+}
+
+.quick {
+  min-width: 0;
+}
+
+.quick .btn {
+  max-width: 100%;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+
+  .dash-main {
+    width: 100%;
+    margin-left: 0;
+    padding: 28px 24px 48px;
+  }
+
+  .dash-top {
+    width: 100%;
+    min-height: 68px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Android / phones */
+@media (max-width: 680px) {
+  :root {
+    --mobile-pad: 14px;
+  }
+
+  body {
+    min-width: 320px;
+  }
+
+  .dash-top {
+    min-height: 62px;
+    padding: 10px var(--mobile-pad);
+  }
+
+  .dash-top .brand {
+    min-width: 0;
+    max-width: calc(100% - 54px);
+  }
+
+  .dash-top .brand span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dash-main {
+    padding: 22px var(--mobile-pad) calc(34px + env(safe-area-inset-bottom));
+  }
+
+  .dash-head {
+    display: block;
+    margin-bottom: 22px;
+  }
+
+  .dash-head h1 {
+    margin-bottom: 8px;
+    font-size: clamp(1.55rem, 7vw, 2.1rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .dash-head p {
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .user-badge {
+    width: 100%;
+    max-width: 100%;
+    min-height: 42px;
+    justify-content: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat:last-child {
+    grid-column: auto;
+  }
+
+  .stat {
+    padding: 17px;
+    border-radius: 18px;
+  }
+
+  .stat__label {
+    font-size: .82rem;
+  }
+
+  .stat__value {
+    font-size: 1.75rem;
+  }
+
+  .stat__value--sm {
+    font-size: 1rem;
+  }
+
+  .block {
+    margin-top: 28px;
+  }
+
+  .block__head {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .block__head h2 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  .block__head .link {
+    width: 100%;
+    font-size: .82rem !important;
+  }
+
+  .empty {
+    padding: 30px 18px;
+    border-radius: 18px;
+  }
+
+  .empty h3 {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .empty p {
+    max-width: 100%;
+    font-size: .86rem;
+    line-height: 1.55;
+  }
+
+  .empty .btn {
+    width: 100%;
+  }
+
+  /* Transaction table becomes a real horizontal scroll area,
+     instead of forcing the entire page wider. */
+  .block > .glass {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    border-radius: 16px;
+  }
+
+  .data-table {
+    min-width: 640px !important;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .quick {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .quick h3 {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .quick p {
+    font-size: .84rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .quick .btn {
+    width: 100%;
+    min-height: 46px;
+    font-size: .82rem;
+  }
+
+  .drawer {
+    width: min(86vw, 360px);
+    max-width: 360px;
+  }
+
+  .overlay {
+    touch-action: none;
+  }
+
+  .icon-btn {
+    min-width: 42px;
+    min-height: 42px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .dash-main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .dash-top {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .stat,
+  .quick {
+    padding: 15px;
+  }
+
+  .empty {
+    padding: 24px 14px;
+  }
+}
+
+/* Respect Android users who request reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div class="dash">

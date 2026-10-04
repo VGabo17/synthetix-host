@@ -806,3 +806,62 @@ input[type='range']::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .nav-links { margin: 0 auto; }
 .hero__actions .btn { flex: 0 1 auto; }
 @media (max-width: 640px) { .hero__actions .btn { width: 100%; } .ip-copier { width: 100%; } }
+
+/* ===== MOBILE / ANDROID FIX ===== */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container,
+  .dashboard,
+  .dashboard-main,
+  .main,
+  main {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  img, canvas, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sidebar {
+    max-width: 85vw;
+  }
+
+  .dashboard-content,
+  .content,
+  .main-content {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  table {
+    max-width: 100%;
+  }
+
+  .card,
+  .panel,
+  .stat-card {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  button,
+  a,
+  input,
+  select {
+    max-width: 100%;
+  }
+}

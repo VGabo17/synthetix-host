@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión | Synthetix Host</title>
+  <meta name="theme-color" content="#04060d">
+  <link rel="icon" href="../assets/img/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="auth">
+    <aside class="auth__visual" aria-hidden="false">
+      <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="34" height="34"><span>synthetix<em>.host</em></span></a>
+      <div class="globe-wrap"><canvas data-globe role="img" aria-label="Globo 3D con las regiones de Synthetix"></canvas></div>
+      <div class="auth__pitch">
+        <h2>Tu infraestructura, <em>siempre bajo control.</em></h2>
+        <p>Gestiona tus servicios e infraestructura desde un solo lugar.</p>
+        <div class="auth__chips">
+          <span><i data-icon="cpu" data-size="15"></i> AMD EPYC</span>
+          <span><i data-icon="disk" data-size="15"></i> NVMe Gen4</span>
+          <span><i data-icon="shield" data-size="15"></i> Anti-DDoS Capa 7</span>
+          <span><i data-icon="zap" data-size="15"></i> Activación en 60 segundos</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="auth__panel">
+      <div class="auth-card glass">
+        <div class="auth-card__head">
+          <span class="kicker">Bienvenido de nuevo</span>
+          <h1>Accede a tu <em>panel</em></h1>
+          <p>Gestiona tus servicios e infraestructura desde un solo lugar.</p>
+        </div>
+
+        <div id="toast-root"></div>
+
+        <form id="login-form" class="form" novalidate>
+          <label class="field" for="email">
+            <span class="field__label">Correo electrónico</span>
+            <span class="input-wrap">
+              <span class="input-ico" data-icon="mail" data-size="18"></span>
+              <input id="email" class="input" type="email" required autocomplete="email" placeholder="tu@email.com">
+            </span>
+          </label>
+
+          <label class="field" for="password">
+            <span class="field__label">Contraseña</span>
+            <span class="input-wrap">
+              <span class="input-ico" data-icon="lock" data-size="18"></span>
+              <input id="password" class="input has-toggle" type="password" required autocomplete="current-password" placeholder="Tu contraseña">
+              <button type="button" class="toggle-pass" data-toggle-password="password" aria-label="Mostrar contraseña"></button>
+            </span>
+          </label>
+
+          <div class="form__row">
+            <label class="check"><input type="checkbox"> Recordarme</label>
+            <a href="/reset-password/" class="link">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary btn-wide btn-lg">
+            <span class="btn-label">Iniciar sesión</span> <i data-icon="arrow-right" data-size="18"></i>
+          </button>
+        </form>
+
+        <div class="divider">o continúa con</div>
+
+        <button id="discord-login" type="button" class="btn btn-discord btn-wide">
+          <i data-icon="discord" data-size="18"></i> Discord
+        </button>
+
+        <p class="auth-foot">¿Aún no tienes cuenta? <a href="/register/" class="link">Regístrate gratis</a></p>
+      </div>
+
+      <a class="back-link" href="/"><i data-icon="arrow-left" data-size="16"></i> Volver al inicio</a>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/dist/ui.js"></script>
+  <script type="module" src="../assets/js/auth.js"></script>
+</body>
+</html>

@@ -9,10 +9,10 @@ find . -type f -name "*.html" \
   -not -path "./node_modules/*" \
   -not -path "./.git/*" \
   -exec sed -i \
-  -e 's|href="/"|href="/Test/"|g' \
-  -e 's|href='\''/'\''|href='\''/Test/'\''|g' \
-  -e 's|src="/assets/|src="/Test/assets/|g' \
-  -e 's|href="/assets/|href="/Test/assets/|g' \
+  -e 's|href="/"|href="/"|g' \
+  -e 's|href='\''/'\''|href='\''/'\''|g' \
+  -e 's|src="/assets/|src="/assets/|g' \
+  -e 's|href="/assets/|href="/assets/|g' \
   {} \;
 
 # JS
@@ -20,15 +20,15 @@ find . -type f -name "*.js" \
   -not -path "./node_modules/*" \
   -not -path "./.git/*" \
   -exec sed -i \
-  -e 's|href:"/"|href:"/Test/"|g' \
-  -e "s|href:'/'|href:'/Test/'|g" \
-  -e 's|href:"/assets/|href:"/Test/assets/|g' \
-  -e "s|href:'/assets/|href:'/Test/assets/|g" \
-  -e 's|src:"/assets/|src:"/Test/assets/|g' \
-  -e "s|src:'/assets/|src:'/Test/assets/|g" \
-  -e 's|../../../assets/|/Test/assets/|g' \
-  -e 's|../../assets/|/Test/assets/|g' \
-  -e 's|../assets/|/Test/assets/|g' \
+  -e 's|href:"/"|href:"/"|g' \
+  -e "s|href:'/'|href:'/'|g" \
+  -e 's|href:"/assets/|href:"/assets/|g' \
+  -e "s|href:'/assets/|href:'/assets/|g" \
+  -e 's|src:"/assets/|src:"/assets/|g' \
+  -e "s|src:'/assets/|src:'/assets/|g" \
+  -e 's|../../../assets/|/assets/|g' \
+  -e 's|../../assets/|/assets/|g' \
+  -e 's|../assets/|/assets/|g' \
   {} \;
 
 # CSS
@@ -36,7 +36,7 @@ find . -type f -name "*.css" \
   -not -path "./node_modules/*" \
   -not -path "./.git/*" \
   -exec sed -i \
-  -e 's|/assets/|/Test/assets/|g' \
+  -e 's|/assets/|/assets/|g' \
   {} \;
 
 # Asegurar logo
@@ -68,4 +68,4 @@ git push
 
 echo ""
 echo "✅ TERMINADO"
-echo "🌐 https://71x7.github.io/Test/"
+echo "🌐 https://71x7.github.io/"

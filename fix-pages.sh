@@ -117,4 +117,4 @@ echo " ✅ TERMINADO"
 echo "======================================"
 echo
 echo "Página:"
-echo "https://71x7.github.io/Test/"
+echo "https://71x7.github.io/"

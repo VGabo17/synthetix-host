@@ -100,7 +100,7 @@
           <div class="glass" style="padding: 2rem; border-radius: 14px; text-align: center; border: 1px solid rgba(139,92,246,0.2);">
             <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1rem;">Apoya el hosting manteniendo visibles los anuncios mientras farmeas tus monedas.</p>
             
-            <!-- Contenedor donde puedes pegar el código script/iframe de tu proveedor de publicidad -->
+            <!-- Contenedor para código de anuncios -->
             <div id="ad-container" style="min-height: 250px; background: rgba(0,0,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1);">
               <span style="color: var(--muted); font-size: .85rem;">[ Espacio para código de anuncios / Banner ]</span>
             </div>
@@ -114,15 +114,15 @@
   <div id="toast-root"></div>
   <script type="module" src="../assets/js/dist/ui.js"></script>
 
-  <!-- Módulo JavaScript conectado a Supabase -->
+  <!-- Módulo JavaScript conectado al supabaseClient.js oficial -->
   <script type="module">
     import { supabase } from '../assets/js/supabaseClient.js';
 
     let currentUser = null;
     let isMining = false;
-    let timeLeft = 60; // 60 segundos por ciclo
+    let timeLeft = 60;
     let timerInterval = null;
-    const REWARD_COINS = 5; // s-Coins otorgadas por cada minuto completado
+    const REWARD_COINS = 5;
 
     async function initAfkSession() {
       try {
@@ -219,7 +219,6 @@
       }
     }
 
-    // Detector anti-fraude: pausa la minería si el usuario minimiza o cambia de pestaña
     document.addEventListener("visibilitychange", () => {
       if (document.hidden && isMining) {
         stopAfkMining("⚠️ Pausado por inactividad");

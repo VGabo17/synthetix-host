@@ -1,173 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Servidores Free & s-Coins | Synthetix Host</title>
-  <meta name="theme-color" content="#04060d">
-  <link rel="icon" href="../assets/img/logo.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetix Host - Zona Free</title>
+    <!-- Tailwind CSS para un diseño rápido y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase Client JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
-  <div class="dash">
+<body class="bg-slate-950 text-white font-sans min-p-6">
 
-    <!-- Barra lateral (escritorio) -->
-    <aside class="sidebar">
-      <div>
-        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
-        <nav class="side-nav" aria-label="Panel Free">
-          <a href="/dashboard/" class="side-link"><i data-icon="dashboard" data-size="19"></i> Resumen Principal</a>
-          <a href="/free/" class="side-link is-on"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
-          <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
-          <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
-        </nav>
-      </div>
-      <div class="side-foot">
-        <a href="/dashboard/" class="btn btn-ghost btn-wide"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
-      </div>
-    </aside>
-
-    <!-- Barra superior (móvil) -->
-    <div>
-      <div class="dash-top">
-        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="30" height="30"><span>synthetix<em>.host</em></span></a>
-        <button id="openDrawer" class="icon-btn" aria-label="Abrir menú"><i data-icon="menu" data-size="20"></i></button>
-      </div>
-
-      <div id="drawerOverlay" class="overlay"></div>
-      <aside id="drawer" class="drawer">
-        <div class="drawer__head">
-          <h3>Menú Zona Free</h3>
-          <button id="closeDrawer" class="icon-btn" aria-label="Cerrar menú"><i data-icon="x" data-size="19"></i></button>
-        </div>
-        <nav class="drawer__nav">
-          <a href="/dashboard/"><i data-icon="dashboard" data-size="18"></i> Resumen Principal</a>
-          <a href="/free/" style="background:rgba(34,211,238,.08)"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
-          <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
-          <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
-        </nav>
-        <div class="drawer__foot">
-          <a href="/dashboard/" class="btn btn-ghost btn-wide" style="justify-content:center"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
-        </div>
-      </aside>
-
-      <main class="dash-main">
-        <header class="dash-head">
-          <div>
-            <h1>Zona de Servidores Free</h1>
-            <p>Canjea tus s-Coins acumulados por instancias temporales de prueba o ventajas exclusivas.</p>
-          </div>
-          <div class="user-badge" style="background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2);">
-            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">150</span> s-Coins
-          </div>
+    <div class="max-w-4xl mx-auto p-6">
+        <header class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
+            <h1 class="text-2xl font-bold text-indigo-400">Synthetix Host | <span class="text-white">Panel Free</span></h1>
+            <div id="user-info" class="text-sm bg-slate-900 px-4 py-2 rounded-lg border border-slate-800">
+                Cargando usuario...
+            </div>
         </header>
 
-        <!-- Catálogo de Recompensas Free -->
-        <section class="block reveal">
-          <div class="block__head">
-            <h2><i data-icon="gift" data-size="20"></i> Canjear s-Coins por Servidores</h2>
-          </div>
-          
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-            
-            <!-- Opción 1: Servidor Test 24h -->
-            <div class="glass" style="padding: 1.5rem; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(34,211,238,0.2);">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
-                  <h3 style="font-size: 1rem; color: #fff;">Servidor Test Minecraft (24h)</h3>
-                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">50 s-Coins</span>
-                </div>
-                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper/Purpur + GeyserMC (Crossplay Java y Bedrock) activo por 24 horas.</p>
-              </div>
-              <button class="btn btn-primary btn-sm btn-wide" onclick="claimFreeReward('Servidor Test Minecraft 24h', 50)">
-                Reclamar Instancia <i data-icon="arrow-right" data-size="15"></i>
-              </button>
+        <!-- Panel de s-Coins -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
+                <h2 class="text-lg font-semibold mb-2">Tus s-Coins</h2>
+                <p id="coins-display" class="text-3xl font-extrabold text-amber-400 mb-4">0</p>
+                <p class="text-xs text-slate-400">Gana s-Coins viendo anuncios o completando tareas en la plataforma.</p>
             </div>
 
-            <!-- Opción 2: Cupón 15% Descuento -->
-            <div class="glass" style="padding: 1.5rem; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(139,92,246,0.2);">
-              <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
-                  <h3 style="font-size: 1rem; color: #fff;">Cupón 15% Descuento Hosting</h3>
-                  <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: var(--violet); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">120 s-Coins</span>
+            <!-- Zona de Canje de Cupones -->
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-semibold mb-2">Canjear Cupón Automático</h2>
+                    <p class="text-xs text-slate-400 mb-4">Cuesta 50 s-Coins generar un cupón de 20% de descuento.</p>
                 </div>
-                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Obtén un código de descuento aplicable en cualquier plan de Minecraft o Network mensual.</p>
-              </div>
-              <button class="btn btn-ghost btn-sm btn-wide" style="border-color: var(--violet); color: var(--violet);" onclick="claimFreeReward('Cupón 15% Descuento', 120)">
-                Canjear Cupón <i data-icon="arrow-right" data-size="15"></i>
-              </button>
+                <button onclick="reclamarCupon()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-medium py-2 px-4 rounded-lg transition-all">
+                    Canjear Cupón (50 s-Coins)
+                </button>
             </div>
+        </div>
 
-          </div>
-        </section>
+        <!-- Zona de Despliegue de Servidor Free -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
+            <h2 class="text-lg font-semibold mb-4 text-emerald-400">Desplegar Servidor Minecraft Free</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label class="text-xs text-slate-400 block mb-1">Nombre del Servidor</label>
+                    <input type="text" id="server-name" value="MiServidorFree" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400 block mb-1">RAM (MB)</label>
+                    <input type="number" id="server-ram" value="2048" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400 block mb-1">CPU (%)</label>
+                    <input type="number" id="server-cpu" value="100" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                </div>
+            </div>
+            <button onclick="crearServidor()" class="bg-emerald-600 hover:bg-emerald-500 font-medium py-2 px-6 rounded-lg transition-all text-sm">
+                Crear Servidor Automático (100 s-Coins)
+            </button>
+        </div>
 
-        <!-- Cómo ganar más s-Coins -->
-        <section class="block reveal">
-          <div class="block__head">
-            <h2><i data-icon="zap" data-size="20"></i> ¿Cómo conseguir más s-Coins?</h2>
-          </div>
-          <div class="glass" style="padding: 1.5rem; border-radius: 14px;">
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: .9rem; color: var(--text);">
-              <li style="display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Actividad en Comunidad:</b> Participa activamente en nuestro servidor de Discord y eventos semanales.</span>
-              </li>
-              <li style="display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Sistema de Referidos:</b> Invita a otros dueños de servidores a usar Synthetix Host con tu link único.</span>
-              </li>
-              <li style="display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Promos en TikTok / Redes:</b> Sube videos mostrando tus servidores alojados con nosotros y etiqueta la marca.</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Mis Instancias Free Activas -->
-        <section class="block reveal">
-          <div class="block__head">
-            <h2><i data-icon="server" data-size="20"></i> Mis Instancias Free Activas</h2>
-          </div>
-          <div id="free-instances-container" class="empty">
-            <span class="empty__ico"><i data-icon="clock" data-size="28"></i></span>
-            <h3>No tienes servidores free activos</h3>
-            <p>Usa tus s-Coins en las opciones de arriba para reclamar tu primera prueba gratuita.</p>
-          </div>
-        </section>
-
-      </main>
+        <!-- Consola de Resultados -->
+        <div id="output-box" class="mt-6 bg-slate-900 border border-slate-800 p-4 rounded-xl text-xs font-mono text-slate-300 hidden">
+            <p id="output-text"></p>
+        </div>
     </div>
-  </div>
 
-  <div id="toast-root"></div>
-  <script type="module" src="../assets/js/dist/ui.js"></script>
+    <script>
+        // Configura tus credenciales públicas de Supabase para el cliente web
+        const SUPABASE_URL = "TU_SUPABASE_URL";
+        const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY";
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  <script>
-    function claimFreeReward(rewardName, cost) {
-      // Lógica de validación rápida de s-Coins (simulada)
-      let currentCoins = 150; // Esto se conectará luego con la base de datos o localStorage
-      if (currentCoins < cost) {
-        alert("No tienes suficientes s-Coins para reclamar esta recompensa.");
-        return;
-      }
-      
-      // Mensaje de éxito orientado a abrir ticket en Discord con el código
-      alert(`¡Has solicitado: "${rewardName}"!\n\nAbre un ticket en nuestro Discord oficial (https://discord.gg/QDZ5ff5Shb) adjuntando tu ID de usuario para la activación manual inmediata de tu recompensa.`);
-    }
-  </script>
+        let currentUser = null;
 
-  <script>
-    (function () {
-      var ua = navigator.userAgent || navigator.vendor || "";
-      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
-      if (isMobileDevice) {
-        document.documentElement.classList.add("dashboard-mobile");
-      }
-    })();
-  </script>
+        async function init() {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                document.getElementById('user-info').innerHTML = 'No ha iniciado sesión. <a href="/login" class="text-indigo-400 underline">Entrar</a>';
+                return;
+            }
+            currentUser = session.user;
+            document.getElementById('user-info').innerText = currentUser.email;
+            cargarCoins();
+        }
+
+        async function cargarCoins() {
+            const { data } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
+            if (data) {
+                document.getElementById('coins-display').innerText = data.s_coins;
+            }
+        }
+
+        async function reclamarCupon() {
+            if (!currentUser) return alert('Inicia sesión primero.');
+            showOutput("Generando cupón...");
+
+            const res = await fetch('/reclamar-cupon', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id, costoCoins: 50, descuentoPorcentaje: 20 })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                showOutput(`¡Cupón generado con éxito! Código: ${data.codigo}`);
+                cargarCoins();
+            } else {
+                showOutput(`Error: ${data.error}`);
+            }
+        }
+
+        async function crearServidor() {
+            if (!currentUser) return alert('Inicia sesión primero.');
+            const name = document.getElementById('server-name').value;
+            const memory = document.getElementById('server-ram').value;
+            const cpu = document.getElementById('server-cpu').value;
+
+            showOutput("Desplegando servidor en Pterodactyl...");
+
+            const res = await fetch('/crear-servidor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    userId: currentUser.id, 
+                    name, 
+                    eggId: 1, // ID de tu egg de Minecraft en Pterodactyl
+                    memory: parseInt(memory), 
+                    cpu: parseInt(cpu), 
+                    disk: 10240, 
+                    costoCoins: 100 
+                })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                showOutput(`¡Servidor creado con éxito! ID en panel: ${data.server.id}`);
+                cargarCoins();
+            } else {
+                showOutput(`Error al crear servidor: ${data.error}`);
+            }
+        }
+
+        function showOutput(text) {
+            const box = document.getElementById('output-box');
+            const p = document.getElementById('output-text');
+            box.classList.remove('hidden');
+            p.innerText = text;
+        }
+
+        init();
+    </script>
 </body>
 </html>

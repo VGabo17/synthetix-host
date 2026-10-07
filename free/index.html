@@ -70,7 +70,7 @@
         <!-- Catálogo de Recompensas Free -->
         <section class="block reveal">
           <div class="block__head">
-            <h2><i data-icon="gift" data-size="20"></i> Canjear s-Coins por Servidores y Cupones</h2>
+            <h2><i data-icon="gift" data-size="20"></i> Canjear s-Coins por Servidores</h2>
           </div>
           
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
@@ -80,26 +80,26 @@
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
                   <h3 style="font-size: 1rem; color: #fff;">Servidor Test Minecraft (24h)</h3>
-                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">100 s-Coins</span>
+                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">50 s-Coins</span>
                 </div>
-                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper + GeyserMC desplegada automáticamente en Pterodactyl.</p>
+                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper/Purpur + GeyserMC (Crossplay Java y Bedrock) activo por 24 horas.</p>
               </div>
-              <button class="btn btn-primary btn-sm btn-wide" onclick="crearServidorFree()">
-                Desplegar Servidor <i data-icon="arrow-right" data-size="15"></i>
+              <button class="btn btn-primary btn-sm btn-wide" onclick="claimFreeReward('Servidor Test Minecraft 24h', 50)">
+                Reclamar Instancia <i data-icon="arrow-right" data-size="15"></i>
               </button>
             </div>
 
-            <!-- Opción 2: Cupón 20% Descuento -->
+            <!-- Opción 2: Cupón 15% Descuento -->
             <div class="glass" style="padding: 1.5rem; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(139,92,246,0.2);">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
-                  <h3 style="font-size: 1rem; color: #fff;">Cupón 20% Descuento Hosting</h3>
-                  <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: var(--violet); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">50 s-Coins</span>
+                  <h3 style="font-size: 1rem; color: #fff;">Cupón 15% Descuento Hosting</h3>
+                  <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: var(--violet); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">120 s-Coins</span>
                 </div>
-                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Obtén un código único generado automáticamente para aplicar en tu próximo pago.</p>
+                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Obtén un código de descuento aplicable en cualquier plan de Minecraft o Network mensual.</p>
               </div>
-              <button class="btn btn-ghost btn-sm btn-wide" style="border-color: var(--violet); color: var(--violet);" onclick="reclamarCupon()">
-                Generar Cupón <i data-icon="arrow-right" data-size="15"></i>
+              <button class="btn btn-ghost btn-sm btn-wide" style="border-color: var(--violet); color: var(--violet);" onclick="claimFreeReward('Cupón 15% Descuento', 120)">
+                Canjear Cupón <i data-icon="arrow-right" data-size="15"></i>
               </button>
             </div>
 
@@ -148,23 +148,119 @@
   <div id="toast-root"></div>
   <script type="module" src="../assets/js/dist/ui.js"></script>
 
-  <!-- Lógica de Supabase y Automatización -->
+  <!-- Lógica Funcional de Supabase Integrada -->
   <script>
-    // Configura tus credenciales reales de Supabase
     const SUPABASE_URL = "https://pnnnhkbriqizjmkhodbu.supabase.co";
-    const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY"; // Tu Publishable / Anon Key de Supabase
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY"; // Cambia esto por tu llave anon real de Supabase
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    let currentUser = null;
-
-    async function initUserSession() {
+    // Cargar los s-Coins reales en el badge al entrar
+    async function cargarBalanceCoins() {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error || !session) {
-          window.location.href = "/login/"; // Redirige si no ha iniciado sesión
+          document.getElementById('user-scoins-display').innerText = "0";
           return;
         }
-        currentUser = session.user;
-        await cargarBalanceCoins();
+
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('s_coins')
+          .eq('id', session.user.id)
+          .single();
+
+        if (profile && !profileError) {
+          document.getElementById('user-scoins-display').innerText = profile.s_coins;
+        } else {
+          document.getElementById('user-scoins-display').innerText = "0";
+        }
       } catch (err) {
-        console
+        console.error("Error al cargar s-Coins:", err);
+        document.getElementById('user-scoins-display').innerText = "0";
+      }
+    }
+
+    cargarBalanceCoins();
+
+    // Función que maneja el canje al hacer clic en los botones
+    async function claimFreeReward(rewardName, cost) {
+      try {
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        if (sessionError || !session) {
+          alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
+          window.location.href = "/login/";
+          return;
+        }
+
+        const userId = session.user.id;
+
+        // Consultar balance actual de la tabla profiles
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('s_coins')
+          .eq('id', userId)
+          .single();
+
+        if (profileError || !profile) {
+          alert("No se pudo verificar tu balance actual.");
+          return;
+        }
+
+        if (profile.s_coins < cost) {
+          alert(`No tienes suficientes s-Coins. Tienes ${profile.s_coins} y necesitas ${cost}.`);
+          return;
+        }
+
+        if (!confirm(`¿Deseas canjear "${rewardName}" por ${cost} s-Coins?`)) {
+          return;
+        }
+
+        const nuevoBalance = profile.s_coins - cost;
+
+        // Descontar monedas en la base de datos
+        const { error: updateError } = await supabase
+          .from('profiles')
+          .update({ s_coins: nuevoBalance })
+          .eq('id', userId);
+
+        if (updateError) {
+          alert("Error al procesar el canje en la base de datos.");
+          console.error(updateError);
+          return;
+        }
+
+        // Actualizar el número en pantalla de forma inmediata
+        document.getElementById('user-scoins-display').innerText = nuevoBalance;
+
+        // Generar cupón o mostrar instrucciones
+        if (rewardName.toLowerCase().includes('cupón') || rewardName.toLowerCase().includes('descuento')) {
+          const codigoUnico = `SYNTH-15%-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+          
+          // Registro opcional en tabla de cupones si existe
+          await supabase.from('coupons').insert([
+            { code: codigoUnico, discount: 15, user_id: userId, used: false }
+          ]).catch(() => {});
+
+          alert(`¡Cupón canjeado con éxito!\n\nTu código único es: ${codigoUnico}\n(Guárdalo, ya se te descontaron los s-Coins).`);
+        } else {
+          alert(`¡Has solicitado: "${rewardName}"!\n\nAbre un ticket en nuestro Discord oficial (https://discord.gg/QDZ5ff5Shb) adjuntando tu ID de usuario para la activación manual inmediata.`);
+        }
+
+      } catch (err) {
+        console.error("Error inesperado en el canje:", err);
+        alert("Ocurrió un error inesperado al procesar tu solicitud.");
+      }
+    }
+  </script>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || "";
+      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobileDevice) {
+        document.documentElement.classList.add("dashboard-mobile");
+      }
+    })();
+  </script>
+</body>
+</html>

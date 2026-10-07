@@ -27,7 +27,7 @@
         </nav>
       </div>
       <div class="side-foot">
-        <button id="logout-btn-desktop" class="btn btn-ghost btn-wide" id="logoutBtn"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
+        <button id="logout-btn-desktop" class="btn btn-ghost btn-wide"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
       </div>
     </aside>
 
@@ -52,7 +52,7 @@
           <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
         </nav>
         <div class="drawer__foot">
-          <button class="btn btn-danger btn-wide" id="logoutBtnMobile"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
+          <button id="logout-btn-mobile" class="btn btn-danger btn-wide"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
         </div>
       </aside>
 
@@ -151,11 +151,11 @@
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
 
-  <!-- Módulo para sincronizar s-Coins usando tu supabaseClient existente -->
+  <!-- Script modular seguro que usa tu archivo supabaseClient.js -->
   <script type="module">
     import { supabase } from '../assets/js/supabaseClient.js';
 
-    async function loadDashboardCoins() {
+    async function cargarDatosDashboard() {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error || !session) {
@@ -172,6 +172,7 @@
         const badge = document.getElementById('user-badge');
         if (badge) badge.innerHTML = `<span class="dot dot--live" style="background:var(--cyan)"></span> Cliente: ${user.email}`;
 
+        // Obtener s-Coins de Supabase
         const { data: profile } = await supabase
           .from('profiles')
           .select('s_coins')
@@ -184,11 +185,21 @@
           document.getElementById('user-scoins-val').innerText = "0";
         }
       } catch (err) {
-        console.error("Error al cargar datos:", err);
+        console.error("Error al cargar datos del dashboard:", err);
       }
     }
 
-    loadDashboardCoins();
+    cargarDatosDashboard();
+  </script>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || "";
+      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobileDevice) {
+        document.documentElement.classList.add("dashboard-mobile");
+      }
+    })();
   </script>
 </body>
 </html>

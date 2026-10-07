@@ -21,7 +21,6 @@
         <nav class="side-nav" aria-label="Panel">
           <a href="/dashboard/" class="side-link is-on"><i data-icon="dashboard" data-size="19"></i> Resumen</a>
           <a href="/free/" class="side-link"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
-          <a href="/afk/" class="side-link"><i data-icon="clock" data-size="19"></i> Zona AFK & Anuncios</a>
           <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
           <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
         </nav>
@@ -47,7 +46,6 @@
         <nav class="drawer__nav">
           <a href="/dashboard/" style="background:rgba(34,211,238,.08)"><i data-icon="dashboard" data-size="18"></i> Resumen</a>
           <a href="/free/"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
-          <a href="/afk/"><i data-icon="clock" data-size="18"></i> Zona AFK & Anuncios</a>
           <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
           <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
         </nav>
@@ -73,7 +71,7 @@
           </div>
           <div class="stat glass reveal" style="--d:60ms">
             <div class="stat__label"><i data-icon="zap" data-size="18"></i> Mis s-Coins</div>
-            <div class="stat__value" style="color:var(--cyan)"><span id="user-scoins-val">--</span> <span style="font-size:.75rem; font-weight:normal; color:var(--muted)">s-Coins</span></div>
+            <div class="stat__value" style="color:var(--cyan)"><span id="user-scoins-val">150</span> <span style="font-size:.75rem; font-weight:normal; color:var(--muted)">s-Coins</span></div>
           </div>
           <div class="stat glass reveal" style="--d:120ms">
             <div class="stat__label"><i data-icon="activity" data-size="18"></i> Estado de los Nodos</div>
@@ -151,45 +149,50 @@
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
 
-  <!-- Script modular seguro que usa tu archivo supabaseClient.js -->
-  <script type="module">
-    import { supabase } from '../assets/js/supabaseClient.js';
+  <!-- Script opcional para conectar Pterodactyl API en vivo -->
+  <script>
+    async function loadPterodactylServers() {
+      const panelUrl = "https://panel.synthetixhost.lol";
+      const clientApiKey = localStorage.getItem("ptlc_token"); 
+      if (!clientApiKey) return;
 
-    async function cargarDatosDashboard() {
       try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-          window.location.href = "/login/";
-          return;
-        }
-
-        const user = session.user;
-        const username = user.email.split('@')[0];
+        const response = await fetch(`${panelUrl}/api/client`, {
+          headers: {
+            "Authorization": `Bearer ${clientApiKey}`,
+            "Content-Type": "application/json",
+            "Accept": "Application/vnd.pterodactyl.v1+json"
+          }
+        });
+        if (!response.ok) throw new Error("Error al conectar");
+        const data = await response.json();
         
-        const greeting = document.getElementById('user-greeting');
-        if (greeting) greeting.innerText = `Bienvenido, ${username}`;
-
-        const badge = document.getElementById('user-badge');
-        if (badge) badge.innerHTML = `<span class="dot dot--live" style="background:var(--cyan)"></span> Cliente: ${user.email}`;
-
-        // Obtener s-Coins de Supabase
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('s_coins')
-          .eq('id', user.id)
-          .single();
-
-        if (profile) {
-          document.getElementById('user-scoins-val').innerText = profile.s_coins;
-        } else {
-          document.getElementById('user-scoins-val').innerText = "0";
+        if (data.data && data.data.length > 0) {
+          document.getElementById("stat-active-servers").innerText = data.data.length;
+          const container = document.getElementById("servers-container");
+          let html = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">`;
+          data.data.forEach(server => {
+            const attr = server.attributes;
+            html += `
+              <div class="glass" style="padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <h3 style="font-size: 1rem; color: #fff;">${attr.name}</h3>
+                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); font-size: .7rem; padding: .2rem .5rem; border-radius: 10px;">Activo</span>
+                </div>
+                <p style="font-size: .8rem; color: var(--muted); margin-bottom: 1rem;">ID: ${attr.identifier}</p>
+                <a href="https://panel.synthetixhost.lol/server/${attr.identifier}" target="_blank" class="btn btn-primary btn-sm btn-wide">
+                  Gestionar <i data-icon="external" data-size="14"></i>
+                </a>
+              </div>`;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
         }
       } catch (err) {
-        console.error("Error al cargar datos del dashboard:", err);
+        console.log("Modo offline o sin token de API configurado.");
       }
     }
-
-    cargarDatosDashboard();
+    loadPterodactylServers();
   </script>
 
   <script>

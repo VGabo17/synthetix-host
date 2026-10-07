@@ -23,6 +23,7 @@
         <nav class="side-nav" aria-label="Panel Free">
           <a href="/dashboard/" class="side-link"><i data-icon="dashboard" data-size="19"></i> Resumen Principal</a>
           <a href="/free/" class="side-link is-on"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
+          <a href="/afk/" class="side-link"><i data-icon="clock" data-size="19"></i> Zona AFK & Anuncios</a>
           <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
           <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
         </nav>
@@ -48,6 +49,7 @@
         <nav class="drawer__nav">
           <a href="/dashboard/"><i data-icon="dashboard" data-size="18"></i> Resumen Principal</a>
           <a href="/free/" style="background:rgba(34,211,238,.08)"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
+          <a href="/afk/"><i data-icon="clock" data-size="18"></i> Zona AFK & Anuncios</a>
           <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
           <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
         </nav>
@@ -63,7 +65,7 @@
             <p>Canjea tus s-Coins acumulados por instancias temporales de prueba o ventajas exclusivas.</p>
           </div>
           <div class="user-badge" style="background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2);">
-            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">--</span> s-Coins
+            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">150</span> s-Coins
           </div>
         </header>
 
@@ -82,7 +84,7 @@
                   <h3 style="font-size: 1rem; color: #fff;">Servidor Test Minecraft (24h)</h3>
                   <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">50 s-Coins</span>
                 </div>
-                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper/Purpur + GeyserMC (Crossplay Java y Bedrock) activo por 24 horas.</p>
+                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper/Purpur + GeyserMC activo por 24 horas.</p>
               </div>
               <button class="btn btn-primary btn-sm btn-wide" onclick="claimFreeReward('Servidor Test Minecraft 24h', 50)">
                 Reclamar Instancia <i data-icon="arrow-right" data-size="15"></i>
@@ -115,29 +117,17 @@
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: .9rem; color: var(--text);">
               <li style="display: flex; align-items: center; gap: 10px;">
                 <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Actividad en Comunidad:</b> Participa activamente en nuestro servidor de Discord y eventos semanales.</span>
+                <span><b>Zona AFK & Anuncios:</b> Gana monedas pasivamente dejando abierta nuestra pestaña de anuncios AFK.</span>
               </li>
               <li style="display: flex; align-items: center; gap: 10px;">
                 <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Sistema de Referidos:</b> Invita a otros dueños de servidores a usar Synthetix Host con tu link único.</span>
+                <span><b>Actividad en Comunidad:</b> Participa activamente en nuestro servidor de Discord y eventos.</span>
               </li>
               <li style="display: flex; align-items: center; gap: 10px;">
                 <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
-                <span><b>Promos en TikTok / Redes:</b> Sube videos mostrando tus servidores alojados con nosotros y etiqueta la marca.</span>
+                <span><b>Promos en TikTok / Redes:</b> Sube videos mostrando tus servidores alojados y etiqueta la marca.</span>
               </li>
             </ul>
-          </div>
-        </section>
-
-        <!-- Mis Instancias Free Activas -->
-        <section class="block reveal">
-          <div class="block__head">
-            <h2><i data-icon="server" data-size="20"></i> Mis Instancias Free Activas</h2>
-          </div>
-          <div id="free-instances-container" class="empty">
-            <span class="empty__ico"><i data-icon="clock" data-size="28"></i></span>
-            <h3>No tienes servidores free activos</h3>
-            <p>Usa tus s-Coins en las opciones de arriba para reclamar tu primera prueba gratuita.</p>
           </div>
         </section>
 
@@ -148,53 +138,64 @@
   <div id="toast-root"></div>
   <script type="module" src="../assets/js/dist/ui.js"></script>
 
-  <!-- Lógica Funcional de Supabase Integrada -->
+  <!-- Script Global y Sincronizado de s-Coins -->
   <script>
     const SUPABASE_URL = "https://pnnnhkbriqizjmkhodbu.supabase.co";
-    const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY"; // Cambia esto por tu llave anon real de Supabase
+    const SUPABASE_ANON_KEY = "sb_publishable_...tu_llave_publica_real..."; // Tu llave publica/anon de Supabase
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Cargar los s-Coins reales en el badge al entrar
-    async function cargarBalanceCoins() {
+    let currentSessionUser = null;
+
+    async function sincronizarCoins() {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error || !session) {
-          document.getElementById('user-scoins-display').innerText = "0";
+          // Si no hay sesión, dejar en 0 o redirigir
+          actualizarVistaCoins(0);
           return;
         }
+
+        currentSessionUser = session.user;
 
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
           .select('s_coins')
-          .eq('id', session.user.id)
+          .eq('id', currentSessionUser.id)
           .single();
 
         if (profile && !profileError) {
-          document.getElementById('user-scoins-display').innerText = profile.s_coins;
+          actualizarVistaCoins(profile.s_coins);
         } else {
-          document.getElementById('user-scoins-display').innerText = "0";
+          actualizarVistaCoins(0);
         }
       } catch (err) {
-        console.error("Error al cargar s-Coins:", err);
-        document.getElementById('user-scoins-display').innerText = "0";
+        console.error("Error sincronizando coins:", err);
       }
     }
 
-    cargarBalanceCoins();
+    function actualizarVistaCoins(amount) {
+      // Actualiza automáticamente cualquier etiqueta en la página que muestre s-Coins
+      ['user-scoins-display', 'coins-display', 'user-coins'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = amount;
+      });
+    }
 
-    // Función que maneja el canje al hacer clic en los botones
+    // Ejecutar al cargar la página
+    sincronizarCoins();
+
+    // Función de Canje Segura
     async function claimFreeReward(rewardName, cost) {
       try {
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-        if (sessionError || !session) {
-          alert("Tu sesión ha expirado. Por favor, inicia sesión de nuevo.");
+        if (!currentSessionUser) {
+          alert("Debes iniciar sesión primero.");
           window.location.href = "/login/";
           return;
         }
 
-        const userId = session.user.id;
+        const userId = currentSessionUser.id;
 
-        // Consultar balance actual de la tabla profiles
+        // Leer balance fresco de la base de datos
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
           .select('s_coins')
@@ -217,7 +218,7 @@
 
         const nuevoBalance = profile.s_coins - cost;
 
-        // Descontar monedas en la base de datos
+        // Actualizar base de datos
         const { error: updateError } = await supabase
           .from('profiles')
           .update({ s_coins: nuevoBalance })
@@ -225,30 +226,28 @@
 
         if (updateError) {
           alert("Error al procesar el canje en la base de datos.");
-          console.error(updateError);
           return;
         }
 
-        // Actualizar el número en pantalla de forma inmediata
-        document.getElementById('user-scoins-display').innerText = nuevoBalance;
+        // Actualizar visualmente al instante en pantalla
+        actualizarVistaCoins(nuevoBalance);
 
-        // Generar cupón o mostrar instrucciones
+        // Dar respuesta o código
         if (rewardName.toLowerCase().includes('cupón') || rewardName.toLowerCase().includes('descuento')) {
           const codigoUnico = `SYNTH-15%-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
           
-          // Registro opcional en tabla de cupones si existe
           await supabase.from('coupons').insert([
             { code: codigoUnico, discount: 15, user_id: userId, used: false }
           ]).catch(() => {});
 
-          alert(`¡Cupón canjeado con éxito!\n\nTu código único es: ${codigoUnico}\n(Guárdalo, ya se te descontaron los s-Coins).`);
+          alert(`¡Cupón canjeado con éxito!\n\nTu código único es: ${codigoUnico}\n(Ya se te descontaron los s-Coins).`);
         } else {
-          alert(`¡Has solicitado: "${rewardName}"!\n\nAbre un ticket en nuestro Discord oficial (https://discord.gg/QDZ5ff5Shb) adjuntando tu ID de usuario para la activación manual inmediata.`);
+          alert(`¡Has solicitado: "${rewardName}"!\n\nAbre un ticket en nuestro Discord oficial (https://discord.gg/QDZ5ff5Shb) adjuntando tu ID de usuario para la activación inmediata.`);
         }
 
       } catch (err) {
-        console.error("Error inesperado en el canje:", err);
-        alert("Ocurrió un error inesperado al procesar tu solicitud.");
+        console.error("Error en el canje:", err);
+        alert("Ocurrió un error inesperado al procesar la solicitud.");
       }
     }
   </script>

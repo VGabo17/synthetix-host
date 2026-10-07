@@ -4,73 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synthetix Host - Zona Free</title>
-    <!-- Tailwind CSS para un diseño rápido y moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Supabase Client JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="bg-slate-950 text-white font-sans min-p-6">
+<body class="bg-[#0b0f19] text-white font-sans min-h-screen p-4 md:p-8">
 
-    <div class="max-w-4xl mx-auto p-6">
-        <header class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
-            <h1 class="text-2xl font-bold text-indigo-400">Synthetix Host | <span class="text-white">Panel Free</span></h1>
-            <div id="user-info" class="text-sm bg-slate-900 px-4 py-2 rounded-lg border border-slate-800">
-                Cargando usuario...
+    <div class="max-w-4xl mx-auto">
+        <!-- Header idéntico al dashboard -->
+        <header class="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
+            <div>
+                <a href="/dashboard/" class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                    synthetix<span class="text-indigo-400">.host</span>
+                </a>
+            </div>
+            <div id="user-info" class="text-xs bg-slate-900/80 px-4 py-2 rounded-xl border border-white/10 text-slate-300">
+                Cargando sesión...
             </div>
         </header>
 
-        <!-- Panel de s-Coins -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
-                <h2 class="text-lg font-semibold mb-2">Tus s-Coins</h2>
-                <p id="coins-display" class="text-3xl font-extrabold text-amber-400 mb-4">0</p>
-                <p class="text-xs text-slate-400">Gana s-Coins viendo anuncios o completando tareas en la plataforma.</p>
+        <!-- Título de sección -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold tracking-tight text-white">Zona Free y Recompensas</h1>
+            <p class="text-xs text-slate-400 mt-1">Canjea tus s-Coins por descuentos o despliega servidores gratuitos al instante.</p>
+        </div>
+
+        <!-- Grid de Balance y Cupones -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            
+            <!-- Tarjeta de s-Coins -->
+            <div class="bg-[#111827]/80 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="p-2 bg-indigo-500/10 rounded-lg text-indigo-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h2 class="text-sm font-medium text-slate-300">Mis s-Coins Disponibles</h2>
+                </div>
+                <p id="coins-display" class="text-4xl font-extrabold text-cyan-400 tracking-tight">--</p>
+                <p class="text-[11px] text-slate-500 mt-2">Gana s-Coins viendo anuncios o completando tareas.</p>
             </div>
 
-            <!-- Zona de Canje de Cupones -->
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg flex flex-col justify-between">
+            <!-- Tarjeta de Canje de Cupones -->
+            <div class="bg-[#111827]/80 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md flex flex-col justify-between">
                 <div>
-                    <h2 class="text-lg font-semibold mb-2">Canjear Cupón Automático</h2>
-                    <p class="text-xs text-slate-400 mb-4">Cuesta 50 s-Coins generar un cupón de 20% de descuento.</p>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-amber-500/10 rounded-lg text-amber-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                        </div>
+                        <h2 class="text-sm font-medium text-slate-300">Cupón Automático (20%)</h2>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4">Costo: <span class="text-amber-400 font-semibold">50 s-Coins</span></p>
                 </div>
-                <button onclick="reclamarCupon()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-medium py-2 px-4 rounded-lg transition-all">
-                    Canjear Cupón (50 s-Coins)
+                <button onclick="reclamarCupon()" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-medium py-2.5 px-4 rounded-xl text-xs transition-all shadow-lg shadow-indigo-500/20 active:scale-[0.98]">
+                    Generar Cupón
                 </button>
             </div>
         </div>
 
-        <!-- Zona de Despliegue de Servidor Free -->
-        <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
-            <h2 class="text-lg font-semibold mb-4 text-emerald-400">Desplegar Servidor Minecraft Free</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <!-- Tarjeta de Despliegue de Servidor Free -->
+        <div class="bg-[#111827]/80 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                </div>
+                <h2 class="text-sm font-medium text-white">Desplegar Servidor Minecraft Free</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">Nombre del Servidor</label>
-                    <input type="text" id="server-name" value="MiServidorFree" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                    <label class="text-[11px] font-medium text-slate-400 block mb-1.5">Nombre del Servidor</label>
+                    <input type="text" id="server-name" value="ServidorFree" class="w-full bg-[#0b0f19] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">RAM (MB)</label>
-                    <input type="number" id="server-ram" value="2048" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                    <label class="text-[11px] font-medium text-slate-400 block mb-1.5">RAM (MB)</label>
+                    <input type="number" id="server-ram" value="2048" class="w-full bg-[#0b0f19] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">CPU (%)</label>
-                    <input type="number" id="server-cpu" value="100" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-sm">
+                    <label class="text-[11px] font-medium text-slate-400 block mb-1.5">CPU (%)</label>
+                    <input type="number" id="server-cpu" value="100" class="w-full bg-[#0b0f19] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500 transition-all">
                 </div>
             </div>
-            <button onclick="crearServidor()" class="bg-emerald-600 hover:bg-emerald-500 font-medium py-2 px-6 rounded-lg transition-all text-sm">
-                Crear Servidor Automático (100 s-Coins)
+
+            <button onclick="crearServidor()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-medium py-2.5 px-6 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 active:scale-[0.98]">
+                Crear Servidor en Pterodactyl (100 s-Coins)
             </button>
         </div>
 
-        <!-- Consola de Resultados -->
-        <div id="output-box" class="mt-6 bg-slate-900 border border-slate-800 p-4 rounded-xl text-xs font-mono text-slate-300 hidden">
+        <!-- Consola de Resultados / Alertas -->
+        <div id="output-box" class="hidden bg-[#111827] border border-indigo-500/30 p-4 rounded-xl text-xs font-mono text-indigo-300">
             <p id="output-text"></p>
         </div>
     </div>
 
     <script>
-        // Configura tus credenciales públicas de Supabase para el cliente web
-        const SUPABASE_URL = "TU_SUPABASE_URL";
-        const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY";
+        // Configuración de Supabase
+        const SUPABASE_URL = "https://pnnnhkbriqizjmkhodbu.supabase.co";
+        const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY_PUBLICA"; // Asegúrate de colocar tu llave anon aquí
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let currentUser = null;
@@ -78,7 +106,7 @@
         async function init() {
             const { data: { session } } = await supabase.auth.getSession();
             if (!session) {
-                document.getElementById('user-info').innerHTML = 'No ha iniciado sesión. <a href="/login" class="text-indigo-400 underline">Entrar</a>';
+                document.getElementById('user-info').innerHTML = 'No logueado. <a href="/login" class="text-indigo-400 underline font-medium">Entrar</a>';
                 return;
             }
             currentUser = session.user;
@@ -95,7 +123,7 @@
 
         async function reclamarCupon() {
             if (!currentUser) return alert('Inicia sesión primero.');
-            showOutput("Generando cupón...");
+            showOutput("Generando cupón automático...");
 
             const res = await fetch('/reclamar-cupon', {
                 method: 'POST',
@@ -104,7 +132,7 @@
             });
             const data = await res.json();
             if (res.ok) {
-                showOutput(`¡Cupón generado con éxito! Código: ${data.codigo}`);
+                showOutput(`¡Éxito! Cupón creado: ${data.codigo}`);
                 cargarCoins();
             } else {
                 showOutput(`Error: ${data.error}`);
@@ -117,7 +145,7 @@
             const memory = document.getElementById('server-ram').value;
             const cpu = document.getElementById('server-cpu').value;
 
-            showOutput("Desplegando servidor en Pterodactyl...");
+            showOutput("Conectando con Pterodactyl y desplegando servidor...");
 
             const res = await fetch('/crear-servidor', {
                 method: 'POST',
@@ -125,7 +153,7 @@
                 body: JSON.stringify({ 
                     userId: currentUser.id, 
                     name, 
-                    eggId: 1, // ID de tu egg de Minecraft en Pterodactyl
+                    eggId: 1, 
                     memory: parseInt(memory), 
                     cpu: parseInt(cpu), 
                     disk: 10240, 
@@ -134,10 +162,10 @@
             });
             const data = await res.json();
             if (res.ok) {
-                showOutput(`¡Servidor creado con éxito! ID en panel: ${data.server.id}`);
+                showOutput(`¡Servidor desplegado con éxito! ID: ${data.server.id}`);
                 cargarCoins();
             } else {
-                showOutput(`Error al crear servidor: ${data.error}`);
+                showOutput(`Error al desplegar: ${data.error}`);
             }
         }
 

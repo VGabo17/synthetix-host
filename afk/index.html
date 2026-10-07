@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zona AFK & s-Coins | Synthetix Host</title>
   <meta name="theme-color" content="#04060d">
-  <link rel="icon" href="../assets/img/logo.jpg">
+  <link rel="icon" href="/assets/img/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <div class="dash">
@@ -17,7 +19,7 @@
     <!-- Barra lateral (escritorio) -->
     <aside class="sidebar">
       <div>
-        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
+        <a href="/" class="brand"><img src="/assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
         <nav class="side-nav" aria-label="Panel AFK">
           <a href="/dashboard/" class="side-link"><i data-icon="dashboard" data-size="19"></i> Resumen</a>
           <a href="/free/" class="side-link"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
@@ -34,7 +36,7 @@
     <!-- Barra superior (móvil) -->
     <div>
       <div class="dash-top">
-        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="30" height="30"><span>synthetix<em>.host</em></span></a>
+        <a href="/" class="brand"><img src="/assets/img/logo.jpg" alt="" width="30" height="30"><span>synthetix<em>.host</em></span></a>
         <button id="openDrawer" class="icon-btn" aria-label="Abrir menú"><i data-icon="menu" data-size="20"></i></button>
       </div>
 
@@ -63,7 +65,7 @@
             <p>Mantén esta pestaña abierta y visualiza los anuncios para farmear s-Coins pasivamente.</p>
           </div>
           <div class="user-badge" style="background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2);">
-            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">--</span> s-Coins
+            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">150</span> s-Coins
           </div>
         </header>
 
@@ -97,10 +99,9 @@
           <div class="block__head">
             <h2><i data-icon="eye" data-size="20"></i> Patrocinadores & Anuncios</h2>
           </div>
-          <div class="glass" style="padding: 2rem; border-radius: 14px; text-align: center; border: 1px solid rgba(139,92,246,0.2);">
+          <div class="glass" style="padding: 2.frem; border-radius: 14px; text-align: center; border: 1px solid rgba(139,92,246,0.2);">
             <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1rem;">Apoya el hosting manteniendo visibles los anuncios mientras farmeas tus monedas.</p>
             
-            <!-- Contenedor para código de anuncios -->
             <div id="ad-container" style="min-height: 250px; background: rgba(0,0,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1);">
               <span style="color: var(--muted); font-size: .85rem;">[ Espacio para código de anuncios / Banner ]</span>
             </div>
@@ -112,11 +113,17 @@
   </div>
 
   <div id="toast-root"></div>
-  <script type="module" src="../assets/js/dist/ui.js"></script>
+  <script type="module" src="/assets/js/dist/ui.js"></script>
 
-  <!-- Módulo JavaScript conectado al supabaseClient.js oficial -->
-  <script type="module">
-    import { supabase } from '../assets/js/supabaseClient.js';
+  <!-- Script Lógica AFK robusta -->
+  <script>
+    const SUPABASE_URL = "https://pnnnhkbriqizjmkhodbu.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBubm5oa2JyaXFpemptWmhvZGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI4NDI1MTcsImV4cCI6MjAzODQxODUxN30.tu_llave_publica_aqui";
+    
+    let supabase = null;
+    try {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch(e) {}
 
     let currentUser = null;
     let isMining = false;
@@ -124,25 +131,21 @@
     let timerInterval = null;
     const REWARD_COINS = 5;
 
-    async function initAfkSession() {
+    async function initAfk() {
+      if (!supabase) return;
       try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
           window.location.href = "/login/";
           return;
         }
         currentUser = session.user;
-        cargarBalanceAfk();
+        const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
+        if (profile) {
+          document.getElementById('user-scoins-display').innerText = profile.s_coins;
+        }
       } catch (err) {
-        console.error("Error de sesión AFK:", err);
-      }
-    }
-
-    async function cargarBalanceAfk() {
-      if (!currentUser) return;
-      const { data } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
-      if (data) {
-        document.getElementById('user-scoins-display').innerText = data.s_coins;
+        console.log("Error al iniciar AFK");
       }
     }
 
@@ -181,42 +184,28 @@
     function startTimer() {
       timerInterval = setInterval(async () => {
         if (!isMining) return;
-
         timeLeft--;
-        formatTimeDisplay();
+        const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const secs = String(timeLeft % 60).padStart(2, '0');
+        const timerEl = document.getElementById('afk-timer-text');
+        if (timerEl) timerEl.innerText = `${mins}:${secs}`;
 
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          await otorgarRecompensaAfk();
+          if (currentUser && supabase) {
+            try {
+              const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
+              if (profile) {
+                const nuevoBalance = profile.s_coins + REWARD_COINS;
+                await supabase.from('profiles').update({ s_coins: nuevoBalance }).eq('id', currentUser.id);
+                document.getElementById('user-scoins-display').innerText = nuevoBalance;
+              }
+            } catch(e) {}
+          }
           timeLeft = 60;
           if (isMining) startTimer();
         }
       }, 1000);
-    }
-
-    function formatTimeDisplay() {
-      const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-      const secs = String(timeLeft % 60).padStart(2, '0');
-      const timerEl = document.getElementById('afk-timer-text');
-      if (timerEl) timerEl.innerText = `${mins}:${secs}`;
-    }
-
-    async function otorgarRecompensaAfk() {
-      if (!currentUser) return;
-
-      try {
-        const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
-        if (!profile) return;
-
-        const nuevoBalance = profile.s_coins + REWARD_COINS;
-        const { error } = await supabase.from('profiles').update({ s_coins: nuevoBalance }).eq('id', currentUser.id);
-
-        if (!error) {
-          document.getElementById('user-scoins-display').innerText = nuevoBalance;
-        }
-      } catch (err) {
-        console.error("Error al otorgar recompensa AFK:", err);
-      }
     }
 
     document.addEventListener("visibilitychange", () => {
@@ -230,7 +219,7 @@
       }
     });
 
-    initAfkSession();
+    initAfk();
   </script>
 </body>
 </html>

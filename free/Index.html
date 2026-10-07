@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servidores Free & s-Coins | Synthetix Host</title>
+  <meta name="theme-color" content="#04060d">
+  <link rel="icon" href="../assets/img/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="dash">
+
+    <!-- Barra lateral (escritorio) -->
+    <aside class="sidebar">
+      <div>
+        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
+        <nav class="side-nav" aria-label="Panel Free">
+          <a href="/dashboard/" class="side-link"><i data-icon="dashboard" data-size="19"></i> Resumen Principal</a>
+          <a href="/free/" class="side-link is-on"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
+          <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
+          <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
+        </nav>
+      </div>
+      <div class="side-foot">
+        <a href="/dashboard/" class="btn btn-ghost btn-wide"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
+      </div>
+    </aside>
+
+    <!-- Barra superior (móvil) -->
+    <div>
+      <div class="dash-top">
+        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="30" height="30"><span>synthetix<em>.host</em></span></a>
+        <button id="openDrawer" class="icon-btn" aria-label="Abrir menú"><i data-icon="menu" data-size="20"></i></button>
+      </div>
+
+      <div id="drawerOverlay" class="overlay"></div>
+      <aside id="drawer" class="drawer">
+        <div class="drawer__head">
+          <h3>Menú Zona Free</h3>
+          <button id="closeDrawer" class="icon-btn" aria-label="Cerrar menú"><i data-icon="x" data-size="19"></i></button>
+        </div>
+        <nav class="drawer__nav">
+          <a href="/dashboard/"><i data-icon="dashboard" data-size="18"></i> Resumen Principal</a>
+          <a href="/free/" style="background:rgba(34,211,238,.08)"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
+          <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
+          <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
+        </nav>
+        <div class="drawer__foot">
+          <a href="/dashboard/" class="btn btn-ghost btn-wide" style="justify-content:center"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
+        </div>
+      </aside>
+
+      <main class="dash-main">
+        <header class="dash-head">
+          <div>
+            <h1>Zona de Servidores Free</h1>
+            <p>Canjea tus s-Coins acumulados por instancias temporales de prueba o ventajas exclusivas.</p>
+          </div>
+          <div class="user-badge" style="background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2);">
+            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">150</span> s-Coins
+          </div>
+        </header>
+
+        <!-- Catálogo de Recompensas Free -->
+        <section class="block reveal">
+          <div class="block__head">
+            <h2><i data-icon="gift" data-size="20"></i> Canjear s-Coins por Servidores</h2>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            
+            <!-- Opción 1: Servidor Test 24h -->
+            <div class="glass" style="padding: 1.5rem; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(34,211,238,0.2);">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
+                  <h3 style="font-size: 1rem; color: #fff;">Servidor Test Minecraft (24h)</h3>
+                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">50 s-Coins</span>
+                </div>
+                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Instancia de 2GB RAM, Paper/Purpur + GeyserMC (Crossplay Java y Bedrock) activo por 24 horas.</p>
+              </div>
+              <button class="btn btn-primary btn-sm btn-wide" onclick="claimFreeReward('Servidor Test Minecraft 24h', 50)">
+                Reclamar Instancia <i data-icon="arrow-right" data-size="15"></i>
+              </button>
+            </div>
+
+            <!-- Opción 2: Cupón 15% Descuento -->
+            <div class="glass" style="padding: 1.5rem; border-radius: 14px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(139,92,246,0.2);">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem;">
+                  <h3 style="font-size: 1rem; color: #fff;">Cupón 15% Descuento Hosting</h3>
+                  <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: var(--violet); padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-family: 'JetBrains Mono';">120 s-Coins</span>
+                </div>
+                <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1.25rem;">Obtén un código de descuento aplicable en cualquier plan de Minecraft o Network mensual.</p>
+              </div>
+              <button class="btn btn-ghost btn-sm btn-wide" style="border-color: var(--violet); color: var(--violet);" onclick="claimFreeReward('Cupón 15% Descuento', 120)">
+                Canjear Cupón <i data-icon="arrow-right" data-size="15"></i>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Cómo ganar más s-Coins -->
+        <section class="block reveal">
+          <div class="block__head">
+            <h2><i data-icon="zap" data-size="20"></i> ¿Cómo conseguir más s-Coins?</h2>
+          </div>
+          <div class="glass" style="padding: 1.5rem; border-radius: 14px;">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: .9rem; color: var(--text);">
+              <li style="display: flex; align-items: center; gap: 10px;">
+                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
+                <span><b>Actividad en Comunidad:</b> Participa activamente en nuestro servidor de Discord y eventos semanales.</span>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px;">
+                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
+                <span><b>Sistema de Referidos:</b> Invita a otros dueños de servidores a usar Synthetix Host con tu link único.</span>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px;">
+                <span style="color: var(--cyan);"><i data-icon="check" data-size="18"></i></span>
+                <span><b>Promos en TikTok / Redes:</b> Sube videos mostrando tus servidores alojados con nosotros y etiqueta la marca.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Mis Instancias Free Activas -->
+        <section class="block reveal">
+          <div class="block__head">
+            <h2><i data-icon="server" data-size="20"></i> Mis Instancias Free Activas</h2>
+          </div>
+          <div id="free-instances-container" class="empty">
+            <span class="empty__ico"><i data-icon="clock" data-size="28"></i></span>
+            <h3>No tienes servidores free activos</h3>
+            <p>Usa tus s-Coins en las opciones de arriba para reclamar tu primera prueba gratuita.</p>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="../assets/js/dist/ui.js"></script>
+
+  <script>
+    function claimFreeReward(rewardName, cost) {
+      // Lógica de validación rápida de s-Coins (simulada)
+      let currentCoins = 150; // Esto se conectará luego con la base de datos o localStorage
+      if (currentCoins < cost) {
+        alert("No tienes suficientes s-Coins para reclamar esta recompensa.");
+        return;
+      }
+      
+      // Mensaje de éxito orientado a abrir ticket en Discord con el código
+      alert(`¡Has solicitado: "${rewardName}"!\n\nAbre un ticket en nuestro Discord oficial (https://discord.gg/QDZ5ff5Shb) adjuntando tu ID de usuario para la activación manual inmediata de tu recompensa.`);
+    }
+  </script>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || "";
+      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobileDevice) {
+        document.documentElement.classList.add("dashboard-mobile");
+      }
+    })();
+  </script>
+</body>
+</html>

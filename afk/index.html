@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona AFK & s-Coins | Synthetix Host</title>
+  <meta name="theme-color" content="#04060d">
+  <link rel="icon" href="../assets/img/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="dash">
+
+    <!-- Barra lateral (escritorio) -->
+    <aside class="sidebar">
+      <div>
+        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
+        <nav class="side-nav" aria-label="Panel AFK">
+          <a href="/dashboard/" class="side-link"><i data-icon="dashboard" data-size="19"></i> Resumen</a>
+          <a href="/free/" class="side-link"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
+          <a href="/afk/" class="side-link is-on"><i data-icon="clock" data-size="19"></i> Zona AFK & Anuncios</a>
+          <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
+          <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
+        </nav>
+      </div>
+      <div class="side-foot">
+        <a href="/dashboard/" class="btn btn-ghost btn-wide"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
+      </div>
+    </aside>
+
+    <!-- Barra superior (móvil) -->
+    <div>
+      <div class="dash-top">
+        <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="30" height="30"><span>synthetix<em>.host</em></span></a>
+        <button id="openDrawer" class="icon-btn" aria-label="Abrir menú"><i data-icon="menu" data-size="20"></i></button>
+      </div>
+
+      <div id="drawerOverlay" class="overlay"></div>
+      <aside id="drawer" class="drawer">
+        <div class="drawer__head">
+          <h3>Menú Zona AFK</h3>
+          <button id="closeDrawer" class="icon-btn" aria-label="Cerrar menú"><i data-icon="x" data-size="19"></i></button>
+        </div>
+        <nav class="drawer__nav">
+          <a href="/dashboard/"><i data-icon="dashboard" data-size="18"></i> Resumen</a>
+          <a href="/free/"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
+          <a href="/afk/" style="background:rgba(34,211,238,.08)"><i data-icon="clock" data-size="18"></i> Zona AFK & Anuncios</a>
+          <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
+          <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
+        </nav>
+        <div class="drawer__foot">
+          <a href="/dashboard/" class="btn btn-ghost btn-wide" style="justify-content:center"><i data-icon="arrow-left" data-size="17"></i> Volver al Panel</a>
+        </div>
+      </aside>
+
+      <main class="dash-main">
+        <header class="dash-head">
+          <div>
+            <h1>Minería AFK de s-Coins</h1>
+            <p>Mantén esta pestaña abierta y visualiza los anuncios para farmear s-Coins pasivamente.</p>
+          </div>
+          <div class="user-badge" style="background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2);">
+            <i data-icon="zap" data-size="16"></i> <span id="user-scoins-display">--</span> s-Coins
+          </div>
+        </header>
+
+        <!-- Bloque Principal AFK -->
+        <section class="block reveal">
+          <div class="block__head">
+            <h2><i data-icon="play-circle" data-size="20"></i> Estado de Minería AFK</h2>
+          </div>
+          
+          <div class="glass" style="padding: 2rem; border-radius: 14px; text-align: center; border: 1px solid rgba(34,211,238,0.2);">
+            <div id="afk-status-badge" class="badge" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: .4rem 1rem; border-radius: 20px; font-size: .85rem; font-family: 'JetBrains Mono'; display: inline-block; margin-bottom: 1rem;">
+              ⏹️ Minería Pausada
+            </div>
+            
+            <h3 id="afk-timer-text" style="font-size: 2.5rem; color: #fff; font-family: 'JetBrains Mono'; margin-bottom: .5rem;">01:00</h3>
+            <p style="font-size: .9rem; color: var(--muted); margin-bottom: 1.5rem;">Tiempo restante para recibir <b style="color: var(--cyan);">+5 s-Coins</b></p>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+              <button id="btnToggleAfk" class="btn btn-primary" onclick="toggleAfkMining()">
+                Iniciar Minería AFK <i data-icon="play" data-size="15"></i>
+              </button>
+            </div>
+            <p id="visibility-warning" style="font-size: .8rem; color: #f59e0b; margin-top: 1rem; display: none;">
+              ⚠️ La minería se ha pausado porque cambiaste de pestaña. Vuelve aquí para continuar sumando coins.
+            </p>
+          </div>
+        </section>
+
+        <!-- Espacio para Anuncios -->
+        <section class="block reveal">
+          <div class="block__head">
+            <h2><i data-icon="eye" data-size="20"></i> Patrocinadores & Anuncios</h2>
+          </div>
+          <div class="glass" style="padding: 2rem; border-radius: 14px; text-align: center; border: 1px solid rgba(139,92,246,0.2);">
+            <p style="font-size: .85rem; color: var(--muted); margin-bottom: 1rem;">Apoya el hosting manteniendo visibles los anuncios mientras farmeas tus monedas.</p>
+            
+            <!-- Contenedor donde puedes pegar el código script/iframe de tu proveedor de publicidad -->
+            <div id="ad-container" style="min-height: 250px; background: rgba(0,0,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1);">
+              <span style="color: var(--muted); font-size: .85rem;">[ Espacio para código de anuncios / Banner ]</span>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="../assets/js/dist/ui.js"></script>
+
+  <!-- Módulo JavaScript conectado a Supabase -->
+  <script type="module">
+    import { supabase } from '../assets/js/supabaseClient.js';
+
+    let currentUser = null;
+    let isMining = false;
+    let timeLeft = 60; // 60 segundos por ciclo
+    let timerInterval = null;
+    const REWARD_COINS = 5; // s-Coins otorgadas por cada minuto completado
+
+    async function initAfkSession() {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error || !session) {
+          window.location.href = "/login/";
+          return;
+        }
+        currentUser = session.user;
+        cargarBalanceAfk();
+      } catch (err) {
+        console.error("Error de sesión AFK:", err);
+      }
+    }
+
+    async function cargarBalanceAfk() {
+      if (!currentUser) return;
+      const { data } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
+      if (data) {
+        document.getElementById('user-scoins-display').innerText = data.s_coins;
+      }
+    }
+
+    window.toggleAfkMining = function() {
+      const btn = document.getElementById('btnToggleAfk');
+      const badge = document.getElementById('afk-status-badge');
+
+      if (!isMining) {
+        isMining = true;
+        btn.innerHTML = `Pausar Minería <i data-icon="pause" data-size="15"></i>`;
+        btn.className = "btn btn-ghost";
+        badge.innerHTML = "🟢 Minando Activo";
+        badge.style.background = "rgba(34, 211, 238, 0.1)";
+        badge.style.color = "var(--cyan)";
+        startTimer();
+      } else {
+        stopAfkMining("⏹️ Minería Pausada");
+      }
+    };
+
+    function stopAfkMining(reasonText) {
+      isMining = false;
+      clearInterval(timerInterval);
+      const btn = document.getElementById('btnToggleAfk');
+      const badge = document.getElementById('afk-status-badge');
+
+      if (btn && badge) {
+        btn.innerHTML = `Iniciar Minería AFK <i data-icon="play" data-size="15"></i>`;
+        btn.className = "btn btn-primary";
+        badge.innerHTML = reasonText;
+        badge.style.background = "rgba(239, 68, 68, 0.1)";
+        badge.style.color = "#ef4444";
+      }
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(async () => {
+        if (!isMining) return;
+
+        timeLeft--;
+        formatTimeDisplay();
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          await otorgarRecompensaAfk();
+          timeLeft = 60;
+          if (isMining) startTimer();
+        }
+      }, 1000);
+    }
+
+    function formatTimeDisplay() {
+      const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const secs = String(timeLeft % 60).padStart(2, '0');
+      const timerEl = document.getElementById('afk-timer-text');
+      if (timerEl) timerEl.innerText = `${mins}:${secs}`;
+    }
+
+    async function otorgarRecompensaAfk() {
+      if (!currentUser) return;
+
+      try {
+        const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', currentUser.id).single();
+        if (!profile) return;
+
+        const nuevoBalance = profile.s_coins + REWARD_COINS;
+        const { error } = await supabase.from('profiles').update({ s_coins: nuevoBalance }).eq('id', currentUser.id);
+
+        if (!error) {
+          document.getElementById('user-scoins-display').innerText = nuevoBalance;
+        }
+      } catch (err) {
+        console.error("Error al otorgar recompensa AFK:", err);
+      }
+    }
+
+    // Detector anti-fraude: pausa la minería si el usuario minimiza o cambia de pestaña
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && isMining) {
+        stopAfkMining("⚠️ Pausado por inactividad");
+        const warning = document.getElementById('visibility-warning');
+        if (warning) warning.style.display = "block";
+      } else if (!document.hidden) {
+        const warning = document.getElementById('visibility-warning');
+        if (warning) warning.style.display = "none";
+      }
+    });
+
+    initAfkSession();
+  </script>
+</body>
+</html>

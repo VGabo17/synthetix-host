@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Cliente  | Synthetix Host</title>
+  <title>Panel de Cliente | Synthetix Host</title>
   <meta name="theme-color" content="#04060d">
   <link rel="icon" href="../assets/img/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <!-- Supabase Client CDN -->
+  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -29,7 +29,7 @@
         </nav>
       </div>
       <div class="side-foot">
-        <button id="logout-btn-desktop" class="btn btn-ghost btn-wide"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
+        <button id="logout-btn-desktop" class="btn btn-ghost btn-wide" onclick="cerrarSesion()"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
       </div>
     </aside>
 
@@ -54,7 +54,7 @@
           <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
         </nav>
         <div class="drawer__foot">
-          <button id="logout-btn-mobile" class="btn btn-danger btn-wide"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
+          <button id="logout-btn-mobile" class="btn btn-danger btn-wide" onclick="cerrarSesion()"><i data-icon="logout" data-size="17"></i> Cerrar sesión</button>
         </div>
       </aside>
 
@@ -153,7 +153,7 @@
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
 
-  <!-- Script para conectar Pterodactyl API en vivo y actualizar s-Coins reales -->
+  <!-- Script seguro para actualizar s-Coins y Pterodactyl -->
   <script>
     async function loadDashboardData() {
       try {
@@ -163,13 +163,22 @@
         
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
-          const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', session.user.id).single();
+          const user = session.user;
+          const username = user.email.split('@')[0];
+          
+          const greeting = document.getElementById('user-greeting');
+          if (greeting) greeting.innerText = `Bienvenido, ${username}`;
+
+          const badge = document.getElementById('user-badge');
+          if (badge) badge.innerHTML = `<span class="dot dot--live" style="background:var(--cyan)"></span> Cliente: ${user.email}`;
+
+          const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', user.id).single();
           if (profile && profile.s_coins !== undefined) {
             document.getElementById('user-scoins-val').innerText = profile.s_coins;
           }
         }
       } catch (e) {
-        console.log("Manteniendo s-Coins por defecto");
+        console.log("Manteniendo datos por defecto");
       }
 
       const panelUrl = "https://panel.synthetixhost.lol";
@@ -212,6 +221,15 @@
         console.log("Modo offline o sin token de API configurado.");
       }
     }
+
+    async function cerrarSesion() {
+      try {
+        const supabase = window.supabase.createClient("https://pnnnhkbriqizjmkhodbu.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBubm5oa2JyaXFpemptWmhvZGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI4NDI1MTcsImV4cCI6MjAzODQxODUxN30.tu_llave_publica_aqui");
+        await supabase.auth.signOut();
+      } catch(e) {}
+      window.location.href = "/login/";
+    }
+
     loadDashboardData();
   </script>
 

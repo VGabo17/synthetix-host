@@ -20,6 +20,7 @@
         <a href="/" class="brand"><img src="../assets/img/logo.jpg" alt="" width="32" height="32"><span>synthetix<em>.host</em></span></a>
         <nav class="side-nav" aria-label="Panel">
           <a href="/dashboard/" class="side-link is-on"><i data-icon="dashboard" data-size="19"></i> Resumen</a>
+          <a href="/free/" class="side-link"><i data-icon="zap" data-size="19"></i> Servidores Free & s-Coins</a>
           <a href="/#productos" class="side-link"><i data-icon="cart" data-size="19"></i> Contratar Servicios</a>
           <a href="/#soporte" class="side-link"><i data-icon="lifebuoy" data-size="19"></i> Soporte</a>
         </nav>
@@ -44,6 +45,7 @@
         </div>
         <nav class="drawer__nav">
           <a href="/dashboard/" style="background:rgba(34,211,238,.08)"><i data-icon="dashboard" data-size="18"></i> Resumen</a>
+          <a href="/free/"><i data-icon="zap" data-size="18"></i> Servidores Free & s-Coins</a>
           <a href="/#productos"><i data-icon="cart" data-size="18"></i> Contratar Servicios</a>
           <a href="/#soporte"><i data-icon="lifebuoy" data-size="18"></i> Soporte</a>
         </nav>
@@ -61,37 +63,43 @@
           <div id="user-badge" class="user-badge"><span class="dot dot--live" style="background:var(--cyan)"></span> Cargando cuenta...</div>
         </header>
 
-        <!-- Estadísticas -->
+        <!-- Estadísticas y Monedero -->
         <div class="stat-grid">
           <div class="stat glass reveal">
             <div class="stat__label"><i data-icon="server" data-size="18"></i> Servicios Activos</div>
-            <div class="stat__value">0</div>
+            <div class="stat__value" id="stat-active-servers">0</div>
           </div>
-          <div class="stat glass reveal" style="--d:80ms">
+          <div class="stat glass reveal" style="--d:60ms">
+            <div class="stat__label"><i data-icon="zap" data-size="18"></i> Mis s-Coins</div>
+            <div class="stat__value" style="color:var(--cyan)"><span id="user-scoins-val">150</span> <span style="font-size:.75rem; font-weight:normal; color:var(--muted)">s-Coins</span></div>
+          </div>
+          <div class="stat glass reveal" style="--d:120ms">
             <div class="stat__label"><i data-icon="activity" data-size="18"></i> Estado de los Nodos</div>
             <div class="stat__value stat__value--sm"><span class="dot dot--live"></span> 100% Operativo</div>
           </div>
-          <div class="stat glass reveal" style="--d:160ms">
-            <div class="stat__label"><i data-icon="lifebuoy" data-size="18"></i> Comunidad / Soporte</div>
-            <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" rel="noopener" class="stat__value stat__value--sm"><i data-icon="discord" data-size="18"></i> Soporte vía Discord</a>
+          <div class="stat glass reveal" style="--d:180ms">
+            <div class="stat__label"><i data-icon="lifebuoy" data-size="18"></i> Soporte Oficial</div>
+            <a href="https://discord.gg/QDZ5ff5Shb" target="_blank" rel="noopener" class="stat__value stat__value--sm"><i data-icon="discord" data-size="18"></i> Abrir Ticket</a>
           </div>
         </div>
 
-        <!-- Mis servicios -->
-        <section class="block reveal">
+        <!-- Mis servicios (Contenedor Pterodactyl dinámico) -->
+        <section class="block reveal" id="servers-section">
           <div class="block__head">
-            <h2><i data-icon="server" data-size="20"></i> Mis Servidores y Servicios</h2>
+            <h2><i data-icon="server" data-size="20"></i> Mis Servidores de Pago</h2>
             <a href="/#productos" class="link" style="font-size:.85rem">+ Desplegar nuevo servicio</a>
           </div>
-          <div class="empty">
-            <span class="empty__ico"><i data-icon="zap" data-size="28"></i></span>
-            <h3>No tienes servicios activos todavía</h3>
-            <p>Explora nuestros catálogos de Minecraft, Networks, VPS Cloud o Bots de Discord y despliega tu infraestructura al instante.</p>
-            <a href="/#productos" class="btn btn-primary">Ver catálogo de planes <i data-icon="arrow-right" data-size="17"></i></a>
+          <div id="servers-container">
+            <div class="empty">
+              <span class="empty__ico"><i data-icon="zap" data-size="28"></i></span>
+              <h3>No tienes servicios activos todavía</h3>
+              <p>Explora nuestros catálogos de Minecraft, Networks, VPS Cloud o Bots y despliega tu infraestructura al instante.</p>
+              <a href="/#productos" class="btn btn-primary">Ver catálogo de planes <i data-icon="arrow-right" data-size="17"></i></a>
+            </div>
           </div>
         </section>
 
-        <!-- Historial -->
+        <!-- Historial de transacciones -->
         <section class="block reveal">
           <div class="block__head">
             <h2><i data-icon="receipt" data-size="20"></i> Historial de Transacciones</h2>
@@ -103,7 +111,7 @@
                   <th>ID Pedido</th><th>Concepto / Servicio</th><th>Fecha</th><th>Monto</th><th>Estado</th><th>Acción</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="transactions-body">
                 <tr><td colspan="6">No hay transacciones registradas en este momento.</td></tr>
               </tbody>
             </table>
@@ -118,19 +126,19 @@
               <h3>Panel de Control (Pterodactyl)</h3>
               <p>Accede directamente a la consola en vivo, gestión de archivos y rendimiento en <b>panel.synthetixhost.lol</b>.</p>
             </div>
-            <button id="btn-pterodactyl" class="btn btn-primary btn-wide">Abrir panel.synthetixhost.lol <i data-icon="external" data-size="16"></i></button>
+            <a href="https://panel.synthetixhost.lol" target="_blank" class="btn btn-primary btn-wide">Abrir panel.synthetixhost.lol <i data-icon="external" data-size="16"></i></a>
           </div>
 
-          <div class="quick quick--soon glass reveal" style="--d:100ms">
+          <div class="quick glass reveal" style="--d:100ms; border-color: rgba(34,211,238,0.2);">
             <div>
               <div class="quick__top">
-                <span class="quick__ico quick__ico--violet"><i data-icon="card" data-size="24"></i></span>
-                <span class="soon">Próximamente</span>
+                <span class="quick__ico" style="background:rgba(34,211,238,0.1); color:var(--cyan);"><i data-icon="gift" data-size="24"></i></span>
+                <span class="badge" style="background:rgba(34,211,238,0.1); color:var(--cyan); padding:.2rem .5rem; border-radius:10px; font-size:.7rem">Gratis</span>
               </div>
-              <h3>Facturación Automática</h3>
-              <p>Muy pronto podrás gestionar tus renovaciones y métodos de pago directamente desde este portal.</p>
+              <h3>Zona de Servidores Free</h3>
+              <p>Canjea tus s-Coins acumulados por instancias temporales de prueba y ventajas exclusivas.</p>
             </div>
-            <button disabled class="btn btn-ghost btn-wide">En desarrollo</button>
+            <a href="/free/" class="btn btn-ghost btn-wide" style="border-color:var(--cyan); color:var(--cyan);">Ir a Servidores Free <i data-icon="arrow-right" data-size="16"></i></a>
           </div>
         </div>
       </main>
@@ -141,15 +149,60 @@
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
 
-<script>
-(function () {
-  var ua = navigator.userAgent || navigator.vendor || "";
-  var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
-  if (isMobileDevice) {
-    document.documentElement.classList.add("dashboard-mobile");
-  }
-})();
-</script>
+  <!-- Script opcional para conectar Pterodactyl API en vivo -->
+  <script>
+    async function loadPterodactylServers() {
+      const panelUrl = "https://panel.synthetixhost.lol";
+      const clientApiKey = localStorage.getItem("ptlc_token"); 
+      if (!clientApiKey) return;
 
+      try {
+        const response = await fetch(`${panelUrl}/api/client`, {
+          headers: {
+            "Authorization": `Bearer ${clientApiKey}`,
+            "Content-Type": "application/json",
+            "Accept": "Application/vnd.pterodactyl.v1+json"
+          }
+        });
+        if (!response.ok) throw new Error("Error al conectar");
+        const data = await response.json();
+        
+        if (data.data && data.data.length > 0) {
+          document.getElementById("stat-active-servers").innerText = data.data.length;
+          const container = document.getElementById("servers-container");
+          let html = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">`;
+          data.data.forEach(server => {
+            const attr = server.attributes;
+            html += `
+              <div class="glass" style="padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <h3 style="font-size: 1rem; color: #fff;">${attr.name}</h3>
+                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); font-size: .7rem; padding: .2rem .5rem; border-radius: 10px;">Activo</span>
+                </div>
+                <p style="font-size: .8rem; color: var(--muted); margin-bottom: 1rem;">ID: ${attr.identifier}</p>
+                <a href="https://panel.synthetixhost.lol/server/${attr.identifier}" target="_blank" class="btn btn-primary btn-sm btn-wide">
+                  Gestionar <i data-icon="external" data-size="14"></i>
+                </a>
+              </div>`;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        }
+      } catch (err) {
+        console.log("Modo offline o sin token de API configurado.");
+      }
+    }
+    loadPterodactylServers();
+  </script>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || "";
+      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobileDevice) {
+        document.documentElement.classList.add("dashboard-mobile");
+      }
+    })();
+  </script>
 </body>
 </html>

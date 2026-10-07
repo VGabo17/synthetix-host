@@ -150,5 +150,61 @@
   <div id="toast-root"></div>
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
+
+  <!-- Script opcional para conectar Pterodactyl API en vivo -->
+  <script>
+    async function loadPterodactylServers() {
+      const panelUrl = "https://panel.synthetixhost.lol";
+      const clientApiKey = localStorage.getItem("ptlc_token"); 
+      if (!clientApiKey) return;
+
+      try {
+        const response = await fetch(`${panelUrl}/api/client`, {
+          headers: {
+            "Authorization": `Bearer ${clientApiKey}`,
+            "Content-Type": "application/json",
+            "Accept": "Application/vnd.pterodactyl.v1+json"
+          }
+        });
+        if (!response.ok) throw new Error("Error al conectar");
+        const data = await response.json();
+        
+        if (data.data && data.data.length > 0) {
+          document.getElementById("stat-active-servers").innerText = data.data.length;
+          const container = document.getElementById("servers-container");
+          let html = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">`;
+          data.data.forEach(server => {
+            const attr = server.attributes;
+            html += `
+              <div class="glass" style="padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(34, 211, 238, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <h3 style="font-size: 1rem; color: #fff;">${attr.name}</h3>
+                  <span class="badge" style="background: rgba(34, 211, 238, 0.1); color: var(--cyan); font-size: .7rem; padding: .2rem .5rem; border-radius: 10px;">Activo</span>
+                </div>
+                <p style="font-size: .8rem; color: var(--muted); margin-bottom: 1rem;">ID: ${attr.identifier}</p>
+                <a href="https://panel.synthetixhost.lol/server/${attr.identifier}" target="_blank" class="btn btn-primary btn-sm btn-wide">
+                  Gestionar <i data-icon="external" data-size="14"></i>
+                </a>
+              </div>`;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        }
+      } catch (err) {
+        console.log("Modo offline o sin token de API configurado.");
+      }
+    }
+    loadPterodactylServers();
+  </script>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || "";
+      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobileDevice) {
+        document.documentElement.classList.add("dashboard-mobile");
+      }
+    })();
+  </script>
 </body>
 </html>

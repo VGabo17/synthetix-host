@@ -73,7 +73,7 @@
           </div>
           <div class="stat glass reveal" style="--d:60ms">
             <div class="stat__label"><i data-icon="zap" data-size="18"></i> Mis s-Coins</div>
-            <div class="stat__value" style="color:var(--cyan)"><span id="user-scoins-val">--</span> <span style="font-size:.75rem; font-weight:normal; color:var(--muted)">s-Coins</span></div>
+            <div class="stat__value" style="color:var(--cyan)"><span id="user-scoins-val">150</span> <span style="font-size:.75rem; font-weight:normal; color:var(--muted)">s-Coins</span></div>
           </div>
           <div class="stat glass reveal" style="--d:120ms">
             <div class="stat__label"><i data-icon="activity" data-size="18"></i> Estado de los Nodos</div>
@@ -150,56 +150,5 @@
   <div id="toast-root"></div>
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
-
-  <!-- Script modular seguro que usa tu archivo supabaseClient.js -->
-  <script type="module">
-    import { supabase } from '../assets/js/supabaseClient.js';
-
-    async function cargarDatosDashboard() {
-      try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error || !session) {
-          window.location.href = "/login/";
-          return;
-        }
-
-        const user = session.user;
-        const username = user.email.split('@')[0];
-        
-        const greeting = document.getElementById('user-greeting');
-        if (greeting) greeting.innerText = `Bienvenido, ${username}`;
-
-        const badge = document.getElementById('user-badge');
-        if (badge) badge.innerHTML = `<span class="dot dot--live" style="background:var(--cyan)"></span> Cliente: ${user.email}`;
-
-        // Obtener s-Coins de Supabase
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('s_coins')
-          .eq('id', user.id)
-          .single();
-
-        if (profile) {
-          document.getElementById('user-scoins-val').innerText = profile.s_coins;
-        } else {
-          document.getElementById('user-scoins-val').innerText = "0";
-        }
-      } catch (err) {
-        console.error("Error al cargar datos del dashboard:", err);
-      }
-    }
-
-    cargarDatosDashboard();
-  </script>
-
-  <script>
-    (function () {
-      var ua = navigator.userAgent || navigator.vendor || "";
-      var isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
-      if (isMobileDevice) {
-        document.documentElement.classList.add("dashboard-mobile");
-      }
-    })();
-  </script>
 </body>
 </html>

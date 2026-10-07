@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <!-- Supabase Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <div class="dash">
@@ -151,9 +153,25 @@
   <script type="module" src="../assets/js/dist/ui.js"></script>
   <script type="module" src="../assets/js/dashboard.js"></script>
 
-  <!-- Script opcional para conectar Pterodactyl API en vivo -->
+  <!-- Script para conectar Pterodactyl API en vivo y actualizar s-Coins reales -->
   <script>
-    async function loadPterodactylServers() {
+    async function loadDashboardData() {
+      try {
+        const SUPABASE_URL = "https://pnnnhkbriqizjmkhodbu.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBubm5oa2JyaXFpemptWmhvZGJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI4NDI1MTcsImV4cCI6MjAzODQxODUxN30.tu_llave_publica_aqui";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          const { data: profile } = await supabase.from('profiles').select('s_coins').eq('id', session.user.id).single();
+          if (profile && profile.s_coins !== undefined) {
+            document.getElementById('user-scoins-val').innerText = profile.s_coins;
+          }
+        }
+      } catch (e) {
+        console.log("Manteniendo s-Coins por defecto");
+      }
+
       const panelUrl = "https://panel.synthetixhost.lol";
       const clientApiKey = localStorage.getItem("ptlc_token"); 
       if (!clientApiKey) return;
@@ -194,7 +212,7 @@
         console.log("Modo offline o sin token de API configurado.");
       }
     }
-    loadPterodactylServers();
+    loadDashboardData();
   </script>
 
   <script>
